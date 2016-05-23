@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -8,23 +11,27 @@ import sys
 import resources
 
 class GameEngine(QMainWindow):
+    """this class creates game engine layout and functions"""
 
+    #constructor
     def __init__(self):
-        super().__init__()
+        super().__init__() #call super class constructor
 
     def create_game_engine_layout(self, game_engine_id):
         #this is the layout for the game engine window
 
-        self.__game_engine_id = game_engine_id
-        print(self.__game_engine_id)
+        self.game_engine_id = game_engine_id #get the game engine id from positional argument
+        print(self.game_engine_id)
 
-        #create a widget to add some widget
+        #set QWidget class
         self.game_engine_widget = QWidget()
         
+        #create background cg
         self.cg = QLabel(self.game_engine_widget)
         self.cg.setPixmap(QPixmap(":/bg_0000.png"))
         self.cg.setGeometry(0, 0, 960, 540)
         
+        #create text background label
         self.text_background_label = QLabel(self.game_engine_widget)
         self.text_background_label.setPixmap(QPixmap(":/text_background.png"))
         self.text_background_label.setGeometry(0, 340, 960, 200)
@@ -56,6 +63,7 @@ class GameEngine(QMainWindow):
         self.extra_button.clicked.connect(self.add_engine_id)
 
     def add_engine_id(self):
+        ####this is the test function
 
-        self.__game_engine_id += 1
-        print(self.__game_engine_id)
+        self.game_engine_id += 1
+        print(self.game_engine_id)
