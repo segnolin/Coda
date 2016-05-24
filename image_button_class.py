@@ -9,6 +9,7 @@ import sys
 import resources
 
 class ImageButton(QPushButton):
+    """this class provide image button functions"""
 
     #constructor
     def __init__(self, button_id, parent):

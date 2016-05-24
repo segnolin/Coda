@@ -35,21 +35,21 @@ class MainWindow(QMainWindow):
 
         #create all the buttons
         #create a strat button
-        self.start_button = ImageButton("start", self.main_window_widget)
-        self.start_button.setGeometry(755, 45, 160, 55)
+        self.main_start_button = ImageButton("main_start", self.main_window_widget)
+        self.main_start_button.setGeometry(755, 45, 160, 55)
 
         #create a load button
-        self.load_button = ImageButton("load", self.main_window_widget)
-        self.load_button.setGeometry(755, 145, 160, 55)
+        self.main_load_button = ImageButton("main_load", self.main_window_widget)
+        self.main_load_button.setGeometry(755, 145, 160, 55)
 
         #create a extra button
-        self.extra_button = ImageButton("extra", self.main_window_widget)
-        self.extra_button.setGeometry(755, 245, 160, 55)
+        self.main_extra_button = ImageButton("main_extra", self.main_window_widget)
+        self.main_extra_button.setGeometry(755, 245, 160, 55)
 
         #create a settings button
-        self.settings_button = ImageButton("settings", self.main_window_widget)
-        self.settings_button.setGeometry(755, 345, 160, 55)
+        self.main_settings_button = ImageButton("main_settings", self.main_window_widget)
+        self.main_settings_button.setGeometry(755, 345, 160, 55)
 
         #create a exit button
-        self.exit_button = ImageButton("exit", self.main_window_widget)
-        self.exit_button.setGeometry(755, 445, 160, 55)
+        self.main_exit_button = ImageButton("main_exit", self.main_window_widget)
+        self.main_exit_button.setGeometry(755, 445, 160, 55)

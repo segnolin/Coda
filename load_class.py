@@ -11,6 +11,7 @@ import sys
 import resources
 
 class Load(QMainWindow):
+    """this class creates game load layout and functions"""
 
     #constructor
     def __init__(self):
@@ -31,9 +32,9 @@ class Load(QMainWindow):
         self.bg.setGeometry(0, 0, 960, 540)
 
         #create a strat button
-        self.start_button = ImageButton("start", self.load_widget)
-        self.start_button.setGeometry(755, 45, 160, 55)
+        self.main_start_button = ImageButton("main_start", self.load_widget)
+        self.main_start_button.setGeometry(755, 45, 160, 55)
 
         #create a exit button
-        self.exit_button = ImageButton("exit", self.load_widget)
-        self.exit_button.setGeometry(755, 445, 160, 55)
+        self.main_exit_button = ImageButton("main_exit", self.load_widget)
+        self.main_exit_button.setGeometry(755, 445, 160, 55)

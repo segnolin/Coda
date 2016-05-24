@@ -11,7 +11,6 @@ from load_class import *
 from image_button_class import *
 
 import sys
-import resources
 
 class Main(QMainWindow):
     """this class init the main window and manage connections"""
@@ -42,11 +41,11 @@ class Main(QMainWindow):
         self.setCentralWidget(self.central_widget)
     
         #connection
-        self.main_window.start_button.clicked.connect(self.start)
-        self.main_window.load_button.clicked.connect(self.load)
-        self.main_window.extra_button.clicked.connect(self.extra)
-        self.main_window.settings_button.clicked.connect(self.settings)
-        self.main_window.exit_button.clicked.connect(self.exit)
+        self.main_window.main_start_button.clicked.connect(self.start)
+        self.main_window.main_load_button.clicked.connect(self.load)
+        self.main_window.main_extra_button.clicked.connect(self.extra)
+        self.main_window.main_settings_button.clicked.connect(self.settings)
+        self.main_window.main_exit_button.clicked.connect(self.exit)
 
     def load_game_engine(self):
 
@@ -75,9 +74,9 @@ class Main(QMainWindow):
         
         self.status = "game_engine" #set the game status to game_engine
 
-        #connection
+        '''#connection
         self.game_engine.load_button.clicked.connect(self.load)
-        self.game_engine.exit_button.clicked.connect(self.back_to_main)
+        self.game_engine.exit_button.clicked.connect(self.back_to_main)'''
 
     def load(self):
 
@@ -88,11 +87,11 @@ class Main(QMainWindow):
         self.stacked_layout.setCurrentWidget(self.load_game.load_widget) #change the visible layout in the stack
         
         #connection
-        self.load_game.start_button.clicked.connect(self.load_game_engine)
+        self.load_game.main_start_button.clicked.connect(self.load_game_engine)
         if self.status == "main":
-            self.load_game.exit_button.clicked.connect(self.back_to_main)
+            self.load_game.main_exit_button.clicked.connect(self.back_to_main)
         elif self.status == "game_engine":
-            self.load_game.exit_button.clicked.connect(self.back_to_game_engine)
+            self.load_game.main_exit_button.clicked.connect(self.back_to_game_engine)
 
     def extra(self):
 
