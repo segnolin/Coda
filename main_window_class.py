@@ -46,9 +46,9 @@ class MainWindow(QMainWindow):
         self.main_extra_button = ImageButton("main_extra", self.main_window_widget)
         self.main_extra_button.setGeometry(755, 245, 160, 55)
 
-        #create a settings button
-        self.main_settings_button = ImageButton("main_settings", self.main_window_widget)
-        self.main_settings_button.setGeometry(755, 345, 160, 55)
+        #create a config button
+        self.main_config_button = ImageButton("main_config", self.main_window_widget)
+        self.main_config_button.setGeometry(755, 345, 160, 55)
 
         #create a exit button
         self.main_exit_button = ImageButton("main_exit", self.main_window_widget)

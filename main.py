@@ -12,7 +12,7 @@ from image_button_class import *
 
 import sys
 
-class Main(QMainWindow):
+class Coda(QMainWindow):
     """this class init the main window and manage connections"""
 
     #constructor
@@ -44,7 +44,7 @@ class Main(QMainWindow):
         self.main_window.main_start_button.clicked.connect(self.start)
         self.main_window.main_load_button.clicked.connect(self.load)
         self.main_window.main_extra_button.clicked.connect(self.extra)
-        self.main_window.main_settings_button.clicked.connect(self.settings)
+        self.main_window.main_config_button.clicked.connect(self.config)
         self.main_window.main_exit_button.clicked.connect(self.exit)
 
     def load_game_engine(self):
@@ -97,9 +97,9 @@ class Main(QMainWindow):
 
         print("extra")
 
-    def settings(self):
+    def config(self):
 
-        print("settings")
+        print("config")
 
     def exit(self):         
 
@@ -113,7 +113,7 @@ class Main(QMainWindow):
 def main():
 
     app = QApplication(sys.argv) #create new application
-    main_window = Main() #create new instance of main window
+    main_window = Coda() #create new instance of main window
     main_window.show() #make instance visible
     main_window.raise_() #raise instance to top of window stack
     sys.exit(app.exec_()) #monitor application for events

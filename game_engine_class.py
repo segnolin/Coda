@@ -43,7 +43,7 @@ class GameEngine(QMainWindow):
         self.text_box_label.setFont(self.text_font)
         self.text_box_label.setAlignment(Qt.AlignLeft) #make text align top left
         self.text_box_label.setGeometry(100, 430, 685, 100)
-        self.text_box_label.setStyleSheet("QLabel {color: rgba(255, 255, 255, 80%)}")
+        self.text_box_label.setStyleSheet("QLabel {color: rgba(255, 255, 255, 100%)}")
 
         '''###################################################################### test button start
         #create a load button

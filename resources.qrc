@@ -15,9 +15,9 @@
         <file alias="main_extra_button_hover.png">images/main_window/system/main_extra_button_hover.png</file>
         <file alias="main_extra_button_press.png">images/main_window/system/main_extra_button_press.png</file>
 
-        <file alias="main_settings_button_defaults.png">images/main_window/system/main_settings_button_defaults.png</file>
-        <file alias="main_settings_button_hover.png">images/main_window/system/main_settings_button_hover.png</file>
-        <file alias="main_settings_button_press.png">images/main_window/system/main_settings_button_press.png</file>
+        <file alias="main_config_button_defaults.png">images/main_window/system/main_config_button_defaults.png</file>
+        <file alias="main_config_button_hover.png">images/main_window/system/main_config_button_hover.png</file>
+        <file alias="main_config_button_press.png">images/main_window/system/main_config_button_press.png</file>
 
         <file alias="main_exit_button_defaults.png">images/main_window/system/main_exit_button_defaults.png</file>
         <file alias="main_exit_button_hover.png">images/main_window/system/main_exit_button_hover.png</file>
