@@ -52,7 +52,7 @@ class ImageButton(QPushButton):
             self.setPalette(self.palette_defaults)
 
         elif event.type() == QEvent.Paint:
-            
+
             return True
 
         return False

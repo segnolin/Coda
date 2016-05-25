@@ -25,12 +25,12 @@ class GameEngine(QMainWindow):
 
         #set QWidget class
         self.game_engine_widget = QWidget()
-        
+
         #create background cg
         self.cg = QLabel(self.game_engine_widget)
         self.cg.setPixmap(QPixmap(":/bg_0000.png"))
         self.cg.setGeometry(0, 0, 960, 540)
-        
+
         #create text background label
         self.text_background_label = QLabel(self.game_engine_widget)
         self.text_background_label.setPixmap(QPixmap(":/text_background.png"))
@@ -62,26 +62,33 @@ class GameEngine(QMainWindow):
         self.main_extra_button.clicked.connect(self.add_engine_id)
         ###################################################################### test button end'''
 
+        #create a auto button
         self.auto_button = ImageButton("auto", self.game_engine_widget)
         self.auto_button.setGeometry(810, 435, 35, 35)
 
+        #create a skip button
         self.skip_button = ImageButton("skip", self.game_engine_widget)
         self.skip_button.setGeometry(855, 435, 35, 35)
 
+        #create a log button
         self.log_button = ImageButton("log", self.game_engine_widget)
         self.log_button.setGeometry(900, 435, 35, 35)
 
+        #create a save button
         self.save_button = ImageButton("save", self.game_engine_widget)
         self.save_button.setGeometry(810, 480, 35, 35)
 
+        #create a load button
         self.load_button = ImageButton("load", self.game_engine_widget)
         self.load_button.setGeometry(855, 480, 35, 35)
 
+        #create a menu button
         self.menu_button = ImageButton("menu", self.game_engine_widget)
         self.menu_button.setGeometry(900, 480, 35, 35)
 
+        #create a hide button
         self.hide_button = ImageButton("hide", self.game_engine_widget)
-        self.hide_button.setGeometry(755, 395, 30, 30)
+        self.hide_button.setGeometry(760, 400, 25, 25)
 
     '''def add_engine_id(self):
         ####this is the test function

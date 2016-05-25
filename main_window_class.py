@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
 
         #set QWidget class
         self.main_window_widget = QWidget()
-        
+
         #set background picture by QLabel
         self.main_background = QLabel(self.main_window_widget)
         self.main_background.setPixmap(QPixmap(":/main_background.png"))

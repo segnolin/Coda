@@ -39,7 +39,7 @@ class Coda(QMainWindow):
         self.central_widget = QWidget()
         self.central_widget.setLayout(self.stacked_layout)
         self.setCentralWidget(self.central_widget)
-    
+
         #connection
         self.main_window.main_start_button.clicked.connect(self.start)
         self.main_window.main_load_button.clicked.connect(self.load)
@@ -65,13 +65,13 @@ class Coda(QMainWindow):
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget) #change the visible layout in the stack
 
     def start(self):
-        
+
         print("start")
         self.game_engine = GameEngine() #call the GameEngine class from game_engine_class.py
         self.game_engine.create_game_engine_layout(self.game_engine_id) #create the game engine layout by game engine id
         self.stacked_layout.addWidget(self.game_engine.game_engine_widget) #add new widget to the stacked layout
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget) #change the visible layout in the stack
-        
+
         self.status = "game_engine" #set the game status to game_engine
 
         '''#connection
@@ -85,7 +85,7 @@ class Coda(QMainWindow):
         self.load_game.create_load_layout(self.status) #create the load layout
         self.stacked_layout.addWidget(self.load_game.load_widget) #add new widget to the stacked layout
         self.stacked_layout.setCurrentWidget(self.load_game.load_widget) #change the visible layout in the stack
-        
+
         #connection
         self.load_game.main_start_button.clicked.connect(self.load_game_engine)
         if self.status == "main":
