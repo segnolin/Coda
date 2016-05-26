@@ -45,22 +45,14 @@ class GameEngine(QMainWindow):
         self.text_box_label.setGeometry(100, 430, 685, 100)
         self.text_box_label.setStyleSheet("QLabel {color: rgba(255, 255, 255, 100%)}")
 
-        '''###################################################################### test button start
-        #create a load button
-        self.main_load_button = ImageButton("main_load", self.game_engine_widget)
-        self.main_load_button.setGeometry(755, 145, 160, 55)
+        #create transparent label to add game engine id(next)
+        self.next_label = QLabel(self.game_engine_widget)
+        self.next_label.setGeometry(0, 0, 960, 540)        
 
-        #create a extra button
-        self.main_extra_button = ImageButton("main_extra", self.game_engine_widget)
-        self.main_extra_button.setGeometry(755, 245, 160, 55)
-
-        #create a exit button
-        self.main_exit_button = ImageButton("main_exit", self.game_engine_widget)
-        self.main_exit_button.setGeometry(755, 45, 160, 55)
-
-        #connection
-        self.main_extra_button.clicked.connect(self.add_engine_id)
-        ###################################################################### test button end'''
+        #create disable hide label to show all widget
+        self.disable_hide_label = QLabel(self.game_engine_widget)
+        self.disable_hide_label.setGeometry(0, 0, 960, 540)
+        self.hide()        
 
         #create a auto button
         self.auto_button = ImageButton("auto", self.game_engine_widget)
@@ -90,8 +82,43 @@ class GameEngine(QMainWindow):
         self.hide_button = ImageButton("hide", self.game_engine_widget)
         self.hide_button.setGeometry(760, 400, 25, 25)
 
-    '''def add_engine_id(self):
-        ####this is the test function
+        #connection
+        self.hide_button.clicked.connect(self.hide_widget)
+        self.disable_hide_label.mousePressEvent = self.show_widget
+        self.next_label.mousePressEvent = self.add_engine_id
+
+    def add_engine_id(self, event):
+        #this is the function to add game engine id
 
         self.game_engine_id += 1
-        print(self.game_engine_id)'''
+        print(self.game_engine_id)
+
+    def hide_widget(self):
+        #this is the funtion to hide all widgets
+
+        self.text_background_label.hide()
+        self.text_box_label.hide()
+        self.next_label.hide()
+        self.auto_button.hide()
+        self.skip_button.hide()
+        self.log_button.hide()
+        self.save_button.hide()
+        self.load_button.hide()
+        self.menu_button.hide()
+        self.hide_button.hide()
+        self.disable_hide_label.show()
+
+    def show_widget(self, event):
+        #this is the funtion to show all widgets
+
+        self.text_background_label.show()
+        self.text_box_label.show()
+        self.next_label.show()
+        self.auto_button.show()
+        self.skip_button.show()
+        self.log_button.show()
+        self.save_button.show()
+        self.load_button.show()
+        self.menu_button.show()
+        self.hide_button.show()
+        self.disable_hide_label.hide()

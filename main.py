@@ -49,7 +49,8 @@ class Coda(QMainWindow):
 
     def load_game_engine(self):
 
-        self.game_engine_id = 3 ####assume the load game engine id is 3
+        #self.game_engine_id = 3 ################# assume the load game engine id is 3
+        self.game_engine_id = self.game_engine.game_engine_id ################# work only when in game_engine status
         self.start()
 
     def back_to_main(self):
@@ -74,9 +75,9 @@ class Coda(QMainWindow):
 
         self.status = "game_engine" #set the game status to game_engine
 
-        '''#connection
+        #connection
         self.game_engine.load_button.clicked.connect(self.load)
-        self.game_engine.exit_button.clicked.connect(self.back_to_main)'''
+        #self.game_engine.exit_button.clicked.connect(self.back_to_main)
 
     def load(self):
 
