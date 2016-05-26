@@ -54,6 +54,24 @@
         <file alias="hide_button_hover.png">images/game_engine/system/hide_button_hover.png</file>
         <file alias="hide_button_press.png">images/game_engine/system/hide_button_press.png</file>
 
+        <file alias="menu_back_button_defaults.png">images/game_engine/system/menu_back_button_defaults.png</file>
+        <file alias="menu_back_button_hover.png">images/game_engine/system/menu_back_button_hover.png</file>
+        <file alias="menu_back_button_press.png">images/game_engine/system/menu_back_button_press.png</file>
+
+        <file alias="menu_title_button_defaults.png">images/game_engine/system/menu_title_button_defaults.png</file>
+        <file alias="menu_title_button_hover.png">images/game_engine/system/menu_title_button_hover.png</file>
+        <file alias="menu_title_button_press.png">images/game_engine/system/menu_title_button_press.png</file>
+
+        <file alias="menu_config_button_defaults.png">images/game_engine/system/menu_config_button_defaults.png</file>
+        <file alias="menu_config_button_hover.png">images/game_engine/system/menu_config_button_hover.png</file>
+        <file alias="menu_config_button_press.png">images/game_engine/system/menu_config_button_press.png</file>
+
+        <file alias="menu_exit_button_defaults.png">images/game_engine/system/menu_exit_button_defaults.png</file>
+        <file alias="menu_exit_button_hover.png">images/game_engine/system/menu_exit_button_hover.png</file>
+        <file alias="menu_exit_button_press.png">images/game_engine/system/menu_exit_button_press.png</file>
+
+        <file alias="menu_background.png">images/game_engine/system/menu_background.png</file>
+
         <file alias="load_background.png">images/load/system/load_background.png</file>
     </qresource>
 </RCC>

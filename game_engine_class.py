@@ -43,16 +43,16 @@ class GameEngine(QMainWindow):
         self.text_box_label.setFont(self.text_font)
         self.text_box_label.setAlignment(Qt.AlignLeft) #make text align top left
         self.text_box_label.setGeometry(100, 430, 685, 100)
-        self.text_box_label.setStyleSheet("QLabel {color: rgba(255, 255, 255, 100%)}")
-
-        #create transparent label to add game engine id(next)
-        self.next_label = QLabel(self.game_engine_widget)
-        self.next_label.setGeometry(0, 0, 960, 540)        
+        self.text_box_label.setStyleSheet("QLabel {color: rgba(255, 255, 255, 100%)}")        
 
         #create disable hide label to show all widget
         self.disable_hide_label = QLabel(self.game_engine_widget)
         self.disable_hide_label.setGeometry(0, 0, 960, 540)
-        self.hide()        
+        self.hide()
+
+        #create transparent label to add game engine id(next)
+        self.next_label = QLabel(self.game_engine_widget)
+        self.next_label.setGeometry(0, 0, 960, 540)
 
         #create a auto button
         self.auto_button = ImageButton("auto", self.game_engine_widget)
@@ -82,16 +82,76 @@ class GameEngine(QMainWindow):
         self.hide_button = ImageButton("hide", self.game_engine_widget)
         self.hide_button.setGeometry(760, 400, 25, 25)
 
+        #create menu background
+        self.menu_background_label = QLabel(self.game_engine_widget)
+        self.menu_background_label.setPixmap(QPixmap(":/menu_background.png"))
+        self.menu_background_label.setGeometry(0, 0, 960, 540)
+        self.menu_background_label.hide()
+
+        #create back button
+        self.back_button = ImageButton("menu_back", self.game_engine_widget)
+        self.back_button.setGeometry(400, 64, 160, 55)
+        self.back_button.hide()
+
+        #create title button
+        self.title_button = ImageButton("menu_title", self.game_engine_widget)
+        self.title_button.setGeometry(400, 183, 160, 55)
+        self.title_button.hide()
+
+        #create config button
+        self.config_button = ImageButton("menu_config", self.game_engine_widget)
+        self.config_button.setGeometry(400, 302, 160, 55)
+        self.config_button.hide()
+
+        #create exit button
+        self.exit_button = ImageButton("menu_exit", self.game_engine_widget)
+        self.exit_button.setGeometry(400, 421, 160, 55)
+        self.exit_button.hide()
+
         #connection
+        self.back_button.clicked.connect(self.hide_menu)
+        self.menu_button.clicked.connect(self.show_menu)
         self.hide_button.clicked.connect(self.hide_widget)
         self.disable_hide_label.mousePressEvent = self.show_widget
         self.next_label.mousePressEvent = self.add_engine_id
 
-    def add_engine_id(self, event):
-        #this is the function to add game engine id
+    def hide_menu(self):
+        #this is the funtion to hide menu layout
 
-        self.game_engine_id += 1
-        print(self.game_engine_id)
+        self.text_background_label.show()
+        self.text_box_label.show()
+        self.auto_button.show()
+        self.skip_button.show()
+        self.log_button.show()
+        self.save_button.show()
+        self.load_button.show()
+        self.menu_button.show()
+        self.hide_button.show()
+
+        self.menu_background_label.hide()
+        self.back_button.hide()
+        self.title_button.hide()
+        self.config_button.hide()
+        self.exit_button.hide()
+
+    def show_menu(self):
+        #this is the funtion to show menu layout
+
+        self.text_background_label.hide()
+        self.text_box_label.hide()
+        self.auto_button.hide()
+        self.skip_button.hide()
+        self.log_button.hide()
+        self.save_button.hide()
+        self.load_button.hide()
+        self.menu_button.hide()
+        self.hide_button.hide()
+
+        self.menu_background_label.show()
+        self.back_button.show()
+        self.title_button.show()
+        self.config_button.show()
+        self.exit_button.show()
 
     def hide_widget(self):
         #this is the funtion to hide all widgets
@@ -106,6 +166,7 @@ class GameEngine(QMainWindow):
         self.load_button.hide()
         self.menu_button.hide()
         self.hide_button.hide()
+        
         self.disable_hide_label.show()
 
     def show_widget(self, event):
@@ -121,4 +182,13 @@ class GameEngine(QMainWindow):
         self.load_button.show()
         self.menu_button.show()
         self.hide_button.show()
+
         self.disable_hide_label.hide()
+
+    def add_engine_id(self, event):
+        #this is the function to add game engine id
+
+        self.game_engine_id += 1
+        print(self.game_engine_id)
+
+    
