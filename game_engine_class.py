@@ -190,5 +190,3 @@ class GameEngine(QMainWindow):
 
         self.game_engine_id += 1
         print(self.game_engine_id)
-
-    
