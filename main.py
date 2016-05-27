@@ -9,6 +9,7 @@ from main_window_class import *
 from game_engine_class import *
 from load_class import *
 from image_button_class import *
+from fader_widget_class import *
 
 import sys
 
@@ -71,6 +72,9 @@ class Coda(QMainWindow):
         self.game_engine = GameEngine() #call the GameEngine class from game_engine_class.py
         self.game_engine.create_game_engine_layout(self.game_engine_id) #create the game engine layout by game engine id
         self.stacked_layout.addWidget(self.game_engine.game_engine_widget) #add new widget to the stacked layout
+        ###############################################################################################################
+        self.fader_widget = FaderWidget(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget)
+        ###############################################################################################################
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget) #change the visible layout in the stack
 
         self.status = "game_engine" #set the game status to game_engine
@@ -86,6 +90,9 @@ class Coda(QMainWindow):
         self.load_game = Load() #call the Load class from load_class.py
         self.load_game.create_load_layout(self.status) #create the load layout
         self.stacked_layout.addWidget(self.load_game.load_widget) #add new widget to the stacked layout
+        ###############################################################################################################
+        self.fader_widget = FaderWidget(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget)
+        ###############################################################################################################
         self.stacked_layout.setCurrentWidget(self.load_game.load_widget) #change the visible layout in the stack
 
         #connection
