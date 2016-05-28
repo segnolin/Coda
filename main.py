@@ -107,7 +107,7 @@ class Coda(QMainWindow):
 
         print("config")
 
-    def exit(self):         
+    def exit(self):
 
         print("exit")
         self.close()

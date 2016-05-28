@@ -6,6 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 from image_button_class import *
+from fader_widget_class import *
 
 import sys
 import resources
@@ -39,11 +40,11 @@ class GameEngine(QMainWindow):
         #set the text box label
         self.text_font = QFont("Noto Sans CJK TC Regular", 14, QFont.Bold)
         self.text_box_label = QLabel(self.game_engine_widget)
-        self.text_box_label.setText("Test Text\n測試文本\nテストテキスト")        
+        self.text_box_label.setText("Test Text\n測試文本\nテストテキスト")
         self.text_box_label.setFont(self.text_font)
         self.text_box_label.setAlignment(Qt.AlignLeft) #make text align top left
         self.text_box_label.setGeometry(100, 430, 685, 100)
-        self.text_box_label.setStyleSheet("QLabel {color: rgba(255, 255, 255, 100%)}")        
+        self.text_box_label.setStyleSheet("QLabel {color: rgba(255, 255, 255, 100%)}")
 
         #create disable hide label to show all widget
         self.disable_hide_label = QLabel(self.game_engine_widget)
@@ -118,6 +119,8 @@ class GameEngine(QMainWindow):
     def hide_menu(self):
         #this is the funtion to hide menu layout
 
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        
         self.text_background_label.show()
         self.text_box_label.show()
         self.auto_button.show()
@@ -137,6 +140,8 @@ class GameEngine(QMainWindow):
     def show_menu(self):
         #this is the funtion to show menu layout
 
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        
         self.text_background_label.hide()
         self.text_box_label.hide()
         self.auto_button.hide()
@@ -156,6 +161,8 @@ class GameEngine(QMainWindow):
     def hide_widget(self):
         #this is the funtion to hide all widgets
 
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        
         self.text_background_label.hide()
         self.text_box_label.hide()
         self.next_label.hide()
@@ -172,6 +179,8 @@ class GameEngine(QMainWindow):
     def show_widget(self, event):
         #this is the funtion to show all widgets
 
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        
         self.text_background_label.show()
         self.text_box_label.show()
         self.next_label.show()

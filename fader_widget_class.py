@@ -14,8 +14,8 @@ class FaderWidget(QWidget):
 
         QWidget.__init__(self, post_widget)
 
-        self.old_pixmap = QPixmap(960, 540)
-        pre_widget.render(self.old_pixmap)
+        self.post_pixmap = QPixmap(960, 540)
+        pre_widget.render(self.post_pixmap)
         self.pixmap_opacity = 1.0
 
         self.timeline = QTimeLine()
@@ -23,7 +23,7 @@ class FaderWidget(QWidget):
         self.timeline.setCurveShape(QTimeLine.EaseInOutCurve)
         self.timeline.valueChanged.connect(self.animate)
         self.timeline.finished.connect(self.close)
-        self.timeline.setDuration(300)
+        self.timeline.setDuration(250)
         self.timeline.start()
 
         self.resize(960, 540)
@@ -34,7 +34,7 @@ class FaderWidget(QWidget):
         painter = QPainter()
         painter.begin(self)
         painter.setOpacity(self.pixmap_opacity)
-        painter.drawPixmap(0, 0, self.old_pixmap)
+        painter.drawPixmap(0, 0, self.post_pixmap)
         painter.end()
 
     def animate(self, value):
