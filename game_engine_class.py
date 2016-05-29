@@ -27,6 +27,7 @@ class GameEngine(QMainWindow):
         #set QWidget class
         self.game_engine_widget = QWidget()
 
+        #create basic game engine layout
         #create background cg
         self.cg = QLabel(self.game_engine_widget)
         self.cg.setPixmap(QPixmap(":/bg_0000.png"))
@@ -83,6 +84,7 @@ class GameEngine(QMainWindow):
         self.hide_button = ImageButton("hide", self.game_engine_widget)
         self.hide_button.setGeometry(760, 400, 25, 25)
 
+        #create menu layout
         #create menu background
         self.menu_background_label = QLabel(self.game_engine_widget)
         self.menu_background_label.setPixmap(QPixmap(":/menu_background.png"))
@@ -199,3 +201,9 @@ class GameEngine(QMainWindow):
 
         self.game_engine_id += 1
         print(self.game_engine_id)
+
+        self.update()
+
+    def update(self):
+
+        print("update")
