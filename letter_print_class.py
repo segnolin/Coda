@@ -20,7 +20,7 @@ class LetterPrint(QLabel):
         self.index = 0
         self.timer = QTimer()
         self.timer.timeout.connect(self.handle_timer)
-        self.timer.start(30)
+        self.timer.start(50)
 
     def handle_timer(self):
 

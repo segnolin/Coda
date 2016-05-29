@@ -40,9 +40,10 @@ class GameEngine(QMainWindow):
         self.text_background_label.setGeometry(0, 340, 960, 200)
 
         #set the text box label
+        self.text = "Test Text\n測試文本\nテストテキスト"
         self.text_font = QFont("Noto Sans CJK TC Regular", 14, QFont.Bold)
         self.text_box_label = LetterPrint(self.game_engine_widget)
-        self.text_box_label.set_text("Test Text\n測試文本\nテストテキスト")
+        self.text_box_label.set_text(self.text)
         self.text_box_label.setFont(self.text_font)
         self.text_box_label.setAlignment(Qt.AlignLeft) #make text align top left
         self.text_box_label.setGeometry(100, 430, 685, 100)
@@ -117,7 +118,7 @@ class GameEngine(QMainWindow):
         self.menu_button.clicked.connect(self.show_menu)
         self.hide_button.clicked.connect(self.hide_widget)
         self.disable_hide_label.mousePressEvent = self.show_widget
-        self.next_label.mousePressEvent = self.add_engine_id
+        self.next_label.mousePressEvent = self.update
 
     def hide_menu(self):
         #this is the funtion to hide menu layout
@@ -197,16 +198,19 @@ class GameEngine(QMainWindow):
 
         self.disable_hide_label.hide()
 
-    def add_engine_id(self, event):
-        #this is the function to add game engine id
+    def update(self, event):
+        #this is the function to update game engine layout
 
-        self.game_engine_id += 1
-        print(self.game_engine_id)
+        if self.text_box_label.index < len(self.text):
+            self.text_box_label.setText(self.text)
+            self.text_box_label.index = len(self.text)
 
-        self.update()
+        else:
+            self.game_engine_id += 1
+            print(self.game_engine_id)
+            print("update")
 
-    def update(self):
+            self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget, 250) #call fade class
 
-        print("update")
-        self.new_text = "Hi! This is line {0}".format(self.game_engine_id)
-        self.text_box_label.set_text(self.new_text)
+            self.text = "Hi! This is line {0}".format(self.game_engine_id)
+            self.text_box_label.set_text(self.text)
