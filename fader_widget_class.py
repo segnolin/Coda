@@ -10,7 +10,9 @@ import sys
 class FaderWidget(QWidget):
     """this class provide fade in/out animation effect"""
 
-    def __init__(self, pre_widget, post_widget):
+    def __init__(self, pre_widget, post_widget, duration):
+
+        self.duration = duration
 
         QWidget.__init__(self, post_widget)
 
@@ -23,7 +25,7 @@ class FaderWidget(QWidget):
         self.timeline.setCurveShape(QTimeLine.EaseInOutCurve)
         self.timeline.valueChanged.connect(self.animate)
         self.timeline.finished.connect(self.close)
-        self.timeline.setDuration(250)
+        self.timeline.setDuration(self.duration)
         self.timeline.start()
 
         self.resize(960, 540)
