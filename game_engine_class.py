@@ -8,6 +8,7 @@ from PyQt5.QtCore import *
 from image_button_class import *
 from fader_widget_class import *
 from letter_print_class import *
+from portrait_label_class import *
 
 import sys
 import resources
@@ -27,15 +28,20 @@ class GameEngine(QMainWindow):
 
         #set QWidget class
         self.game_engine_widget = QWidget()
-        self.basic_widget = QWidget(self.game_engine_widget)
-        self.text_box_widget = QWidget(self.game_engine_widget)
-        self.menu_widget = QWidget(self.game_engine_widget)
+        self.basic_widget = QWidget(self.game_engine_widget) #widget for basic widget
+        self.text_box_widget = QWidget(self.game_engine_widget) #widget for text box widget
+        self.log_widget = QWidget(self.game_engine_widget) #widget for log widget
+        self.menu_widget = QWidget(self.game_engine_widget) #widget for menu widget
 
         #create basic game engine layout
         #create background cg
         self.cg = QLabel(self.basic_widget)
         self.cg.setPixmap(QPixmap(":/bg_0000.png"))
         self.cg.setGeometry(0, 0, 960, 540)
+
+        #create portrait label
+        self.portrait = Portrait(self.basic_widget)
+        self.portrait.show_portrait("aoi_normal", 400, 40, 500, 40, 280, 500)
 
         #create text background label
         self.text_background_label = QLabel(self.text_box_widget)
@@ -55,7 +61,7 @@ class GameEngine(QMainWindow):
         #create disable hide label to show all widget
         self.disable_hide_label = QLabel(self.basic_widget)
         self.disable_hide_label.setGeometry(0, 0, 960, 540)
-        self.hide()
+        self.hide() #hide this widget at first
 
         #create transparent label to add game engine id(next)
         self.next_label = QLabel(self.text_box_widget)
@@ -111,6 +117,9 @@ class GameEngine(QMainWindow):
         self.exit_button = ImageButton("menu_exit", self.menu_widget)
         self.exit_button.setGeometry(400, 421, 160, 55)
 
+        #hide text box widget
+        self.text_box_widget.hide()
+
         #hide menu widget
         self.menu_widget.hide()
 
@@ -124,36 +133,41 @@ class GameEngine(QMainWindow):
     def hide_menu(self):
         #this is the funtion to hide menu layout
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget, 250) #call fade class
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        self.fader_widget.fade(0, 0, 960, 540, 250)
         self.menu_widget.hide()
         self.text_box_widget.show()
 
     def show_menu(self):
         #this is the funtion to show menu layout
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget, 250) #call fade class
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        self.fader_widget.fade(0, 0, 960, 540, 250)
         self.menu_widget.show()
         self.text_box_widget.hide()
 
     def hide_widget(self):
         #this is the funtion to hide all widgets
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget, 250) #call fade class
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        self.fader_widget.fade(0, 0, 960, 540, 250)
         self.text_box_widget.hide()
         self.disable_hide_label.show()
 
     def show_widget(self, event):
         #this is the funtion to show all widgets
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget, 250) #call fade class
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        self.fader_widget.fade(0, 0, 960, 540, 250)
         self.text_box_widget.show()
         self.disable_hide_label.hide()
 
     def update(self, event):
         #this is the function to update game engine layout
 
+        #check if this text is already shown after label was pressed
         if self.text_box_label.index < len(self.text):
-            self.text_box_label.setText(self.text)
+            self.text_box_label.setText(self.text) #if not call setText function
             self.text_box_label.index = len(self.text)
 
         else:
@@ -161,7 +175,10 @@ class GameEngine(QMainWindow):
             print("update")
             print(self.game_engine_id)
 
-            self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget, 250) #call fade class
+            self.portrait.hide_portrait("aoi_normal")
+
+            self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+            self.fader_widget.fade(0, 0, 960, 540, 250)
 
             self.text = "Hi! This is line {0}".format(self.game_engine_id)
             self.text_box_label.set_text(self.text)

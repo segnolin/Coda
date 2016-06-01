@@ -10,25 +10,34 @@ import sys
 class FaderWidget(QWidget):
     """this class provide fade in/out animation effect"""
 
-    def __init__(self, pre_widget, post_widget, duration):
-
-        self.duration = duration
+    def __init__(self, pre_widget, post_widget):
 
         QWidget.__init__(self, post_widget)
 
-        self.post_pixmap = QPixmap(960, 540)
-        pre_widget.render(self.post_pixmap)
+        self.pre_widget = pre_widget
+        self.post_widget = post_widget
+
+    def fade(self, posx, posy, width, height, duration):
+
+        self.posx = posx
+        self.posy = posy
+        self.width = width
+        self.height = height
+        self.duration = duration
+
+        self.post_pixmap = QPixmap(self.width, self.height)
+        self.pre_widget.render(self.post_pixmap)
         self.pixmap_opacity = 1.0
 
         self.timeline = QTimeLine()
-        self.timeline.setUpdateInterval(10)
+        self.timeline.setUpdateInterval(1000 / 60)
         self.timeline.setCurveShape(QTimeLine.EaseInOutCurve)
         self.timeline.valueChanged.connect(self.animate)
         self.timeline.finished.connect(self.close)
         self.timeline.setDuration(self.duration)
         self.timeline.start()
 
-        self.resize(960, 540)
+        self.resize(self.width, self.height)
         self.show()
 
     def paintEvent(self, event):

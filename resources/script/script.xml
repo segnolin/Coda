@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+    <content id="1">
+        <bgm>bgm_0000</bgm>
+        <sd>sd_0000</sd>
+        <vc>vc_aoi_000000</vc>
+        <bg>bg_0000</bg>
+        <pt id="aoi_normal">
+            <posx>400</posx>
+            <posy>40</posy>
+            <posxf>500</posxf>
+            <posyf>40</posyf>
+            <width>280</width>
+            <height>500</height>
+        </pt>
+        <txt>Test text. This is line 0.</txt>
+    </content>
+</script>
