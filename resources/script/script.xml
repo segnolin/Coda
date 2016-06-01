@@ -3,7 +3,6 @@
     <content id="1">
         <bgm>bgm_0000</bgm>
         <sd>sd_0000</sd>
-        <vc>vc_aoi_000000</vc>
         <bg>bg_0000</bg>
         <pt id="aoi_normal">
             <posx>400</posx>
@@ -13,6 +12,7 @@
             <width>280</width>
             <height>500</height>
         </pt>
+        <vc>vc_aoi_000000</vc>
         <txt>Test text. This is line 0.</txt>
     </content>
 </script>

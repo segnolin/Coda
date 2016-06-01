@@ -34,7 +34,6 @@ class Portrait(QLabel):
         self.timeline.setUpdateInterval(10)
         self.timeline.setCurveShape(QTimeLine.EaseInOutCurve)
         self.timeline.valueChanged.connect(self.show_animate)
-        #self.timeline.finished.connect(self.finish)
         self.timeline.setDuration(800)
         self.timeline.start()
 
