@@ -47,7 +47,6 @@ class GameEngine(QMainWindow):
         #create disable hide label to show all widget
         self.disable_hide_label = QLabel(self.basic_widget)
         self.disable_hide_label.setGeometry(0, 0, 960, 540)
-        self.hide() #hide this widget at first
 
         #create text background label
         self.text_background_label = QLabel(self.text_box_widget)
@@ -175,7 +174,7 @@ class GameEngine(QMainWindow):
         print("init_text")
 
         self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
-        self.fader_widget.fade(0, 0, 960, 540, 250)
+        self.fader_widget.fade(0, 0, 250)
         self.text_box_widget.show()
         self.text_box_label.set_text(self.text)
 
@@ -183,12 +182,13 @@ class GameEngine(QMainWindow):
         #this is the function to update game engine layout
 
         if self.portrait_status == "not shown":
-            self.portrait.show_fin()
+
+            self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+            self.fader_widget.fade(0, 0, 250)
+            self.portrait.show_end()
             self.portrait_status == "shown"
 
         elif self.portrait_status == "shown":
-
-            print(self.portrait_status)
 
             #check if this text is already shown after label was pressed
             if self.text_box_label.index < len(self.text):
@@ -199,14 +199,15 @@ class GameEngine(QMainWindow):
                 self.game_engine_id += 1
                 print("update")
                 print(self.game_engine_id)
-                print(self.portrait_status)
 
                 self.portrait_status = "not closed"
 
                 self.set_background_music()
 
         elif self.portrait_status == "not closed":
-
+            
+            self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+            self.fader_widget.fade(0, 0, 250)
             self.init_background_music()
 
     def set_background_music(self):
@@ -232,7 +233,7 @@ class GameEngine(QMainWindow):
         print("set_text")
 
         self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
-        self.fader_widget.fade(0, 0, 960, 540, 250)
+        self.fader_widget.fade(0, 0, 250)
         self.fader_widget.timeline.finished.connect(self.set_protrait)
 
         self.text = "Hi! This is line {0}".format(self.game_engine_id)
@@ -251,7 +252,7 @@ class GameEngine(QMainWindow):
         #this is the funtion to hide menu layout
 
         self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
-        self.fader_widget.fade(0, 0, 960, 540, 250)
+        self.fader_widget.fade(0, 0, 250)
         self.menu_widget.hide()
         self.text_box_widget.show()
 
@@ -259,7 +260,7 @@ class GameEngine(QMainWindow):
         #this is the funtion to show menu layout
 
         self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
-        self.fader_widget.fade(0, 0, 960, 540, 250)
+        self.fader_widget.fade(0, 0, 250)
         self.menu_widget.show()
         self.text_box_widget.hide()
 
@@ -267,7 +268,7 @@ class GameEngine(QMainWindow):
         #this is the funtion to hide all widgets
 
         self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
-        self.fader_widget.fade(0, 0, 960, 540, 250)
+        self.fader_widget.fade(0, 0, 250)
         self.text_box_widget.hide()
         self.disable_hide_label.show()
 
@@ -275,6 +276,6 @@ class GameEngine(QMainWindow):
         #this is the funtion to show all widgets
 
         self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
-        self.fader_widget.fade(0, 0, 960, 540, 250)
+        self.fader_widget.fade(0, 0, 250)
         self.text_box_widget.show()
         self.disable_hide_label.hide()

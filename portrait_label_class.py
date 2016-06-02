@@ -77,12 +77,12 @@ class Portrait(QLabel):
         painter.drawPixmap(0, 0, self.pixmap)
         painter.end()
 
-    def show_fin(self):
+    def show_end(self):
 
         self.timeline.setDuration(1)
 
         self.pixmap_opacity = 1.0
         self.x = self.posxf
         self.y = self.posyf
-        
+
         self.repaint()

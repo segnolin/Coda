@@ -13,7 +13,7 @@ class LetterPrint(QLabel):
     #constructor
     def __init__(self, parent):
         super().__init__(parent) #call super class constructor
-        
+
         self.index = 0
 
     def set_text(self, text):

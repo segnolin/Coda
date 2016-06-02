@@ -57,7 +57,7 @@ class Coda(QMainWindow):
 
         print("back to main")
         self.fader_widget = FaderWidget(self.stacked_layout.currentWidget(), self.main_window.main_window_widget) #call fade class
-        self.fader_widget.fade(0, 0, 960, 540, 350)
+        self.fader_widget.fade(0, 0, 350)
         self.stacked_layout.setCurrentWidget(self.main_window.main_window_widget) #change the visible layout in the stack
         self.game_engine_id = 0 #set the initial game engine id
         self.status = "main" #set the initial game status
@@ -66,7 +66,7 @@ class Coda(QMainWindow):
 
         print("back to game engine")
         self.fader_widget = FaderWidget(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget) #call fade class
-        self.fader_widget.fade(0, 0, 960, 540, 350)
+        self.fader_widget.fade(0, 0, 350)
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget) #change the visible layout in the stack
 
     def start(self):
@@ -76,7 +76,7 @@ class Coda(QMainWindow):
         self.game_engine.create_game_engine_layout(self.game_engine_id) #create the game engine layout by game engine id
         self.stacked_layout.addWidget(self.game_engine.game_engine_widget) #add new widget to the stacked layout
         self.fader_widget = FaderWidget(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget) #call fade class
-        self.fader_widget.fade(0, 0, 960, 540, 350)
+        self.fader_widget.fade(0, 0, 350)
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget) #change the visible layout in the stack
 
         self.status = "game_engine" #set the game status to game_engine
@@ -93,7 +93,7 @@ class Coda(QMainWindow):
         self.load_game.create_load_layout(self.status) #create the load layout
         self.stacked_layout.addWidget(self.load_game.load_widget) #add new widget to the stacked layout
         self.fader_widget = FaderWidget(self.stacked_layout.currentWidget(), self.load_game.load_widget) #call fade class
-        self.fader_widget.fade(0, 0, 960, 540, 350)
+        self.fader_widget.fade(0, 0, 350)
         self.stacked_layout.setCurrentWidget(self.load_game.load_widget) #change the visible layout in the stack
 
         #connection

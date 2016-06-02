@@ -17,17 +17,15 @@ class FaderWidget(QWidget):
         self.pre_widget = pre_widget
         self.post_widget = post_widget
 
-    def fade(self, posx, posy, width, height, duration):
+        self.pixmap_opacity = 1.0
+        self.post_pixmap = QPixmap(960, 540)
+        self.pre_widget.render(self.post_pixmap)
+
+    def fade(self, posx, posy, duration):
 
         self.posx = posx
         self.posy = posy
-        self.width = width
-        self.height = height
         self.duration = duration
-
-        self.post_pixmap = QPixmap(self.width, self.height)
-        self.pre_widget.render(self.post_pixmap)
-        self.pixmap_opacity = 1.0
 
         self.timeline = QTimeLine()
         self.timeline.setUpdateInterval(1000 / 60)
@@ -37,7 +35,7 @@ class FaderWidget(QWidget):
         self.timeline.setDuration(self.duration)
         self.timeline.start()
 
-        self.resize(self.width, self.height)
+        self.resize(960, 540)
         self.show()
 
     def paintEvent(self, event):
