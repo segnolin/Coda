@@ -186,7 +186,6 @@ class GameEngine(QMainWindow):
             self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
             self.fader_widget.fade(0, 0, 250)
             self.portrait.show_end()
-            self.portrait_status == "shown"
 
         elif self.portrait_status == "shown":
 
@@ -200,8 +199,6 @@ class GameEngine(QMainWindow):
                 print("update")
                 print(self.game_engine_id)
 
-                self.portrait_status = "not closed"
-
                 self.set_background_music()
 
         elif self.portrait_status == "not closed":
@@ -213,6 +210,8 @@ class GameEngine(QMainWindow):
     def set_background_music(self):
 
         print("set_background_music")
+
+        self.portrait_status = "not closed"
 
         self.set_sound()
 
