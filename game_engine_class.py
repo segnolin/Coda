@@ -53,11 +53,19 @@ class GameEngine(QMainWindow):
         self.text_background_label.setPixmap(QPixmap(":/text_background.png"))
         self.text_background_label.setGeometry(0, 340, 960, 200)
 
+        #set the text character label
+        self.character = "AOI"
+        self.text_font = QFont("Noto Sans CJK TC Regular", 16, QFont.Bold)
+        self.text_character_label = QLabel(self.text_box_widget)
+        self.text_character_label.setFont(self.text_font)
+        self.text_character_label.setAlignment(Qt.AlignLeft) #make text align top left
+        self.text_character_label.setGeometry(90, 390, 695, 30)
+        self.text_character_label.setStyleSheet("QLabel {color: rgba(255, 255, 255, 100%)}")
+
         #set the text box label
         self.text = "Test Text\n測試文本\nテストテキスト"
         self.text_font = QFont("Noto Sans CJK TC Regular", 14, QFont.Bold)
         self.text_box_label = LetterPrint(self.text_box_widget)
-        #self.text_box_label.set_text(self.text)
         self.text_box_label.setFont(self.text_font)
         self.text_box_label.setAlignment(Qt.AlignLeft) #make text align top left
         self.text_box_label.setGeometry(100, 430, 685, 100)
@@ -129,9 +137,15 @@ class GameEngine(QMainWindow):
         self.disable_hide_label.mousePressEvent = self.show_widget
         self.next_label.mousePressEvent = self.update
 
-        self.init_background_music()
+        self.init_parser()
 
     ################################################## MAIN PROGRAM START ##################################################
+
+    def init_parser(self):
+
+        print("init_parser")
+
+        self.init_background_music()
 
     def init_background_music(self):
 
@@ -176,6 +190,8 @@ class GameEngine(QMainWindow):
         self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
         self.fader_widget.fade(250)
         self.text_box_widget.show()
+
+        self.text_character_label.setText(self.character)
         self.text_box_label.set_text(self.text)
 
     def update(self, event):
@@ -202,10 +218,10 @@ class GameEngine(QMainWindow):
                 self.set_background_music()
 
         elif self.portrait_status == "not closed":
-            
+
             self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
             self.fader_widget.fade(250)
-            self.init_background_music()
+            self.init_parser()
 
     def set_background_music(self):
 
@@ -236,6 +252,8 @@ class GameEngine(QMainWindow):
         self.fader_widget.timeline.finished.connect(self.set_protrait)
 
         self.text = "Hi! This is line {0}".format(self.game_engine_id)
+
+        self.text_character_label.clear()
         self.text_box_label.clear()
 
     def set_protrait(self):
@@ -243,7 +261,7 @@ class GameEngine(QMainWindow):
         print("set_protrait")
 
         self.portrait.hide_portrait("aoi_normal")
-        self.portrait.timeline.finished.connect(self.init_background_music)
+        self.portrait.timeline.finished.connect(self.init_parser)
 
     ################################################## MAIN PROGRAM END ##################################################
 

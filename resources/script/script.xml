@@ -13,6 +13,7 @@
             <height>500</height>
         </pt>
         <vc>vc_aoi_000000</vc>
+        <char>AOI</char>
         <txt>Test text. This is line 0.</txt>
     </content>
 </script>
