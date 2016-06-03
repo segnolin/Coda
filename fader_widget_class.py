@@ -21,10 +21,8 @@ class FaderWidget(QWidget):
         self.post_pixmap = QPixmap(960, 540)
         self.pre_widget.render(self.post_pixmap)
 
-    def fade(self, posx, posy, duration):
+    def fade(self, duration):
 
-        self.posx = posx
-        self.posy = posy
         self.duration = duration
 
         self.timeline = QTimeLine()
