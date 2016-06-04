@@ -47,3 +47,7 @@ class FaderWidget(QWidget):
 
         self.pixmap_opacity = 1.0 - value
         self.repaint()
+
+    def closeEvent(self, event):
+
+        self.deleteLater()
