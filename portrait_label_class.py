@@ -86,7 +86,3 @@ class Portrait(QLabel):
         self.y = self.posyf
 
         self.repaint()
-
-    def closeEvent(self, event):
-
-        self.deleteLater()

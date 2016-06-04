@@ -26,6 +26,7 @@ class GameEngine(QMainWindow):
         self.game_engine_id = game_engine_id #get the game engine id from positional argument
         print(self.game_engine_id)
 
+        self.init_status = True
         self.portrait_status = "not shown"
 
         #set QWidget class
@@ -36,10 +37,10 @@ class GameEngine(QMainWindow):
         self.menu_widget = QWidget(self.game_engine_widget) #widget for menu widget
 
         #create basic game engine layout
-        #create background cg
-        self.cg = QLabel(self.basic_widget)
-        self.cg.setPixmap(QPixmap(":/bg_0000.png"))
-        self.cg.setGeometry(0, 0, 960, 540)
+        #create background label
+        self.background = QLabel(self.basic_widget)
+        self.background.setPixmap(QPixmap(":/bg_0000.png"))
+        self.background.setGeometry(0, 0, 960, 540)
 
         #create portrait label
         self.portrait = Portrait(self.basic_widget)
@@ -165,7 +166,9 @@ class GameEngine(QMainWindow):
 
         print("init_background")
 
-        self.basic_widget.show()
+        if self.init_status:
+            self.basic_widget.show()
+
         self.init_protrait()
 
     def init_protrait(self):
@@ -189,7 +192,10 @@ class GameEngine(QMainWindow):
 
         self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
         self.fader_widget.fade(250)
-        self.text_box_widget.show()
+
+        if self.init_status:
+            self.text_box_widget.show()
+            self.init_status = False
 
         self.text_character_label.setText(self.character)
         self.text_box_label.set_text(self.text)
