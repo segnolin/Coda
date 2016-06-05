@@ -71,6 +71,7 @@ class GameEngine(QMainWindow):
         self.text_box_label.setAlignment(Qt.AlignLeft) #make text align top left
         self.text_box_label.setGeometry(100, 430, 685, 100)
         self.text_box_label.setStyleSheet("QLabel {color: rgba(255, 255, 255, 100%)}")
+        self.text_box_label.setWordWrap(True)
 
         #create transparent label to add game engine id(next)
         self.next_label = QLabel(self.text_box_widget)

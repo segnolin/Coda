@@ -75,5 +75,7 @@
         <file alias="load_background.png">resources/system/load/load_background.png</file>
 
         <file alias="aoi_normal.png">resources/portrait/aoi_normal.png</file>
+
+        <file alias="script.xml">resources/script/script.xml</file>
     </qresource>
 </RCC>
