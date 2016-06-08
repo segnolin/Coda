@@ -8,7 +8,7 @@ from PyQt5.QtCore import *
 import sys
 
 class FaderWidget(QWidget):
-    """this class provide fade in/out animation effect"""
+    '''this class provide fade in/out animation effect'''
 
     def __init__(self, pre_widget, post_widget):
 

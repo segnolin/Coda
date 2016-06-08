@@ -9,7 +9,7 @@ import sys
 import resources
 
 class ImageButton(QPushButton):
-    """this class provide image button functions"""
+    '''this class provide image button functions'''
 
     #constructor
     def __init__(self, button_id, parent):
@@ -23,15 +23,15 @@ class ImageButton(QPushButton):
 
         #set defaults image of button
         self.palette_defaults = QPalette()
-        self.palette_defaults.setBrush(self.backgroundRole(), QBrush(QPixmap(":/{0}_button_defaults.png".format(self.id))))
+        self.palette_defaults.setBrush(self.backgroundRole(), QBrush(QPixmap(':/{0}_button_defaults.png'.format(self.id))))
 
         #set hover image of button
         self.palette_hover = QPalette()
-        self.palette_hover.setBrush(self.backgroundRole(), QBrush(QPixmap(":/{0}_button_hover.png".format(self.id))))
+        self.palette_hover.setBrush(self.backgroundRole(), QBrush(QPixmap(':/{0}_button_hover.png'.format(self.id))))
 
         #set press image of button
         self.palette_press = QPalette()
-        self.palette_press.setBrush(self.backgroundRole(), QBrush(QPixmap(":/{0}_button_press.png".format(self.id))))
+        self.palette_press.setBrush(self.backgroundRole(), QBrush(QPixmap(':/{0}_button_press.png'.format(self.id))))
 
         self.setAutoFillBackground(True)
         self.setPalette(self.palette_defaults)

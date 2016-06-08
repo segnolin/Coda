@@ -15,5 +15,5 @@ def main():
     main_window.raise_() #raise instance to top of window stack
     sys.exit(app.exec_()) #monitor application for events
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

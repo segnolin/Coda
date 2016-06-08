@@ -8,7 +8,7 @@ from PyQt5.QtCore import *
 import sys
 
 class LetterPrint(QLabel):
-    """this class provide the label print letter by letter"""
+    '''this class provide the label print letter by letter'''
 
     #constructor
     def __init__(self, parent):

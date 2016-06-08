@@ -9,7 +9,7 @@ import sys
 import resources
 
 class Portrait(QLabel):
-    """this class provide the label of portrait"""
+    '''this class provide the label of portrait'''
 
     #constructor
     def __init__(self, parent):
@@ -24,15 +24,16 @@ class Portrait(QLabel):
         self.posyf = posyf
         self.width = width
         self.height = height
-        self.pixmap = QPixmap(":/{0}.png".format(portrait_id))
+        self.pixmap = QPixmap(':/{0}.png'.format(portrait_id))
 
         self.x = posx
         self.y = posy
         self.pixmap_opacity = 0.0
 
         self.timeline = QTimeLine()
-        self.timeline.setUpdateInterval(10)
-        self.timeline.setCurveShape(QTimeLine.EaseInOutCurve)
+        self.timeline.setUpdateInterval(1000 / 60)
+        #self.timeline.setCurveShape(QTimeLine.EaseInOutCurve)
+        self.timeline.setEasingCurve(QEasingCurve.Type(19))
         self.timeline.valueChanged.connect(self.show_animate)
         self.timeline.setDuration(800)
         self.timeline.start()
