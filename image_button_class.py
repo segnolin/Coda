@@ -20,8 +20,11 @@ class ImageButton(QAbstractButton):
         self.released.connect(self.update)
 
         self.pixmap_defaults = QPixmap(':/{0}_button_defaults.png'.format(self.id))
+        self.pixmap_defaults.setDevicePixelRatio(2)
         self.pixmap_hover = QPixmap(':/{0}_button_hover.png'.format(self.id))
+        self.pixmap_hover.setDevicePixelRatio(2)
         self.pixmap_press = QPixmap(':/{0}_button_press.png'.format(self.id))
+        self.pixmap_press.setDevicePixelRatio(2)
 
     def paintEvent(self, event):
 
@@ -30,7 +33,7 @@ class ImageButton(QAbstractButton):
             pixmap = self.pixmap_press
 
         painter = QPainter(self)
-        painter.drawPixmap(event.rect(), pixmap)
+        painter.drawPixmap(0, 0, pixmap)
 
     def enterEvent(self, event):
 

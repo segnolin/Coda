@@ -21,7 +21,8 @@ class FaderWidget(QWidget):
 
         self.duration = duration
         self.pixmap_opacity = 1.0
-        self.post_pixmap = QPixmap(960, 540)
+        self.post_pixmap = QPixmap(1920, 1080)
+        self.post_pixmap.setDevicePixelRatio(2)
         self.pre_widget.render(self.post_pixmap)
 
         self.timeline = QTimeLine()

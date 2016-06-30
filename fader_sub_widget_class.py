@@ -54,7 +54,7 @@ class FaderSubWidget(QWidget):
         self.timeline.start()
 
         self.effect = QGraphicsOpacityEffect()
-        
+
         self.resize(960, 540)
 
     def show_animate(self, value):

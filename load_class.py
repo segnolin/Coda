@@ -13,12 +13,10 @@ import resources
 class Load(QMainWindow):
     '''this class creates game load layout and functions'''
 
-    #constructor
     def __init__(self):
-        super().__init__() #call super class constructor
+        super().__init__()
 
     def create_load_layout(self, status):
-        #this is the layout for the load window
 
         self.status = status
         print(self.status)
@@ -27,9 +25,11 @@ class Load(QMainWindow):
         self.load_widget = QWidget()
 
         #set load page background
-        self.bg = QLabel(self.load_widget)
-        self.bg.setPixmap(QPixmap(':/load_background.png'))
-        self.bg.setGeometry(0, 0, 960, 540)
+        self.background_pixmap = QPixmap(':/load_background.png')
+        self.background_pixmap.setDevicePixelRatio(2)
+        self.background = QLabel(self.load_widget)
+        self.background.setPixmap(self.background_pixmap)
+        self.background.setGeometry(0, 0, 960, 540)
 
         #create a strat button
         self.main_start_button = ImageButton('main_start', self.load_widget)

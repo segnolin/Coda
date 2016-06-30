@@ -17,30 +17,31 @@ import resources
 class GameEngine(QMainWindow):
     '''this class creates game engine layout and functions'''
 
-    #constructor
     def __init__(self):
-        super().__init__() #call super class constructor
+        super().__init__()
 
     def create_game_engine_layout(self, game_engine_id):
-        #this is the layout for the game engine window
 
-        self.game_engine_id = game_engine_id #get the game engine id from positional argument
+        self.game_engine_id = game_engine_id
         print(self.game_engine_id)
 
+        #set game status
         self.init_status = True
         self.portrait_status = 'not shown'
 
         #set QWidget class
         self.game_engine_widget = QWidget()
-        self.basic_widget = QWidget(self.game_engine_widget) #widget for basic widget
-        self.text_box_widget = QWidget(self.game_engine_widget) #widget for text box widget
-        self.log_widget = QWidget(self.game_engine_widget) #widget for log widget
-        self.menu_widget = QWidget(self.game_engine_widget) #widget for menu widget
+        self.basic_widget = QWidget(self.game_engine_widget)
+        self.text_box_widget = QWidget(self.game_engine_widget)
+        self.log_widget = QWidget(self.game_engine_widget)
+        self.menu_widget = QWidget(self.game_engine_widget)
 
-        #create basic game engine layout
+        #create basic layout
         #create background label
+        self.background_pixmap = QPixmap(':/bg_0000.png')
+        self.background_pixmap.setDevicePixelRatio(2)
         self.background = QLabel(self.basic_widget)
-        self.background.setPixmap(QPixmap(':/bg_0000.png'))
+        self.background.setPixmap(self.background_pixmap)
         self.background.setGeometry(0, 0, 960, 540)
 
         #create portrait label
@@ -49,10 +50,14 @@ class GameEngine(QMainWindow):
         #create disable hide label to show all widget
         self.disable_hide_label = QLabel(self.basic_widget)
         self.disable_hide_label.setGeometry(0, 0, 960, 540)
+        self.disable_hide_label.hide()
 
+        #create text box layout
         #create text background label
+        self.text_background_pixmap = QPixmap(':/text_background.png')
+        self.text_background_pixmap.setDevicePixelRatio(2)
         self.text_background_label = QLabel(self.text_box_widget)
-        self.text_background_label.setPixmap(QPixmap(':/text_background.png'))
+        self.text_background_label.setPixmap(self.text_background_pixmap)
         self.text_background_label.setGeometry(0, 340, 960, 200)
 
         #set the text character label
@@ -60,7 +65,7 @@ class GameEngine(QMainWindow):
         self.text_font = QFont('Noto Sans CJK TC Regular', 16, QFont.Bold)
         self.text_character_label = QLabel(self.text_box_widget)
         self.text_character_label.setFont(self.text_font)
-        self.text_character_label.setAlignment(Qt.AlignLeft) #make text align top left
+        self.text_character_label.setAlignment(Qt.AlignLeft)
         self.text_character_label.setGeometry(90, 390, 695, 30)
         self.text_character_label.setStyleSheet('QLabel {color: rgba(255, 255, 255, 100%)}')
 
@@ -69,7 +74,7 @@ class GameEngine(QMainWindow):
         self.text_font = QFont('Noto Sans CJK TC Regular', 14, QFont.Bold)
         self.text_box_label = LetterPrint(self.text_box_widget)
         self.text_box_label.setFont(self.text_font)
-        self.text_box_label.setAlignment(Qt.AlignLeft) #make text align top left
+        self.text_box_label.setAlignment(Qt.AlignLeft)
         self.text_box_label.setGeometry(100, 430, 685, 100)
         self.text_box_label.setStyleSheet('QLabel {color: rgba(255, 255, 255, 100%)}')
         self.text_box_label.setWordWrap(True)
@@ -108,8 +113,10 @@ class GameEngine(QMainWindow):
 
         #create menu layout
         #create menu background
+        self.menu_background_pixmap = QPixmap(':/menu_background.png')
+        self.menu_background_pixmap.setDevicePixelRatio(2)
         self.menu_background_label = QLabel(self.menu_widget)
-        self.menu_background_label.setPixmap(QPixmap(':/menu_background.png'))
+        self.menu_background_label.setPixmap(self.menu_background_pixmap)
         self.menu_background_label.setGeometry(0, 0, 960, 540)
 
         #create back button
@@ -192,7 +199,7 @@ class GameEngine(QMainWindow):
 
         print('init_text')
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget)
         self.fader_widget.fade(250)
 
         if self.init_status:
@@ -203,7 +210,6 @@ class GameEngine(QMainWindow):
         self.text_box_label.set_text(self.text)
 
     def update(self, event):
-        #this is the function to update game engine layout
 
         if self.portrait_status == 'not shown':
 
@@ -227,7 +233,7 @@ class GameEngine(QMainWindow):
 
         elif self.portrait_status == 'not closed':
 
-            self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+            self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget)
             self.fader_widget.fade(250)
             self.init_parser()
 
@@ -255,7 +261,7 @@ class GameEngine(QMainWindow):
 
         print('set_text')
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget)
         self.fader_widget.fade(250)
         self.fader_widget.timeline.finished.connect(self.set_protrait)
 
@@ -274,43 +280,39 @@ class GameEngine(QMainWindow):
     ################################################## MAIN PROGRAM END ##################################################
 
     def hide_menu(self):
-        #this is the funtion to hide menu layout
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget)
         self.fader_widget.fade(250)
         self.menu_widget.hide()
         self.text_box_widget.show()
 
     def show_menu(self):
-        #this is the funtion to show menu layout
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
+        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget)
         self.fader_widget.fade(250)
         self.menu_widget.show()
         self.text_box_widget.hide()
 
     def hide_widget(self):
-        #this is the funtion to hide all widgets
 
         self.hide_button.setEnabled(False)
-        self.fader_widget = FaderSubWidget(self.text_box_widget) #call fade class
+        self.fader_widget = FaderSubWidget(self.text_box_widget)
         self.fader_widget.hide(250)
-        self.fader_widget.timeline.finished.connect(self.hide)
+        self.fader_widget.timeline.finished.connect(self.finsh_hide)
 
-    def hide(self):
+    def finsh_hide(self):
 
         self.text_box_widget.hide()
         self.disable_hide_label.show()
 
     def show_widget(self, event):
-        #this is the funtion to show all widgets
 
         self.text_box_widget.show()
-        self.fader_widget = FaderSubWidget(self.text_box_widget) #call fade class
+        self.fader_widget = FaderSubWidget(self.text_box_widget)
         self.fader_widget.show(250)
-        self.fader_widget.timeline.finished.connect(self.show)
+        self.fader_widget.timeline.finished.connect(self.finish_show)
 
-    def show(self):
+    def finish_show(self):
 
         self.disable_hide_label.hide()
         self.hide_button.setEnabled(True)

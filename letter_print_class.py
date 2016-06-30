@@ -10,16 +10,15 @@ import sys
 class LetterPrint(QLabel):
     '''this class provide the label print letter by letter'''
 
-    #constructor
     def __init__(self, parent):
-        super().__init__(parent) #call super class constructor
+        super().__init__(parent)
 
         self.index = 0
 
     def set_text(self, text):
 
         self.index = 0
-        self.text = text #get text from positional argument
+        self.text = text
         self.timer = QTimer()
         self.timer.timeout.connect(self.handle_timer)
         self.timer.start(30)
