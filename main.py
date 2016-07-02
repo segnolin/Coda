@@ -4,7 +4,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-from coda_class import *
+from coda import *
 
 import sys
 

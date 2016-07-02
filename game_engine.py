@@ -5,11 +5,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-from image_button_class import *
-from fader_widget_class import *
-from fader_sub_widget_class import *
-from letter_print_class import *
-from portrait_label_class import *
+from image_button import *
+from fader import *
+from fader_widget import *
+from letter_print import *
+from portrait import *
 
 import sys
 import resources
@@ -169,6 +169,12 @@ class GameEngine(QMainWindow):
 
         print('init_sound')
 
+        self.init_effect()
+
+    def init_effect(self):
+
+        print('init_effect')
+
         self.init_background()
 
     def init_background(self):
@@ -178,14 +184,20 @@ class GameEngine(QMainWindow):
         if self.init_status:
             self.basic_widget.show()
 
-        self.init_protrait()
+        self.init_portrait()
 
-    def init_protrait(self):
+    def init_portrait(self):
 
-        print('init_protrait')
+        print('init_portrait')
 
-        self.portrait.show_portrait('aoi_normal', 400, 40, 500, 40, 280, 500)
-        self.portrait.timeline.finished.connect(self.init_voice)
+        self.portrait.show_portrait('aoi_normal', 400, 40, 500, 40)
+        self.portrait.timeline.finished.connect(self.init_text_box)
+
+    def init_text_box(self):
+
+        print('init_text_box')
+
+        self.init_voice()
 
     def init_voice(self):
 
@@ -199,8 +211,8 @@ class GameEngine(QMainWindow):
 
         print('init_text')
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget)
-        self.fader_widget.fade(250)
+        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        self.fader.fade(250)
 
         if self.init_status:
             self.text_box_widget.show()
@@ -213,15 +225,15 @@ class GameEngine(QMainWindow):
 
         if self.portrait_status == 'not shown':
 
-            self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget) #call fade class
-            self.fader_widget.fade(250)
+            self.fader = Fader(self.game_engine_widget, self.game_engine_widget) #call fade class
+            self.fader.fade(250)
             self.portrait.show_end()
 
         elif self.portrait_status == 'shown':
 
             #check if this text is already shown after label was pressed
             if self.text_box_label.index < len(self.text):
-                self.text_box_label.setText(self.text) #if not call setText function
+                self.text_box_label.setText(self.text)
                 self.text_box_label.index = len(self.text)
 
             else:
@@ -233,9 +245,9 @@ class GameEngine(QMainWindow):
 
         elif self.portrait_status == 'not closed':
 
-            self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget)
-            self.fader_widget.fade(250)
-            self.init_parser()
+            self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+            self.fader.fade(250)
+            self.set_text_box()
 
     def set_background_music(self):
 
@@ -261,42 +273,48 @@ class GameEngine(QMainWindow):
 
         print('set_text')
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget)
-        self.fader_widget.fade(250)
-        self.fader_widget.timeline.finished.connect(self.set_protrait)
+        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        self.fader.fade(250)
+        self.fader.timeline.finished.connect(self.set_portrait)
 
         self.text = 'Hi! This is line {0}'.format(self.game_engine_id)
 
         self.text_character_label.clear()
         self.text_box_label.clear()
 
-    def set_protrait(self):
+    def set_portrait(self):
 
-        print('set_protrait')
+        print('set_portrait')
 
         self.portrait.hide_portrait('aoi_normal')
-        self.portrait.timeline.finished.connect(self.init_parser)
+        self.portrait.timeline.finished.connect(self.set_text_box)
+
+    def set_text_box(self):
+
+        print('set_text_box')
+
+        self.init_parser()
 
     ################################################## MAIN PROGRAM END ##################################################
 
     def hide_menu(self):
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget)
-        self.fader_widget.fade(250)
+        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        self.fader.fade(250)
         self.menu_widget.hide()
         self.text_box_widget.show()
 
     def show_menu(self):
 
-        self.fader_widget = FaderWidget(self.game_engine_widget, self.game_engine_widget)
-        self.fader_widget.fade(250)
+        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        self.fader.fade(250)
         self.menu_widget.show()
         self.text_box_widget.hide()
 
     def hide_widget(self):
 
         self.hide_button.setEnabled(False)
-        self.fader_widget = FaderSubWidget(self.text_box_widget)
+        self.fader_widget = FaderWidget(self.text_box_widget)
         self.fader_widget.hide(250)
         self.fader_widget.timeline.finished.connect(self.finsh_hide)
 
@@ -308,7 +326,7 @@ class GameEngine(QMainWindow):
     def show_widget(self, event):
 
         self.text_box_widget.show()
-        self.fader_widget = FaderSubWidget(self.text_box_widget)
+        self.fader_widget = FaderWidget(self.text_box_widget)
         self.fader_widget.show(250)
         self.fader_widget.timeline.finished.connect(self.finish_show)
 

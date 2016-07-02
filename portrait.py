@@ -16,15 +16,13 @@ class Portrait(QLabel):
 
         self.setGeometry(0, 0, 960, 540)
 
-    def show_portrait(self, portrait_id, posx, posy, posxf, posyf, width, height):
+    def show_portrait(self, portrait_id, posx, posy, posxf, posyf):
 
         self.portrait_id = portrait_id
         self.posx = posx
         self.posy = posy
         self.posxf = posxf
         self.posyf = posyf
-        self.width = width
-        self.height = height
         self.pixmap = QPixmap(':/{0}.png'.format(portrait_id))
         self.pixmap.setDevicePixelRatio(2)
 
@@ -55,7 +53,7 @@ class Portrait(QLabel):
         self.pixmap_opacity = 1.0
 
         self.timeline = QTimeLine()
-        self.timeline.setUpdateInterval(10)
+        self.timeline.setUpdateInterval(1000 / 60)
         self.timeline.setCurveShape(QTimeLine.EaseInOutCurve)
         self.timeline.valueChanged.connect(self.hide_animate)
         self.timeline.finished.connect(self.close)

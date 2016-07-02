@@ -5,11 +5,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-from main_window_class import *
-from game_engine_class import *
-from load_class import *
-from image_button_class import *
-from fader_widget_class import *
+from main_window import *
+from game_engine import *
+from load import *
+from image_button import *
+from fader import *
 
 import sys
 
@@ -64,8 +64,8 @@ class Coda(QMainWindow):
         self.status = 'main'
 
         #fade effect
-        self.fader_widget = FaderWidget(self.stacked_layout.currentWidget(), self.main_window.main_window_widget)
-        self.fader_widget.fade(350)
+        self.fader = Fader(self.stacked_layout.currentWidget(), self.main_window.main_window_widget)
+        self.fader.fade(350)
 
         self.stacked_layout.setCurrentWidget(self.main_window.main_window_widget)
 
@@ -74,8 +74,8 @@ class Coda(QMainWindow):
         print('back to game engine')
 
         #fade effect
-        self.fader_widget = FaderWidget(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget)
-        self.fader_widget.fade(350)
+        self.fader = Fader(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget)
+        self.fader.fade(350)
 
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
 
@@ -89,8 +89,8 @@ class Coda(QMainWindow):
         self.game_engine.create_game_engine_layout(self.game_engine_id)
 
         #fade effect
-        self.fader_widget = FaderWidget(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget)
-        self.fader_widget.fade(350)
+        self.fader = Fader(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget)
+        self.fader.fade(350)
 
         self.stacked_layout.addWidget(self.game_engine.game_engine_widget)
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
@@ -108,8 +108,8 @@ class Coda(QMainWindow):
         self.load_game.create_load_layout(self.status)
 
         #fade effect
-        self.fader_widget = FaderWidget(self.stacked_layout.currentWidget(), self.load_game.load_widget)
-        self.fader_widget.fade(350)
+        self.fader = Fader(self.stacked_layout.currentWidget(), self.load_game.load_widget)
+        self.fader.fade(350)
 
         self.stacked_layout.addWidget(self.load_game.load_widget)
         self.stacked_layout.setCurrentWidget(self.load_game.load_widget)

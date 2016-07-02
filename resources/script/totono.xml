@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+    <content id="0">
+        <eff>
+            <id>black_fade</id>
+            <du>3000</du>
+        </eff>
+        <bg>
+            <id>bg_0000</id>
+            <x>-768</x>
+            <y>-576</y>
+            <xf>-1024</xf>
+            <yf>-576</yf>
+            <du>20000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>5000</td>
+            <txt>每天的生活，就像上樓梯一樣。</txt>
+        </tb>
+    </content>
+    <content id="1">
+        <tb>
+            <txt>一旦存有疑問，向上的腳步就更加沈重。</txt>
+        </tb>
+    </content>
+    <content id="2">
+        <tb>
+            <txt>所以，一步、一步，什麼都不要想，向上攀登。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="3">
+        <eff>
+            <id>black_fade</id>
+            <du>500</du>
+        </eff>
+        <bg>
+            <id>bg_0000</id>
+            <x>-512</x>
+            <y>-360</y>
+            <xf>-512</xf>
+            <yf>-140</yf>
+            <du>20000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>2000</td>
+            <txt>正因為是樓梯，所以沒有岔路。</txt>
+        </tb>
+    </content>
+    <content id="4">
+        <tb>
+            <txt>「那個時候要是那麼做就好了」這樣的後悔也毫無意義。</txt>
+        </tb>
+    </content>
+    <content id="5">
+        <tb>
+            <txt>說什麼「人生就是不斷地選擇」其實是說失敗後回首往事而遺留的悔意。</txt>
+        </tb>
+    </content>
+    <content id="6">
+        <tb>
+            <txt>從稍有些遙遠的過去，向著一定會到來的明天。</txt>
+        </tb>
+    </content>
+    <content id="7">
+        <tb>
+            <txt>一步、一步，向前邁進。</txt>
+        </tb>
+    </content>
+    <content id="8">
+        <tb>
+            <txt>那個目的地會再多麼搖遠的為來呢————</txt>
+        </tb>
+    </content>
+    <content id="9">
+        <tb>
+            <txt>對此，現在還一無所知。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="10">
+        <eff>
+            <id>white_fade</id>
+            <du>2000</du>
+        </eff>
+        <bg>
+            <id>bg_0001</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>1500</td>
+            <txt>走出樓道，滿眼是夕陽絢爛的顏色。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="11">
+        <bg>
+            <id>bg_0002</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <txt>一般來說學生是不能去學校樓頂的。</txt>
+        </tb>
+    </content>
+    <content id="12">
+        <tb>
+            <txt>雖然是已經看慣的景色，但只要一會爾，就彷彿到了一個全新的地方。</txt>
+        </tb>
+    </content>
+</script>
