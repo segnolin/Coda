@@ -77,5 +77,6 @@
         <file alias="aoi_normal.png">resources/portrait/aoi_normal.png</file>
 
         <file alias="script.xml">resources/script/script.xml</file>
+        <file alias="totono.xml">resources/script/totono.xml</file>
     </qresource>
 </RCC>

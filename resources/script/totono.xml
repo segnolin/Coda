@@ -109,4 +109,35 @@
             <txt>雖然是已經看慣的景色，但只要一會爾，就彷彿到了一個全新的地方。</txt>
         </tb>
     </content>
+    <content id="13">
+        <tb>
+            <char>須須木心一</char>
+            <txt>「雄太郎，在嗎？」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="14">
+        <tb>
+            <sh>True</sh>
+            <td>1000</td>
+            <char>del</char>
+            <txt>沒有人回應。</txt>
+        </tb>
+    </content>
+    <content id="15">
+        <tb>
+            <txt>只有秋風靜靜地吹過。</txt>
+        </tb>
+    </content>
+    <content id="16">
+        <tb>
+            <txt>混泥土地面的接縫處長著雜草，廢棄不用的桌子也早已生鏽。</txt>
+        </tb>
+    </content>
+    <content id="17">
+        <tb>
+            <txt>好像是被時間遺忘的地方。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
 </script>
