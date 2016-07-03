@@ -10,9 +10,12 @@ import resources
 
 class Parser(QXmlStreamReader):
 
-    def __init__(self, game_engine_id):
+    def __init__(self):
         super().__init__()
 
+    def parse(self, script, game_engine_id):
+
+        self.script = script
         self.id = str(game_engine_id)
 
         self.bgm_id = ''
@@ -44,7 +47,7 @@ class Parser(QXmlStreamReader):
 
         self.pt_num = -1
 
-        self.file = QFile(':/totono.xml')
+        self.file = QFile(self.script)
         self.file.open(QIODevice.ReadOnly)
         self.setDevice(self.file)
 
@@ -53,10 +56,10 @@ class Parser(QXmlStreamReader):
             if self.isStartElement():
                 if self.name() == 'content':
                     if self.attributes().value('id') == self.id:
-                        self.parse()
+                        self.parse_xml()
                         break
 
-    def parse(self):
+    def parse_xml(self):
 
         while not self.atEnd():
             self.readNext()
@@ -199,8 +202,10 @@ class Parser(QXmlStreamReader):
 
 if __name__ == '__main__':
 
-    game_engine_id = 10
-    parser = Parser(game_engine_id)
+    game_engine_id = 0
+    script = ':/totono.xml'
+    parser = Parser()
+    parser.parse(script, game_engine_id)
 
     print(parser.bgm_id)
     print(parser.sd_id)

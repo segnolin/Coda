@@ -10,6 +10,7 @@ from fader import *
 from fader_widget import *
 from letter_print import *
 from portrait import *
+from parser import *
 
 import sys
 import resources
@@ -22,6 +23,7 @@ class GameEngine(QMainWindow):
 
     def create_game_engine_layout(self, game_engine_id):
 
+        self.script = ':/totono.xml'
         self.game_engine_id = game_engine_id
         print(self.game_engine_id)
 
@@ -147,6 +149,8 @@ class GameEngine(QMainWindow):
         self.disable_hide_label.mousePressEvent = self.show_widget
         self.next_label.mousePressEvent = self.update
 
+        #set parser
+        self.parser = Parser()
         self.init_parser()
 
     ################################################## MAIN PROGRAM START ##################################################
@@ -154,6 +158,35 @@ class GameEngine(QMainWindow):
     def init_parser(self):
 
         print('init_parser')
+
+        self.parser.parse(self.script, self.game_engine_id)
+
+        self.bgm_id = self.parser.bgm_id
+
+        self.sd_id = self.parser.sd_id
+
+        self.eff_id = self.parser.eff_id
+        self.eff_du = self.parser.eff_du
+
+        self.bg_id = self.parser.bg_id
+        self.bg_x = self.parser.bg_x
+        self.bg_y = self.parser.bg_y
+        self.bg_xf = self.parser.bg_xf
+        self.bg_yf = self.parser.bg_yf
+        self.bg_du = self.parser.bg_du
+
+        self.pt_id = self.parser.pt_id
+        self.pt_x = self.parser.pt_x
+        self.pt_y = self.parser.pt_y
+        self.pt_xf = self.parser.pt_xf
+        self.pt_yf = self.parser.pt_yf
+
+        self.tb_sh = self.parser.tb_sh
+        self.tb_td = self.parser.tb_td
+        self.tb_vc = self.parser.tb_vc
+        self.tb_char = self.parser.tb_char
+        self.tb_txt = self.parser.tb_txt
+        self.tb_hi = self.parser.tb_hi
 
         self.init_background_music()
 
@@ -197,13 +230,12 @@ class GameEngine(QMainWindow):
 
         print('init_text_box')
 
+        self.portrait_status = 'shown'
         self.init_voice()
 
     def init_voice(self):
 
         print('init_voice')
-
-        self.portrait_status = 'shown'
 
         self.init_text()
 
@@ -225,7 +257,7 @@ class GameEngine(QMainWindow):
 
         if self.portrait_status == 'not shown':
 
-            self.fader = Fader(self.game_engine_widget, self.game_engine_widget) #call fade class
+            self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
             self.fader.fade(250)
             self.portrait.show_end()
 
