@@ -28,13 +28,6 @@ class MainWindow(QMainWindow):
         self.main_background.setPixmap(self.main_background_pixmap)
         self.main_background.setGeometry(0, 0, 960, 540)
 
-        #set the background label of main button
-        self.main_button_background_pixmap = QPixmap(':/main_button_background.png')
-        self.main_button_background_pixmap.setDevicePixelRatio(2)
-        self.main_button_background = QLabel(self.main_window_widget)
-        self.main_button_background.setPixmap(self.main_button_background_pixmap)
-        self.main_button_background.setGeometry(710, 0, 250, 540)
-
         #create all the buttons
         #create a strat button
         self.main_start_button = ImageButton('main_start', self.main_window_widget)

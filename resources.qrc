@@ -1,7 +1,30 @@
 <!DOCTYPE RCC><RCC version="1.0">
     <qresource>
+
+<!-- ANIME -->
+<!-- BACKGROUND -->
+
+        <file alias="bg_0000.png">resources/background/bg_0000.png</file>
+        <file alias="bg_0001.png">resources/background/bg_0001.png</file>
+        <file alias="bg_0002.png">resources/background/bg_0002.png</file>
+
+<!-- BACKGROUND MUSIC -->
+<!-- EVENT -->
+<!-- PORTRAIT -->
+
+        <file alias="aoi_normal.png">resources/portrait/aoi_normal.png</file>
+
+<!-- SCRIPT -->
+
+        <file alias="script.xml">resources/script/script.xml</file>
+        <file alias="totono.xml">resources/script/totono.xml</file>
+
+<!-- SOUND -->
+<!-- SYSTEM -->
+
+	<!-- MAIN WINDOW -->
+
         <file alias="main_background.png">resources/system/main_window/main_background.png</file>
-        <file alias="main_button_background.png">resources/system/main_window/main_button_background.png</file>
 
         <file alias="main_start_button_defaults.png">resources/system/main_window/main_start_button_defaults.png</file>
         <file alias="main_start_button_hover.png">resources/system/main_window/main_start_button_hover.png</file>
@@ -23,8 +46,9 @@
         <file alias="main_exit_button_hover.png">resources/system/main_window/main_exit_button_hover.png</file>
         <file alias="main_exit_button_press.png">resources/system/main_window/main_exit_button_press.png</file>
 
-        <file alias="bg_0000.png">resources/background/bg_0000.png</file>
-        <file alias="text_background.png">resources/system/game_engine/text_background.png</file>
+	<!-- GAME ENGINE -->
+
+	<file alias="text_background.png">resources/system/game_engine/text_background.png</file>
 
         <file alias="auto_button_defaults.png">resources/system/game_engine/auto_button_defaults.png</file>
         <file alias="auto_button_hover.png">resources/system/game_engine/auto_button_hover.png</file>
@@ -72,11 +96,12 @@
 
         <file alias="menu_background.png">resources/system/game_engine/menu_background.png</file>
 
+	<!-- LOAD -->
+
         <file alias="load_background.png">resources/system/load/load_background.png</file>
 
-        <file alias="aoi_normal.png">resources/portrait/aoi_normal.png</file>
+<!-- VOICE -->
 
-        <file alias="script.xml">resources/script/script.xml</file>
-        <file alias="totono.xml">resources/script/totono.xml</file>
+
     </qresource>
 </RCC>

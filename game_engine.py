@@ -9,6 +9,8 @@ from image_button import *
 from fader import *
 from fader_widget import *
 from letter_print import *
+from effect import *
+from background import *
 from portrait import *
 from parser import *
 
@@ -29,7 +31,7 @@ class GameEngine(QMainWindow):
 
         #set game status
         self.init_status = True
-        self.portrait_status = 'not shown'
+        self.effect_status = False
 
         #set QWidget class
         self.game_engine_widget = QWidget()
@@ -40,14 +42,10 @@ class GameEngine(QMainWindow):
 
         #create basic layout
         #create background label
-        self.background_pixmap = QPixmap(':/bg_0000.png')
-        self.background_pixmap.setDevicePixelRatio(2)
-        self.background = QLabel(self.basic_widget)
-        self.background.setPixmap(self.background_pixmap)
-        self.background.setGeometry(0, 0, 960, 540)
+        self.background = Background(self.basic_widget)
 
-        #create portrait label
-        self.portrait = Portrait(self.basic_widget)
+        #create effect label
+        self.effect = Effect(self.basic_widget)
 
         #create disable hide label to show all widget
         self.disable_hide_label = QLabel(self.basic_widget)
@@ -63,7 +61,6 @@ class GameEngine(QMainWindow):
         self.text_background_label.setGeometry(0, 340, 960, 200)
 
         #set the text character label
-        self.character = 'AOI'
         self.text_font = QFont('Noto Sans CJK TC Regular', 16, QFont.Bold)
         self.text_character_label = QLabel(self.text_box_widget)
         self.text_character_label.setFont(self.text_font)
@@ -72,7 +69,6 @@ class GameEngine(QMainWindow):
         self.text_character_label.setStyleSheet('QLabel {color: rgba(255, 255, 255, 100%)}')
 
         #set the text box label
-        self.text = 'Test Text\n測試文本\nテストテキスト'
         self.text_font = QFont('Noto Sans CJK TC Regular', 14, QFont.Bold)
         self.text_box_label = LetterPrint(self.text_box_widget)
         self.text_box_label.setFont(self.text_font)
@@ -137,10 +133,9 @@ class GameEngine(QMainWindow):
         self.exit_button = ImageButton('menu_exit', self.menu_widget)
         self.exit_button.setGeometry(400, 421, 160, 55)
 
-        #hide all widget
-        self.basic_widget.hide()
-        self.text_box_widget.hide()
+        #hide widget
         self.menu_widget.hide()
+        self.effect.hide()
 
         #connection
         self.back_button.clicked.connect(self.hide_menu)
@@ -194,8 +189,6 @@ class GameEngine(QMainWindow):
 
         print('init_background_music')
 
-        self.portrait_status = 'not shown'
-
         self.init_sound()
 
     def init_sound(self):
@@ -208,14 +201,37 @@ class GameEngine(QMainWindow):
 
         print('init_effect')
 
-        self.init_background()
+        if self.eff_id != '':
+
+            if not self.init_status:
+                self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+                self.fader.fade(1500)
+
+            self.init_status = False
+            self.effect.show()
+            self.effect.create(self.eff_id)
+            QTimer.singleShot(int(self.eff_du), self.hide_effect)
+
+        else:
+            self.effect_status = False
+            self.init_background()
 
     def init_background(self):
 
         print('init_background')
 
-        if self.init_status:
-            self.basic_widget.show()
+        if self.bg_id != '':
+
+            if not self.effect_status:
+                self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+                self.fader.fade(500)
+
+            if self.bg_du != '':
+                self.background.create_mv_bg(self.bg_id, int(self.bg_x), int(self.bg_y), int(self.bg_xf), int(self.bg_yf), int(self.bg_du))
+            else:
+                self.background.create_bg(self.bg_id)
+
+        print(self.bg_id)
 
         self.init_portrait()
 
@@ -223,14 +239,12 @@ class GameEngine(QMainWindow):
 
         print('init_portrait')
 
-        self.portrait.show_portrait('aoi_normal', 400, 40, 500, 40)
-        self.portrait.timeline.finished.connect(self.init_text_box)
+        self.init_text_box()
 
     def init_text_box(self):
 
         print('init_text_box')
 
-        self.portrait_status = 'shown'
         self.init_voice()
 
     def init_voice(self):
@@ -243,49 +257,20 @@ class GameEngine(QMainWindow):
 
         print('init_text')
 
-        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-        self.fader.fade(250)
-
-        if self.init_status:
-            self.text_box_widget.show()
-            self.init_status = False
-
-        self.text_character_label.setText(self.character)
-        self.text_box_label.set_text(self.text)
+        self.text_box_label.set_text(self.tb_txt)
 
     def update(self, event):
 
-        if self.portrait_status == 'not shown':
+        print('update')
 
-            self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-            self.fader.fade(250)
-            self.portrait.show_end()
+        self.game_engine_id += 1
+        print(self.game_engine_id)
 
-        elif self.portrait_status == 'shown':
-
-            #check if this text is already shown after label was pressed
-            if self.text_box_label.index < len(self.text):
-                self.text_box_label.setText(self.text)
-                self.text_box_label.index = len(self.text)
-
-            else:
-                self.game_engine_id += 1
-                print('update')
-                print(self.game_engine_id)
-
-                self.set_background_music()
-
-        elif self.portrait_status == 'not closed':
-
-            self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-            self.fader.fade(250)
-            self.set_text_box()
+        self.set_background_music()
 
     def set_background_music(self):
 
         print('set_background_music')
-
-        self.portrait_status = 'not closed'
 
         self.set_sound()
 
@@ -305,21 +290,15 @@ class GameEngine(QMainWindow):
 
         print('set_text')
 
-        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-        self.fader.fade(250)
-        self.fader.timeline.finished.connect(self.set_portrait)
-
-        self.text = 'Hi! This is line {0}'.format(self.game_engine_id)
-
-        self.text_character_label.clear()
         self.text_box_label.clear()
+
+        self.set_portrait()
 
     def set_portrait(self):
 
         print('set_portrait')
 
-        self.portrait.hide_portrait('aoi_normal')
-        self.portrait.timeline.finished.connect(self.set_text_box)
+        self.set_text_box()
 
     def set_text_box(self):
 
@@ -366,3 +345,13 @@ class GameEngine(QMainWindow):
 
         self.disable_hide_label.hide()
         self.hide_button.setEnabled(True)
+
+    def hide_effect(self):
+
+        self.effect_status = True
+
+        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        self.fader.fade(1500)
+
+        self.effect.hide()
+        self.init_background()

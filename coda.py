@@ -90,7 +90,7 @@ class Coda(QMainWindow):
 
         #fade effect
         self.fader = Fader(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget)
-        self.fader.fade(350)
+        self.fader.fade(1500)
 
         self.stacked_layout.addWidget(self.game_engine.game_engine_widget)
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)

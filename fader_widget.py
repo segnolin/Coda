@@ -11,7 +11,6 @@ class FaderWidget(QWidget):
     '''this class provide fade in/out animation effect'''
 
     def __init__(self, widget):
-
         QWidget.__init__(self, widget)
 
         self.widget = widget

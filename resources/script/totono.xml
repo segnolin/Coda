@@ -3,14 +3,14 @@
     <content id="0">
         <eff>
             <id>black_fade</id>
-            <du>3000</du>
+            <du>3500</du>
         </eff>
         <bg>
             <id>bg_0000</id>
-            <x>-768</x>
-            <y>-576</y>
-            <xf>-1024</xf>
-            <yf>-576</yf>
+            <x>-720</x>
+            <y>-540</y>
+            <xf>-960</xf>
+            <yf>-540</yf>
             <du>20000</du>
         </bg>
         <tb>
@@ -33,7 +33,7 @@
     <content id="3">
         <eff>
             <id>black_fade</id>
-            <du>500</du>
+            <du>2000</du>
         </eff>
         <bg>
             <id>bg_0000</id>
@@ -83,7 +83,7 @@
     <content id="10">
         <eff>
             <id>white_fade</id>
-            <du>2000</du>
+            <du>3500</du>
         </eff>
         <bg>
             <id>bg_0001</id>
