@@ -37,20 +37,15 @@ class GameEngine(QMainWindow):
         self.game_engine_widget = QWidget()
         self.basic_widget = QWidget(self.game_engine_widget)
         self.text_box_widget = QWidget(self.game_engine_widget)
-        self.log_widget = QWidget(self.game_engine_widget)
         self.menu_widget = QWidget(self.game_engine_widget)
 
         #create basic layout
         #create background label
         self.background = Background(self.basic_widget)
 
-        #create effect label
-        self.effect = Effect(self.basic_widget)
-
         #create disable hide label to show all widget
         self.disable_hide_label = QLabel(self.basic_widget)
         self.disable_hide_label.setGeometry(0, 0, 960, 540)
-        self.disable_hide_label.hide()
 
         #create text box layout
         #create text background label
@@ -61,7 +56,7 @@ class GameEngine(QMainWindow):
         self.text_background_label.setGeometry(0, 340, 960, 200)
 
         #set the text character label
-        self.text_font = QFont('Noto Sans CJK TC Regular', 16, QFont.Bold)
+        self.text_font = QFont('Noto Sans CJK TC Regular', 18)
         self.text_character_label = QLabel(self.text_box_widget)
         self.text_character_label.setFont(self.text_font)
         self.text_character_label.setAlignment(Qt.AlignLeft)
@@ -69,7 +64,7 @@ class GameEngine(QMainWindow):
         self.text_character_label.setStyleSheet('QLabel {color: rgba(255, 255, 255, 100%)}')
 
         #set the text box label
-        self.text_font = QFont('Noto Sans CJK TC Regular', 14, QFont.Bold)
+        self.text_font = QFont('Noto Sans CJK TC Regular', 16)
         self.text_box_label = LetterPrint(self.text_box_widget)
         self.text_box_label.setFont(self.text_font)
         self.text_box_label.setAlignment(Qt.AlignLeft)
@@ -109,6 +104,9 @@ class GameEngine(QMainWindow):
         self.hide_button = ImageButton('hide', self.text_box_widget)
         self.hide_button.setGeometry(760, 400, 25, 25)
 
+        #create effect label
+        self.effect = Effect(self.basic_widget)
+
         #create menu layout
         #create menu background
         self.menu_background_pixmap = QPixmap(':/menu_background.png')
@@ -135,6 +133,8 @@ class GameEngine(QMainWindow):
 
         #hide widget
         self.menu_widget.hide()
+        self.text_box_widget.hide()
+        self.disable_hide_label.hide()
         self.effect.hide()
 
         #connection
@@ -203,6 +203,9 @@ class GameEngine(QMainWindow):
 
         if self.eff_id != '':
 
+            self.background.timeline.stop()
+            self.next_label.hide()
+
             if not self.init_status:
                 self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
                 self.fader.fade(1500)
@@ -245,7 +248,11 @@ class GameEngine(QMainWindow):
 
         print('init_text_box')
 
-        self.init_voice()
+        if self.tb_sh != '':
+            self.show_text_box()
+
+        else:
+            self.init_voice()
 
     def init_voice(self):
 
@@ -256,6 +263,12 @@ class GameEngine(QMainWindow):
     def init_text(self):
 
         print('init_text')
+
+        if self.tb_char != '':
+            if self.tb_char == 'del':
+                self.text_character_label.clear()
+            else:
+                self.text_character_label.setText(self.tb_char)
 
         self.text_box_label.set_text(self.tb_txt)
 
@@ -290,6 +303,7 @@ class GameEngine(QMainWindow):
 
         print('set_text')
 
+        self.text_character_label.clear()
         self.text_box_label.clear()
 
         self.set_portrait()
@@ -304,7 +318,11 @@ class GameEngine(QMainWindow):
 
         print('set_text_box')
 
-        self.init_parser()
+        if self.tb_hi != '':
+            self.hide_text_box()
+
+        else:
+            self.init_parser()
 
     ################################################## MAIN PROGRAM END ##################################################
 
@@ -325,7 +343,7 @@ class GameEngine(QMainWindow):
     def hide_widget(self):
 
         self.hide_button.setEnabled(False)
-        self.fader_widget = FaderWidget(self.text_box_widget)
+        self.fader_widget = FaderWidget(self.text_box_widget, 1.0)
         self.fader_widget.hide(250)
         self.fader_widget.timeline.finished.connect(self.finsh_hide)
 
@@ -337,7 +355,7 @@ class GameEngine(QMainWindow):
     def show_widget(self, event):
 
         self.text_box_widget.show()
-        self.fader_widget = FaderWidget(self.text_box_widget)
+        self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
         self.fader_widget.show(250)
         self.fader_widget.timeline.finished.connect(self.finish_show)
 
@@ -349,9 +367,55 @@ class GameEngine(QMainWindow):
     def hide_effect(self):
 
         self.effect_status = True
+        self.next_label.show()
+        self.text_box_label.clear()
+        self.text_character_label.clear()
 
         self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
         self.fader.fade(1500)
 
         self.effect.hide()
         self.init_background()
+
+    def show_text_box(self):
+
+        self.next_label.hide()
+        self.hide_button.setEnabled(False)
+
+        if self.tb_td != '':
+            QTimer.singleShot(int(self.tb_td), self.delay_show_text_box)
+
+        else:
+            self.text_box_widget.show()
+            self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
+            self.fader_widget.show(400)
+            self.fader_widget.timeline.finished.connect(self.finish_show_text_box)
+
+    def delay_show_text_box(self):
+
+        self.text_box_widget.show()
+        self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
+        self.fader_widget.show(400)
+        self.fader_widget.timeline.finished.connect(self.finish_show_text_box)
+
+    def finish_show_text_box(self):
+
+        self.disable_hide_label.hide()
+        self.next_label.show()
+        self.hide_button.setEnabled(True)
+        self.init_voice()
+
+    def hide_text_box(self):
+
+        self.next_label.hide()
+        self.disable_hide_label.hide()
+        self.hide_button.setEnabled(False)
+        self.fader_widget = FaderWidget(self.text_box_widget, 1.0)
+        self.fader_widget.hide(400)
+        self.fader_widget.timeline.finished.connect(self.finsh_hide_text_box)
+
+    def finsh_hide_text_box(self):
+
+        self.next_label.show()
+        self.text_box_widget.hide()
+        self.init_parser()

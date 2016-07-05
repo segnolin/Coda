@@ -10,10 +10,13 @@ import sys
 class FaderWidget(QWidget):
     '''this class provide fade in/out animation effect'''
 
-    def __init__(self, widget):
+    def __init__(self, widget, init_opacity):
         QWidget.__init__(self, widget)
 
         self.widget = widget
+        self.effect = QGraphicsOpacityEffect()
+        self.effect.setOpacity(init_opacity)
+        self.widget.setGraphicsEffect(self.effect)
 
     def hide(self, duration):
 
@@ -28,8 +31,6 @@ class FaderWidget(QWidget):
         self.timeline.setDuration(self.duration)
         self.timeline.start()
 
-        self.effect = QGraphicsOpacityEffect()
-        
         self.resize(960, 540)
 
     def hide_animate(self, value):
@@ -51,8 +52,6 @@ class FaderWidget(QWidget):
         self.timeline.finished.connect(self.close)
         self.timeline.setDuration(self.duration)
         self.timeline.start()
-
-        self.effect = QGraphicsOpacityEffect()
 
         self.resize(960, 540)
 
