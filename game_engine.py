@@ -183,6 +183,12 @@ class GameEngine(QMainWindow):
         self.tb_txt = self.parser.tb_txt
         self.tb_hi = self.parser.tb_hi
 
+        if self.init_status:
+            self.tb_sh = True
+            if self.tb_td == '':
+                self.tb_td = 2000
+            self.pre_process()
+
         self.init_background_music()
 
     def init_background_music(self):
@@ -210,7 +216,6 @@ class GameEngine(QMainWindow):
                 self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
                 self.fader.fade(1500)
 
-            self.init_status = False
             self.effect.show()
             self.effect.create(self.eff_id)
             QTimer.singleShot(int(self.eff_du), self.hide_effect)
@@ -218,6 +223,8 @@ class GameEngine(QMainWindow):
         else:
             self.effect_status = False
             self.init_background()
+        
+        self.init_status = False
 
     def init_background(self):
 
@@ -274,12 +281,17 @@ class GameEngine(QMainWindow):
 
     def update(self, event):
 
-        print('update')
+        if self.text_box_label.index < len(self.tb_txt):
+            self.text_box_label.setText(self.tb_txt)
+            self.text_box_label.index = len(self.tb_txt)
 
-        self.game_engine_id += 1
-        print(self.game_engine_id)
+        else:
+            print('update')
 
-        self.set_background_music()
+            self.game_engine_id += 1
+            print(self.game_engine_id)
+
+            self.set_background_music()
 
     def set_background_music(self):
 
@@ -345,9 +357,9 @@ class GameEngine(QMainWindow):
         self.hide_button.setEnabled(False)
         self.fader_widget = FaderWidget(self.text_box_widget, 1.0)
         self.fader_widget.hide(250)
-        self.fader_widget.timeline.finished.connect(self.finsh_hide)
+        self.fader_widget.timeline.finished.connect(self.finsh_hide_widget)
 
-    def finsh_hide(self):
+    def finsh_hide_widget(self):
 
         self.text_box_widget.hide()
         self.disable_hide_label.show()
@@ -357,9 +369,9 @@ class GameEngine(QMainWindow):
         self.text_box_widget.show()
         self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
         self.fader_widget.show(250)
-        self.fader_widget.timeline.finished.connect(self.finish_show)
+        self.fader_widget.timeline.finished.connect(self.finish_show_widget)
 
-    def finish_show(self):
+    def finish_show_widget(self):
 
         self.disable_hide_label.hide()
         self.hide_button.setEnabled(True)
@@ -419,3 +431,11 @@ class GameEngine(QMainWindow):
         self.next_label.show()
         self.text_box_widget.hide()
         self.init_parser()
+
+    def pre_process(self):
+
+        self.pre_effect = QGraphicsOpacityEffect()
+        self.pre_effect.setOpacity(0.000001)
+        self.text_box_widget.setGraphicsEffect(self.pre_effect)
+        self.text_box_widget.show()
+        self.text_box_label.setText('     ')

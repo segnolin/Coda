@@ -16,7 +16,6 @@
 
 <!-- SCRIPT -->
 
-        <file alias="script.xml">resources/script/script.xml</file>
         <file alias="totono.xml">resources/script/totono.xml</file>
 
 <!-- SOUND -->
