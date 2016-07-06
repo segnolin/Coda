@@ -12,7 +12,7 @@ from letter_print import *
 from effect import *
 from background import *
 from portrait import *
-from parser import *
+from script_parser import *
 
 import sys
 import resources
@@ -68,7 +68,7 @@ class GameEngine(QMainWindow):
         self.text_box_label = LetterPrint(self.text_box_widget)
         self.text_box_label.setFont(self.text_font)
         self.text_box_label.setAlignment(Qt.AlignLeft)
-        self.text_box_label.setGeometry(100, 430, 685, 100)
+        self.text_box_label.setGeometry(100, 430, 650, 100)
         self.text_box_label.setStyleSheet('QLabel {color: rgba(255, 255, 255, 100%)}')
         self.text_box_label.setWordWrap(True)
 
@@ -240,8 +240,6 @@ class GameEngine(QMainWindow):
                 self.background.create_mv_bg(self.bg_id, int(self.bg_x), int(self.bg_y), int(self.bg_xf), int(self.bg_yf), int(self.bg_du))
             else:
                 self.background.create_bg(self.bg_id)
-
-        print(self.bg_id)
 
         self.init_portrait()
 
@@ -439,3 +437,7 @@ class GameEngine(QMainWindow):
         self.text_box_widget.setGraphicsEffect(self.pre_effect)
         self.text_box_widget.show()
         self.text_box_label.setText('     ')
+
+    def close(self):
+
+        self.deleteLater()

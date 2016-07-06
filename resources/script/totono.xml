@@ -16,17 +16,17 @@
         <tb>
             <sh>True</sh>
             <td>5000</td>
-            <txt>每天的生活，就像上樓梯一樣。</txt>
+            <txt>毎日は、階段のように過ぎていく。</txt>
         </tb>
     </content>
     <content id="1">
         <tb>
-            <txt>一旦存有疑問，向上的腳步就更加沈重。</txt>
+            <txt>一度疑問に思ったらその途端、足を上げるのが辛くなる。</txt>
         </tb>
     </content>
     <content id="2">
         <tb>
-            <txt>所以，一步、一步，什麼都不要想，向上攀登。</txt>
+            <txt>だから、一歩、一歩、なにも考えずに、上る。</txt>
             <hi>True</hi>
         </tb>
     </content>
@@ -46,37 +46,37 @@
         <tb>
             <sh>True</sh>
             <td>2000</td>
-            <txt>正因為是樓梯，所以沒有岔路。</txt>
+            <txt>階段だから、別れ道はなく。</txt>
         </tb>
     </content>
     <content id="4">
         <tb>
-            <txt>「那個時候要是那麼做就好了」這樣的後悔也毫無意義。</txt>
+            <txt>「あの時ああしておけば」なんて後悔は無意味で。</txt>
         </tb>
     </content>
     <content id="5">
         <tb>
-            <txt>說什麼「人生就是不斷地選擇」其實是說失敗後回首往事而遺留的悔意。</txt>
+            <txt>「人生は選択の連続だ」なんていうのは、失敗してから振り返って思う、後悔の絞りかすみたいなものだ。</txt>
         </tb>
     </content>
     <content id="6">
         <tb>
-            <txt>從稍有些遙遠的過去，向著一定會到來的明天。</txt>
+            <txt>過去の少し先にある、当たり前の明日へ。</txt>
         </tb>
     </content>
     <content id="7">
         <tb>
-            <txt>一步、一步，向前邁進。</txt>
+            <txt>一歩、一歩、進んでいく。</txt>
         </tb>
     </content>
     <content id="8">
         <tb>
-            <txt>那個目的地會再多麼搖遠的為來呢————</txt>
+            <txt>その行き着く先がどんな未来か――</txt>
         </tb>
     </content>
     <content id="9">
         <tb>
-            <txt>對此，現在還一無所知。</txt>
+            <txt>それは、まだわからないけれど。</txt>
             <hi>True</hi>
         </tb>
     </content>
@@ -91,7 +91,7 @@
         <tb>
             <sh>True</sh>
             <td>1500</td>
-            <txt>走出樓道，滿眼是夕陽絢爛的顏色。</txt>
+            <txt>階段から外に出て、目映い夕陽の色が視界を染めた。</txt>
             <hi>True</hi>
         </tb>
     </content>
@@ -101,18 +101,18 @@
         </bg>
         <tb>
             <sh>True</sh>
-            <txt>一般來說學生是不能去學校樓頂的。</txt>
+            <txt>一般生徒は出入りできない、学校の屋上。</txt>
         </tb>
     </content>
     <content id="12">
         <tb>
-            <txt>雖然是已經看慣的景色，但只要一會爾，就彷彿到了一個全新的地方。</txt>
+            <txt>見慣れたはずの光景だが、少し時間が遅いだけで、全く違った場所に見える。</txt>
         </tb>
     </content>
     <content id="13">
         <tb>
-            <char>須須木心一</char>
-            <txt>「雄太郎，在嗎？」</txt>
+            <char>須々木心一</char>
+            <txt>「雄太郎、いるのか？」</txt>
             <hi>True</hi>
         </tb>
     </content>
@@ -121,22 +121,22 @@
             <sh>True</sh>
             <td>1000</td>
             <char>del</char>
-            <txt>沒有人回應。</txt>
+            <txt>呼びかけても返答はない。</txt>
         </tb>
     </content>
     <content id="15">
         <tb>
-            <txt>只有秋風靜靜地吹過。</txt>
+            <txt>静かに秋の風が吹き抜けるだけだ。</txt>
         </tb>
     </content>
     <content id="16">
         <tb>
-            <txt>混泥土地面的接縫處長著雜草，廢棄不用的桌子也早已生鏽。</txt>
+            <txt>コンクリートの継ぎ目に草が生えていて、野ざらしで置いてある机は錆び付いている。</txt>
         </tb>
     </content>
     <content id="17">
         <tb>
-            <txt>好像是被時間遺忘的地方。</txt>
+            <txt>時の流れから忘れ去られたような場所。</txt>
             <hi>True</hi>
         </tb>
     </content>

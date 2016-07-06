@@ -60,6 +60,7 @@ class Coda(QMainWindow):
 
         print('back to main')
 
+        self.game_engine.close()
         self.game_engine_id = 0
         self.status = 'main'
 

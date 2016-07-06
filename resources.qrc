@@ -10,6 +10,10 @@
 
 <!-- BACKGROUND MUSIC -->
 <!-- EVENT -->
+<!-- ICON -->
+
+	<file alias="coda.png">resources/icon/coda.png</file>
+
 <!-- PORTRAIT -->
 
         <file alias="aoi_normal.png">resources/portrait/aoi_normal.png</file>
