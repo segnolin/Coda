@@ -6,6 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 from image_button import *
+from select_button import *
 from fader import *
 from fader_widget import *
 from letter_print import *
@@ -36,6 +37,7 @@ class GameEngine(QMainWindow):
         #set QWidget class
         self.game_engine_widget = QWidget()
         self.basic_widget = QWidget(self.game_engine_widget)
+        self.select_widget = QWidget(self.game_engine_widget)
         self.text_box_widget = QWidget(self.game_engine_widget)
         self.menu_widget = QWidget(self.game_engine_widget)
 
@@ -46,6 +48,30 @@ class GameEngine(QMainWindow):
         #create disable hide label to show all widget
         self.disable_hide_label = QLabel(self.basic_widget)
         self.disable_hide_label.setGeometry(0, 0, 960, 540)
+
+        #create effect label
+        self.effect = Effect(self.basic_widget)
+
+        #create select layout
+        #create select label
+        self.select_background_pixmap = QPixmap(':/select_background.png')
+        self.select_background_pixmap.setDevicePixelRatio(2)
+        self.select_background_label = QLabel(self.select_widget)
+        self.select_background_label.setPixmap(self.select_background_pixmap)
+        self.select_background_label.setGeometry(0, 0, 960, 540)
+
+        #create selection buttons
+        self.selection_0_button = SelectButton(self.select_widget)
+        self.selection_0_button.set_text('オプション 0')
+        self.selection_0_button.setGeometry(0, 85, 960, 65)
+
+        self.selection_1_button = SelectButton(self.select_widget)
+        self.selection_1_button.set_text('オプション 1')
+        self.selection_1_button.setGeometry(0, 160, 960, 65)
+
+        self.selection_2_button = SelectButton(self.select_widget)
+        self.selection_2_button.set_text('オプション 2')
+        self.selection_2_button.setGeometry(0, 235, 960, 65)
 
         #create text box layout
         #create text background label
@@ -104,9 +130,6 @@ class GameEngine(QMainWindow):
         self.hide_button = ImageButton('hide', self.text_box_widget)
         self.hide_button.setGeometry(760, 400, 25, 25)
 
-        #create effect label
-        self.effect = Effect(self.basic_widget)
-
         #create menu layout
         #create menu background
         self.menu_background_pixmap = QPixmap(':/menu_background.png')
@@ -134,6 +157,7 @@ class GameEngine(QMainWindow):
         #hide widget
         self.menu_widget.hide()
         self.text_box_widget.hide()
+        self.select_widget.hide()
         self.disable_hide_label.hide()
         self.effect.hide()
 
@@ -437,7 +461,3 @@ class GameEngine(QMainWindow):
         self.text_box_widget.setGraphicsEffect(self.pre_effect)
         self.text_box_widget.show()
         self.text_box_label.setText('     ')
-
-    def close(self):
-
-        self.deleteLater()

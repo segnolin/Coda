@@ -51,6 +51,12 @@
 
 	<!-- GAME ENGINE -->
 
+	<file alias="select_background.png">resources/system/game_engine/select_background.png</file>
+
+	<file alias="select_button_defaults.png">resources/system/game_engine/select_button_defaults.png</file>
+	<file alias="select_button_hover.png">resources/system/game_engine/select_button_hover.png</file>
+	<file alias="select_button_press.png">resources/system/game_engine/select_button_press.png</file>
+
 	<file alias="text_background.png">resources/system/game_engine/text_background.png</file>
 
         <file alias="auto_button_defaults.png">resources/system/game_engine/auto_button_defaults.png</file>
