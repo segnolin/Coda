@@ -7,12 +7,15 @@
         <file alias="bg_0000.png">resources/background/bg_0000.png</file>
         <file alias="bg_0001.png">resources/background/bg_0001.png</file>
         <file alias="bg_0002.png">resources/background/bg_0002.png</file>
+        <file alias="bg_0003.png">resources/background/bg_0003.png</file>
+        <file alias="bg_0004.png">resources/background/bg_0004.png</file>
+        <file alias="bg_0005.png">resources/background/bg_0005.png</file>
 
 <!-- BACKGROUND MUSIC -->
 <!-- EVENT -->
 <!-- ICON -->
 
-	<file alias="coda.png">resources/icon/coda.png</file>
+    <file alias="coda.png">resources/icon/coda.png</file>
 
 <!-- PORTRAIT -->
 
@@ -20,12 +23,12 @@
 
 <!-- SCRIPT -->
 
-        <file alias="totono.xml">resources/script/totono.xml</file>
+        <file alias="a0000.xml">resources/script/a0000.xml</file>
 
 <!-- SOUND -->
 <!-- SYSTEM -->
 
-	<!-- MAIN WINDOW -->
+        <!-- MAIN WINDOW -->
 
         <file alias="main_background.png">resources/system/main_window/main_background.png</file>
 
@@ -49,15 +52,15 @@
         <file alias="main_exit_button_hover.png">resources/system/main_window/main_exit_button_hover.png</file>
         <file alias="main_exit_button_press.png">resources/system/main_window/main_exit_button_press.png</file>
 
-	<!-- GAME ENGINE -->
+    <!-- GAME ENGINE -->
 
-	<file alias="select_background.png">resources/system/game_engine/select_background.png</file>
+        <file alias="select_background.png">resources/system/game_engine/select_background.png</file>
 
-	<file alias="select_button_defaults.png">resources/system/game_engine/select_button_defaults.png</file>
-	<file alias="select_button_hover.png">resources/system/game_engine/select_button_hover.png</file>
-	<file alias="select_button_press.png">resources/system/game_engine/select_button_press.png</file>
+        <file alias="select_button_defaults.png">resources/system/game_engine/select_button_defaults.png</file>
+        <file alias="select_button_hover.png">resources/system/game_engine/select_button_hover.png</file>
+        <file alias="select_button_press.png">resources/system/game_engine/select_button_press.png</file>
 
-	<file alias="text_background.png">resources/system/game_engine/text_background.png</file>
+        <file alias="text_background.png">resources/system/game_engine/text_background.png</file>
 
         <file alias="auto_button_defaults.png">resources/system/game_engine/auto_button_defaults.png</file>
         <file alias="auto_button_hover.png">resources/system/game_engine/auto_button_hover.png</file>
@@ -105,7 +108,7 @@
 
         <file alias="menu_background.png">resources/system/game_engine/menu_background.png</file>
 
-	<!-- LOAD -->
+    <!-- LOAD -->
 
         <file alias="load_background.png">resources/system/load/load_background.png</file>
 

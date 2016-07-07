@@ -24,13 +24,14 @@ class Fader(QWidget):
         self.post_pixmap.setDevicePixelRatio(2)
         self.pre_widget.render(self.post_pixmap)
 
-        self.timeline = QTimeLine()
-        self.timeline.setUpdateInterval(1000 / 60)
-        self.timeline.setCurveShape(QTimeLine.EaseInOutCurve)
-        self.timeline.valueChanged.connect(self.animate)
-        self.timeline.finished.connect(self.close)
-        self.timeline.setDuration(self.duration)
-        self.timeline.start()
+        self.anime = QVariantAnimation()
+        self.anime.setEasingCurve(QEasingCurve.OutSine)
+        self.anime.setDuration(self.duration)
+        self.anime.setStartValue(1.0)
+        self.anime.setEndValue(0.0)
+        self.anime.valueChanged.connect(self.animate)
+        self.anime.finished.connect(self.close)
+        self.anime.start()
 
         self.resize(960, 540)
         self.show()
@@ -39,13 +40,14 @@ class Fader(QWidget):
 
         painter = QPainter()
         painter.begin(self)
+        painter.setRenderHint(QPainter.SmoothPixmapTransform, True)
         painter.setOpacity(self.pixmap_opacity)
         painter.drawPixmap(0, 0, self.post_pixmap)
         painter.end()
 
     def animate(self, value):
 
-        self.pixmap_opacity = 1.0 - value
+        self.pixmap_opacity = value
         self.repaint()
 
     def closeEvent(self, event):

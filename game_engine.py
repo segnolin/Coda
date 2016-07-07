@@ -26,7 +26,7 @@ class GameEngine(QMainWindow):
 
     def create_game_engine_layout(self, game_engine_id):
 
-        self.script = ':/totono.xml'
+        self.script = ':/a0000.xml'
         self.game_engine_id = game_engine_id
         print(self.game_engine_id)
 
@@ -233,7 +233,7 @@ class GameEngine(QMainWindow):
 
         if self.eff_id != '':
 
-            self.background.timeline.stop()
+            self.background.anime.stop()
             self.next_label.hide()
 
             if not self.init_status:
@@ -258,9 +258,11 @@ class GameEngine(QMainWindow):
 
             if not self.effect_status:
                 self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-                self.fader.fade(500)
+                self.fader.fade(800)
 
             if self.bg_du != '':
+                if self.eff_du == '':
+                    self.pre_process()
                 self.background.create_mv_bg(self.bg_id, int(self.bg_x), int(self.bg_y), int(self.bg_xf), int(self.bg_yf), int(self.bg_du))
             else:
                 self.background.create_bg(self.bg_id)
@@ -379,7 +381,7 @@ class GameEngine(QMainWindow):
         self.hide_button.setEnabled(False)
         self.fader_widget = FaderWidget(self.text_box_widget, 1.0)
         self.fader_widget.hide(250)
-        self.fader_widget.timeline.finished.connect(self.finsh_hide_widget)
+        self.fader_widget.anime.finished.connect(self.finsh_hide_widget)
 
     def finsh_hide_widget(self):
 
@@ -391,7 +393,7 @@ class GameEngine(QMainWindow):
         self.text_box_widget.show()
         self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
         self.fader_widget.show(250)
-        self.fader_widget.timeline.finished.connect(self.finish_show_widget)
+        self.fader_widget.anime.finished.connect(self.finish_show_widget)
 
     def finish_show_widget(self):
 
@@ -423,14 +425,14 @@ class GameEngine(QMainWindow):
             self.text_box_widget.show()
             self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
             self.fader_widget.show(400)
-            self.fader_widget.timeline.finished.connect(self.finish_show_text_box)
+            self.fader_widget.anime.finished.connect(self.finish_show_text_box)
 
     def delay_show_text_box(self):
 
         self.text_box_widget.show()
         self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
         self.fader_widget.show(400)
-        self.fader_widget.timeline.finished.connect(self.finish_show_text_box)
+        self.fader_widget.anime.finished.connect(self.finish_show_text_box)
 
     def finish_show_text_box(self):
 
@@ -446,7 +448,7 @@ class GameEngine(QMainWindow):
         self.hide_button.setEnabled(False)
         self.fader_widget = FaderWidget(self.text_box_widget, 1.0)
         self.fader_widget.hide(400)
-        self.fader_widget.timeline.finished.connect(self.finsh_hide_text_box)
+        self.fader_widget.anime.finished.connect(self.finsh_hide_text_box)
 
     def finsh_hide_text_box(self):
 

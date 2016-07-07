@@ -18,46 +18,35 @@ class FaderWidget(QWidget):
         self.effect.setOpacity(init_opacity)
         self.widget.setGraphicsEffect(self.effect)
 
-    def hide(self, duration):
-
-        self.duration = duration
-        self.opacity = 1.0
-
-        self.timeline = QTimeLine()
-        self.timeline.setUpdateInterval(1000 / 60)
-        self.timeline.setCurveShape(QTimeLine.EaseInOutCurve)
-        self.timeline.valueChanged.connect(self.hide_animate)
-        self.timeline.finished.connect(self.close)
-        self.timeline.setDuration(self.duration)
-        self.timeline.start()
-
-        self.resize(960, 540)
-
-    def hide_animate(self, value):
-
-        self.opacity = 1.0 - value
-
-        self.effect.setOpacity(self.opacity)
-        self.widget.setGraphicsEffect(self.effect)
-
-    def show(self, duration):
-
-        self.duration = duration
-        self.opacity = 0.0
-
-        self.timeline = QTimeLine()
-        self.timeline.setUpdateInterval(1000 / 60)
-        self.timeline.setCurveShape(QTimeLine.EaseInOutCurve)
-        self.timeline.valueChanged.connect(self.show_animate)
-        self.timeline.finished.connect(self.close)
-        self.timeline.setDuration(self.duration)
-        self.timeline.start()
-
-        self.resize(960, 540)
-
-    def show_animate(self, value):
+    def animate(self, value):
 
         self.opacity = value
 
         self.effect.setOpacity(self.opacity)
         self.widget.setGraphicsEffect(self.effect)
+
+    def hide(self, duration):
+
+        self.duration = duration
+        self.opacity = 1.0
+
+        self.anime = QVariantAnimation()
+        self.anime.setEasingCurve(QEasingCurve.OutSine)
+        self.anime.setDuration(self.duration)
+        self.anime.setStartValue(1.0)
+        self.anime.setEndValue(0.0)
+        self.anime.valueChanged.connect(self.animate)
+        self.anime.start()
+        
+    def show(self, duration):
+
+        self.duration = duration
+        self.opacity = 0.0
+
+        self.anime = QVariantAnimation()
+        self.anime.setEasingCurve(QEasingCurve.OutSine)
+        self.anime.setDuration(self.duration)
+        self.anime.setStartValue(0.0)
+        self.anime.setEndValue(1.0)
+        self.anime.valueChanged.connect(self.animate)
+        self.anime.start()

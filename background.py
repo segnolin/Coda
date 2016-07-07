@@ -18,13 +18,13 @@ class Background(QLabel):
         self.x = 0
         self.y = 0
         self.pixmap = QPixmap()
-        self.timeline = QTimeLine()
+        self.anime = QVariantAnimation()
 
     def create_bg(self, background_id):
 
         self.x = 0
         self.y = 0
-        self.timeline.stop()
+        self.anime.stop()
 
         self.background_id = background_id
         self.pixmap = QPixmap(':/{0}.png'.format(background_id))
@@ -46,17 +46,21 @@ class Background(QLabel):
         self.x = posx
         self.y = posy
 
-        self.timeline.stop()
-        self.timeline.setUpdateInterval(1000 / 60)
-        self.timeline.setCurveShape(QTimeLine.EaseOutCurve)
-        self.timeline.valueChanged.connect(self.show_animate)
-        self.timeline.setDuration(self.duration)
-        self.timeline.start()
+        self.dx = self.posxf - self.posx
+        self.dy = self.posyf - self.posy
+
+        self.anime.stop()
+        self.anime.setEasingCurve(QEasingCurve.OutSine)
+        self.anime.setDuration(self.duration)
+        self.anime.setStartValue(0.0)
+        self.anime.setEndValue(1.0)
+        self.anime.valueChanged.connect(self.show_animate)
+        self.anime.start()
 
     def show_animate(self, value):
 
-        self.x = self.posx + (self.posxf - self.posx) * value
-        self.y = self.posy + (self.posyf - self.posy) * value
+        self.x = self.posx + self.dx  * value
+        self.y = self.posy + self.dy  * value
         self.repaint()
 
     def paintEvent(self, event):

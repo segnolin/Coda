@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+    <content id="0">
+        <eff>
+            <id>black_fade</id>
+            <du>3500</du>
+        </eff>
+        <bg>
+            <id>bg_0000</id>
+            <x>-720</x>
+            <y>-540</y>
+            <xf>-960</xf>
+            <yf>-540</yf>
+            <du>20000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>5000</td>
+            <txt>毎日は、階段のように過ぎていく。</txt>
+        </tb>
+    </content>
+    <content id="1">
+        <tb>
+            <txt>一度疑問に思ったらその途端、足を上げるのが辛くなる。</txt>
+        </tb>
+    </content>
+    <content id="2">
+        <tb>
+            <txt>だから、一歩、一歩、なにも考えずに、上る。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="3">
+        <eff>
+            <id>black_fade</id>
+            <du>2000</du>
+        </eff>
+        <bg>
+            <id>bg_0000</id>
+            <x>-512</x>
+            <y>-360</y>
+            <xf>-512</xf>
+            <yf>-140</yf>
+            <du>20000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>2000</td>
+            <txt>階段だから、別れ道はなく。</txt>
+        </tb>
+    </content>
+    <content id="4">
+        <tb>
+            <txt>「あの時ああしておけば」なんて後悔は無意味で。</txt>
+        </tb>
+    </content>
+    <content id="5">
+        <tb>
+            <txt>「人生は選択の連続だ」なんていうのは、失敗してから振り返って思う、後悔の絞りかすみたいなものだ。</txt>
+        </tb>
+    </content>
+    <content id="6">
+        <tb>
+            <txt>過去の少し先にある、当たり前の明日へ。</txt>
+        </tb>
+    </content>
+    <content id="7">
+        <tb>
+            <txt>一歩、一歩、進んでいく。</txt>
+        </tb>
+    </content>
+    <content id="8">
+        <tb>
+            <txt>その行き着く先がどんな未来か――</txt>
+        </tb>
+    </content>
+    <content id="9">
+        <tb>
+            <txt>それは、まだわからないけれど。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="10">
+        <eff>
+            <id>white_fade</id>
+            <du>3500</du>
+        </eff>
+        <bg>
+            <id>bg_0001</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>1500</td>
+            <txt>階段から外に出て、目映い夕陽の色が視界を染めた。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="11">
+        <bg>
+            <id>bg_0002</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <txt>一般生徒は出入りできない、学校の屋上。</txt>
+        </tb>
+    </content>
+    <content id="12">
+        <tb>
+            <txt>見慣れたはずの光景だが、少し時間が遅いだけで、全く違った場所に見える。</txt>
+        </tb>
+    </content>
+    <content id="13">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「雄太郎、いるのか？」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="14">
+        <tb>
+            <sh>True</sh>
+            <td>1000</td>
+            <char>del</char>
+            <txt>呼びかけても返答はない。</txt>
+        </tb>
+    </content>
+    <content id="15">
+        <tb>
+            <txt>静かに秋の風が吹き抜けるだけだ。</txt>
+        </tb>
+    </content>
+    <content id="16">
+        <tb>
+            <txt>コンクリートの継ぎ目に草が生えていて、野ざらしで置いてある机は錆び付いている。</txt>
+        </tb>
+    </content>
+    <content id="17">
+        <tb>
+            <txt>時の流れから忘れ去られたような場所。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="18">
+        <bg>
+            <id>bg_0003</id>
+            <x>-540</x>
+            <y>-540</y>
+            <xf>-960</xf>
+            <yf>-540</yf>
+            <du>20000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>3000</td>
+            <txt>俺はこの場所が好きだった。</txt>
+        </tb>
+    </content>
+    <content id="19">
+        <tb>
+            <txt>特に、四方に広がる街の風景がいい。</txt>
+        </tb>
+    </content>
+    <content id="20">
+        <tb>
+            <txt>生まれ育った街には、見渡す限り思い出が詰まっている。</txt>
+        </tb>
+    </content>
+    <content id="21">
+        <tb>
+            <txt>それを見ていると、とても心が安らぐのだ。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="22">
+        <bg>
+            <id>bg_0002</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>1000</td>
+            <txt>誰も立候補者がおらず、何となくの投票で推薦された美化委員に、こんな役得があるとは思わなかった。</txt>
+        </tb>
+    </content>
+    <content id="23">
+        <tb>
+            <txt>鍵を持っているのは、屋上に備品を出し入れする美化委員と、天体観測をする天文部だけ。</txt>
+        </tb>
+    </content>
+    <content id="24">
+        <tb>
+            <txt>――というのが建前だが、実は裏でいくつかの合い鍵が作られているらしい。</txt>
+        </tb>
+    </content>
+    <content id="25">
+        <tb>
+            <txt>なぜならばこの屋上には、とある噂があるのだ。</txt>
+        </tb>
+    </content>
+    <content id="26">
+        <tb>
+            <txt>おかげで俺は、時々鍵を開けるように頼まれたりする。</txt>
+        </tb>
+    </content>
+    <content id="27">
+        <tb>
+            <txt>今日やってきたのも、雄太郎の依頼を受けたからだ。</txt>
+        </tb>
+    </content>
+    <content id="28">
+        <tb>
+            <txt>もっともアイツは、遅刻してるみたいだけど――</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="29">
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <char>須々木心一</char>
+            <txt>「ん？」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="30">
+        <bg>
+            <id>bg_0004</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <char>del</char>
+            <txt>入り口のすぐ側に、何かが落ちていた。</txt>
+        </tb>
+    </content>
+    <content id="31">
+        <tb>
+            <txt>裏返ったスマートフォン。</txt>
+        </tb>
+    </content>
+    <content id="32">
+        <tb>
+            <txt>誰が落としたんだろう？</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content>
+        <bg>
+            <id>bg_0002</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <txt>しゃがんで手に取ってみる。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="33">
+        <bg>
+            <id>bg_0005</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <char>須々木心一</char>
+            <txt>「…………」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="34">
+        <tb>
+            <sh>True</sh>
+            <char>del</char>
+            <txt>「カミサマ」からの着信だった。</txt>
+        </tb>
+    </content>
+    <content id="35">
+        <tb>
+            <txt>――神様？</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="36">
+        <bg>
+            <id>bg_0002</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>300</td>
+            <txt>電話に出るまでもなく、発信は切れた。</txt>
+        </tb>
+    </content>
+    <content id="37">
+        <tb>
+            <txt>ちょっと、ホッとしたというのが、本音だけど。</txt>
+        </tb>
+    </content>
+    <content id="38">
+        <tb>
+            <txt>それで一体、誰の携帯だ？</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+</script>
