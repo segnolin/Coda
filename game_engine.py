@@ -35,7 +35,7 @@ class GameEngine(QMainWindow):
         self.effect_status = False
 
         #set QWidget class
-        self.game_engine_widget = QWidget()
+        self.game_engine_widget = QOpenGLWidget()
         self.basic_widget = QWidget(self.game_engine_widget)
         self.select_widget = QWidget(self.game_engine_widget)
         self.text_box_widget = QWidget(self.game_engine_widget)
@@ -72,6 +72,7 @@ class GameEngine(QMainWindow):
         self.text_background_label.setGeometry(0, 340, 960, 200)
 
         #set the text character label
+        self.pre_tb_char = ''
         self.text_font = QFont('Noto Sans CJK TC Regular', 18)
         self.text_character_label = QLabel(self.text_box_widget)
         self.text_character_label.setFont(self.text_font)
@@ -304,6 +305,9 @@ class GameEngine(QMainWindow):
                 self.text_character_label.clear()
             else:
                 self.text_character_label.setText(self.tb_char)
+        else:
+            if not self.init_status and self.pre_tb_char != 'del':
+                self.text_character_label.setText(self.pre_tb_char)
 
         self.text_box_label.set_text(self.tb_txt)
 
@@ -342,6 +346,8 @@ class GameEngine(QMainWindow):
     def set_text(self):
 
         print('set_text')
+
+        self.pre_tb_char = self.tb_char
 
         self.text_character_label.clear()
         self.text_box_label.clear()
