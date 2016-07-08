@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+    <content id="0">
+        <tb>
+            <sh>True</sh>
+            <td>3000</td>
+            <char>須々木心一</char>
+            <txt>「…………あれ？」</txt>
+        </tb>
+    </content>
+    <content id="1">
+        <tb>
+            <char>del</char>
+            <txt>電話番号を間違えたのだろうか？</txt>
+        </tb>
+    </content>
+    <content id="2">
+        <tb>
+            <txt>いや、それにしたって妙だ。</txt>
+        </tb>
+    </content>
+    <content id="3">
+        <tb>
+            <txt>間違えたにしても、電波が届かないにしても、その旨のメッセージが流れるはずだ。</txt>
+        </tb>
+    </content>
+    <content id="4">
+        <tb>
+            <txt>まるで、携帯電話が壊れているような……</txt>
+            <hi>True</hi>
+        </tb>
+        <sys>
+            <sc>a0001b</sc>
+        </sys>
+    </content>
+</script>

@@ -37,6 +37,7 @@ class Parser(QXmlStreamReader):
         self.pt_y = {}
         self.pt_xf = {}
         self.pt_yf = {}
+        self.pt_num = 0
 
         self.tb_sh = ''
         self.tb_td = ''
@@ -45,9 +46,13 @@ class Parser(QXmlStreamReader):
         self.tb_txt = ''
         self.tb_hi = ''
 
-        self.pt_num = -1
+        self.sl_txt = {}
+        self.sl_sc = {}
+        self.sl_num = 0
 
-        self.file = QFile(self.script)
+        self.sys_sc = ''
+
+        self.file = QFile(':/{0}.xml'.format(self.script))
         self.file.open(QIODevice.ReadOnly)
         self.setDevice(self.file)
 
@@ -76,6 +81,10 @@ class Parser(QXmlStreamReader):
                     self.parse_pt()
                 elif self.name() == 'tb':
                     self.parse_tb()
+                elif self.name() == 'sl':
+                    self.parse_sl()
+                elif self.name() == 'sys':
+                    self.parse_sys()
                 else:
                     self.readNext()
 
@@ -200,10 +209,42 @@ class Parser(QXmlStreamReader):
                 if self.name() == 'tb':
                     break
 
+    def parse_sl(self):
+
+        self.sl_num += 1
+
+        while not self.atEnd():
+            self.readNext()
+            if self.isStartElement():
+                if self.name() == 'txt':
+                    self.sl_txt[self.sl_num] = self.readElementText()
+                elif self.name() == 'sc':
+                    self.sl_sc[self.sl_num] = self.readElementText()
+                else:
+                    self.readNext()
+
+            if self.isEndElement():
+                if self.name() == 'sl':
+                    break
+
+    def parse_sys(self):
+
+        while not self.atEnd():
+            self.readNext()
+            if self.isStartElement():
+                if self.name() == 'sc':
+                    self.sys_sc = self.readElementText()
+                else:
+                    self.readNext()
+
+            if self.isEndElement():
+                if self.name() == 'sys':
+                    break
+
 if __name__ == '__main__':
 
-    game_engine_id = 0
-    script = ':/totono.xml'
+    game_engine_id = 40
+    script = 'a0000'
     parser = Parser()
     parser.parse(script, game_engine_id)
 
@@ -229,3 +270,6 @@ if __name__ == '__main__':
     print(parser.tb_txt)
     print(parser.tb_hi)
     print(parser.pt_num)
+    print(parser.sl_txt)
+    print(parser.sl_sc)
+    print(parser.sl_num)

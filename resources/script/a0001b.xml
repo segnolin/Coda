@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+    <content id="0">
+        <tb>
+            <sh>True</sh>
+            <td>1000</td>
+            <txt>通話履歴を見てみると――</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="1">
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <txt>「カミサマ」</txt>
+        </tb>
+    </content>
+    <content id="2">
+        <tb>
+            <txt>「カミサマ」</txt>
+        </tb>
+    </content>
+    <content id="3">
+        <tb>
+            <txt>「カミサマ」</txt>
+        </tb>
+    </content>
+    <content id="4">
+        <tb>
+            <txt>「カミサマ」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+</script>

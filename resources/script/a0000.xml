@@ -300,4 +300,14 @@
             <hi>True</hi>
         </tb>
     </content>
+    <content id="39">
+        <sl>
+            <txt>電話をかける</txt>
+            <sc>a0001a</sc>
+        </sl>
+        <sl>
+            <txt>通話履歴を見る</txt>
+            <sc>a0001b</sc>
+        </sl>
+    </content>
 </script>

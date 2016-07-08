@@ -24,11 +24,11 @@ class SelectButton(QAbstractButton):
         self.pressed.connect(self.update)
         self.released.connect(self.update)
 
-        self.text = ''
+        self.txt = ''
 
-    def set_text(self, text):
+    def set_text(self, txt):
 
-        self.text = text
+        self.txt = txt
 
     def paintEvent(self, event):
 
@@ -40,7 +40,7 @@ class SelectButton(QAbstractButton):
         painter.drawPixmap(0, 0, pixmap)
         painter.setPen(Qt.white)
         painter.setFont(QFont('Noto Sans CJK TC Regular', 18))
-        painter.drawText(QRect(0, 0, 960, 65), Qt.AlignCenter, self.text)
+        painter.drawText(QRect(0, 0, 960, 65), Qt.AlignCenter, self.txt)
 
     def enterEvent(self, event):
 

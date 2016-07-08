@@ -26,7 +26,7 @@ class GameEngine(QMainWindow):
 
     def create_game_engine_layout(self, game_engine_id):
 
-        self.script = ':/a0000.xml'
+        self.script = 'a0000'
         self.game_engine_id = game_engine_id
         print(self.game_engine_id)
 
@@ -60,18 +60,8 @@ class GameEngine(QMainWindow):
         self.select_background_label.setPixmap(self.select_background_pixmap)
         self.select_background_label.setGeometry(0, 0, 960, 540)
 
-        #create selection buttons
-        self.selection_0_button = SelectButton(self.select_widget)
-        self.selection_0_button.set_text('オプション 0')
-        self.selection_0_button.setGeometry(0, 85, 960, 65)
-
-        self.selection_1_button = SelectButton(self.select_widget)
-        self.selection_1_button.set_text('オプション 1')
-        self.selection_1_button.setGeometry(0, 160, 960, 65)
-
-        self.selection_2_button = SelectButton(self.select_widget)
-        self.selection_2_button.set_text('オプション 2')
-        self.selection_2_button.setGeometry(0, 235, 960, 65)
+        #create selection button
+        self.selection_button = {}
 
         #create text box layout
         #create text background label
@@ -199,6 +189,7 @@ class GameEngine(QMainWindow):
         self.pt_y = self.parser.pt_y
         self.pt_xf = self.parser.pt_xf
         self.pt_yf = self.parser.pt_yf
+        self.pt_num = self.parser.pt_num
 
         self.tb_sh = self.parser.tb_sh
         self.tb_td = self.parser.tb_td
@@ -207,13 +198,26 @@ class GameEngine(QMainWindow):
         self.tb_txt = self.parser.tb_txt
         self.tb_hi = self.parser.tb_hi
 
-        if self.init_status:
-            self.tb_sh = True
-            if self.tb_td == '':
-                self.tb_td = 2000
-            self.pre_process()
+        self.sl_txt = self.parser.sl_txt
+        self.sl_sc = self.parser.sl_sc
+        self.sl_num = self.parser.sl_num
 
-        self.init_background_music()
+        self.sys_sc = self.parser.sys_sc
+
+        if self.sys_sc != '':
+            self.script = self.sys_sc
+            self.game_engine_id = -1
+        if int(self.sl_num) != 0:
+            self.selection()
+        else:
+            if self.init_status:
+                self.eff_id = 'black_fade'
+                self.eff_du = '3000'
+                self.tb_sh = True
+                if self.tb_td == '':
+                    self.tb_td = 4000
+                self.pre_process()
+            self.init_background_music()
 
     def init_background_music(self):
 
@@ -463,3 +467,36 @@ class GameEngine(QMainWindow):
         self.text_box_widget.setGraphicsEffect(self.pre_effect)
         self.text_box_widget.show()
         self.text_box_label.setText('     ')
+
+    def selection(self):
+
+        print('selection')
+
+        for i in range(int(self.sl_num)):
+
+            pos = 235 - int(int(self.sl_num) / 2) * 75 + i * 75
+
+            self.selection_button[i] = SelectButton(self.select_widget)
+            self.selection_button[i].setText('{0}'.format(i))
+            self.selection_button[i].set_text(self.sl_txt.get(i + 1))
+            self.selection_button[i].setGeometry(0, pos, 960, 65)
+            self.selection_button[i].clicked.connect(self.view_script)
+
+        fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        fader.fade(800)
+        self.select_widget.show()
+
+    def view_script(self):
+
+        selection = int(self.sender().text())
+        print(selection)
+
+        self.game_engine_id = 0
+        self.script = self.sl_sc.get(selection + 1)
+        print(self.script)
+
+        fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        fader.fade(800)
+        self.select_widget.hide()
+        self.selection_button.clear()
+        self.init_parser()

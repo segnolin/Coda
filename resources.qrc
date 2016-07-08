@@ -15,7 +15,7 @@
 <!-- EVENT -->
 <!-- ICON -->
 
-    <file alias="coda.png">resources/icon/coda.png</file>
+        <file alias="coda.png">resources/icon/coda.png</file>
 
 <!-- PORTRAIT -->
 
@@ -24,6 +24,8 @@
 <!-- SCRIPT -->
 
         <file alias="a0000.xml">resources/script/a0000.xml</file>
+        <file alias="a0001a.xml">resources/script/a0001a.xml</file>
+        <file alias="a0001b.xml">resources/script/a0001b.xml</file>
 
 <!-- SOUND -->
 <!-- SYSTEM -->
