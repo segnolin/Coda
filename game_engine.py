@@ -265,7 +265,7 @@ class GameEngine(QMainWindow):
                 self.fader.fade(800)
 
             if self.bg_du != '':
-                if self.eff_du == '':
+                if self.eff_du == '' and self.tb_sh != '':
                     self.pre_process()
                 self.background.create_mv_bg(self.bg_id, int(self.bg_x), int(self.bg_y), int(self.bg_xf), int(self.bg_yf), int(self.bg_du))
             else:

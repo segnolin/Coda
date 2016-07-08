@@ -13,6 +13,10 @@
 
 <!-- BACKGROUND MUSIC -->
 <!-- EVENT -->
+
+        <file alias="ev_0000.png">resources/event/ev_0000.png</file>
+        <file alias="ev_0001.png">resources/event/ev_0001.png</file>
+
 <!-- ICON -->
 
         <file alias="coda.png">resources/icon/coda.png</file>

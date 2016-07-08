@@ -9,6 +9,7 @@ import sys
 import resources
 
 class Background(QLabel):
+    #QOpenGLWidget
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -30,7 +31,8 @@ class Background(QLabel):
         self.pixmap = QPixmap(':/{0}.png'.format(background_id))
         self.pixmap.setDevicePixelRatio(2)
 
-        self.setPixmap(self.pixmap)
+        #self.setPixmap(self.pixmap)
+        self.repaint()
 
     def create_mv_bg(self, background_id, posx, posy, posxf, posyf, duration):
 
@@ -65,8 +67,11 @@ class Background(QLabel):
 
     def paintEvent(self, event):
 
+        transform = QTransform()
+        transform.translate(self.x, self.y)
+
         self.painter.begin(self)
         self.painter.setRenderHint(QPainter.SmoothPixmapTransform, True)
-        self.painter.translate(self.x, self.y)
+        self.painter.setTransform(transform)
         self.painter.drawPixmap(0, 0, self.pixmap)
         self.painter.end()

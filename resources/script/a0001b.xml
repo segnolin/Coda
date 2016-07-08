@@ -31,4 +31,177 @@
             <hi>True</hi>
         </tb>
     </content>
+    <content id="5">
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <txt>――なんだ、これは。</txt>
+        </tb>
+    </content>
+    <content id="6">
+        <tb>
+            <txt>続いて電話帳をチェックする。</txt>
+        </tb>
+    </content>
+    <content id="7">
+        <tb>
+            <txt>登録されているアドレスはひとつ。</txt>
+        </tb>
+    </content>
+    <content id="8">
+        <tb>
+            <txt>「カミサマ」だ。</txt>
+        </tb>
+    </content>
+    <content id="9">
+        <tb>
+            <txt>――神様専用か？</txt>
+        </tb>
+    </content>
+    <content id="10">
+        <tb>
+            <txt>まさか、ホントに神様の持ち物ってことはないよな？</txt>
+        </tb>
+    </content>
+    <content id="11">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「――ん？」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="12">
+        <eff>
+            <id>black_fade</id>
+            <du>1500</du>
+        </eff>
+        <bg>
+            <id>ev_0000</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <char>＊＊＊＊</char>
+            <txt>『るる』</txt>
+        </tb>
+    </content>
+    <content id="13">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「…………」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="14">
+        <bg>
+            <id>ev_0001</id>
+            <x>-285</x>
+            <y>-120</y>
+            <xf>-332</xf>
+            <yf>-156</yf>
+            <du>7000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>2000</td>
+            <char>del</char>
+            <txt>彼女の瞳が、俺に向けられた。</txt>
+        </tb>
+    </content>
+    <content id="15">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>『デンチ、きれたの』</txt>
+        </tb>
+    </content>
+    <content id="16">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「電池？」</txt>
+        </tb>
+    </content>
+    <content id="17">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>『ジュウデン、ひつようなの』</txt>
+        </tb>
+    </content>
+    <content id="18">
+        <bg>
+            <id>ev_0001</id>
+            <x>-181</x>
+            <y>-54</y>
+            <xf>-288</xf>
+            <yf>-90</yf>
+            <du>14000</du>
+        </bg>
+        <tb>
+            <txt>『ビリビリ、するの？』</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="19">
+        <eff>
+            <id>black_fade</id>
+            <du>1500</du>
+        </eff>
+        <bg>
+            <id>bg_0002</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <char>del</char>
+            <txt>間違ったボタンを押してしまったらしい。</txt>
+        </tb>
+    </content>
+    <content id="20">
+        <tb>
+            <txt>起動したのは、いわゆる「萌え」なゲームだった。</txt>
+        </tb>
+    </content>
+    <content id="21">
+        <tb>
+            <txt>友達が携帯ゲーム機でやっているのは見たことがある。</txt>
+        </tb>
+    </content>
+    <content id="22">
+        <tb>
+            <txt>スマートフォンでもおかしくはないだろう。</txt>
+        </tb>
+    </content>
+    <content id="23">
+        <tb>
+            <txt>俺はプレイしたことがないけれど。</txt>
+        </tb>
+    </content>
+    <content id="24">
+        <tb>
+            <txt>ないはず……なのに……</txt>
+        </tb>
+    </content>
+    <content id="25">
+        <tb>
+            <txt>でも、この制服は見たことがあるような……</txt>
+        </tb>
+    </content>
+    <content id="26">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「知ってる……？」</txt>
+        </tb>
+    </content>
+    <content id="27">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「とうおるるるるるるるるるるるるるる……」</txt>
+        </tb>
+    </content>
+    <content id="28">
+        <tb>
+            <char>del</char>
+            <txt>奇妙な声が、届いた。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
 </script>
