@@ -14,11 +14,12 @@ class LetterPrint(QLabel):
         super().__init__(parent)
 
         self.index = 0
+        self.txt = ''
 
     def set_text(self, text):
 
         self.index = 0
-        self.text = text
+        self.txt = text
         self.timer = QTimer()
         self.timer.timeout.connect(self.handle_timer)
         self.timer.start(30)
@@ -26,7 +27,8 @@ class LetterPrint(QLabel):
     def handle_timer(self):
 
         self.index += 1
-        self.setText(self.text[:self.index])
+        self.setText(self.txt[:self.index])
+        self.repaint()
 
-        if self.index > len(self.text):
+        if self.index > len(self.txt):
             self.timer.stop()

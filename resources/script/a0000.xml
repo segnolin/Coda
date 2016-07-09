@@ -143,11 +143,11 @@
     <content id="18">
         <bg>
             <id>bg_0003</id>
-            <x>-540</x>
+            <x>0</x>
             <y>-540</y>
             <xf>-960</xf>
             <yf>-540</yf>
-            <du>20000</du>
+            <du>40000</du>
         </bg>
         <tb>
             <sh>True</sh>

@@ -480,7 +480,7 @@ class GameEngine(QMainWindow):
 
         for i in range(int(self.sl_num)):
 
-            pos = 235 - int(int(self.sl_num) / 2) * 75 + i * 75
+            pos = 235 + int(i - int(self.sl_num) / 2) * 75
 
             self.selection_button[i] = SelectButton(self.select_widget)
             self.selection_button[i].setText('{0}'.format(i))
