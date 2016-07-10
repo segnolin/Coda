@@ -1,5 +1,6 @@
 __pycache__/
 build/
+dist/
 *.ai
 *.swp
 .DS_Store
