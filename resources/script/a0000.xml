@@ -120,7 +120,6 @@
         <tb>
             <sh>True</sh>
             <td>1000</td>
-            <char>del</char>
             <txt>呼びかけても返答はない。</txt>
         </tb>
     </content>
@@ -228,7 +227,6 @@
         <tb>
             <sh>True</sh>
             <td>500</td>
-            <char>del</char>
             <txt>入り口のすぐ側に、何かが落ちていた。</txt>
         </tb>
     </content>
@@ -269,7 +267,6 @@
     <content id="34">
         <tb>
             <sh>True</sh>
-            <char>del</char>
             <txt>「カミサマ」からの着信だった。</txt>
         </tb>
     </content>

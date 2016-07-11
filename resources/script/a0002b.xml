@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+    <content id="0">
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <txt>……冷静になろう。</txt>
+        </tb>
+    </content>
+    <content id="1">
+        <tb>
+            <txt>俺は一体、何を求められているのか？</txt>
+        </tb>
+    </content>
+    <content id="2">
+        <tb>
+            <txt>彼女は一体、誰なのか？</txt>
+        </tb>
+    </content>
+    <content id="3">
+        <tb>
+            <txt>そもそもこのシチュエーション、さっきゲームで……</txt>
+        </tb>
+        <sys>
+            <sc>a0003</sc>
+        </sys>
+    </content>
+</script>

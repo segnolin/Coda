@@ -72,7 +72,6 @@ class GameEngine(QMainWindow):
         self.text_background_label.setGeometry(0, 340, 960, 200)
 
         #set the text character label
-        self.pre_tb_char = ''
         self.text_font = QFont('Noto Sans CJK TC Regular', 18)
         self.text_character_label = QLabel(self.text_box_widget)
         self.text_character_label.setFont(self.text_font)
@@ -270,7 +269,11 @@ class GameEngine(QMainWindow):
                     self.pre_process()
                 self.background.create_mv_bg(self.bg_id, int(self.bg_x), int(self.bg_y), int(self.bg_xf), int(self.bg_yf), int(self.bg_du))
             else:
-                self.background.create_bg(self.bg_id)
+                if self.bg_x == '':
+                    self.bg_x = 0
+                if self.bg_y == '':
+                    self.bg_y = 0
+                self.background.create_bg(self.bg_id, int(self.bg_x), int(self.bg_y))
 
         self.init_portrait()
 
@@ -283,6 +286,9 @@ class GameEngine(QMainWindow):
     def init_text_box(self):
 
         print('init_text_box')
+
+        self.text_character_label.clear()
+        self.text_box_label.clear()
 
         if self.tb_sh != '':
             self.show_text_box()
@@ -300,15 +306,7 @@ class GameEngine(QMainWindow):
 
         print('init_text')
 
-        if self.tb_char != '':
-            if self.tb_char == 'del':
-                self.text_character_label.clear()
-            else:
-                self.text_character_label.setText(self.tb_char)
-        else:
-            if not self.init_status and self.pre_tb_char != 'del':
-                self.text_character_label.setText(self.pre_tb_char)
-
+        self.text_character_label.setText(self.tb_char)
         self.text_box_label.set_text(self.tb_txt)
 
     def update(self, event):
@@ -346,8 +344,6 @@ class GameEngine(QMainWindow):
     def set_text(self):
 
         print('set_text')
-
-        self.pre_tb_char = self.tb_char
 
         self.text_character_label.clear()
         self.text_box_label.clear()

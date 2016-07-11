@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+    <content id="0">
+        <bg>
+            <id>bg_0006</id>
+        </bg>
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「神聖なる、学舎の、中――」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="1">
+        <bg>
+            <id>ev_0004</id>
+            <x>-960</x>
+            <y>-320</y>
+            <xf>-200</xf>
+            <yf>-100</yf>
+            <du>400</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <char>曽根美雪</char>
+            <txt>「学校の、屋上で、何してるの？」</txt>
+        </tb>
+    </content>
+    <content id="2">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「み、美雪？」</txt>
+        </tb>
+    </content>
+    <content id="3">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「なにって、その」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="4">
+        <bg>
+            <id>ev_0002</id>
+            <x>-156</x>
+            <y>-178</y>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <char>＊＊＊＊</char>
+            <txt>「ジュウデンなの」</txt>
+        </tb>
+    </content>
+</script>

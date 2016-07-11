@@ -20,10 +20,10 @@ class Background(QLabel):
         self.pixmap = QPixmap()
         self.anime = QVariantAnimation()
 
-    def create_bg(self, background_id):
+    def create_bg(self, background_id, posx, posy):
 
-        self.x = 0
-        self.y = 0
+        self.x = posx
+        self.y = posy
         self.anime.stop()
 
         self.background_id = background_id

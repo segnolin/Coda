@@ -10,12 +10,17 @@
         <file alias="bg_0003.png">resources/background/bg_0003.png</file>
         <file alias="bg_0004.png">resources/background/bg_0004.png</file>
         <file alias="bg_0005.png">resources/background/bg_0005.png</file>
+        <file alias="bg_0006.png">resources/background/bg_0006.png</file>
+        <file alias="black.png">resources/background/black.png</file>
 
 <!-- BACKGROUND MUSIC -->
 <!-- EVENT -->
 
         <file alias="ev_0000.png">resources/event/ev_0000.png</file>
         <file alias="ev_0001.png">resources/event/ev_0001.png</file>
+        <file alias="ev_0002.png">resources/event/ev_0002.png</file>
+        <file alias="ev_0003.png">resources/event/ev_0003.png</file>
+        <file alias="ev_0004.png">resources/event/ev_0004.png</file>
 
 <!-- ICON -->
 
@@ -30,6 +35,9 @@
         <file alias="a0000.xml">resources/script/a0000.xml</file>
         <file alias="a0001a.xml">resources/script/a0001a.xml</file>
         <file alias="a0001b.xml">resources/script/a0001b.xml</file>
+        <file alias="a0002a.xml">resources/script/a0002a.xml</file>
+        <file alias="a0002b.xml">resources/script/a0002b.xml</file>
+        <file alias="a0003.xml">resources/script/a0003.xml</file>
 
 <!-- SOUND -->
 <!-- SYSTEM -->

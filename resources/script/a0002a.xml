@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+    <content id="0">
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <txt>彼女の身体を伝わって、俺の肌に何かが走った。</txt>
+        </tb>
+    </content>
+    <content id="1">
+        <tb>
+            <txt>面倒な理性も、小難しい理屈も、焼き切れた。</txt>
+        </tb>
+    </content>
+    <content id="2">
+        <tb>
+            <txt>電気の力に引き寄せられるように。</txt>
+        </tb>
+    </content>
+    <content id="3">
+        <tb>
+            <txt>俺は彼女に、唇を近づけた。</txt>
+        </tb>
+        <sys>
+            <sc>a0003</sc>
+        </sys>
+    </content>
+</script>
