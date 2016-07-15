@@ -34,12 +34,13 @@ class Background(QLabel):
 
     def create_mv_bg(self, background_id, posx, posy, posxf, posyf, duration):
 
-        self.background_id = background_id
         self.posx = posx
         self.posy = posy
         self.posxf = posxf
         self.posyf = posyf
         self.duration = duration
+
+        self.background_id = background_id
         self.pixmap = QPixmap(':/{0}.png'.format(self.background_id))
         self.pixmap.setDevicePixelRatio(2)
 

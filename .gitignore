@@ -1,6 +1,13 @@
 __pycache__/
 build/
 dist/
+resources/anime/
+resources/background/
+resources/background_music/
+resources/event/
+resources/portrait/
+resources/sound/
+resources/voice/
 *.ai
 *.swp
 .DS_Store

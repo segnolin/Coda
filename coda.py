@@ -24,6 +24,7 @@ class Coda(QMainWindow):
     def initUI(self):
 
         #set initial game argument
+        self.script = 'a0000'
         self.game_engine_id = 0
         self.status = 'main'
 
@@ -53,7 +54,8 @@ class Coda(QMainWindow):
     def load_game_engine(self):
 
         #test
-        self.game_engine_id = 36
+        self.script = 'a0003'
+        self.game_engine_id = 42
         self.start()
 
     def back_to_main(self):
@@ -86,7 +88,7 @@ class Coda(QMainWindow):
         self.status = 'game_engine'
 
         self.game_engine = GameEngine()
-        self.game_engine.create_game_engine_layout(self.game_engine_id)
+        self.game_engine.create_game_engine_layout(self.script, self.game_engine_id)
 
         #fade effect
         self.fader = Fader(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget)

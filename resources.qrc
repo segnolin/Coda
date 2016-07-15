@@ -28,7 +28,11 @@
 
 <!-- PORTRAIT -->
 
-        <file alias="aoi_normal.png">resources/portrait/aoi_normal.png</file>
+        <file alias="aoi_uniform_contact_normal.png">resources/portrait/aoi_uniform_contact_normal.png</file>
+        <file alias="aoi_uniform_normal_normal.png">resources/portrait/aoi_uniform_normal_normal.png</file>
+        <file alias="aoi_uniform_raise_shout.png">resources/portrait/aoi_uniform_raise_shout.png</file>
+        <file alias="miyuki_uniform_normal_hard.png">resources/portrait/miyuki_uniform_normal_hard.png</file>
+        <file alias="miyuki_uniform_wrestling_shout.png">resources/portrait/miyuki_uniform_wrestling_shout.png</file>
 
 <!-- SCRIPT -->
 

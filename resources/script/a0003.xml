@@ -41,15 +41,459 @@
     </content>
     <content id="4">
         <bg>
-            <id>ev_0002</id>
-            <x>-156</x>
-            <y>-178</y>
+            <id>ev_0001</id>
+            <x>-228</x>
+            <y>-90</y>
         </bg>
         <tb>
             <sh>True</sh>
             <td>500</td>
             <char>＊＊＊＊</char>
             <txt>「ジュウデンなの」</txt>
+        </tb>
+    </content>
+    <content id="5">
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「充電？」</txt>
+        </tb>
+    </content>
+    <content id="6">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「エッチなの」</txt>
+        </tb>
+    </content>
+    <content id="7">
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「な！？」</txt>
+        </tb>
+    </content>
+    <content id="8">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「は！？」</txt>
+        </tb>
+    </content>
+    <content id="9">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「キスは、フラグなの」</txt>
+        </tb>
+    </content>
+    <content id="10">
+        <bg>
+            <id>ev_0004</id>
+            <x>-200</x>
+            <y>-100</y>
+        </bg>
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「ふざけないで！」</txt>
+        </tb>
+    </content>
+    <content id="11">
+        <tb>
+            <txt>バットを振り下ろして、美雪は怒鳴る。</txt>
+        </tb>
+    </content>
+    <content id="12">
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「貴方、心一をなんだと思ってるの！」</txt>
+        </tb>
+    </content>
+    <content id="13">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「そ、そうだ！　俺を何だと思ってる！？」</txt>
+        </tb>
+    </content>
+    <content id="14">
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「しっ、心一は――心一はっ――！！」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="15">
+        <tb>
+            <sh>True</sh>
+            <td>1000</td>
+            <char>曽根美雪</char>
+            <txt>「私の彼氏なのよっ！」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="16">
+        <tb>
+            <sh>True</sh>
+            <td>300</td>
+            <char>須々木心一</char>
+            <txt>「……………………え？」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="17">
+        <bg>
+            <id>ev_0005</id>
+            <x>-276</x>
+            <y>-102</y>
+            <xf>-190</xf>
+            <yf>-102</yf>
+            <du>15000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <txt>曽根美雪は、俺の幼馴染み。</txt>
+        </tb>
+    </content>
+    <content id="18">
+        <tb>
+            <txt>小学校くらいまではよくふたりで遊んでもいたのだが、年を取るにつれ疎遠になるのは良くある話で。</txt>
+        </tb>
+    </content>
+    <content id="19">
+        <tb>
+            <txt>俺がだらりだらりと帰宅部生活をしているうちに、彼女はありとあらゆる才能が開花。</txt>
+        </tb>
+    </content>
+    <content id="20">
+        <tb>
+            <txt>眉目秀麗・文武両道・演劇部期待のホープの彼女は、すぐさま学園のアイドルになってしまったのだった。</txt>
+        </tb>
+    </content>
+    <content id="21">
+        <tb>
+            <txt>噂では、入学僅か１ヶ月で、１ダースの生徒から告白されたとか。</txt>
+        </tb>
+    </content>
+    <content id="22">
+        <tb>
+            <txt>そのうちひとりは男性教師で、さらにふたりは女子生徒だったとか。</txt>
+        </tb>
+    </content>
+    <content id="23">
+        <tb>
+            <txt>それをことごとくフったとか。</txt>
+        </tb>
+    </content>
+    <content id="24">
+        <tb>
+            <txt>それでもしつこくつきまとって、挙げ句襲いかかろうとした男子生徒を、金属バットでボコボコにしたとか。</txt>
+        </tb>
+    </content>
+    <content id="25">
+        <tb>
+            <txt>まあ、そういう噂のある有名人だ。</txt>
+        </tb>
+    </content>
+    <content id="26">
+        <tb>
+            <txt>対する俺は、いわゆるクラスの空気。</txt>
+        </tb>
+    </content>
+    <content id="27">
+        <tb>
+            <txt>……というよりむしろ、窒素のようなポジションだ。</txt>
+        </tb>
+    </content>
+    <content id="28">
+        <tb>
+            <txt>無味無臭無害。</txt>
+        </tb>
+    </content>
+    <content id="29">
+        <tb>
+            <txt>モブ中のモブ、ってところだろう。</txt>
+        </tb>
+    </content>
+    <content id="30">
+        <tb>
+            <txt>クラスでも常に話題の中心にいる彼女とは、会話を交わす機会すらない。</txt>
+        </tb>
+    </content>
+    <content id="31">
+        <tb>
+            <txt>今だってちょっと緊張しているくらいだ。</txt>
+        </tb>
+    </content>
+    <content id="32">
+        <tb>
+            <txt>そんな俺が――</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="33">
+        <bg>
+            <id>ev_0006</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <char>須々木心一</char>
+            <txt>「か……彼氏？」</txt>
+        </tb>
+    </content>
+    <content id="34">
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「黙ってて！」</txt>
+        </tb>
+    </content>
+    <content id="35">
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「わ――私と心一は、恋人同士なの。貴方は邪魔者ということになるわ」</txt>
+        </tb>
+    </content>
+    <content id="36">
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「だから、帰ってもらえる？」</txt>
+        </tb>
+    </content>
+    <content id="37">
+        <bg>
+            <id>ev_0000</id>
+        </bg>
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「うそなの」</txt>
+        </tb>
+    </content>
+    <content id="38">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「コイビトじゃないの」</txt>
+        </tb>
+    </content>
+    <content id="39">
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「ちょっと、何を根拠に――」</txt>
+        </tb>
+    </content>
+    <content id="40">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「デンパなの」</txt>
+        </tb>
+    </content>
+    <content id="41">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「せかいのそとからカミサマのデンパ、ビリビリきたの」</txt>
+        </tb>
+    </content>
+    <content id="42">
+        <tb>
+            <txt>えーと……</txt>
+        </tb>
+    </content>
+    <content id="43">
+        <tb>
+            <txt>これはいわゆる、デンパさん、か？</txt>
+        </tb>
+    </content>
+    <content id="44">
+        <bg>
+            <id>bg_0005</id>
+        </bg>
+        <pt>
+            <pos>0</pos>
+            <id>miyuki_uniform_normal_hard</id>
+            <md>new</md>
+            <x>340</x>
+            <y>40</y>
+        </pt>
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「付き合いきれないわ」</txt>
+        </tb>
+    </content>
+    <content id="45">
+        <pt>
+            <pos>0</pos>
+            <md>del</md>
+        </pt>
+        <pt>
+            <pos>1</pos>
+            <id>miyuki_uniform_wrestling_shout</id>
+            <md>new</md>
+            <x>340</x>
+            <y>40</y>
+        </pt>
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「いい？　私と心一は幼馴染みなの。だから、恋人として――」</txt>
+        </tb>
+    </content>
+    <content id="46">
+        <pt>
+            <pos>1</pos>
+            <md>del</md>
+        </pt>
+        <pt>
+            <pos>0</pos>
+            <id>aoi_uniform_raise_shout</id>
+            <md>new</md>
+            <x>340</x>
+            <y>40</y>
+        </pt>
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「はい」</txt>
+        </tb>
+    </content>
+    <content id="47">
+        <tb>
+            <txt>美雪の言葉を遮り、彼女がぴんと手を挙げる。</txt>
+        </tb>
+    </content>
+    <content id="48">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「おさななじみキャラ」</txt>
+        </tb>
+    </content>
+    <content id="49">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「ホントのきもちわからない」</txt>
+        </tb>
+    </content>
+    <content id="50">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「ギャルゲーのおうどうなの」</txt>
+        </tb>
+    </content>
+    <content id="51">
+        <tb>
+            <char>曽根美雪</char>
+            <txt>「…………ギャルゲー？」</txt>
+        </tb>
+    </content>
+    <content id="52">
+        <pt>
+            <pos>0</pos>
+            <md>del</md>
+        </pt>
+        <tb>
+            <char>須々木心一</char>
+            <txt>「こういうゲームのことか？」</txt>
+        </tb>
+    </content>
+    <content id="53">
+        <tb>
+            <txt>俺は拾ったスマフォを取り出した。</txt>
+        </tb>
+    </content>
+    <content id="54">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「ぅわっ！」</txt>
+        </tb>
+    </content>
+    <content id="55">
+        <tb>
+            <txt>今のは静電気――か？</txt>
+        </tb>
+    </content>
+    <content id="56">
+        <pt>
+            <pos>0</pos>
+            <id>aoi_uniform_contact_normal</id>
+            <md>new</md>
+            <x>340</x>
+            <y>40</y>
+        </pt>
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「どろぼう」</txt>
+        </tb>
+    </content>
+    <content id="57">
+        <tb>
+            <txt>痺れて落ちたスマートフォンを取り返し、彼女がこちらを見据える。</txt>
+        </tb>
+    </content>
+    <content id="58">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「盗んでない。そこに落ちてたんだ」</txt>
+        </tb>
+    </content>
+    <content id="59">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「おちてた？」</txt>
+        </tb>
+    </content>
+    <content id="60">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「ああ」</txt>
+        </tb>
+    </content>
+    <content id="61">
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「…………」</txt>
+        </tb>
+    </content>
+    <content id="62">
+        <pt>
+            <pos>0</pos>
+            <md>del</md>
+        </pt>
+        <pt>
+            <pos>1</pos>
+            <id>aoi_uniform_normal_normal</id>
+            <md>new</md>
+            <x>340</x>
+            <y>40</y>
+        </pt>
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「オンジンなの？」</txt>
+        </tb>
+    </content>
+    <content id="63">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「いや、そんな大げさなものじゃ――」</txt>
+        </tb>
+    </content>
+    <content id="64">
+        <pt>
+            <pos>1</pos>
+            <md>del</md>
+        </pt>
+        <pt>
+            <pos>0</pos>
+            <id>aoi_uniform_raise_shout</id>
+            <md>new</md>
+            <x>340</x>
+            <y>40</y>
+        </pt>
+        <tb>
+            <char>＊＊＊＊</char>
+            <txt>「おれいするの」</txt>
+        </tb>
+        <pt>
+            <pos>0</pos>
+            <md>dell</md>
+        </pt>
+    </content>
+    <content id="65">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「うおッ？」</txt>
+            <hi>True</hi>
         </tb>
     </content>
 </script>

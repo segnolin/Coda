@@ -24,9 +24,9 @@ class GameEngine(QMainWindow):
     def __init__(self):
         super().__init__()
 
-    def create_game_engine_layout(self, game_engine_id):
+    def create_game_engine_layout(self, script, game_engine_id):
 
-        self.script = 'a0000'
+        self.script = script
         self.game_engine_id = game_engine_id
         print(self.game_engine_id)
 
@@ -36,15 +36,24 @@ class GameEngine(QMainWindow):
 
         #set QWidget class
         self.game_engine_widget = QOpenGLWidget()
+        self.base_widget = QWidget(self.game_engine_widget)
+        self.portrait_widget = QWidget(self.game_engine_widget)
         self.basic_widget = QWidget(self.game_engine_widget)
         self.select_widget = QWidget(self.game_engine_widget)
         self.text_box_widget = QWidget(self.game_engine_widget)
         self.menu_widget = QWidget(self.game_engine_widget)
 
-        #create basic layout
+        #create base layout
         #create background label
-        self.background = Background(self.basic_widget)
+        self.background = Background(self.base_widget)
 
+        #creaate portrait layout
+        #create portrait
+        self.portrait = {}
+        for i in range(5):
+            self.portrait[i] = Portrait(self.portrait_widget)
+
+        #create basic layout
         #create disable hide label to show all widget
         self.disable_hide_label = QLabel(self.basic_widget)
         self.disable_hide_label.setGeometry(0, 0, 960, 540)
@@ -184,11 +193,14 @@ class GameEngine(QMainWindow):
         self.bg_yf = self.parser.bg_yf
         self.bg_du = self.parser.bg_du
 
+        self.pt_pos = self.parser.pt_pos
         self.pt_id = self.parser.pt_id
+        self.pt_md = self.parser.pt_md
         self.pt_x = self.parser.pt_x
         self.pt_y = self.parser.pt_y
         self.pt_xf = self.parser.pt_xf
         self.pt_yf = self.parser.pt_yf
+        self.pt_du = self.parser.pt_du
         self.pt_num = self.parser.pt_num
 
         self.tb_sh = self.parser.tb_sh
@@ -215,7 +227,7 @@ class GameEngine(QMainWindow):
                 self.eff_du = '3000'
                 self.tb_sh = True
                 if self.tb_td == '':
-                    self.tb_td = 4000
+                    self.tb_td = 1000
                 self.pre_process()
             self.init_background_music()
 
@@ -242,7 +254,7 @@ class GameEngine(QMainWindow):
 
             if not self.init_status:
                 self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-                self.fader.fade(1500)
+                self.fader.fade(800)
 
             self.effect.show()
             self.effect.create(self.eff_id)
@@ -280,6 +292,9 @@ class GameEngine(QMainWindow):
     def init_portrait(self):
 
         print('init_portrait')
+
+        if int(self.pt_num) != 0:
+            self.pt_loop()
 
         self.init_text_box()
 
@@ -354,6 +369,9 @@ class GameEngine(QMainWindow):
 
         print('set_portrait')
 
+        if int(self.pt_num) != 0:
+            self.post_pt_loop()
+
         self.set_text_box()
 
     def set_text_box(self):
@@ -414,7 +432,7 @@ class GameEngine(QMainWindow):
         self.text_character_label.clear()
 
         self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-        self.fader.fade(1500)
+        self.fader.fade(800)
 
         self.effect.hide()
         self.init_background()
@@ -479,16 +497,16 @@ class GameEngine(QMainWindow):
             pos = 235 + int(i - int(self.sl_num) / 2) * 75
 
             self.selection_button[i] = SelectButton(self.select_widget)
-            self.selection_button[i].setText('{0}'.format(i))
-            self.selection_button[i].set_text(self.sl_txt.get(i + 1))
-            self.selection_button[i].setGeometry(0, pos, 960, 65)
-            self.selection_button[i].clicked.connect(self.view_script)
+            self.selection_button.get(i).setText('{0}'.format(i))
+            self.selection_button.get(i).set_text(self.sl_txt.get(i + 1))
+            self.selection_button.get(i).setGeometry(0, pos, 960, 65)
+            self.selection_button.get(i).clicked.connect(self.jump_script)
 
         fader = Fader(self.game_engine_widget, self.game_engine_widget)
         fader.fade(800)
         self.select_widget.show()
 
-    def view_script(self):
+    def jump_script(self):
 
         selection = int(self.sender().text())
         print(selection)
@@ -502,3 +520,29 @@ class GameEngine(QMainWindow):
         self.select_widget.hide()
         self.selection_button.clear()
         self.init_parser()
+
+    def pt_loop(self):
+
+        for i in range(self.pt_num):
+            if self.pt_md.get(i + 1) == 'new':
+                if self.pt_du.get(i + 1) != None:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).create_mv_pt(self.pt_id.get(i + 1), int(self.pt_x.get(i + 1)), int(self.pt_y.get(i + 1)), int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
+                else:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).create_pt(self.pt_id.get(i + 1), int(self.pt_x.get(i + 1)), int(self.pt_y.get(i + 1)))
+            elif self.pt_md.get(i + 1) == 'mv':
+                self.portrait.get(int(self.pt_pos.get(i + 1))).move_pt(int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
+            elif self.pt_md.get(i + 1) == 'del':
+                if self.pt_du.get(i + 1) != None:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_mv_pt(int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
+                else:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_pt()
+
+    def post_pt_loop(self):
+
+        for i in range(int(self.pt_num)):
+
+            if self.pt_md.get(i + 1) == 'dell':
+                if self.pt_du.get(i + 1) != None:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_mv_pt(int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
+                else:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_pt()

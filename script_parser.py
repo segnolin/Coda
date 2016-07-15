@@ -32,11 +32,14 @@ class Parser(QXmlStreamReader):
         self.bg_yf = ''
         self.bg_du = ''
 
+        self.pt_pos = {}
         self.pt_id = {}
+        self.pt_md = {}
         self.pt_x = {}
         self.pt_y = {}
         self.pt_xf = {}
         self.pt_yf = {}
+        self.pt_du = {}
         self.pt_num = 0
 
         self.tb_sh = ''
@@ -168,8 +171,12 @@ class Parser(QXmlStreamReader):
         while not self.atEnd():
             self.readNext()
             if self.isStartElement():
-                if self.name() == 'id':
+                if self.name() == 'pos':
+                    self.pt_pos[self.pt_num] = self.readElementText()
+                elif self.name() == 'id':
                     self.pt_id[self.pt_num] = self.readElementText()
+                elif self.name() == 'md':
+                    self.pt_md[self.pt_num] = self.readElementText()
                 elif self.name() == 'x':
                     self.pt_x[self.pt_num] = self.readElementText()
                 elif self.name() == 'y':
@@ -178,6 +185,8 @@ class Parser(QXmlStreamReader):
                     self.pt_xf[self.pt_num] = self.readElementText()
                 elif self.name() == 'yf':
                     self.pt_yf[self.pt_num] = self.readElementText()
+                elif self.name() == 'du':
+                    self.pt_du[self.pt_num] = self.readElementText()
                 else:
                     self.readNext()
 
