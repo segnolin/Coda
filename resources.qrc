@@ -12,6 +12,7 @@
         <file alias="bg_0005.png">resources/background/bg_0005.png</file>
         <file alias="bg_0006.png">resources/background/bg_0006.png</file>
         <file alias="black.png">resources/background/black.png</file>
+        <file alias="white.png">resources/background/white.png</file>
 
 <!-- BACKGROUND MUSIC -->
 <!-- EVENT -->

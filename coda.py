@@ -54,8 +54,8 @@ class Coda(QMainWindow):
     def load_game_engine(self):
 
         #test
-        self.script = 'a0003'
-        self.game_engine_id = 42
+        self.script = 'a0000'
+        self.game_engine_id = 37
         self.start()
 
     def back_to_main(self):

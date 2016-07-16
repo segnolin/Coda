@@ -26,8 +26,12 @@ class Effect(QLabel):
 
     def black_fade(self):
 
-        self.setStyleSheet('QLabel {background-color: rgba(0, 0, 0, 100%)}')
+        self.pixmap = QPixmap(':/black.png')
+        self.pixmap.setDevicePixelRatio(2)
+        self.setPixmap(self.pixmap)
 
     def white_fade(self):
 
-        self.setStyleSheet('QLabel {background-color: rgba(255, 255, 255, 100%)}')
+        self.pixmap = QPixmap(':/white.png')
+        self.pixmap.setDevicePixelRatio(2)
+        self.setPixmap(self.pixmap)

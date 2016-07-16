@@ -494,7 +494,9 @@ class GameEngine(QMainWindow):
 
         for i in range(int(self.sl_num)):
 
-            pos = 235 + int(i - int(self.sl_num) / 2) * 75
+            pos = 235 + int(i - int(int(self.sl_num) / 2)) * 75
+            print(i)
+            print(pos)
 
             self.selection_button[i] = SelectButton(self.select_widget)
             self.selection_button.get(i).setText('{0}'.format(i))
@@ -518,6 +520,8 @@ class GameEngine(QMainWindow):
         fader = Fader(self.game_engine_widget, self.game_engine_widget)
         fader.fade(800)
         self.select_widget.hide()
+        for each in self.selection_button:
+            self.selection_button.get(each).deleteLater()
         self.selection_button.clear()
         self.init_parser()
 
