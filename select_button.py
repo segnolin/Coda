@@ -38,8 +38,8 @@ class SelectButton(QAbstractButton):
 
         painter = QPainter(self)
         painter.drawPixmap(0, 0, pixmap)
-        painter.setPen(Qt.white)
-        painter.setFont(QFont('Noto Sans CJK TC Regular', 18))
+        painter.setPen(Qt.black)
+        painter.setFont(QFont('Times', 18))
         painter.drawText(QRect(0, 0, 960, 65), Qt.AlignCenter, self.txt)
 
     def enterEvent(self, event):

@@ -29,12 +29,12 @@ class Load(QMainWindow):
         self.background_pixmap.setDevicePixelRatio(2)
         self.background = QLabel(self.load_widget)
         self.background.setPixmap(self.background_pixmap)
-        self.background.setGeometry(0, 0, 960, 540)
+        self.background.setGeometry(0, 0, 1024, 576)
 
         #create a strat button
         self.main_start_button = ImageButton('main_start', self.load_widget)
-        self.main_start_button.setGeometry(755, 45, 160, 55)
+        self.main_start_button.setGeometry(73, 490, 96, 32)
 
         #create a exit button
-        self.main_exit_button = ImageButton('main_exit', self.load_widget)
-        self.main_exit_button.setGeometry(755, 445, 160, 55)
+        self.main_exit_button = ImageButton('main_quit', self.load_widget)
+        self.main_exit_button.setGeometry(813, 490, 96, 32)

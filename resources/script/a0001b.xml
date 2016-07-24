@@ -75,8 +75,12 @@
             <id>black_fade</id>
             <du>1500</du>
         </eff>
+        <mk>
+            <id>monitor</id>
+            <md>new</md>
+        </mk>
         <bg>
-            <id>ev_0000</id>
+            <id>ev_0113_aoi_riding_a</id>
         </bg>
         <tb>
             <sh>True</sh>
@@ -94,7 +98,7 @@
     </content>
     <content id="14">
         <bg>
-            <id>ev_0001</id>
+            <id>ev_0113_aoi_riding_a_l</id>
             <x>-285</x>
             <y>-120</y>
             <xf>-332</xf>
@@ -127,12 +131,12 @@
     </content>
     <content id="18">
         <bg>
-            <id>ev_0001</id>
-            <x>-181</x>
-            <y>-54</y>
-            <xf>-288</xf>
-            <yf>-90</yf>
-            <du>14000</du>
+            <id>ev_0113_aoi_riding_a_xl</id>
+            <x>-691</x>
+            <y>-322</y>
+            <xf>-740</xf>
+            <yf>-376</yf>
+            <du>7000</du>
         </bg>
         <tb>
             <txt>『ビリビリ、するの？』</txt>
@@ -144,8 +148,11 @@
             <id>black_fade</id>
             <du>1500</du>
         </eff>
+        <mk>
+            <md>del</md>
+        </mk>
         <bg>
-            <id>bg_0002</id>
+            <id>bg_010200_2_school_roof</id>
         </bg>
         <tb>
             <sh>True</sh>
@@ -203,11 +210,11 @@
     </content>
     <content id="29">
         <bg>
-            <id>ev_0002</id>
-            <x>-270</x>
-            <y>-540</y>
-            <xf>-270</xf>
-            <yf>-240</yf>
+            <id>ev_0113_aoi_sending_e_l</id>
+            <x>-500</x>
+            <y>-576</y>
+            <xf>-500</xf>
+            <yf>-270</yf>
             <du>3000</du>
         </bg>
         <tb>
@@ -234,7 +241,7 @@
     </content>
     <content id="33">
         <bg>
-            <id>ev_0003</id>
+            <id>ev_0113_aoi_sending_e</id>
         </bg>
         <tb>
             <txt>瞳は焦点を結ばず、ただ空を――</txt>
@@ -259,7 +266,7 @@
     </content>
     <content id="37">
         <bg>
-            <id>ev_0002</id>
+            <id>ev_0113_aoi_sending_e_l</id>
             <x>-430</x>
             <y>-360</y>
             <xf>-430</xf>
@@ -317,7 +324,7 @@
     </content>
     <content id="44">
         <bg>
-            <id>ev_0000</id>
+            <id>ev_0113_aoi_riding_a</id>
         </bg>
         <tb>
             <sh>True</sh>
@@ -334,7 +341,7 @@
     </content>
     <content id="46">
         <bg>
-            <id>ev_0001</id>
+            <id>ev_0113_aoi_riding_a_l</id>
             <x>-285</x>
             <y>-120</y>
             <xf>-332</xf>
@@ -366,11 +373,11 @@
     </content>
     <content id="50">
         <bg>
-            <id>ev_0001</id>
-            <x>-181</x>
-            <y>-54</y>
-            <xf>-228</xf>
-            <yf>-90</yf>
+            <id>ev_0113_aoi_riding_a_xl</id>
+            <x>-691</x>
+            <y>-322</y>
+            <xf>-740</xf>
+            <yf>-376</yf>
             <du>7000</du>
         </bg>
         <tb>
@@ -408,9 +415,12 @@
     </content>
     <content id="55">
         <bg>
-            <id>ev_0001</id>
-            <x>-228</x>
-            <y>-90</y>
+            <id>ev_0113_aoi_riding_a_xl</id>
+            <x>-691</x>
+            <y>-322</y>
+            <xf>-740</xf>
+            <yf>-376</yf>
+            <du>7000</du>
         </bg>
         <tb>
             <sh>True</sh>

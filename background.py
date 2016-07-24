@@ -13,7 +13,7 @@ class Background(QLabel):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.setGeometry(0, 0, 960, 540)
+        self.setGeometry(0, 0, 1024, 576)
         self.painter = QPainter()
         self.x = 0
         self.y = 0
@@ -51,7 +51,10 @@ class Background(QLabel):
         self.dy = self.posyf - self.posy
 
         self.anime.stop()
-        self.anime.setEasingCurve(QEasingCurve.OutSine)
+        if self.duration >= 10000:
+            self.anime.setEasingCurve(QEasingCurve.OutQuad)
+        else:
+            self.anime.setEasingCurve(QEasingCurve.OutSine)
         self.anime.setDuration(self.duration)
         self.anime.setStartValue(0.0)
         self.anime.setEndValue(1.0)
@@ -70,7 +73,7 @@ class Background(QLabel):
         transform.translate(self.x, self.y)
 
         self.painter.begin(self)
-        self.painter.setRenderHint(QPainter.SmoothPixmapTransform, True)
+        self.painter.setRenderHint(QPainter.SmoothPixmapTransform)
         self.painter.setTransform(transform)
         self.painter.drawPixmap(0, 0, self.pixmap)
         self.painter.end()

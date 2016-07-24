@@ -6,11 +6,11 @@
             <du>3500</du>
         </eff>
         <bg>
-            <id>bg_0000</id>
-            <x>-720</x>
-            <y>-540</y>
-            <xf>-960</xf>
-            <yf>-540</yf>
+            <id>bg_010100_2_school_stair_l</id>
+            <x>-768</x>
+            <y>-576</y>
+            <xf>-1024</xf>
+            <yf>-576</yf>
             <du>20000</du>
         </bg>
         <tb>
@@ -36,7 +36,7 @@
             <du>2000</du>
         </eff>
         <bg>
-            <id>bg_0000</id>
+            <id>bg_010100_2_school_stair_l</id>
             <x>-512</x>
             <y>-360</y>
             <xf>-512</xf>
@@ -86,7 +86,7 @@
             <du>3500</du>
         </eff>
         <bg>
-            <id>bg_0001</id>
+            <id>sc_west_sun</id>
         </bg>
         <tb>
             <sh>True</sh>
@@ -97,7 +97,7 @@
     </content>
     <content id="11">
         <bg>
-            <id>bg_0002</id>
+            <id>bg_010200_2_school_roof</id>
         </bg>
         <tb>
             <sh>True</sh>
@@ -141,11 +141,11 @@
     </content>
     <content id="18">
         <bg>
-            <id>bg_0003</id>
+            <id>bg_010200_2_school_roof_l</id>
             <x>0</x>
-            <y>-540</y>
-            <xf>-960</xf>
-            <yf>-540</yf>
+            <y>-576</y>
+            <xf>-1024</xf>
+            <yf>-576</yf>
             <du>40000</du>
         </bg>
         <tb>
@@ -172,7 +172,7 @@
     </content>
     <content id="22">
         <bg>
-            <id>bg_0002</id>
+            <id>bg_010200_2_school_roof</id>
         </bg>
         <tb>
             <sh>True</sh>
@@ -222,7 +222,7 @@
     </content>
     <content id="30">
         <bg>
-            <id>bg_0004</id>
+            <id>sc_aoi_smartphone</id>
         </bg>
         <tb>
             <sh>True</sh>
@@ -243,7 +243,7 @@
     </content>
     <content>
         <bg>
-            <id>bg_0002</id>
+            <id>bg_010200_2_school_roof</id>
         </bg>
         <tb>
             <sh>True</sh>
@@ -254,7 +254,7 @@
     </content>
     <content id="33">
         <bg>
-            <id>bg_0005</id>
+            <id>sc_aoi_smartphone_operating</id>
         </bg>
         <tb>
             <sh>True</sh>
@@ -278,7 +278,7 @@
     </content>
     <content id="36">
         <bg>
-            <id>bg_0002</id>
+            <id>bg_010200_2_school_roof</id>
         </bg>
         <tb>
             <sh>True</sh>

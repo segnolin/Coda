@@ -2,7 +2,9 @@
 <script>
     <content id="0">
         <bg>
-            <id>bg_0006</id>
+            <id>bg_010210_2_school_roof_root_l</id>
+            <x>-920</x>
+            <y>-390</y>
         </bg>
         <tb>
             <char>曽根美雪</char>
@@ -12,8 +14,8 @@
     </content>
     <content id="1">
         <bg>
-            <id>ev_0004</id>
-            <x>-960</x>
+            <id>ev_0121_miyuki_assault_a_l</id>
+            <x>-1000</x>
             <y>-320</y>
             <xf>-200</xf>
             <yf>-100</yf>
@@ -41,9 +43,9 @@
     </content>
     <content id="4">
         <bg>
-            <id>ev_0001</id>
-            <x>-228</x>
-            <y>-90</y>
+            <id>ev_0113_aoi_riding_a_l</id>
+            <x>-156</x>
+            <y>-178</y>
         </bg>
         <tb>
             <sh>True</sh>
@@ -84,7 +86,7 @@
     </content>
     <content id="10">
         <bg>
-            <id>ev_0004</id>
+            <id>ev_0121_miyuki_assault_a_l</id>
             <x>-200</x>
             <y>-100</y>
         </bg>
@@ -118,6 +120,11 @@
         </tb>
     </content>
     <content id="15">
+        <bg>
+            <id>ev_0121_miyuki_assault_b_l</id>
+            <x>-200</x>
+            <y>-100</y>
+        </bg>
         <tb>
             <sh>True</sh>
             <td>1000</td>
@@ -137,7 +144,7 @@
     </content>
     <content id="17">
         <bg>
-            <id>ev_0005</id>
+            <id>ev_0121_miyuki_hello_m</id>
             <x>-276</x>
             <y>-102</y>
             <xf>-190</xf>
@@ -228,7 +235,7 @@
     </content>
     <content id="33">
         <bg>
-            <id>ev_0006</id>
+            <id>ev_0121_miyuki_assault_b</id>
         </bg>
         <tb>
             <sh>True</sh>
@@ -257,7 +264,7 @@
     </content>
     <content id="37">
         <bg>
-            <id>ev_0000</id>
+            <id>ev_0113_aoi_riding_a</id>
         </bg>
         <tb>
             <char>＊＊＊＊</char>
@@ -300,14 +307,14 @@
     </content>
     <content id="44">
         <bg>
-            <id>bg_0005</id>
+            <id>bg_010200_2_school_roof</id>
         </bg>
         <pt>
             <pos>0</pos>
             <id>miyuki_uniform_normal_hard</id>
             <md>new</md>
-            <x>340</x>
-            <y>40</y>
+            <x>361</x>
+            <y>43</y>
         </pt>
         <tb>
             <char>曽根美雪</char>
@@ -323,8 +330,8 @@
             <pos>1</pos>
             <id>miyuki_uniform_wrestling_shout</id>
             <md>new</md>
-            <x>340</x>
-            <y>40</y>
+            <x>376</x>
+            <y>50</y>
         </pt>
         <tb>
             <char>曽根美雪</char>
@@ -340,8 +347,8 @@
             <pos>0</pos>
             <id>aoi_uniform_raise_shout</id>
             <md>new</md>
-            <x>340</x>
-            <y>40</y>
+            <x>382</x>
+            <y>-15</y>
         </pt>
         <tb>
             <char>＊＊＊＊</char>
@@ -408,8 +415,8 @@
             <pos>0</pos>
             <id>aoi_uniform_contact_normal</id>
             <md>new</md>
-            <x>340</x>
-            <y>40</y>
+            <x>376</x>
+            <y>65</y>
         </pt>
         <tb>
             <char>＊＊＊＊</char>
@@ -454,8 +461,8 @@
             <pos>1</pos>
             <id>aoi_uniform_normal_normal</id>
             <md>new</md>
-            <x>340</x>
-            <y>40</y>
+            <x>352</x>
+            <y>56</y>
         </pt>
         <tb>
             <char>＊＊＊＊</char>
@@ -477,8 +484,8 @@
             <pos>0</pos>
             <id>aoi_uniform_raise_shout</id>
             <md>new</md>
-            <x>340</x>
-            <y>40</y>
+            <x>382</x>
+            <y>-15</y>
         </pt>
         <tb>
             <char>＊＊＊＊</char>

@@ -25,6 +25,9 @@ class Parser(QXmlStreamReader):
         self.eff_id = ''
         self.eff_du = ''
 
+        self.mk_id = ''
+        self.mk_md = ''
+
         self.bg_id = ''
         self.bg_x = ''
         self.bg_y = ''
@@ -78,6 +81,8 @@ class Parser(QXmlStreamReader):
                     self.parse_sd()
                 elif self.name() == 'eff':
                     self.parse_eff()
+                elif self.name() == 'mk':
+                    self.parse_mk()
                 elif self.name() == 'bg':
                     self.parse_bg()
                 elif self.name() == 'pt':
@@ -138,6 +143,22 @@ class Parser(QXmlStreamReader):
 
             if self.isEndElement():
                 if self.name() == 'eff':
+                    break
+
+    def parse_mk(self):
+
+        while not self.atEnd():
+            self.readNext()
+            if self.isStartElement():
+                if self.name() == 'id':
+                    self.mk_id = self.readElementText()
+                elif self.name() == 'md':
+                    self.mk_md = self.readElementText()
+                else:
+                    self.readNext()
+
+            if self.isEndElement():
+                if self.name() == 'mk':
                     break
 
     def parse_bg(self):

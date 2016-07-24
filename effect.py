@@ -13,7 +13,7 @@ class Effect(QLabel):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.setGeometry(0, 0, 960, 540)
+        self.setGeometry(0, 0, 1024, 576)
 
     def create(self, mode):
 

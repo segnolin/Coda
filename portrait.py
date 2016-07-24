@@ -14,7 +14,7 @@ class Portrait(QLabel):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.setGeometry(0, 0, 960, 540)
+        self.setGeometry(0, 0, 1024, 576)
         self.painter = QPainter()
         self.x = 0
         self.y = 0
@@ -78,7 +78,7 @@ class Portrait(QLabel):
         self.x = self.posx + self.dx * value
         self.y = self.posy + self.dy * value
         self.opacity = value
-        self.update()
+        self.repaint()
 
     def move_pt(self, posxf, posyf, duration):
 
@@ -150,7 +150,7 @@ class Portrait(QLabel):
         transform.translate(self.x, self.y)
 
         self.painter.begin(self)
-        self.painter.setRenderHint(QPainter.SmoothPixmapTransform, True)
+        self.painter.setRenderHint(QPainter.SmoothPixmapTransform)
         self.painter.setTransform(transform)
         self.painter.setOpacity(self.opacity)
         self.painter.drawPixmap(0, 0, self.pixmap)

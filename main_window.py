@@ -26,25 +26,25 @@ class MainWindow(QMainWindow):
         self.main_background_pixmap.setDevicePixelRatio(2)
         self.main_background = QLabel(self.main_window_widget)
         self.main_background.setPixmap(self.main_background_pixmap)
-        self.main_background.setGeometry(0, 0, 960, 540)
+        self.main_background.setGeometry(0, 0, 1024, 576)
 
         #create all the buttons
         #create a strat button
         self.main_start_button = ImageButton('main_start', self.main_window_widget)
-        self.main_start_button.setGeometry(755, 45, 160, 55)
+        self.main_start_button.setGeometry(73, 440, 96, 32)
 
         #create a load button
         self.main_load_button = ImageButton('main_load', self.main_window_widget)
-        self.main_load_button.setGeometry(755, 145, 160, 55)
+        self.main_load_button.setGeometry(258, 440, 96, 32)
 
         #create a extra button
         self.main_extra_button = ImageButton('main_extra', self.main_window_widget)
-        self.main_extra_button.setGeometry(755, 245, 160, 55)
+        self.main_extra_button.setGeometry(443, 440, 96, 32)
 
         #create a config button
         self.main_config_button = ImageButton('main_config', self.main_window_widget)
-        self.main_config_button.setGeometry(755, 345, 160, 55)
+        self.main_config_button.setGeometry(628, 440, 96, 32)
 
         #create a exit button
-        self.main_exit_button = ImageButton('main_exit', self.main_window_widget)
-        self.main_exit_button.setGeometry(755, 445, 160, 55)
+        self.main_exit_button = ImageButton('main_quit', self.main_window_widget)
+        self.main_exit_button.setGeometry(813, 440, 96, 32)

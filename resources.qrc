@@ -4,29 +4,33 @@
 <!-- ANIME -->
 <!-- BACKGROUND -->
 
-        <file alias="bg_0000.png">resources/background/bg_0000.png</file>
-        <file alias="bg_0001.png">resources/background/bg_0001.png</file>
-        <file alias="bg_0002.png">resources/background/bg_0002.png</file>
-        <file alias="bg_0003.png">resources/background/bg_0003.png</file>
-        <file alias="bg_0004.png">resources/background/bg_0004.png</file>
-        <file alias="bg_0005.png">resources/background/bg_0005.png</file>
-        <file alias="bg_0006.png">resources/background/bg_0006.png</file>
+        <file alias="bg_010100_2_school_stair_l.png">resources/background/bg_010100_2_school_stair_l.png</file>
+        <file alias="bg_010200_2_school_roof_l.png">resources/background/bg_010200_2_school_roof_l.png</file>
+        <file alias="bg_010200_2_school_roof.png">resources/background/bg_010200_2_school_roof.png</file>
+        <file alias="bg_010210_2_school_roof_root_l.png">resources/background/bg_010210_2_school_roof_root_l.png</file>
         <file alias="black.png">resources/background/black.png</file>
         <file alias="white.png">resources/background/white.png</file>
 
 <!-- BACKGROUND MUSIC -->
 <!-- EVENT -->
 
-        <file alias="ev_0000.png">resources/event/ev_0000.png</file>
-        <file alias="ev_0001.png">resources/event/ev_0001.png</file>
-        <file alias="ev_0002.png">resources/event/ev_0002.png</file>
-        <file alias="ev_0003.png">resources/event/ev_0003.png</file>
-        <file alias="ev_0004.png">resources/event/ev_0004.png</file>
+        <file alias="ev_0113_aoi_riding_a_l.png">resources/event/ev_0113_aoi_riding_a_l.png</file>
+        <file alias="ev_0113_aoi_riding_a_xl.png">resources/event/ev_0113_aoi_riding_a_xl.png</file>
+        <file alias="ev_0113_aoi_riding_a.png">resources/event/ev_0113_aoi_riding_a.png</file>
+        <file alias="ev_0113_aoi_sending_e_l.png">resources/event/ev_0113_aoi_sending_e_l.png</file>
+        <file alias="ev_0113_aoi_sending_e.png">resources/event/ev_0113_aoi_sending_e.png</file>
+        <file alias="ev_0121_miyuki_assault_a_l.png">resources/event/ev_0121_miyuki_assault_a_l.png</file>
+        <file alias="ev_0121_miyuki_assault_b_l.png">resources/event/ev_0121_miyuki_assault_b_l.png</file>
+        <file alias="ev_0121_miyuki_assault_b.png">resources/event/ev_0121_miyuki_assault_b.png</file>
+        <file alias="ev_0121_miyuki_hello_m.png">resources/event/ev_0121_miyuki_hello_m.png</file>
 
 <!-- ICON -->
 
         <file alias="coda.png">resources/icon/coda.png</file>
 
+<!-- MASK -->
+
+        <file alias="mk_monitor.png">resources/mask/mk_monitor.png</file>
 <!-- PORTRAIT -->
 
         <file alias="aoi_uniform_contact_normal.png">resources/portrait/aoi_uniform_contact_normal.png</file>
@@ -34,6 +38,12 @@
         <file alias="aoi_uniform_raise_shout.png">resources/portrait/aoi_uniform_raise_shout.png</file>
         <file alias="miyuki_uniform_normal_hard.png">resources/portrait/miyuki_uniform_normal_hard.png</file>
         <file alias="miyuki_uniform_wrestling_shout.png">resources/portrait/miyuki_uniform_wrestling_shout.png</file>
+
+<!-- SCENE -->
+
+        <file alias="sc_aoi_smartphone_operating.png">resources/scene/sc_aoi_smartphone_operating.png</file>
+        <file alias="sc_aoi_smartphone.png">resources/scene/sc_aoi_smartphone.png</file>
+        <file alias="sc_west_sun.png">resources/scene/sc_west_sun.png</file>
 
 <!-- SCRIPT -->
 
@@ -67,9 +77,9 @@
         <file alias="main_config_button_hover.png">resources/system/main_window/main_config_button_hover.png</file>
         <file alias="main_config_button_press.png">resources/system/main_window/main_config_button_press.png</file>
 
-        <file alias="main_exit_button_defaults.png">resources/system/main_window/main_exit_button_defaults.png</file>
-        <file alias="main_exit_button_hover.png">resources/system/main_window/main_exit_button_hover.png</file>
-        <file alias="main_exit_button_press.png">resources/system/main_window/main_exit_button_press.png</file>
+        <file alias="main_quit_button_defaults.png">resources/system/main_window/main_quit_button_defaults.png</file>
+        <file alias="main_quit_button_hover.png">resources/system/main_window/main_quit_button_hover.png</file>
+        <file alias="main_quit_button_press.png">resources/system/main_window/main_quit_button_press.png</file>
 
     <!-- GAME ENGINE -->
 
@@ -121,12 +131,15 @@
         <file alias="menu_config_button_hover.png">resources/system/game_engine/menu_config_button_hover.png</file>
         <file alias="menu_config_button_press.png">resources/system/game_engine/menu_config_button_press.png</file>
 
-        <file alias="menu_exit_button_defaults.png">resources/system/game_engine/menu_exit_button_defaults.png</file>
-        <file alias="menu_exit_button_hover.png">resources/system/game_engine/menu_exit_button_hover.png</file>
-        <file alias="menu_exit_button_press.png">resources/system/game_engine/menu_exit_button_press.png</file>
+        <file alias="menu_quit_button_defaults.png">resources/system/game_engine/menu_quit_button_defaults.png</file>
+        <file alias="menu_quit_button_hover.png">resources/system/game_engine/menu_quit_button_hover.png</file>
+        <file alias="menu_quit_button_press.png">resources/system/game_engine/menu_quit_button_press.png</file>
 
         <file alias="menu_background.png">resources/system/game_engine/menu_background.png</file>
 
+    <!-- INTRO -->
+
+        <file alias="intro_background.png">resources/system/intro/intro_background.png</file>
     <!-- LOAD -->
 
         <file alias="load_background.png">resources/system/load/load_background.png</file>

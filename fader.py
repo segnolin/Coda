@@ -20,7 +20,7 @@ class Fader(QWidget):
 
         self.duration = duration
         self.pixmap_opacity = 1.0
-        self.post_pixmap = QPixmap(1920, 1080)
+        self.post_pixmap = QPixmap(2048, 1152)
         self.post_pixmap.setDevicePixelRatio(2)
         self.pre_widget.render(self.post_pixmap)
 
@@ -33,14 +33,14 @@ class Fader(QWidget):
         self.anime.finished.connect(self.close)
         self.anime.start()
 
-        self.resize(960, 540)
+        self.resize(1024, 576)
         self.show()
 
     def paintEvent(self, event):
 
         painter = QPainter()
         painter.begin(self)
-        painter.setRenderHint(QPainter.SmoothPixmapTransform, True)
+        painter.setRenderHint(QPainter.SmoothPixmapTransform)
         painter.setOpacity(self.pixmap_opacity)
         painter.drawPixmap(0, 0, self.post_pixmap)
         painter.end()
