@@ -28,7 +28,8 @@ class Background(QLabel):
 
         self.background_id = background_id
         self.pixmap = QPixmap(':/{0}.png'.format(background_id))
-        self.pixmap.setDevicePixelRatio(2)
+        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
 
         self.repaint()
 
@@ -42,7 +43,8 @@ class Background(QLabel):
 
         self.background_id = background_id
         self.pixmap = QPixmap(':/{0}.png'.format(self.background_id))
-        self.pixmap.setDevicePixelRatio(2)
+        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
 
         self.x = posx
         self.y = posy

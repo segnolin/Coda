@@ -15,11 +15,14 @@ class SelectButton(QAbstractButton):
         super().__init__(parent)
 
         self.pixmap_defaults = QPixmap(':/select_button_defaults.png')
-        self.pixmap_defaults.setDevicePixelRatio(2)
+        self.pixmap_defaults = self.pixmap_defaults.scaledToHeight((self.pixmap_defaults.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.pixmap_defaults.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.pixmap_hover = QPixmap(':/select_button_hover.png')
-        self.pixmap_hover.setDevicePixelRatio(2)
+        self.pixmap_hover = self.pixmap_hover.scaledToHeight((self.pixmap_hover.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.pixmap_hover.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.pixmap_press = QPixmap(':/select_button_press.png')
-        self.pixmap_press.setDevicePixelRatio(2)
+        self.pixmap_press = self.pixmap_press.scaledToHeight((self.pixmap_press.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.pixmap_press.setDevicePixelRatio(QWindow().devicePixelRatio())
 
         self.pressed.connect(self.update)
         self.released.connect(self.update)
@@ -38,8 +41,6 @@ class SelectButton(QAbstractButton):
 
         painter = QPainter(self)
         painter.drawPixmap(0, 0, pixmap)
-        painter.setPen(Qt.black)
-        painter.setFont(QFont('Times', 18))
         painter.drawText(QRect(0, 0, 960, 65), Qt.AlignCenter, self.txt)
 
     def enterEvent(self, event):

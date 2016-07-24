@@ -24,7 +24,8 @@ class IntroWindow(QMainWindow):
 
         #set background picture by QLabel
         self.intro_background_pixmap = QPixmap(':/intro_background.png')
-        self.intro_background_pixmap.setDevicePixelRatio(2)
+        self.intro_background_pixmap = self.intro_background_pixmap.scaledToHeight((self.intro_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.intro_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.intro_background = QLabel(self.intro_window_widget)
         self.intro_background.setPixmap(self.intro_background_pixmap)
         self.intro_background.setGeometry(0, 0, 1024, 576)
@@ -37,5 +38,6 @@ class IntroWindow(QMainWindow):
         self.fader.fade(500)
 
         self.intro_background_pixmap = QPixmap(':/black.png')
-        self.intro_background_pixmap.setDevicePixelRatio(2)
+        self.intro_background_pixmap = self.intro_background_pixmap.scaledToHeight((self.intro_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.intro_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.intro_background.setPixmap(self.intro_background_pixmap)

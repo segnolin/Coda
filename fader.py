@@ -21,7 +21,8 @@ class Fader(QWidget):
         self.duration = duration
         self.pixmap_opacity = 1.0
         self.post_pixmap = QPixmap(2048, 1152)
-        self.post_pixmap.setDevicePixelRatio(2)
+        self.post_pixmap = self.post_pixmap.scaledToHeight((self.post_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.post_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.pre_widget.render(self.post_pixmap)
 
         self.anime = QVariantAnimation()

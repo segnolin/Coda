@@ -68,7 +68,8 @@ class GameEngine(QMainWindow):
         #create select layout
         #create select label
         self.select_background_pixmap = QPixmap(':/select_background.png')
-        self.select_background_pixmap.setDevicePixelRatio(2)
+        self.select_background_pixmap = self.select_background_pixmap.scaledToHeight((self.select_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.select_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.select_background_label = QLabel(self.select_widget)
         self.select_background_label.setPixmap(self.select_background_pixmap)
         self.select_background_label.setGeometry(0, 0, 1024, 576)
@@ -79,26 +80,24 @@ class GameEngine(QMainWindow):
         #create text box layout
         #create text background label
         self.text_background_pixmap = QPixmap(':/text_background.png')
-        self.text_background_pixmap.setDevicePixelRatio(2)
+        self.text_background_pixmap = self.text_background_pixmap.scaledToHeight((self.text_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.text_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.text_background_label = QLabel(self.text_box_widget)
         self.text_background_label.setPixmap(self.text_background_pixmap)
         self.text_background_label.setGeometry(0, 396, 1024, 180)
 
         #set the text character label
-        self.text_font = QFont('Times', 20, QFont.Bold)
         self.text_character_label = QLabel(self.text_box_widget)
-        self.text_character_label.setFont(self.text_font)
         self.text_character_label.setAlignment(Qt.AlignLeft)
         self.text_character_label.setGeometry(150, 446, 660, 30)
         self.text_character_label.setStyleSheet('QLabel {color: rgba(0, 0, 0, 100%)}')
+        self.text_character_label.setStyleSheet('QLabel {font-family: Times New Roman; font-size: 20px; font-weight: Bold; color: rgba(0, 0, 0, 100%)}')
 
         #set the text box label
-        self.text_font = QFont('Times', 18)
         self.text_box_label = LetterPrint(self.text_box_widget)
-        self.text_box_label.setFont(self.text_font)
         self.text_box_label.setAlignment(Qt.AlignLeft)
         self.text_box_label.setGeometry(160, 486, 650, 75)
-        self.text_box_label.setStyleSheet('QLabel {color: rgba(0, 0, 0, 100%)}')
+        self.text_box_label.setStyleSheet('QLabel {font-family: Times New Roman; font-size: 18px; color: rgba(0, 0, 0, 100%)}')
         self.text_box_label.setWordWrap(True)
 
         #create transparent label to add game engine id(next)
@@ -136,7 +135,8 @@ class GameEngine(QMainWindow):
         #create menu layout
         #create menu background
         self.menu_background_pixmap = QPixmap(':/menu_background.png')
-        self.menu_background_pixmap.setDevicePixelRatio(2)
+        self.menu_background_pixmap = self.menu_background_pixmap.scaledToHeight((self.menu_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.menu_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.menu_background_label = QLabel(self.menu_widget)
         self.menu_background_label.setPixmap(self.menu_background_pixmap)
         self.menu_background_label.setGeometry(0, 0, 1024, 576)
@@ -517,6 +517,7 @@ class GameEngine(QMainWindow):
             print(pos)
 
             self.selection_button[i] = SelectButton(self.select_widget)
+            self.selection_button.get(i).setStyleSheet('QAbstractButton {font-family: Times New Roman; font-size: 18px; color: rgba(0, 0, 0, 100%)}')
             self.selection_button.get(i).setText('{0}'.format(i))
             self.selection_button.get(i).set_text(self.sl_txt.get(i + 1))
             self.selection_button.get(i).setGeometry(0, pos, 1024, 65)

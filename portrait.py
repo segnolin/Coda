@@ -37,7 +37,8 @@ class Portrait(QLabel):
 
         self.portrait_id = portrait_id
         self.pixmap = QPixmap(':/{0}.png'.format(portrait_id))
-        self.pixmap.setDevicePixelRatio(2)
+        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
 
         self.sh_anime.stop()
         self.sh_anime.setDuration(300)
@@ -57,7 +58,8 @@ class Portrait(QLabel):
 
         self.portrait_id = portrait_id
         self.pixmap = QPixmap(':/{0}.png'.format(self.portrait_id))
-        self.pixmap.setDevicePixelRatio(2)
+        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
 
         self.x = posx
         self.y = posy

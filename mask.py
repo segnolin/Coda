@@ -20,7 +20,8 @@ class Mask(QLabel):
         self.mask_id = mask_id
 
         self.pixmap = QPixmap(':/mk_{0}.png'.format(self.mask_id))
-        self.pixmap.setDevicePixelRatio(2)
+        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.setPixmap(self.pixmap)
 
     def set_delete(self):

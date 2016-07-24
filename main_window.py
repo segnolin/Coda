@@ -23,7 +23,8 @@ class MainWindow(QMainWindow):
 
         #set background picture by QLabel
         self.main_background_pixmap = QPixmap(':/main_background.png')
-        self.main_background_pixmap.setDevicePixelRatio(2)
+        self.main_background_pixmap = self.main_background_pixmap.scaledToHeight((self.main_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.main_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.main_background = QLabel(self.main_window_widget)
         self.main_background.setPixmap(self.main_background_pixmap)
         self.main_background.setGeometry(0, 0, 1024, 576)

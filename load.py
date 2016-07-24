@@ -26,7 +26,8 @@ class Load(QMainWindow):
 
         #set load page background
         self.background_pixmap = QPixmap(':/load_background.png')
-        self.background_pixmap.setDevicePixelRatio(2)
+        self.background_pixmap = self.background_pixmap.scaledToHeight((self.background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
+        self.background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.background = QLabel(self.load_widget)
         self.background.setPixmap(self.background_pixmap)
         self.background.setGeometry(0, 0, 1024, 576)
