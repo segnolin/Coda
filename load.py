@@ -22,7 +22,7 @@ class Load(QMainWindow):
         print(self.status)
 
         #set QWidget class
-        self.load_widget = QWidget()
+        self.load_widget = QOpenGLWidget()
 
         #set load page background
         self.background_pixmap = QPixmap(':/load_background.png')

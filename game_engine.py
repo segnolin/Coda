@@ -36,8 +36,8 @@ class GameEngine(QMainWindow):
         self.effect_status = False
 
         #set QWidget class
-        self.game_engine_widget = QWidget()
-        self.base_widget = QOpenGLWidget(self.game_engine_widget)
+        self.game_engine_widget = QOpenGLWidget()
+        self.base_widget = QWidget(self.game_engine_widget)
         self.portrait_widget = QWidget(self.game_engine_widget)
         self.basic_widget = QWidget(self.game_engine_widget)
         self.select_widget = QWidget(self.game_engine_widget)

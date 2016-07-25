@@ -20,7 +20,7 @@ class IntroWindow(QMainWindow):
     def create_intro_window_layout(self):
 
         #set QWidget class
-        self.intro_window_widget = QWidget()
+        self.intro_window_widget = QOpenGLWidget()
 
         #set background picture by QLabel
         self.intro_background_pixmap = QPixmap(':/intro_background.png')
