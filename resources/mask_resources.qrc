@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/mk">
+
+<!-- MASK -->
+
+        <file alias="mk_monitor.png">mask/mk_monitor.png</file>
+
+    </qresource>
+</RCC>

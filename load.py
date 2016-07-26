@@ -8,7 +8,7 @@ from PyQt5.QtCore import *
 from image_button import *
 
 import sys
-import resources
+import resources.system_resources
 
 class Load(QMainWindow):
     '''this class creates game load layout and functions'''
@@ -25,7 +25,7 @@ class Load(QMainWindow):
         self.load_widget = QOpenGLWidget()
 
         #set load page background
-        self.background_pixmap = QPixmap(':/load_background.png')
+        self.background_pixmap = QPixmap(':/sys/load_background.png')
         self.background_pixmap = self.background_pixmap.scaledToHeight((self.background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.background = QLabel(self.load_widget)

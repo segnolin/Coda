@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 import sys
-import resources
+import resources.system_resources
 
 class ImageButton(QAbstractButton):
     '''this class provide image button functions'''
@@ -19,13 +19,13 @@ class ImageButton(QAbstractButton):
         self.pressed.connect(self.update)
         self.released.connect(self.update)
 
-        self.pixmap_defaults = QPixmap(':/{0}_button_defaults.png'.format(self.id))
+        self.pixmap_defaults = QPixmap(':/sys/{0}_button_defaults.png'.format(self.id))
         self.pixmap_defaults = self.pixmap_defaults.scaledToHeight((self.pixmap_defaults.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap_defaults.setDevicePixelRatio(QWindow().devicePixelRatio())
-        self.pixmap_hover = QPixmap(':/{0}_button_hover.png'.format(self.id))
+        self.pixmap_hover = QPixmap(':/sys/{0}_button_hover.png'.format(self.id))
         self.pixmap_hover = self.pixmap_hover.scaledToHeight((self.pixmap_hover.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap_hover.setDevicePixelRatio(QWindow().devicePixelRatio())
-        self.pixmap_press = QPixmap(':/{0}_button_press.png'.format(self.id))
+        self.pixmap_press = QPixmap(':/sys/{0}_button_press.png'.format(self.id))
         self.pixmap_press = self.pixmap_press.scaledToHeight((self.pixmap_press.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap_press.setDevicePixelRatio(QWindow().devicePixelRatio())
 

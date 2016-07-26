@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 import sys
-import resources
+import resources.background_resources
 
 class Effect(QLabel):
 
@@ -26,14 +26,14 @@ class Effect(QLabel):
 
     def black_fade(self):
 
-        self.pixmap = QPixmap(':/black.png')
+        self.pixmap = QPixmap(':/bg/black.png')
         self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.setPixmap(self.pixmap)
 
     def white_fade(self):
 
-        self.pixmap = QPixmap(':/white.png')
+        self.pixmap = QPixmap(':/bg/white.png')
         self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.setPixmap(self.pixmap)

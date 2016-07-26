@@ -17,7 +17,7 @@ from portrait import *
 from script_parser import *
 
 import sys
-import resources
+import resources.system_resources
 
 class GameEngine(QMainWindow):
     '''this class creates game engine layout and functions'''
@@ -67,7 +67,7 @@ class GameEngine(QMainWindow):
 
         #create select layout
         #create select label
-        self.select_background_pixmap = QPixmap(':/select_background.png')
+        self.select_background_pixmap = QPixmap(':/sys/select_background.png')
         self.select_background_pixmap = self.select_background_pixmap.scaledToHeight((self.select_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.select_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.select_background_label = QLabel(self.select_widget)
@@ -79,7 +79,7 @@ class GameEngine(QMainWindow):
 
         #create text box layout
         #create text background label
-        self.text_background_pixmap = QPixmap(':/text_background.png')
+        self.text_background_pixmap = QPixmap(':/sys/text_background.png')
         self.text_background_pixmap = self.text_background_pixmap.scaledToHeight((self.text_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.text_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.text_background_label = QLabel(self.text_box_widget)
@@ -134,7 +134,7 @@ class GameEngine(QMainWindow):
 
         #create menu layout
         #create menu background
-        self.menu_background_pixmap = QPixmap(':/menu_background.png')
+        self.menu_background_pixmap = QPixmap(':/sys/menu_background.png')
         self.menu_background_pixmap = self.menu_background_pixmap.scaledToHeight((self.menu_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.menu_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.menu_background_label = QLabel(self.menu_widget)

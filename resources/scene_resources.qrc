@@ -1,0 +1,11 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/bg">
+
+<!-- SCENE -->
+
+        <file alias="sc_aoi_smartphone_operating.png">scene/sc_aoi_smartphone_operating.png</file>
+        <file alias="sc_aoi_smartphone.png">scene/sc_aoi_smartphone.png</file>
+        <file alias="sc_west_sun.png">scene/sc_west_sun.png</file>
+
+    </qresource>
+</RCC>

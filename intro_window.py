@@ -9,7 +9,8 @@ from fader import *
 from image_button import *
 
 import sys
-import resources
+import resources.background_resources
+import resources.system_resources
 
 class IntroWindow(QMainWindow):
     '''this class creates a introduction window'''
@@ -23,7 +24,7 @@ class IntroWindow(QMainWindow):
         self.intro_window_widget = QOpenGLWidget()
 
         #set background picture by QLabel
-        self.intro_background_pixmap = QPixmap(':/intro_background.png')
+        self.intro_background_pixmap = QPixmap(':/sys/intro_background.png')
         self.intro_background_pixmap = self.intro_background_pixmap.scaledToHeight((self.intro_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.intro_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.intro_background = QLabel(self.intro_window_widget)
@@ -37,7 +38,7 @@ class IntroWindow(QMainWindow):
         self.fader = Fader(self.intro_window_widget, self.intro_window_widget)
         self.fader.fade(500)
 
-        self.intro_background_pixmap = QPixmap(':/black.png')
+        self.intro_background_pixmap = QPixmap(':/bg/black.png')
         self.intro_background_pixmap = self.intro_background_pixmap.scaledToHeight((self.intro_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.intro_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.intro_background.setPixmap(self.intro_background_pixmap)

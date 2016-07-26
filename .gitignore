@@ -1,7 +1,13 @@
 __pycache__/
 build/
 dist/
-resources.py
+resources/background_resources.py
+resources/event_resources.py
+resources/mask_resources.py
+resources/portrait_resources.py
+resources/scene_resources.py
+resources/script_resources.py
+resources/system_resources.py
 *.ai
 *.swp
 .DS_Store

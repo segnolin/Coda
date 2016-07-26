@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 import sys
-import resources
+import resources.script_resources
 
 class Parser(QXmlStreamReader):
 
@@ -58,7 +58,7 @@ class Parser(QXmlStreamReader):
 
         self.sys_sc = ''
 
-        self.file = QFile(':/{0}.xml'.format(self.script))
+        self.file = QFile(':/scr/{0}.xml'.format(self.script))
         self.file.open(QIODevice.ReadOnly)
         self.setDevice(self.file)
 
@@ -270,36 +270,3 @@ class Parser(QXmlStreamReader):
             if self.isEndElement():
                 if self.name() == 'sys':
                     break
-
-if __name__ == '__main__':
-
-    game_engine_id = 40
-    script = 'a0000'
-    parser = Parser()
-    parser.parse(script, game_engine_id)
-
-    print(parser.bgm_id)
-    print(parser.sd_id)
-    print(parser.eff_id)
-    print(parser.eff_du)
-    print(parser.bg_id)
-    print(parser.bg_x)
-    print(parser.bg_y)
-    print(parser.bg_xf)
-    print(parser.bg_yf)
-    print(parser.bg_du)
-    print(parser.pt_id)
-    print(parser.pt_x)
-    print(parser.pt_y)
-    print(parser.pt_xf)
-    print(parser.pt_yf)
-    print(parser.tb_sh)
-    print(parser.tb_td)
-    print(parser.tb_vc)
-    print(parser.tb_char)
-    print(parser.tb_txt)
-    print(parser.tb_hi)
-    print(parser.pt_num)
-    print(parser.sl_txt)
-    print(parser.sl_sc)
-    print(parser.sl_num)

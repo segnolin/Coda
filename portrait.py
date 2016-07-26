@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 import sys
-import resources
+import resources.portrait_resources
 
 class Portrait(QLabel):
     '''this class provide the label of portrait'''
@@ -36,7 +36,7 @@ class Portrait(QLabel):
         self.dy = 0
 
         self.portrait_id = portrait_id
-        self.pixmap = QPixmap(':/{0}.png'.format(portrait_id))
+        self.pixmap = QPixmap(':/pt/{0}.png'.format(portrait_id))
         self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
 
@@ -57,7 +57,7 @@ class Portrait(QLabel):
         self.duration = duration
 
         self.portrait_id = portrait_id
-        self.pixmap = QPixmap(':/{0}.png'.format(self.portrait_id))
+        self.pixmap = QPixmap(':/pt/{0}.png'.format(self.portrait_id))
         self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
 

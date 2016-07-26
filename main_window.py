@@ -8,7 +8,7 @@ from PyQt5.QtCore import *
 from image_button import *
 
 import sys
-import resources
+import resources.system_resources
 
 class MainWindow(QMainWindow):
     '''this class creates a main window to show the menu'''
@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
         self.main_window_widget = QOpenGLWidget()
 
         #set background picture by QLabel
-        self.main_background_pixmap = QPixmap(':/main_background.png')
+        self.main_background_pixmap = QPixmap(':/sys/main_background.png')
         self.main_background_pixmap = self.main_background_pixmap.scaledToHeight((self.main_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.main_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.main_background = QLabel(self.main_window_widget)

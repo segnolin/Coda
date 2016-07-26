@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 import sys
-import resources
+import resources.mask_resources
 
 class Mask(QLabel):
 
@@ -19,7 +19,7 @@ class Mask(QLabel):
 
         self.mask_id = mask_id
 
-        self.pixmap = QPixmap(':/mk_{0}.png'.format(self.mask_id))
+        self.pixmap = QPixmap(':/mk/mk_{0}.png'.format(self.mask_id))
         self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.setPixmap(self.pixmap)

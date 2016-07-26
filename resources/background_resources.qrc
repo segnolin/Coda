@@ -1,0 +1,14 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/bg">
+
+<!-- BACKGROUND -->
+
+        <file alias="bg_010100_2_school_stair_l.png">background/bg_010100_2_school_stair_l.png</file>
+        <file alias="bg_010200_2_school_roof_l.png">background/bg_010200_2_school_roof_l.png</file>
+        <file alias="bg_010200_2_school_roof.png">background/bg_010200_2_school_roof.png</file>
+        <file alias="bg_010210_2_school_roof_root_l.png">background/bg_010210_2_school_roof_root_l.png</file>
+        <file alias="black.png">background/black.png</file>
+        <file alias="white.png">background/white.png</file>
+
+    </qresource>
+</RCC>

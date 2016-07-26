@@ -1,0 +1,13 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/pt">
+
+<!-- PORTRAIT -->
+
+        <file alias="aoi_uniform_contact_normal.png">portrait/aoi_uniform_contact_normal.png</file>
+        <file alias="aoi_uniform_normal_normal.png">portrait/aoi_uniform_normal_normal.png</file>
+        <file alias="aoi_uniform_raise_shout.png">portrait/aoi_uniform_raise_shout.png</file>
+        <file alias="miyuki_uniform_normal_hard.png">portrait/miyuki_uniform_normal_hard.png</file>
+        <file alias="miyuki_uniform_wrestling_shout.png">portrait/miyuki_uniform_wrestling_shout.png</file>
+
+    </qresource>
+</RCC>

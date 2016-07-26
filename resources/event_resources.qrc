@@ -1,0 +1,17 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/bg">
+
+<!-- EVENT -->
+
+        <file alias="ev_0113_aoi_riding_a_l.png">event/ev_0113_aoi_riding_a_l.png</file>
+        <file alias="ev_0113_aoi_riding_a_xl.png">event/ev_0113_aoi_riding_a_xl.png</file>
+        <file alias="ev_0113_aoi_riding_a.png">event/ev_0113_aoi_riding_a.png</file>
+        <file alias="ev_0113_aoi_sending_e_l.png">event/ev_0113_aoi_sending_e_l.png</file>
+        <file alias="ev_0113_aoi_sending_e.png">event/ev_0113_aoi_sending_e.png</file>
+        <file alias="ev_0121_miyuki_assault_a_l.png">event/ev_0121_miyuki_assault_a_l.png</file>
+        <file alias="ev_0121_miyuki_assault_b_l.png">event/ev_0121_miyuki_assault_b_l.png</file>
+        <file alias="ev_0121_miyuki_assault_b.png">event/ev_0121_miyuki_assault_b.png</file>
+        <file alias="ev_0121_miyuki_hello_m.png">event/ev_0121_miyuki_hello_m.png</file>
+
+    </qresource>
+</RCC>

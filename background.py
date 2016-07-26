@@ -6,7 +6,9 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 import sys
-import resources
+import resources.background_resources
+import resources.event_resources
+import resources.scene_resources
 
 class Background(QLabel):
 
@@ -27,7 +29,8 @@ class Background(QLabel):
         self.anime.stop()
 
         self.background_id = background_id
-        self.pixmap = QPixmap(':/{0}.png'.format(background_id))
+
+        self.pixmap = QPixmap(':/bg/{0}.png'.format(background_id))
         self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
 
@@ -42,7 +45,7 @@ class Background(QLabel):
         self.duration = duration
 
         self.background_id = background_id
-        self.pixmap = QPixmap(':/{0}.png'.format(self.background_id))
+        self.pixmap = QPixmap(':/bg/{0}.png'.format(background_id))
         self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
 
