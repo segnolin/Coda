@@ -1,4 +1,4 @@
-![icon](https://github.com/segnoda/Coda/raw/master/resources/icon/coda.png)
+<img src="https://raw.githubusercontent.com/segnoda/Coda/master/resources/icon/coda.png"  width="128" height="128"/>
 
 # Coda
 
