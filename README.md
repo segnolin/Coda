@@ -1,3 +1,5 @@
+![icon](https://github.com/segnoda/Coda/raw/master/resources/icon/coda.png)
+
 # Coda
 
 **Coda** is a simple, cross-platform, and open source **visual novel game engine** using PyQt5.
@@ -15,8 +17,24 @@ Everyone can create your own visual novel games using **Coda** by simply writing
 
 ### Installation
 
+First, clone the repo to any target directory.
+
 ```
 $ git clone git@github.com:segnoda/Coda.git
+```
+
+Run the shell script to build resources files.
+
+```
+$ ./pyrcc.sh
+```
+
+### Usage
+
+Just run main.py to execute **Coda** with example resources.
+
+```
+$ python3 main.py
 ```
 
 ## Documentation
@@ -33,5 +51,6 @@ The guideline below allows you to control and modify your game flow.
     <content id="1">
     ...
     </content>
+    ...
 </script>
 ```
