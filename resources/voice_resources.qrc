@@ -1,0 +1,53 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/vc">
+
+<!-- VOICE -->
+
+        <file alias="vc_a01_1300010a02.mp3">voice/vc_a01_1300010a02.mp3</file>
+        <file alias="vc_a01_1300020a02.mp3">voice/vc_a01_1300020a02.mp3</file>
+        <file alias="vc_a01_1300030a02.mp3">voice/vc_a01_1300030a02.mp3</file>
+        <file alias="vc_a01_1300040a02.mp3">voice/vc_a01_1300040a02.mp3</file>
+        <file alias="vc_a01_1300050a02.mp3">voice/vc_a01_1300050a02.mp3</file>
+        <file alias="vc_a01_1300060a02.mp3">voice/vc_a01_1300060a02.mp3</file>
+        <file alias="vc_a01_1300070a02.mp3">voice/vc_a01_1300070a02.mp3</file>
+        <file alias="vc_a01_1300080a02.mp3">voice/vc_a01_1300080a02.mp3</file>
+        <file alias="vc_a01_1300090a02.mp3">voice/vc_a01_1300090a02.mp3</file>
+        <file alias="vc_a01_1300100a02.mp3">voice/vc_a01_1300100a02.mp3</file>
+        <file alias="vc_a01_1300110a02.mp3">voice/vc_a01_1300110a02.mp3</file>
+        <file alias="vc_a01_1300120a02.mp3">voice/vc_a01_1300120a02.mp3</file>
+        <file alias="vc_a01_1300130a02.mp3">voice/vc_a01_1300130a02.mp3</file>
+
+        <file alias="vc_a01_2100010a01.mp3">voice/vc_a01_2100010a01.mp3</file>
+        <file alias="vc_a01_2100020a01.mp3">voice/vc_a01_2100020a01.mp3</file>
+        <file alias="vc_a01_2100030a02.mp3">voice/vc_a01_2100030a02.mp3</file>
+        <file alias="vc_a01_2100040a01.mp3">voice/vc_a01_2100040a01.mp3</file>
+        <file alias="vc_a01_2100050a02.mp3">voice/vc_a01_2100050a02.mp3</file>
+        <file alias="vc_a01_2100060a01.mp3">voice/vc_a01_2100060a01.mp3</file>
+        <file alias="vc_a01_2100070a02.mp3">voice/vc_a01_2100070a02.mp3</file>
+        <file alias="vc_a01_2100080a01.mp3">voice/vc_a01_2100080a01.mp3</file>
+        <file alias="vc_a01_2100090a01.mp3">voice/vc_a01_2100090a01.mp3</file>
+        <file alias="vc_a01_2100100a01.mp3">voice/vc_a01_2100100a01.mp3</file>
+        <file alias="vc_a01_2100110a01.mp3">voice/vc_a01_2100110a01.mp3</file>
+        <file alias="vc_a01_2100120a01.mp3">voice/vc_a01_2100120a01.mp3</file>
+        <file alias="vc_a01_2100130a01.mp3">voice/vc_a01_2100130a01.mp3</file>
+        <file alias="vc_a01_2100140a01.mp3">voice/vc_a01_2100140a01.mp3</file>
+        <file alias="vc_a01_2100150a02.mp3">voice/vc_a01_2100150a02.mp3</file>
+        <file alias="vc_a01_2100160a02.mp3">voice/vc_a01_2100160a02.mp3</file>
+        <file alias="vc_a01_2100170a01.mp3">voice/vc_a01_2100170a01.mp3</file>
+        <file alias="vc_a01_2100180a02.mp3">voice/vc_a01_2100180a02.mp3</file>
+        <file alias="vc_a01_2100190a02.mp3">voice/vc_a01_2100190a02.mp3</file>
+        <file alias="vc_a01_2100200a01.mp3">voice/vc_a01_2100200a01.mp3</file>
+        <file alias="vc_a01_2100210a01.mp3">voice/vc_a01_2100210a01.mp3</file>
+        <file alias="vc_a01_2100220a02.mp3">voice/vc_a01_2100220a02.mp3</file>
+        <file alias="vc_a01_2100230a02.mp3">voice/vc_a01_2100230a02.mp3</file>
+        <file alias="vc_a01_2100240a02.mp3">voice/vc_a01_2100240a02.mp3</file>
+        <file alias="vc_a01_2100250a02.mp3">voice/vc_a01_2100250a02.mp3</file>
+        <file alias="vc_a01_2100260a01.mp3">voice/vc_a01_2100260a01.mp3</file>
+        <file alias="vc_a01_2100270a02.mp3">voice/vc_a01_2100270a02.mp3</file>
+        <file alias="vc_a01_2100280a02.mp3">voice/vc_a01_2100280a02.mp3</file>
+        <file alias="vc_a01_2100290a02.mp3">voice/vc_a01_2100290a02.mp3</file>
+        <file alias="vc_a01_2100300a02.mp3">voice/vc_a01_2100300a02.mp3</file>
+        <file alias="vc_a01_2100310a02.mp3">voice/vc_a01_2100310a02.mp3</file>
+
+    </qresource>
+</RCC>

@@ -85,6 +85,7 @@
         <tb>
             <sh>True</sh>
             <td>500</td>
+            <vc>vc_a01_1300010a02</vc>
             <char>＊＊＊＊</char>
             <txt>『るる』</txt>
         </tb>
@@ -113,6 +114,7 @@
     </content>
     <content id="15">
         <tb>
+            <vc>vc_a01_1300020a02</vc>
             <char>＊＊＊＊</char>
             <txt>『デンチ、きれたの』</txt>
         </tb>
@@ -125,6 +127,7 @@
     </content>
     <content id="17">
         <tb>
+            <vc>vc_a01_1300030a02</vc>
             <char>＊＊＊＊</char>
             <txt>『ジュウデン、ひつようなの』</txt>
         </tb>
@@ -139,6 +142,7 @@
             <du>7000</du>
         </bg>
         <tb>
+            <vc>vc_a01_1300040a02</vc>
             <txt>『ビリビリ、するの？』</txt>
             <hi>True</hi>
         </tb>
@@ -198,6 +202,7 @@
     </content>
     <content id="27">
         <tb>
+            <vc>vc_a01_1300050a02</vc>
             <char>＊＊＊＊</char>
             <txt>「とうおるるるるるるるるるるるるるる……」</txt>
         </tb>
@@ -220,6 +225,7 @@
         <tb>
             <sh>True</sh>
             <td>1500</td>
+            <vc>vc_a01_1300060a02</vc>
             <char>＊＊＊＊</char>
             <txt>「とうおるるるるるるるるるるるるるる……」</txt>
         </tb>
@@ -254,6 +260,7 @@
     </content>
     <content id="35">
         <tb>
+            <vc>vc_a01_1300070a02</vc>
             <char>＊＊＊＊</char>
             <txt>「とうおる……るるる……るる……る……」</txt>
         </tb>
@@ -284,12 +291,14 @@
     </content>
     <content id="39">
         <tb>
+            <vc>vc_a01_1300080a02</vc>
             <char>＊＊＊＊</char>
             <txt>「と……る……る……ぅ…………」</txt>
         </tb>
     </content>
     <content id="40">
         <tb>
+            <vc>vc_a01_1300090a02</vc>
             <char>＊＊＊＊</char>
             <txt>「るる…………」</txt>
             <hi>True</hi>
@@ -329,6 +338,7 @@
         <tb>
             <sh>True</sh>
             <td>300</td>
+            <vc>vc_a01_1300100a02</vc>
             <char>＊＊＊＊</char>
             <txt>「るる」</txt>
         </tb>
@@ -354,6 +364,7 @@
     </content>
     <content id="47">
         <tb>
+            <vc>vc_a01_1300110a02</vc>
             <char>＊＊＊＊</char>
             <txt>「デンチ、きれたの」</txt>
         </tb>
@@ -366,6 +377,7 @@
     </content>
     <content id="49">
         <tb>
+            <vc>vc_a01_1300120a02</vc>
             <char>＊＊＊＊</char>
             <txt>「ジュウデン、ひつようなの」</txt>
             <hi>True</hi>
@@ -425,6 +437,7 @@
         <tb>
             <sh>True</sh>
             <td>300</td>
+            <vc>vc_a01_1300130a02</vc>
             <char>＊＊＊＊</char>
             <txt>「ビリビリ、するの？」</txt>
             <hi>True</hi>
@@ -433,11 +446,11 @@
     <content id="56">
         <sl>
             <txt>「ビリビリする」</txt>
-            <sc>a0002a</sc>
+            <sc>scr_a0002a</sc>
         </sl>
         <sl>
             <txt>「ビリビリしない」</txt>
-            <sc>a0002b</sc>
+            <sc>scr_a0002b</sc>
         </sl>
     </content>
 </script>

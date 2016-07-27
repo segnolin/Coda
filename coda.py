@@ -25,7 +25,7 @@ class Coda(QMainWindow):
     def initUI(self):
 
         #set initial game argument
-        self.script = 'a0000'
+        self.script = 'scr_a0000'
         self.game_engine_id = 0
         self.status = 'main'
 
@@ -73,7 +73,7 @@ class Coda(QMainWindow):
     def load_game_engine(self):
 
         #test
-        self.script = 'a0003'
+        self.script = 'scr_a0003'
         self.game_engine_id = 0
         self.start()
 
@@ -81,7 +81,7 @@ class Coda(QMainWindow):
 
         print('back to main')
 
-        self.script = 'a0000'
+        self.script = 'scr_a0000'
         self.game_engine_id = 0
         self.status = 'main'
 

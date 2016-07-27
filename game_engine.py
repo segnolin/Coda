@@ -15,6 +15,7 @@ from mask import *
 from background import *
 from portrait import *
 from script_parser import *
+from voice import *
 
 import sys
 import resources.system_resources
@@ -170,6 +171,9 @@ class GameEngine(QMainWindow):
         self.hide_button.clicked.connect(self.hide_widget)
         self.disable_hide_label.mousePressEvent = self.show_widget
         self.next_label.mousePressEvent = self.update_engine
+
+        #set media
+        self.voice = Voice()
 
         #set parser
         self.parser = Parser()
@@ -333,6 +337,9 @@ class GameEngine(QMainWindow):
 
         print('init_voice')
 
+        if self.tb_vc != '':
+            self.voice.play_voice(self.tb_vc)
+
         self.init_text()
 
     def init_text(self):
@@ -365,12 +372,6 @@ class GameEngine(QMainWindow):
     def set_sound(self):
 
         print('set_sound')
-
-        self.set_voice()
-
-    def set_voice(self):
-
-        print('set_voice')
 
         self.set_text()
 
@@ -513,8 +514,6 @@ class GameEngine(QMainWindow):
         for i in range(int(self.sl_num)):
 
             pos = 250 + int(i - int(int(self.sl_num) / 2)) * 75
-            print(i)
-            print(pos)
 
             self.selection_button[i] = SelectButton(self.select_widget)
             self.selection_button.get(i).setStyleSheet('QAbstractButton {font-family: Times New Roman; font-size: 18px; color: rgba(0, 0, 0, 100%)}')

@@ -8,6 +8,7 @@ resources/portrait_resources.py
 resources/scene_resources.py
 resources/script_resources.py
 resources/system_resources.py
+resources/voice_resources.py
 *.ai
 *.swp
 .DS_Store

@@ -7,6 +7,7 @@
             <y>-390</y>
         </bg>
         <tb>
+            <vc>vc_a01_2100010a01</vc>
             <char>曽根美雪</char>
             <txt>「神聖なる、学舎の、中――」</txt>
             <hi>True</hi>
@@ -24,6 +25,7 @@
         <tb>
             <sh>True</sh>
             <td>500</td>
+            <vc>vc_a01_2100020a01</vc>
             <char>曽根美雪</char>
             <txt>「学校の、屋上で、何してるの？」</txt>
         </tb>
@@ -50,24 +52,28 @@
         <tb>
             <sh>True</sh>
             <td>500</td>
+            <vc>vc_a01_2100030a02</vc>
             <char>＊＊＊＊</char>
             <txt>「ジュウデンなの」</txt>
         </tb>
     </content>
     <content id="5">
         <tb>
+            <vc>vc_a01_2100040a01</vc>
             <char>曽根美雪</char>
             <txt>「充電？」</txt>
         </tb>
     </content>
     <content id="6">
         <tb>
+            <vc>vc_a01_2100050a02</vc>
             <char>＊＊＊＊</char>
             <txt>「エッチなの」</txt>
         </tb>
     </content>
     <content id="7">
         <tb>
+            <vc>vc_a01_2100060a01</vc>
             <char>曽根美雪</char>
             <txt>「な！？」</txt>
         </tb>
@@ -80,6 +86,7 @@
     </content>
     <content id="9">
         <tb>
+            <vc>vc_a01_2100070a02</vc>
             <char>＊＊＊＊</char>
             <txt>「キスは、フラグなの」</txt>
         </tb>
@@ -91,6 +98,7 @@
             <y>-100</y>
         </bg>
         <tb>
+            <vc>vc_a01_2100080a01</vc>
             <char>曽根美雪</char>
             <txt>「ふざけないで！」</txt>
         </tb>
@@ -102,6 +110,7 @@
     </content>
     <content id="12">
         <tb>
+            <vc>vc_a01_2100090a01</vc>
             <char>曽根美雪</char>
             <txt>「貴方、心一をなんだと思ってるの！」</txt>
         </tb>
@@ -114,6 +123,7 @@
     </content>
     <content id="14">
         <tb>
+            <vc>vc_a01_2100100a01</vc>
             <char>曽根美雪</char>
             <txt>「しっ、心一は――心一はっ――！！」</txt>
             <hi>True</hi>
@@ -128,6 +138,7 @@
         <tb>
             <sh>True</sh>
             <td>1000</td>
+            <vc>vc_a01_2100110a01</vc>
             <char>曽根美雪</char>
             <txt>「私の彼氏なのよっ！」</txt>
             <hi>True</hi>
@@ -246,18 +257,21 @@
     </content>
     <content id="34">
         <tb>
+            <vc>vc_a01_2100120a01</vc>
             <char>曽根美雪</char>
             <txt>「黙ってて！」</txt>
         </tb>
     </content>
     <content id="35">
         <tb>
+            <vc>vc_a01_2100130a01</vc>
             <char>曽根美雪</char>
             <txt>「わ――私と心一は、恋人同士なの。貴方は邪魔者ということになるわ」</txt>
         </tb>
     </content>
     <content id="36">
         <tb>
+            <vc>vc_a01_2100140a01</vc>
             <char>曽根美雪</char>
             <txt>「だから、帰ってもらえる？」</txt>
         </tb>
@@ -267,30 +281,35 @@
             <id>ev_0113_aoi_riding_a</id>
         </bg>
         <tb>
+            <vc>vc_a01_2100150a02</vc>
             <char>＊＊＊＊</char>
             <txt>「うそなの」</txt>
         </tb>
     </content>
     <content id="38">
         <tb>
+            <vc>vc_a01_2100160a02</vc>
             <char>＊＊＊＊</char>
             <txt>「コイビトじゃないの」</txt>
         </tb>
     </content>
     <content id="39">
         <tb>
+            <vc>vc_a01_2100170a01</vc>
             <char>曽根美雪</char>
             <txt>「ちょっと、何を根拠に――」</txt>
         </tb>
     </content>
     <content id="40">
         <tb>
+            <vc>vc_a01_2100180a02</vc>
             <char>＊＊＊＊</char>
             <txt>「デンパなの」</txt>
         </tb>
     </content>
     <content id="41">
         <tb>
+            <vc>vc_a01_2100190a02</vc>
             <char>＊＊＊＊</char>
             <txt>「せかいのそとからカミサマのデンパ、ビリビリきたの」</txt>
         </tb>
@@ -311,12 +330,13 @@
         </bg>
         <pt>
             <pos>0</pos>
-            <id>miyuki_uniform_normal_hard</id>
+            <id>pt_miyuki_uniform_normal_hard</id>
             <md>new</md>
             <x>361</x>
             <y>43</y>
         </pt>
         <tb>
+            <vc>vc_a01_2100200a01</vc>
             <char>曽根美雪</char>
             <txt>「付き合いきれないわ」</txt>
         </tb>
@@ -328,12 +348,13 @@
         </pt>
         <pt>
             <pos>1</pos>
-            <id>miyuki_uniform_wrestling_shout</id>
+            <id>pt_miyuki_uniform_wrestling_shout</id>
             <md>new</md>
             <x>376</x>
             <y>50</y>
         </pt>
         <tb>
+            <vc>vc_a01_2100210a01</vc>
             <char>曽根美雪</char>
             <txt>「いい？　私と心一は幼馴染みなの。だから、恋人として――」</txt>
         </tb>
@@ -345,12 +366,13 @@
         </pt>
         <pt>
             <pos>0</pos>
-            <id>aoi_uniform_raise_shout</id>
+            <id>pt_aoi_uniform_raise_shout</id>
             <md>new</md>
             <x>382</x>
             <y>-15</y>
         </pt>
         <tb>
+            <vc>vc_a01_2100220a02</vc>
             <char>＊＊＊＊</char>
             <txt>「はい」</txt>
         </tb>
@@ -362,24 +384,28 @@
     </content>
     <content id="48">
         <tb>
+            <vc>vc_a01_2100230a02</vc>
             <char>＊＊＊＊</char>
             <txt>「おさななじみキャラ」</txt>
         </tb>
     </content>
     <content id="49">
         <tb>
+            <vc>vc_a01_2100240a02</vc>
             <char>＊＊＊＊</char>
             <txt>「ホントのきもちわからない」</txt>
         </tb>
     </content>
     <content id="50">
         <tb>
+            <vc>vc_a01_2100250a02</vc>
             <char>＊＊＊＊</char>
             <txt>「ギャルゲーのおうどうなの」</txt>
         </tb>
     </content>
     <content id="51">
         <tb>
+            <vc>vc_a01_2100260a01</vc>
             <char>曽根美雪</char>
             <txt>「…………ギャルゲー？」</txt>
         </tb>
@@ -413,12 +439,13 @@
     <content id="56">
         <pt>
             <pos>0</pos>
-            <id>aoi_uniform_contact_normal</id>
+            <id>pt_aoi_uniform_contact_normal</id>
             <md>new</md>
             <x>376</x>
             <y>65</y>
         </pt>
         <tb>
+            <vc>vc_a01_2100270a02</vc>
             <char>＊＊＊＊</char>
             <txt>「どろぼう」</txt>
         </tb>
@@ -436,6 +463,7 @@
     </content>
     <content id="59">
         <tb>
+            <vc>vc_a01_2100280a02</vc>
             <char>＊＊＊＊</char>
             <txt>「おちてた？」</txt>
         </tb>
@@ -448,6 +476,7 @@
     </content>
     <content id="61">
         <tb>
+            <vc>vc_a01_2100290a02</vc>
             <char>＊＊＊＊</char>
             <txt>「…………」</txt>
         </tb>
@@ -459,12 +488,13 @@
         </pt>
         <pt>
             <pos>1</pos>
-            <id>aoi_uniform_normal_normal</id>
+            <id>pt_aoi_uniform_normal_normal</id>
             <md>new</md>
             <x>352</x>
             <y>56</y>
         </pt>
         <tb>
+            <vc>vc_a01_2100300a02</vc>
             <char>＊＊＊＊</char>
             <txt>「オンジンなの？」</txt>
         </tb>
@@ -482,12 +512,13 @@
         </pt>
         <pt>
             <pos>0</pos>
-            <id>aoi_uniform_raise_shout</id>
+            <id>pt_aoi_uniform_raise_shout</id>
             <md>new</md>
             <x>382</x>
             <y>-15</y>
         </pt>
         <tb>
+            <vc>vc_a01_2100310a02</vc>
             <char>＊＊＊＊</char>
             <txt>「おれいするの」</txt>
         </tb>
