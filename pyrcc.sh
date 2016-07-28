@@ -1,5 +1,6 @@
 #!/bin/bash
 
+pyrcc5 -o resources/background_music_resources.py resources/background_music_resources.qrc
 pyrcc5 -o resources/background_resources.py resources/background_resources.qrc
 pyrcc5 -o resources/event_resources.py resources/event_resources.qrc
 pyrcc5 -o resources/mask_resources.py resources/mask_resources.qrc

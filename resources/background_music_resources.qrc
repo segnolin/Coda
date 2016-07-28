@@ -1,0 +1,11 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/bgm">
+
+<!-- BACKGROUND MUSIC -->
+
+        <file alias="bgm_ttb01.mp3">background_music/bgm_ttb01.mp3</file>
+        <file alias="bgm_ttb12.mp3">background_music/bgm_ttb12.mp3</file>
+        <file alias="bgm_ttb27.mp3">background_music/bgm_ttb27.mp3</file>
+
+    </qresource>
+</RCC>

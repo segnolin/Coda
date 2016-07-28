@@ -1,6 +1,7 @@
 __pycache__/
 build/
 dist/
+resources/background_music_resources.py
 resources/background_resources.py
 resources/event_resources.py
 resources/mask_resources.py

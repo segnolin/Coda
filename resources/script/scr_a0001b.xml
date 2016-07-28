@@ -214,6 +214,11 @@
         </tb>
     </content>
     <content id="29">
+        <bgm>
+            <pos>0</pos>
+            <id>bgm_ttb01</id>
+            <md>new</md>
+        </bgm>
         <bg>
             <id>ev_0113_aoi_sending_e_l</id>
             <x>-500</x>
@@ -305,6 +310,11 @@
         </tb>
     </content>
     <content id="41">
+        <bgm>
+            <pos>0</pos>
+            <md>vol</md>
+            <vol>0</vol>
+        </bgm>
         <bg>
             <id>black</id>
         </bg>
@@ -332,6 +342,11 @@
         </tb>
     </content>
     <content id="44">
+        <bgm>
+            <pos>0</pos>
+            <md>vol</md>
+            <vol>80</vol>
+        </bgm>
         <bg>
             <id>ev_0113_aoi_riding_a</id>
         </bg>

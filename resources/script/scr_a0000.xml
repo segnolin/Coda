@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
     <content id="0">
+        <bgm>
+            <pos>0</pos>
+            <id>bgm_ttb27</id>
+            <md>new</md>
+        </bgm>
         <eff>
             <id>black_fade</id>
             <du>3500</du>
@@ -75,6 +80,10 @@
         </tb>
     </content>
     <content id="9">
+        <bgm>
+            <pos>0</pos>
+            <md>del</md>
+        </bgm>
         <tb>
             <txt>それは、まだわからないけれど。</txt>
             <hi>True</hi>

@@ -18,7 +18,11 @@ class Parser(QXmlStreamReader):
         self.script = script
         self.id = str(game_engine_id)
 
-        self.bgm_id = ''
+        self.bgm_pos = {}
+        self.bgm_id = {}
+        self.bgm_md = {}
+        self.bgm_vol = {}
+        self.bgm_num = 0
 
         self.sd_id = ''
 
@@ -103,11 +107,19 @@ class Parser(QXmlStreamReader):
 
     def parse_bgm(self):
 
-         while not self.atEnd():
+        self.bgm_num += 1
+
+        while not self.atEnd():
             self.readNext()
             if self.isStartElement():
-                if self.name() == 'id':
-                    self.bgm_id = self.readElementText()
+                if self.name() == 'pos':
+                    self.bgm_pos[self.bgm_num] = self.readElementText()
+                elif self.name() == 'id':
+                    self.bgm_id[self.bgm_num] = self.readElementText()
+                elif self.name() == 'vol':
+                    self.bgm_vol[self.bgm_num] = self.readElementText()
+                elif self.name() == 'md':
+                    self.bgm_md[self.bgm_num] = self.readElementText()
                 else:
                     self.readNext()
 

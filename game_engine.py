@@ -13,6 +13,7 @@ from letter_print import *
 from effect import *
 from mask import *
 from background import *
+from background_music import *
 from portrait import *
 from script_parser import *
 from voice import *
@@ -174,6 +175,9 @@ class GameEngine(QMainWindow):
 
         #set media
         self.voice = Voice()
+        self.background_music = {}
+        for i in range(2):
+            self.background_music[i] = BackgroundMusic()
 
         #set parser
         self.parser = Parser()
@@ -187,7 +191,11 @@ class GameEngine(QMainWindow):
 
         self.parser.parse(self.script, self.game_engine_id)
 
+        self.bgm_pos = self.parser.bgm_pos
         self.bgm_id = self.parser.bgm_id
+        self.bgm_md = self.parser.bgm_md
+        self.bgm_vol = self.parser.bgm_vol
+        self.bgm_num = self.parser.bgm_num
 
         self.sd_id = self.parser.sd_id
 
@@ -245,6 +253,9 @@ class GameEngine(QMainWindow):
     def init_background_music(self):
 
         print('init_background_music')
+
+        if int(self.bgm_num) != 0:
+            self.bgm_loop()
 
         self.init_sound()
 
@@ -366,6 +377,9 @@ class GameEngine(QMainWindow):
     def set_background_music(self):
 
         print('set_background_music')
+
+        if int(self.bgm_num) != 0:
+            self.post_bgm_loop()
 
         self.set_sound()
 
@@ -546,6 +560,7 @@ class GameEngine(QMainWindow):
     def pt_loop(self):
 
         for i in range(self.pt_num):
+
             if self.pt_md.get(i + 1) == 'new':
                 if self.pt_du.get(i + 1) != None:
                     self.portrait.get(int(self.pt_pos.get(i + 1))).create_mv_pt(self.pt_id.get(i + 1), int(self.pt_x.get(i + 1)), int(self.pt_y.get(i + 1)), int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
@@ -568,3 +583,21 @@ class GameEngine(QMainWindow):
                     self.portrait.get(int(self.pt_pos.get(i + 1))).delete_mv_pt(int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
                 else:
                     self.portrait.get(int(self.pt_pos.get(i + 1))).delete_pt()
+
+    def bgm_loop(self):
+
+        for i in range(self.bgm_num):
+
+            if self.bgm_md.get(i + 1) == 'new':
+                self.background_music.get(int(self.bgm_pos.get(i + 1))).play_music(self.bgm_id.get(i + 1))
+            elif self.bgm_md.get(i + 1) == 'vol':
+                self.background_music.get(int(self.bgm_pos.get(i + 1))).music_volume(int(self.bgm_vol.get(i + 1)))
+            elif self.bgm_md.get(i + 1) == 'del':
+                self.background_music.get(int(self.bgm_pos.get(i + 1))).stop_music()
+
+    def post_bgm_loop(self):
+
+        for i in range(int(self.bgm_num)):
+
+            if self.bgm_md.get(i + 1) == 'dell':
+                self.background_music.get(int(self.bgm_pos.get(i + 1))).stop_music()

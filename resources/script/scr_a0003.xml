@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
     <content id="0">
+        <bgm>
+            <pos>0</pos>
+            <md>del</md>
+        </bgm>
         <bg>
             <id>bg_010210_2_school_roof_root_l</id>
             <x>-920</x>
@@ -154,6 +158,11 @@
         </tb>
     </content>
     <content id="17">
+        <bgm>
+            <pos>0</pos>
+            <id>bgm_ttb12</id>
+            <md>new</md>
+        </bgm>
         <bg>
             <id>ev_0121_miyuki_hello_m</id>
             <x>-276</x>
