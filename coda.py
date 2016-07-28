@@ -73,7 +73,7 @@ class Coda(QMainWindow):
     def load_game_engine(self):
 
         #test
-        self.script = 'scr_a0001b'
+        self.script = 'scr_a0003'
         self.game_engine_id = 0
         self.start()
 

@@ -24,5 +24,9 @@
         <sys>
             <sc>scr_a0003</sc>
         </sys>
+        <bgm>
+            <pos>0</pos>
+            <md>dell</md>
+        </bgm>
     </content>
 </script>

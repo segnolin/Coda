@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
     <content id="0">
-        <bgm>
-            <pos>0</pos>
-            <md>del</md>
-        </bgm>
         <bg>
             <id>bg_010210_2_school_roof_root_l</id>
             <x>-920</x>
