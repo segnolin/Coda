@@ -5,18 +5,18 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-from image_button import *
-from select_button import *
-from fader import *
-from fader_widget import *
-from letter_print import *
-from effect import *
-from mask import *
-from background import *
-from background_music import *
-from portrait import *
-from script_parser import *
-from voice import *
+from coda.image_button import *
+from coda.select_button import *
+from coda.fader import *
+from coda.fader_widget import *
+from coda.letter_print import *
+from coda.effect import *
+from coda.mask import *
+from coda.background import *
+from coda.background_music import *
+from coda.portrait import *
+from coda.script_parser import *
+from coda.voice import *
 
 import sys
 import resources.system_resources

@@ -3,7 +3,7 @@
 
 from PyQt5.QtWidgets import *
 
-from coda import *
+from coda.coda import *
 
 import sys
 

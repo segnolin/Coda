@@ -5,12 +5,12 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-from intro_window import *
-from main_window import *
-from game_engine import *
-from load import *
-from image_button import *
-from fader import *
+from coda.intro_window import *
+from coda.main_window import *
+from coda.game_engine import *
+from coda.load import *
+from coda.image_button import *
+from coda.fader import *
 
 import sys
 

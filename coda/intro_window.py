@@ -5,8 +5,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-from fader import *
-from image_button import *
+from coda.fader import *
+from coda.image_button import *
 
 import sys
 import resources.background_resources
