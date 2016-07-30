@@ -1,0 +1,19 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/sd">
+
+<!-- SOUND -->
+
+        <file alias="sd_body_foot_school_stair_01.mp3">sound/sd_body_foot_school_stair_01.mp3</file>
+        <file alias="sd_body_shock.mp3">sound/sd_body_shock.mp3</file>
+        <file alias="sd_environ_roof_after_school_L.mp3">sound/sd_environ_roof_after_school_L.mp3</file>
+        <file alias="sd_environ_shock_electric.mp3">sound/sd_environ_shock_electric.mp3</file>
+        <file alias="sd_object_bat_wave.mp3">sound/sd_object_bat_wave.mp3</file>
+        <file alias="sd_object_door_metal_close_01.mp3">sound/sd_object_door_metal_close_01.mp3</file>
+        <file alias="sd_object_door_metal_open_02.mp3">sound/sd_object_door_metal_open_02.mp3</file>
+        <file alias="sd_object_door_open_01.mp3">sound/sd_object_door_open_01.mp3</file>
+        <file alias="sd_object_smartphone_fall_01.mp3">sound/sd_object_smartphone_fall_01.mp3</file>
+        <file alias="sd_object_smartphone_ring_01L.mp3">sound/sd_object_smartphone_ring_01L.mp3</file>
+        <file alias="sd_object_smartphone_transmit_standby_L.mp3">sound/sd_object_smartphone_transmit_standby_L.mp3</file>
+
+    </qresource>
+</RCC>
