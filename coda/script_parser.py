@@ -24,7 +24,13 @@ class Parser(QXmlStreamReader):
         self.bgm_vol = {}
         self.bgm_num = 0
 
-        self.sd_id = ''
+        self.sd_pos = {}
+        self.sd_id = {}
+        self.sd_md = {}
+        self.sd_lp = {}
+        self.sd_fd = {}
+        self.sd_dfd = {}
+        self.sd_num = 0
 
         self.eff_id = ''
         self.eff_du = ''
@@ -129,11 +135,23 @@ class Parser(QXmlStreamReader):
 
     def parse_sd(self):
 
-         while not self.atEnd():
+        self.sd_num += 1
+
+        while not self.atEnd():
             self.readNext()
             if self.isStartElement():
-                if self.name() == 'id':
-                    self.sd_id = self.readElementText()
+                if self.name() == 'pos':
+                    self.sd_pos[self.sd_num] = self.readElementText()
+                elif self.name() == 'id':
+                    self.sd_id[self.sd_num] = self.readElementText()
+                elif self.name() == 'md':
+                    self.sd_md[self.sd_num] = self.readElementText()
+                elif self.name() == 'lp':
+                    self.sd_lp[self.sd_num] = self.readElementText()
+                elif self.name() == 'fd':
+                    self.sd_fd[self.sd_num] = self.readElementText()
+                elif self.name() == 'dfd':
+                    self.sd_dfd[self.sd_num] = self.readElementText()
                 else:
                     self.readNext()
 

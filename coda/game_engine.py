@@ -16,6 +16,7 @@ from coda.background import *
 from coda.background_music import *
 from coda.portrait import *
 from coda.script_parser import *
+from coda.sound import *
 from coda.voice import *
 
 import sys
@@ -176,8 +177,11 @@ class GameEngine(QMainWindow):
         #set media
         self.voice = Voice()
         self.background_music = {}
+        self.sound = {}
         for i in range(2):
             self.background_music[i] = BackgroundMusic()
+        for i in range(3):
+            self.sound[i] = Sound()
 
         #set parser
         self.parser = Parser()
@@ -197,7 +201,13 @@ class GameEngine(QMainWindow):
         self.bgm_vol = self.parser.bgm_vol
         self.bgm_num = self.parser.bgm_num
 
+        self.sd_pos = self.parser.sd_pos
         self.sd_id = self.parser.sd_id
+        self.sd_md = self.parser.sd_md
+        self.sd_lp = self.parser.sd_lp
+        self.sd_fd = self.parser.sd_fd
+        self.sd_dfd = self.parser.sd_dfd
+        self.sd_num = self.parser.sd_num
 
         self.eff_id = self.parser.eff_id
         self.eff_du = self.parser.eff_du
@@ -262,6 +272,9 @@ class GameEngine(QMainWindow):
     def init_sound(self):
 
         print('init_sound')
+
+        if int(self.sd_num) != 0:
+            self.sd_loop()
 
         self.init_effect()
 
@@ -386,6 +399,9 @@ class GameEngine(QMainWindow):
     def set_sound(self):
 
         print('set_sound')
+
+        if int(self.sd_num) != 0:
+            self.post_sd_loop()
 
         self.set_text()
 
@@ -601,3 +617,19 @@ class GameEngine(QMainWindow):
 
             if self.bgm_md.get(i + 1) == 'dell':
                 self.background_music.get(int(self.bgm_pos.get(i + 1))).stop_music()
+
+    def sd_loop(self):
+
+        for i in range(self.sd_num):
+
+            if self.sd_md.get(i + 1) == 'new':
+                self.sound.get(int(self.sd_pos.get(i + 1))).play_sound(self.sd_id.get(i + 1), self.sd_lp.get(i + 1), self.sd_fd.get(i + 1))
+            elif self.sd_md.get(i + 1) == 'del':
+                self.sound.get(int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))
+
+    def post_sd_loop(self):
+
+        for i in range(int(self.sd_num)):
+
+            if self.sd_md.get(i + 1) == 'dell':
+                self.sound.get(int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))
