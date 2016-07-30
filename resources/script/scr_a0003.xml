@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
     <content id="0">
+        <sd>
+            <pos>0</pos>
+            <id>sd_object_door_metal_close_01</id>
+            <md>new</md>
+        </sd>
+        <sd>
+            <pos>1</pos>
+            <id>sd_object_door_metal_open_02</id>
+            <md>new</md>
+        </sd>
         <bg>
             <id>bg_010210_2_school_roof_root_l</id>
             <x>-920</x>
@@ -14,6 +24,11 @@
         </tb>
     </content>
     <content id="1">
+        <sd>
+            <pos>0</pos>
+            <id>sd_object_bat_wave</id>
+            <md>new</md>
+        </sd>
         <bg>
             <id>ev_0121_miyuki_assault_a_l</id>
             <x>-1000</x>
@@ -431,12 +446,22 @@
         </tb>
     </content>
     <content id="54">
+        <sd>
+            <pos>0</pos>
+            <id>sd_environ_shock_electric</id>
+            <md>new</md>
+        </sd>
         <tb>
             <char>須々木心一</char>
             <txt>「ぅわっ！」</txt>
         </tb>
     </content>
     <content id="55">
+        <sd>
+            <pos>0</pos>
+            <id>sd_object_smartphone_fall_01</id>
+            <md>new</md>
+        </sd>
         <tb>
             <txt>今のは静電気――か？</txt>
         </tb>

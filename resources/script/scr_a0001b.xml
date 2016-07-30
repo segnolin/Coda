@@ -69,6 +69,11 @@
             <txt>「――ん？」</txt>
             <hi>True</hi>
         </tb>
+        <sd>
+            <pos>2</pos>
+            <md>dell</md>
+            <dfd>True</dfd>
+        </sd>
     </content>
     <content id="12">
         <eff>
@@ -148,6 +153,13 @@
         </tb>
     </content>
     <content id="19">
+        <sd>
+            <pos>2</pos>
+            <id>sd_environ_roof_after_school_L</id>
+            <md>new</md>
+            <lp>True</lp>
+            <fd>True</fd>
+        </sd>
         <eff>
             <id>black_fade</id>
             <du>1500</du>
@@ -199,6 +211,11 @@
             <char>須々木心一</char>
             <txt>「知ってる……？」</txt>
         </tb>
+        <sd>
+            <pos>2</pos>
+            <md>dell</md>
+            <dfd>True</dfd>
+        </sd>
     </content>
     <content id="27">
         <tb>
@@ -327,9 +344,14 @@
         </tb>
     </content>
     <content id="42">
+        <sd>
+            <pos>0</pos>
+            <id>sd_body_shock</id>
+            <md>new</md>
+        </sd>
         <tb>
             <sh>True</sh>
-            <td>1500</td>
+            <td>1800</td>
             <char>須々木心一</char>
             <txt>「ん……つつつ……」</txt>
         </tb>

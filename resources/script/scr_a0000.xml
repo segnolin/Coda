@@ -6,6 +6,13 @@
             <id>bgm_ttb27</id>
             <md>new</md>
         </bgm>
+        <sd>
+            <pos>0</pos>
+            <id>sd_body_foot_school_stair_01</id>
+            <md>new</md>
+            <lp>True</lp>
+            <fd>True</fd>
+        </sd>
         <eff>
             <id>black_fade</id>
             <du>3500</du>
@@ -88,8 +95,25 @@
             <pos>0</pos>
             <md>dell</md>
         </bgm>
+        <sd>
+            <pos>0</pos>
+            <md>dell</md>
+            <dfd>True</dfd>
+        </sd>
     </content>
     <content id="10">
+        <sd>
+            <pos>1</pos>
+            <id>sd_object_door_open_01</id>
+            <md>new</md>
+        </sd>
+        <sd>
+            <pos>2</pos>
+            <id>sd_environ_roof_after_school_L</id>
+            <md>new</md>
+            <lp>True</lp>
+            <fd>True</fd>
+        </sd>
         <eff>
             <id>white_fade</id>
             <du>3500</du>
@@ -221,6 +245,12 @@
         </tb>
     </content>
     <content id="29">
+        <sd>
+            <pos>0</pos>
+            <id>sd_object_smartphone_ring_01L</id>
+            <md>new</md>
+            <lp>True</lp>
+        </sd>
         <tb>
             <sh>True</sh>
             <td>500</td>
@@ -286,6 +316,10 @@
         </tb>
     </content>
     <content id="36">
+        <sd>
+            <pos>0</pos>
+            <md>del</md>
+        </sd>
         <bg>
             <id>bg_010200_2_school_roof</id>
         </bg>

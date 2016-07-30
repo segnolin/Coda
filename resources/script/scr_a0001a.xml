@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
     <content id="0">
+        <sd>
+            <pos>0</pos>
+            <id>sd_object_smartphone_transmit_standby_L</id>
+            <md>new</md>
+        </sd>
         <tb>
             <sh>True</sh>
             <td>3000</td>
