@@ -100,20 +100,20 @@
             <md>dell</md>
             <dfd>True</dfd>
         </sd>
-    </content>
-    <content id="10">
         <sd>
             <pos>1</pos>
             <id>sd_object_door_open_01</id>
-            <md>new</md>
+            <md>newl</md>
         </sd>
         <sd>
             <pos>2</pos>
             <id>sd_environ_roof_after_school_L</id>
-            <md>new</md>
+            <md>newl</md>
             <lp>True</lp>
             <fd>True</fd>
         </sd>
+    </content>
+    <content id="10">
         <eff>
             <id>white_fade</id>
             <du>3500</du>

@@ -267,15 +267,6 @@ class GameEngine(QMainWindow):
         if int(self.bgm_num) != 0:
             self.bgm_loop()
 
-        self.init_sound()
-
-    def init_sound(self):
-
-        print('init_sound')
-
-        if int(self.sd_num) != 0:
-            self.sd_loop()
-
         self.init_effect()
 
     def init_effect(self):
@@ -297,9 +288,18 @@ class GameEngine(QMainWindow):
 
         else:
             self.effect_status = False
-            self.init_mask()
+            self.init_sound()
         
         self.init_status = False
+
+    def init_sound(self):
+
+        print('init_sound')
+
+        if int(self.sd_num) != 0:
+            self.sd_loop()
+
+        self.init_mask()
 
     def init_mask(self):
 
@@ -484,7 +484,7 @@ class GameEngine(QMainWindow):
         self.fader.fade(800)
 
         self.effect.hide()
-        self.init_mask()
+        self.init_sound()
 
     def show_text_box(self):
 
@@ -631,5 +631,7 @@ class GameEngine(QMainWindow):
 
         for i in range(int(self.sd_num)):
 
+            if self.sd_md.get(i + 1) == 'newl':
+                self.sound.get(int(self.sd_pos.get(i + 1))).play_sound(self.sd_id.get(i + 1), self.sd_lp.get(i + 1), self.sd_fd.get(i + 1))
             if self.sd_md.get(i + 1) == 'dell':
                 self.sound.get(int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))
