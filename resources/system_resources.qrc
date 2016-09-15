@@ -3,29 +3,11 @@
 
 <!-- SYSTEM -->
 
-    <!-- MAIN WINDOW -->
+    <!-- DOCUMENT -->
 
-        <file alias="main_background.png">system/main_window/main_background.png</file>
-
-        <file alias="main_start_button_defaults.png">system/main_window/main_start_button_defaults.png</file>
-        <file alias="main_start_button_hover.png">system/main_window/main_start_button_hover.png</file>
-        <file alias="main_start_button_press.png">system/main_window/main_start_button_press.png</file>
-
-        <file alias="main_load_button_defaults.png">system/main_window/main_load_button_defaults.png</file>
-        <file alias="main_load_button_hover.png">system/main_window/main_load_button_hover.png</file>
-        <file alias="main_load_button_press.png">system/main_window/main_load_button_press.png</file>
-
-        <file alias="main_extra_button_defaults.png">system/main_window/main_extra_button_defaults.png</file>
-        <file alias="main_extra_button_hover.png">system/main_window/main_extra_button_hover.png</file>
-        <file alias="main_extra_button_press.png">system/main_window/main_extra_button_press.png</file>
-
-        <file alias="main_config_button_defaults.png">system/main_window/main_config_button_defaults.png</file>
-        <file alias="main_config_button_hover.png">system/main_window/main_config_button_hover.png</file>
-        <file alias="main_config_button_press.png">system/main_window/main_config_button_press.png</file>
-
-        <file alias="main_quit_button_defaults.png">system/main_window/main_quit_button_defaults.png</file>
-        <file alias="main_quit_button_hover.png">system/main_window/main_quit_button_hover.png</file>
-        <file alias="main_quit_button_press.png">system/main_window/main_quit_button_press.png</file>
+        <file alias="config.xml">system/document/config.xml</file>
+        <file alias="extra_data.xml">system/document/extra_data.xml</file>
+        <file alias="save_data.xml">system/document/save_data.xml</file>
 
     <!-- GAME ENGINE -->
 
@@ -86,9 +68,34 @@
     <!-- INTRO -->
 
         <file alias="intro_background.png">system/intro/intro_background.png</file>
+
     <!-- LOAD -->
 
         <file alias="load_background.png">system/load/load_background.png</file>
+
+    <!-- MAIN WINDOW -->
+
+        <file alias="main_background.png">system/main_window/main_background.png</file>
+
+        <file alias="main_start_button_defaults.png">system/main_window/main_start_button_defaults.png</file>
+        <file alias="main_start_button_hover.png">system/main_window/main_start_button_hover.png</file>
+        <file alias="main_start_button_press.png">system/main_window/main_start_button_press.png</file>
+
+        <file alias="main_load_button_defaults.png">system/main_window/main_load_button_defaults.png</file>
+        <file alias="main_load_button_hover.png">system/main_window/main_load_button_hover.png</file>
+        <file alias="main_load_button_press.png">system/main_window/main_load_button_press.png</file>
+
+        <file alias="main_extra_button_defaults.png">system/main_window/main_extra_button_defaults.png</file>
+        <file alias="main_extra_button_hover.png">system/main_window/main_extra_button_hover.png</file>
+        <file alias="main_extra_button_press.png">system/main_window/main_extra_button_press.png</file>
+
+        <file alias="main_config_button_defaults.png">system/main_window/main_config_button_defaults.png</file>
+        <file alias="main_config_button_hover.png">system/main_window/main_config_button_hover.png</file>
+        <file alias="main_config_button_press.png">system/main_window/main_config_button_press.png</file>
+
+        <file alias="main_quit_button_defaults.png">system/main_window/main_quit_button_defaults.png</file>
+        <file alias="main_quit_button_hover.png">system/main_window/main_quit_button_hover.png</file>
+        <file alias="main_quit_button_press.png">system/main_window/main_quit_button_press.png</file>
 
     </qresource>
 </RCC>

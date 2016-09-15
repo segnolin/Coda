@@ -245,6 +245,8 @@ class GameEngine(QMainWindow):
 
         self.sys_sc = self.parser.sys_sc
 
+        self.save_data()
+
         if self.sys_sc != '':
             self.script = self.sys_sc
             self.game_engine_id = -1
@@ -253,7 +255,7 @@ class GameEngine(QMainWindow):
         else:
             if self.init_status:
                 self.eff_id = 'black_fade'
-                self.eff_du = '3000'
+                self.eff_du = '2000'
                 self.tb_sh = True
                 if self.tb_td == '':
                     self.tb_td = 1000
@@ -266,6 +268,10 @@ class GameEngine(QMainWindow):
 
         if int(self.bgm_num) != 0:
             self.bgm_loop()
+
+        for i in self.background_music:
+            if self.background_music.get(i) != None:
+                print('self.background_music[{0}]: '.format(i) + self.background_music.get(i).background_music_id)
 
         self.init_effect()
 
@@ -635,3 +641,61 @@ class GameEngine(QMainWindow):
                 self.sound.get(int(self.sd_pos.get(i + 1))).play_sound(self.sd_id.get(i + 1), self.sd_lp.get(i + 1), self.sd_fd.get(i + 1))
             if self.sd_md.get(i + 1) == 'dell':
                 self.sound.get(int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))
+
+    def save_data(self):
+
+        pass
+        '''
+        self.curr_script = self.script
+        self.curr_game_engine_id = self.game_engine_id
+
+        self.curr_bgm_pos = self.bgm_pos
+        self.curr_bgm_id = self.bgm_id
+        self.curr_bgm_md = self.bgm_md
+        self.curr_bgm_vol = self.bgm_vol
+        self.curr_bgm_num = self.bgm_num
+
+        self.curr_sd_pos = self.sd_pos
+        self.curr_sd_id = self.sd_id
+        self.curr_sd_md = self.sd_md
+        self.curr_sd_lp = self.sd_lp
+        self.curr_sd_fd = self.sd_fd
+        self.curr_sd_dfd = self.sd_dfd
+        self.curr_sd_num = self.sd_num
+
+        self.curr_eff_id = self.eff_id
+        self.curr_eff_du = self.eff_du
+
+        self.curr_mk_id = self.mk_id
+        self.curr_mk_md = self.mk_md
+
+        self.curr_bg_id = self.bg_id
+        self.curr_bg_x = self.bg_x
+        self.curr_bg_y = self.bg_y
+        self.curr_bg_xf = self.bg_xf
+        self.curr_bg_yf = self.bg_yf
+        self.curr_bg_du = self.bg_du
+
+        self.curr_pt_pos = self.pt_pos
+        self.curr_pt_id = self.pt_id
+        self.curr_pt_md = self.pt_md
+        self.curr_pt_x = self.pt_x
+        self.curr_pt_y = self.pt_y
+        self.curr_pt_xf = self.pt_xf
+        self.curr_pt_yf = self.pt_yf
+        self.curr_pt_du = self.pt_du
+        self.curr_pt_num = self.pt_num
+
+        self.curr_tb_sh = self.tb_sh
+        self.curr_tb_td = self.tb_td
+        self.curr_tb_vc = self.tb_vc
+        self.curr_tb_char = self.tb_char
+        self.curr_tb_txt = self.tb_txt
+        self.curr_tb_hi = self.tb_hi
+
+        self.curr_sl_txt = self.sl_txt
+        self.curr_sl_sc = self.sl_sc
+        self.curr_sl_num = self.sl_num
+
+        self.curr_sys_sc = self.sys_sc
+        '''

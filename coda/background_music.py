@@ -17,6 +17,7 @@ class BackgroundMusic(QMediaPlayer):
         self.playlist = QMediaPlaylist()
         self.anime = QVariantAnimation()
         self.vol_anime = QVariantAnimation()
+        self.background_music_id = ''
 
     def play_music(self, background_music_id):
 
@@ -47,9 +48,10 @@ class BackgroundMusic(QMediaPlayer):
     def fade_vol(self, value):
 
         self.setVolume(self.current_volume - self.delta_volume * value)
-        print(self.volume())
 
     def stop_music(self):
+
+        self.background_music_id = ''
 
         self.anime.stop()
         self.anime.setEasingCurve(QEasingCurve.OutSine)
