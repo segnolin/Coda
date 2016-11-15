@@ -1,6 +1,7 @@
 __pycache__/
 build/
 dist/
+pyinstaller/
 resources/background_music_resources.py
 resources/background_resources.py
 resources/event_resources.py
