@@ -28,7 +28,7 @@ class LetterPrint(QLabel):
 
         self.index += 1
         self.setText(self.txt[:self.index])
-        self.repaint()
+        self.update()
 
         if self.index > len(self.txt):
             self.timer.stop()

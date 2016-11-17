@@ -11,7 +11,6 @@ from coda.game_engine import *
 from coda.load import *
 from coda.image_button import *
 from coda.fader import *
-from coda.drag_label import *
 
 import sys
 
@@ -30,8 +29,7 @@ class Coda(QMainWindow):
         self.game_engine_id = 0
         self.status = 'main'
 
-        #self.setWindowTitle('Coda')
-        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setWindowTitle('Coda')
         self.setFixedSize(1024, 576)
 
         #create intro window layout
@@ -52,13 +50,9 @@ class Coda(QMainWindow):
         QTimer.singleShot(3000, self.go_to_main)
 
         #set the central widget to display the layout
-        self.central_widget = QOpenGLWidget()
+        self.central_widget = QWidget()
         self.central_widget.setLayout(self.stacked_layout)
         self.setCentralWidget(self.central_widget)
-
-        #set draggable label
-        self.drag_label = DragLabel(self)
-        self.drag_label.setGeometry(0, 0, 1024, 24)
 
         #connection
         self.main_window.main_start_button.clicked.connect(self.start)

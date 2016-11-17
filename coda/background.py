@@ -34,7 +34,7 @@ class Background(QLabel):
         self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
 
-        self.repaint()
+        self.update()
 
     def create_mv_bg(self, background_id, posx, posy, posxf, posyf, duration):
 
@@ -70,7 +70,7 @@ class Background(QLabel):
 
         self.x = self.posx + self.dx  * value
         self.y = self.posy + self.dy  * value
-        self.repaint()
+        self.update()
 
     def paintEvent(self, event):
 

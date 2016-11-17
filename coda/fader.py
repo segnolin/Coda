@@ -49,7 +49,7 @@ class Fader(QWidget):
     def animate(self, value):
 
         self.pixmap_opacity = value
-        self.repaint()
+        self.update()
 
     def closeEvent(self, event):
 

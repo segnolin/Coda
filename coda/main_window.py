@@ -19,7 +19,7 @@ class MainWindow(QMainWindow):
     def create_main_window_layout(self):
 
         #set QWidget class
-        self.main_window_widget = QOpenGLWidget()
+        self.main_window_widget = QWidget()
 
         #set background picture by QLabel
         self.main_background_pixmap = QPixmap(':/sys/main_background.png')

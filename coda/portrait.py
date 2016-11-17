@@ -80,7 +80,7 @@ class Portrait(QLabel):
         self.x = self.posx + self.dx * value
         self.y = self.posy + self.dy * value
         self.opacity = value
-        self.repaint()
+        self.update()
 
     def move_pt(self, posxf, posyf, duration):
 
@@ -105,7 +105,7 @@ class Portrait(QLabel):
 
         self.x = self.posx + self.dx * value
         self.y = self.posy + self.dy * value
-        self.repaint()
+        self.update()
 
     def delete_pt(self):
 
@@ -144,7 +144,7 @@ class Portrait(QLabel):
         self.x = self.posx + self.dx *  value
         self.y = self.posy + self.dy *  value
         self.opacity = 1 - value
-        self.repaint()
+        self.update()
 
     def paintEvent(self, event):
 
