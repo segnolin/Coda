@@ -38,7 +38,7 @@ class IntroWindow(QMainWindow):
         self.fader = Fader(self.intro_window_widget, self.intro_window_widget)
         self.fader.fade(500)
 
-        self.intro_background_pixmap = QPixmap(':/bg/black.png')
+        self.intro_background_pixmap = QPixmap(':/bg/white.png')
         self.intro_background_pixmap = self.intro_background_pixmap.scaledToHeight((self.intro_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
         self.intro_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
         self.intro_background.setPixmap(self.intro_background_pixmap)

@@ -47,7 +47,7 @@ class Coda(QMainWindow):
 
         #set stack to show
         self.stacked_layout.setCurrentWidget(self.intro_window.intro_window_widget)
-        QTimer.singleShot(3000, self.go_to_main)
+        QTimer.singleShot(3500, self.go_to_main)
 
         #set the central widget to display the layout
         self.central_widget = QWidget()
