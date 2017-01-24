@@ -1,12 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-
-import sys
 import resources.script_resources
+
+from PyQt5.QtCore import *
 
 class Parser(QXmlStreamReader):
 
@@ -14,9 +11,6 @@ class Parser(QXmlStreamReader):
         super().__init__()
 
     def parse(self, script, game_engine_id):
-
-        self.script = script
-        self.id = str(game_engine_id)
 
         self.bgm_pos = {}
         self.bgm_id = {}
@@ -68,7 +62,7 @@ class Parser(QXmlStreamReader):
 
         self.sys_sc = ''
 
-        self.file = QFile(':/scr/{0}.xml'.format(self.script))
+        self.file = QFile(':/scr/{0}.xml'.format(script))
         self.file.open(QIODevice.ReadOnly)
         self.setDevice(self.file)
 
@@ -76,42 +70,41 @@ class Parser(QXmlStreamReader):
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'content':
-                    if self.attributes().value('id') == self.id:
-                        self.parse_xml()
+                    if self.attributes().value('id') == str(game_engine_id):
+                        self._parse_xml()
                         break
 
-    def parse_xml(self):
+    def _parse_xml(self):
 
         while not self.atEnd():
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'bgm':
-                    self.parse_bgm()
+                    self._parse_bgm()
                 elif self.name() == 'sd':
-                    self.parse_sd()
+                    self._parse_sd()
                 elif self.name() == 'eff':
-                    self.parse_eff()
+                    self._parse_eff()
                 elif self.name() == 'mk':
-                    self.parse_mk()
+                    self._parse_mk()
                 elif self.name() == 'bg':
-                    self.parse_bg()
+                    self._parse_bg()
                 elif self.name() == 'pt':
-                    self.parse_pt()
+                    self._parse_pt()
                 elif self.name() == 'tb':
-                    self.parse_tb()
+                    self._parse_tb()
                 elif self.name() == 'sl':
-                    self.parse_sl()
+                    self._parse_sl()
                 elif self.name() == 'sys':
-                    self.parse_sys()
+                    self._parse_sys()
                 else:
-                    self.readNext()
+                    self._readNext()
 
             if self.isEndElement():
                 if self.name() == 'content':
-                    #print('break content')
                     break
 
-    def parse_bgm(self):
+    def _parse_bgm(self):
 
         self.bgm_num += 1
 
@@ -133,7 +126,7 @@ class Parser(QXmlStreamReader):
                 if self.name() == 'bgm':
                     break
 
-    def parse_sd(self):
+    def _parse_sd(self):
 
         self.sd_num += 1
 
@@ -159,7 +152,7 @@ class Parser(QXmlStreamReader):
                 if self.name() == 'sd':
                     break
 
-    def parse_eff(self):
+    def _parse_eff(self):
 
         while not self.atEnd():
             self.readNext()
@@ -175,7 +168,7 @@ class Parser(QXmlStreamReader):
                 if self.name() == 'eff':
                     break
 
-    def parse_mk(self):
+    def _parse_mk(self):
 
         while not self.atEnd():
             self.readNext()
@@ -191,7 +184,7 @@ class Parser(QXmlStreamReader):
                 if self.name() == 'mk':
                     break
 
-    def parse_bg(self):
+    def _parse_bg(self):
 
         while not self.atEnd():
             self.readNext()
@@ -215,7 +208,7 @@ class Parser(QXmlStreamReader):
                 if self.name() == 'bg':
                     break
 
-    def parse_pt(self):
+    def _parse_pt(self):
 
         self.pt_num += 1
 
@@ -245,7 +238,7 @@ class Parser(QXmlStreamReader):
                 if self.name() == 'pt':
                     break
 
-    def parse_tb(self):
+    def _parse_tb(self):
 
         while not self.atEnd():
             self.readNext()
@@ -269,7 +262,7 @@ class Parser(QXmlStreamReader):
                 if self.name() == 'tb':
                     break
 
-    def parse_sl(self):
+    def _parse_sl(self):
 
         self.sl_num += 1
 
@@ -287,7 +280,7 @@ class Parser(QXmlStreamReader):
                 if self.name() == 'sl':
                     break
 
-    def parse_sys(self):
+    def _parse_sys(self):
 
         while not self.atEnd():
             self.readNext()

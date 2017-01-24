@@ -1,9 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+import resources.system_resources
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from PyQt5.QtCore import *
 
 from coda.image_button import *
 from coda.select_button import *
@@ -19,20 +20,15 @@ from coda.script_parser import *
 from coda.sound import *
 from coda.voice import *
 
-import sys
-import resources.system_resources
-
 class GameEngine(QMainWindow):
     '''this class creates game engine layout and functions'''
 
     def __init__(self):
         super().__init__()
 
-    def create_game_engine_layout(self, script, game_engine_id):
+        self._pixel_ratio = QWindow().devicePixelRatio()
 
-        self.script = script
-        self.game_engine_id = game_engine_id
-        print(self.game_engine_id)
+    def create_game_engine_layout(self):
 
         #set game status
         self.init_status = True
@@ -71,8 +67,10 @@ class GameEngine(QMainWindow):
         #create select layout
         #create select label
         self.select_background_pixmap = QPixmap(':/sys/select_background.png')
-        self.select_background_pixmap = self.select_background_pixmap.scaledToHeight((self.select_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
-        self.select_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
+        self.select_background_pixmap = self.select_background_pixmap.scaledToHeight(
+                self.select_background_pixmap.height() * self._pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        self.select_background_pixmap.setDevicePixelRatio(self._pixel_ratio)
         self.select_background_label = QLabel(self.select_widget)
         self.select_background_label.setPixmap(self.select_background_pixmap)
         self.select_background_label.setGeometry(0, 0, 1024, 576)
@@ -83,8 +81,10 @@ class GameEngine(QMainWindow):
         #create text box layout
         #create text background label
         self.text_background_pixmap = QPixmap(':/sys/text_background.png')
-        self.text_background_pixmap = self.text_background_pixmap.scaledToHeight((self.text_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
-        self.text_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
+        self.text_background_pixmap = self.text_background_pixmap.scaledToHeight(
+                self.text_background_pixmap.height() * self._pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        self.text_background_pixmap.setDevicePixelRatio(self._pixel_ratio)
         self.text_background_label = QLabel(self.text_box_widget)
         self.text_background_label.setPixmap(self.text_background_pixmap)
         self.text_background_label.setGeometry(0, 396, 1024, 180)
@@ -93,14 +93,20 @@ class GameEngine(QMainWindow):
         self.text_character_label = QLabel(self.text_box_widget)
         self.text_character_label.setAlignment(Qt.AlignLeft)
         self.text_character_label.setGeometry(150, 446, 660, 30)
-        self.text_character_label.setStyleSheet('QLabel {color: rgba(0, 0, 0, 100%)}')
-        self.text_character_label.setStyleSheet('QLabel {font-family: Times New Roman; font-size: 20px; font-weight: Bold; color: rgba(0, 0, 0, 100%)}')
+        self.text_character_label.setStyleSheet(
+                'QLabel {color: rgba(0, 0, 0, 100%)}')
+        self.text_character_label.setStyleSheet(
+                'QLabel {font-family: Times New Roman;'
+                'font-size: 20px; font-weight: Bold;'
+                'color: rgba(0, 0, 0, 100%)}')
 
         #set the text box label
         self.text_box_label = LetterPrint(self.text_box_widget)
         self.text_box_label.setAlignment(Qt.AlignLeft)
         self.text_box_label.setGeometry(160, 486, 650, 75)
-        self.text_box_label.setStyleSheet('QLabel {font-family: Times New Roman; font-size: 18px; color: rgba(0, 0, 0, 100%)}')
+        self.text_box_label.setStyleSheet(
+                'QLabel {font-family: Times New Roman;'
+                'font-size: 18px; color: rgba(0, 0, 0, 100%)}')
         self.text_box_label.setWordWrap(True)
 
         #create transparent label to add game engine id(next)
@@ -138,8 +144,10 @@ class GameEngine(QMainWindow):
         #create menu layout
         #create menu background
         self.menu_background_pixmap = QPixmap(':/sys/menu_background.png')
-        self.menu_background_pixmap = self.menu_background_pixmap.scaledToHeight((self.menu_background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
-        self.menu_background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
+        self.menu_background_pixmap = self.menu_background_pixmap.scaledToHeight(
+                self.menu_background_pixmap.height() * self._pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        self.menu_background_pixmap.setDevicePixelRatio(self._pixel_ratio)
         self.menu_background_label = QLabel(self.menu_widget)
         self.menu_background_label.setPixmap(self.menu_background_pixmap)
         self.menu_background_label.setGeometry(0, 0, 1024, 576)
@@ -168,11 +176,11 @@ class GameEngine(QMainWindow):
         self.effect.hide()
 
         #connection
-        self.back_button.clicked.connect(self.hide_menu)
-        self.menu_button.clicked.connect(self.show_menu)
-        self.hide_button.clicked.connect(self.hide_widget)
-        self.disable_hide_label.mousePressEvent = self.show_widget
-        self.next_label.mousePressEvent = self.update_engine
+        self.back_button.clicked.connect(self._hide_menu)
+        self.menu_button.clicked.connect(self._show_menu)
+        self.hide_button.clicked.connect(self._hide_widget)
+        self.disable_hide_label.mousePressEvent = self._show_widget
+        self.next_label.mousePressEvent = self._update_engine
 
         #set media
         self.voice = Voice()
@@ -185,13 +193,321 @@ class GameEngine(QMainWindow):
 
         #set parser
         self.parser = Parser()
-        self.init_parser()
 
-    ################################################## MAIN PROGRAM START ##################################################
+    ############################## MAIN PROGRAM START ##############################
 
-    def init_parser(self):
+    def start_game(self, script, game_engine_id):
+
+        self.script = script
+        self.game_engine_id = game_engine_id
+        self._init_parser()
+
+    def _init_parser(self):
 
         print('init_parser')
+
+        self._parse_script()
+        self._save_data()
+
+        if self.sys_sc != '':
+            self.script = self.sys_sc
+            self.game_engine_id = -1
+        if int(self.sl_num) != 0:
+            self._selection()
+        else:
+            if self.init_status:
+                self.eff_id = 'black_fade'
+                self.eff_du = '2000'
+                self.tb_sh = True
+                if self.tb_td == '':
+                    self.tb_td = 1000
+                self._pre_process()
+            self._init_background_music()
+
+    def _init_background_music(self):
+
+        print('init_background_music')
+
+        if int(self.bgm_num) != 0:
+            self._pre_bgm_loop()
+
+        self._init_effect()
+
+    def _init_effect(self):
+
+        print('init_effect')
+
+        if self.eff_id != '':
+
+            self.background.anime.stop()
+            self.next_label.hide()
+
+            if not self.init_status:
+                self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+                self.fader.fade(800)
+
+            self.effect.show()
+            self.effect.create(self.eff_id)
+            QTimer.singleShot(int(self.eff_du), self._hide_effect)
+
+        else:
+            self.effect_status = False
+            self._init_sound()
+        
+        self.init_status = False
+
+    def _init_sound(self):
+
+        print('init_sound')
+
+        if int(self.sd_num) != 0:
+            self._pre_sd_loop()
+
+        self._init_mask()
+
+    def _init_mask(self):
+
+        print('init_mask')
+
+        if self.mk_md == 'new':
+            self.mask_label.set_mask(self.mk_id)
+        elif self.mk_md == 'del':
+            self.mask_label.delete_mask()
+
+        self._init_background()
+
+    def _init_background(self):
+
+        print('init_background')
+
+        if self.bg_id != '':
+
+            if not self.effect_status:
+                self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+                self.fader.fade(800)
+
+            if self.bg_du != '':
+                if self.eff_du == '' and self.tb_sh != '':
+                    self._pre_process()
+                self.background.create_mv_bg(self.bg_id,
+                        int(self.bg_x), int(self.bg_y),
+                        int(self.bg_xf), int(self.bg_yf),
+                        int(self.bg_du))
+            else:
+                if self.bg_x == '':
+                    self.bg_x = 0
+                if self.bg_y == '':
+                    self.bg_y = 0
+                self.background.create_bg(self.bg_id,
+                        int(self.bg_x), int(self.bg_y))
+
+        self._init_portrait()
+
+    def _init_portrait(self):
+
+        print('init_portrait')
+
+        if int(self.pt_num) != 0:
+            self._pre_pt_loop()
+
+        self._init_text_box()
+
+    def _init_text_box(self):
+
+        print('init_text_box')
+
+        self.text_character_label.clear()
+        self.text_box_label.clear()
+
+        if self.tb_sh != '':
+            self._show_text_box()
+
+        else:
+            self._init_voice()
+
+    def _init_voice(self):
+
+        print('init_voice')
+
+        if self.tb_vc != '':
+            self.voice.play_voice(self.tb_vc)
+
+        self._init_text()
+
+    def _init_text(self):
+
+        print('init_text')
+
+        self.text_character_label.setText(self.tb_char)
+        self.text_box_label.set_verbatim_text(self.tb_txt)
+
+    def _update_engine(self, event):
+
+        if self.text_box_label.index < len(self.tb_txt):
+            self.text_box_label.setText(self.tb_txt)
+            self.text_box_label.index = len(self.tb_txt)
+
+        else:
+            print('update_engine')
+
+            self.game_engine_id += 1
+            print(self.game_engine_id)
+
+            self._set_background_music()
+
+    def _set_background_music(self):
+
+        print('set_background_music')
+
+        if int(self.bgm_num) != 0:
+            self._post_bgm_loop()
+
+        self._set_sound()
+
+    def _set_sound(self):
+
+        print('set_sound')
+
+        if int(self.sd_num) != 0:
+            self._post_sd_loop()
+
+        self._set_text()
+
+    def _set_text(self):
+
+        print('set_text')
+
+        self.text_character_label.clear()
+        self.text_box_label.clear()
+
+        self._set_portrait()
+
+    def _set_portrait(self):
+
+        print('set_portrait')
+
+        if int(self.pt_num) != 0:
+            self._post_pt_loop()
+
+        self._set_text_box()
+
+    def _set_text_box(self):
+
+        print('set_text_box')
+
+        if self.tb_hi != '':
+            self._hide_text_box()
+
+        else:
+            self._init_parser()
+
+    ############################## MAIN PROGRAM END ##############################
+
+    #widget utilities
+    def _hide_menu(self):
+
+        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        self.fader.fade(250)
+        self.menu_widget.hide()
+        self.text_box_widget.show()
+
+    def _show_menu(self):
+
+        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        self.fader.fade(250)
+        self.menu_widget.show()
+        self.text_box_widget.hide()
+
+    def _hide_widget(self):
+
+        self.hide_button.setEnabled(False)
+        self.fader_widget = FaderWidget(self.text_box_widget, 1.0)
+        self.fader_widget.hide(250)
+        self.fader_widget.anime.finished.connect(self._finish_hide_widget)
+
+    def _finish_hide_widget(self):
+
+        self.text_box_widget.hide()
+        self.disable_hide_label.show()
+
+    def _show_widget(self, event):
+
+        self.text_box_widget.show()
+        self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
+        self.fader_widget.show(250)
+        self.fader_widget.anime.finished.connect(self._finish_show_widget)
+
+    def _finish_show_widget(self):
+
+        self.disable_hide_label.hide()
+        self.hide_button.setEnabled(True)
+
+    def _hide_effect(self):
+
+        self.effect_status = True
+        self.next_label.show()
+        self.text_box_label.clear()
+        self.text_character_label.clear()
+
+        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        self.fader.fade(800)
+
+        self.effect.hide()
+        self._init_sound()
+
+    def _show_text_box(self):
+
+        self.next_label.hide()
+        self.hide_button.setEnabled(False)
+
+        if self.tb_td != '':
+            QTimer.singleShot(int(self.tb_td), self._delay_show_text_box)
+
+        else:
+            self.text_box_widget.show()
+            self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
+            self.fader_widget.show(400)
+            self.fader_widget.anime.finished.connect(self._finish_show_text_box)
+
+    def _delay_show_text_box(self):
+
+        self.text_box_widget.show()
+        self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
+        self.fader_widget.show(400)
+        self.fader_widget.anime.finished.connect(self._finish_show_text_box)
+
+    def _finish_show_text_box(self):
+
+        self.disable_hide_label.hide()
+        self.next_label.show()
+        self.hide_button.setEnabled(True)
+        self._init_voice()
+
+    def _hide_text_box(self):
+
+        self.next_label.hide()
+        self.disable_hide_label.hide()
+        self.hide_button.setEnabled(False)
+        self.fader_widget = FaderWidget(self.text_box_widget, 1.0)
+        self.fader_widget.hide(400)
+        self.fader_widget.anime.finished.connect(self._finsh_hide_text_box)
+
+    def _finsh_hide_text_box(self):
+
+        self.next_label.show()
+        self.text_box_widget.hide()
+        self._init_parser()
+
+    def _pre_process(self):
+
+        self.pre_effect = QGraphicsOpacityEffect()
+        self.pre_effect.setOpacity(0.000001)
+        self.text_box_widget.setGraphicsEffect(self.pre_effect)
+        self.text_box_widget.show()
+        self.text_box_label.setText('     ')
+
+    #main program functions
+    def _parse_script(self):
 
         self.parser.parse(self.script, self.game_engine_id)
 
@@ -245,305 +561,11 @@ class GameEngine(QMainWindow):
 
         self.sys_sc = self.parser.sys_sc
 
-        self.save_data()
+    def _save_data(self):
 
-        if self.sys_sc != '':
-            self.script = self.sys_sc
-            self.game_engine_id = -1
-        if int(self.sl_num) != 0:
-            self.selection()
-        else:
-            if self.init_status:
-                self.eff_id = 'black_fade'
-                self.eff_du = '2000'
-                self.tb_sh = True
-                if self.tb_td == '':
-                    self.tb_td = 1000
-                self.pre_process()
-            self.init_background_music()
+        pass
 
-    def init_background_music(self):
-
-        print('init_background_music')
-
-        if int(self.bgm_num) != 0:
-            self.bgm_loop()
-
-        for i in self.background_music:
-            if self.background_music.get(i) != None:
-                print('self.background_music[{0}]: '.format(i) + self.background_music.get(i).background_music_id)
-
-        self.init_effect()
-
-    def init_effect(self):
-
-        print('init_effect')
-
-        if self.eff_id != '':
-
-            self.background.anime.stop()
-            self.next_label.hide()
-
-            if not self.init_status:
-                self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-                self.fader.fade(800)
-
-            self.effect.show()
-            self.effect.create(self.eff_id)
-            QTimer.singleShot(int(self.eff_du), self.hide_effect)
-
-        else:
-            self.effect_status = False
-            self.init_sound()
-        
-        self.init_status = False
-
-    def init_sound(self):
-
-        print('init_sound')
-
-        if int(self.sd_num) != 0:
-            self.sd_loop()
-
-        self.init_mask()
-
-    def init_mask(self):
-
-        print('init_mask')
-
-        if self.mk_md == 'new':
-            self.mask_label.set_mask(self.mk_id)
-        elif self.mk_md == 'del':
-            self.mask_label.set_delete()
-
-        self.init_background()
-
-    def init_background(self):
-
-        print('init_background')
-
-        if self.bg_id != '':
-
-            if not self.effect_status:
-                self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-                self.fader.fade(800)
-
-            if self.bg_du != '':
-                if self.eff_du == '' and self.tb_sh != '':
-                    self.pre_process()
-                self.background.create_mv_bg(self.bg_id, int(self.bg_x), int(self.bg_y), int(self.bg_xf), int(self.bg_yf), int(self.bg_du))
-            else:
-                if self.bg_x == '':
-                    self.bg_x = 0
-                if self.bg_y == '':
-                    self.bg_y = 0
-                self.background.create_bg(self.bg_id, int(self.bg_x), int(self.bg_y))
-
-        self.init_portrait()
-
-    def init_portrait(self):
-
-        print('init_portrait')
-
-        if int(self.pt_num) != 0:
-            self.pt_loop()
-
-        self.init_text_box()
-
-    def init_text_box(self):
-
-        print('init_text_box')
-
-        self.text_character_label.clear()
-        self.text_box_label.clear()
-
-        if self.tb_sh != '':
-            self.show_text_box()
-
-        else:
-            self.init_voice()
-
-    def init_voice(self):
-
-        print('init_voice')
-
-        if self.tb_vc != '':
-            self.voice.play_voice(self.tb_vc)
-
-        self.init_text()
-
-    def init_text(self):
-
-        print('init_text')
-
-        self.text_character_label.setText(self.tb_char)
-        self.text_box_label.set_text(self.tb_txt)
-
-    def update_engine(self, event):
-
-        if self.text_box_label.index < len(self.tb_txt):
-            self.text_box_label.setText(self.tb_txt)
-            self.text_box_label.index = len(self.tb_txt)
-
-        else:
-            print('update_engine')
-
-            self.game_engine_id += 1
-            print(self.game_engine_id)
-
-            self.set_background_music()
-
-    def set_background_music(self):
-
-        print('set_background_music')
-
-        if int(self.bgm_num) != 0:
-            self.post_bgm_loop()
-
-        self.set_sound()
-
-    def set_sound(self):
-
-        print('set_sound')
-
-        if int(self.sd_num) != 0:
-            self.post_sd_loop()
-
-        self.set_text()
-
-    def set_text(self):
-
-        print('set_text')
-
-        self.text_character_label.clear()
-        self.text_box_label.clear()
-
-        self.set_portrait()
-
-    def set_portrait(self):
-
-        print('set_portrait')
-
-        if int(self.pt_num) != 0:
-            self.post_pt_loop()
-
-        self.set_text_box()
-
-    def set_text_box(self):
-
-        print('set_text_box')
-
-        if self.tb_hi != '':
-            self.hide_text_box()
-
-        else:
-            self.init_parser()
-
-    ################################################## MAIN PROGRAM END ##################################################
-
-    def hide_menu(self):
-
-        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-        self.fader.fade(250)
-        self.menu_widget.hide()
-        self.text_box_widget.show()
-
-    def show_menu(self):
-
-        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-        self.fader.fade(250)
-        self.menu_widget.show()
-        self.text_box_widget.hide()
-
-    def hide_widget(self):
-
-        self.hide_button.setEnabled(False)
-        self.fader_widget = FaderWidget(self.text_box_widget, 1.0)
-        self.fader_widget.hide(250)
-        self.fader_widget.anime.finished.connect(self.finsh_hide_widget)
-
-    def finsh_hide_widget(self):
-
-        self.text_box_widget.hide()
-        self.disable_hide_label.show()
-
-    def show_widget(self, event):
-
-        self.text_box_widget.show()
-        self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
-        self.fader_widget.show(250)
-        self.fader_widget.anime.finished.connect(self.finish_show_widget)
-
-    def finish_show_widget(self):
-
-        self.disable_hide_label.hide()
-        self.hide_button.setEnabled(True)
-
-    def hide_effect(self):
-
-        self.effect_status = True
-        self.next_label.show()
-        self.text_box_label.clear()
-        self.text_character_label.clear()
-
-        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
-        self.fader.fade(800)
-
-        self.effect.hide()
-        self.init_sound()
-
-    def show_text_box(self):
-
-        self.next_label.hide()
-        self.hide_button.setEnabled(False)
-
-        if self.tb_td != '':
-            QTimer.singleShot(int(self.tb_td), self.delay_show_text_box)
-
-        else:
-            self.text_box_widget.show()
-            self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
-            self.fader_widget.show(400)
-            self.fader_widget.anime.finished.connect(self.finish_show_text_box)
-
-    def delay_show_text_box(self):
-
-        self.text_box_widget.show()
-        self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
-        self.fader_widget.show(400)
-        self.fader_widget.anime.finished.connect(self.finish_show_text_box)
-
-    def finish_show_text_box(self):
-
-        self.disable_hide_label.hide()
-        self.next_label.show()
-        self.hide_button.setEnabled(True)
-        self.init_voice()
-
-    def hide_text_box(self):
-
-        self.next_label.hide()
-        self.disable_hide_label.hide()
-        self.hide_button.setEnabled(False)
-        self.fader_widget = FaderWidget(self.text_box_widget, 1.0)
-        self.fader_widget.hide(400)
-        self.fader_widget.anime.finished.connect(self.finsh_hide_text_box)
-
-    def finsh_hide_text_box(self):
-
-        self.next_label.show()
-        self.text_box_widget.hide()
-        self.init_parser()
-
-    def pre_process(self):
-
-        self.pre_effect = QGraphicsOpacityEffect()
-        self.pre_effect.setOpacity(0.000001)
-        self.text_box_widget.setGraphicsEffect(self.pre_effect)
-        self.text_box_widget.show()
-        self.text_box_label.setText('     ')
-
-    def selection(self):
+    def _selection(self):
 
         print('selection')
 
@@ -552,17 +574,19 @@ class GameEngine(QMainWindow):
             pos = 250 + int(i - int(int(self.sl_num) / 2)) * 75
 
             self.selection_button[i] = SelectButton(self.select_widget)
-            self.selection_button.get(i).setStyleSheet('QAbstractButton {font-family: Times New Roman; font-size: 18px; color: rgba(0, 0, 0, 100%)}')
+            self.selection_button.get(i).setStyleSheet(
+                    'QAbstractButton {font-family: Times New Roman;'
+                    'font-size: 18px; color: rgba(0, 0, 0, 100%)}')
             self.selection_button.get(i).setText('{0}'.format(i))
             self.selection_button.get(i).set_text(self.sl_txt.get(i + 1))
             self.selection_button.get(i).setGeometry(0, pos, 1024, 65)
-            self.selection_button.get(i).clicked.connect(self.jump_script)
+            self.selection_button.get(i).clicked.connect(self._jump_script)
 
         fader = Fader(self.game_engine_widget, self.game_engine_widget)
         fader.fade(800)
         self.select_widget.show()
 
-    def jump_script(self):
+    def _jump_script(self):
 
         selection = int(self.sender().text())
         print(selection)
@@ -577,125 +601,92 @@ class GameEngine(QMainWindow):
         for each in self.selection_button:
             self.selection_button.get(each).deleteLater()
         self.selection_button.clear()
-        self.init_parser()
+        self._init_parser()
 
-    def pt_loop(self):
-
-        for i in range(self.pt_num):
-
-            if self.pt_md.get(i + 1) == 'new':
-                if self.pt_du.get(i + 1) != None:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).create_mv_pt(self.pt_id.get(i + 1), int(self.pt_x.get(i + 1)), int(self.pt_y.get(i + 1)), int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
-                else:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).create_pt(self.pt_id.get(i + 1), int(self.pt_x.get(i + 1)), int(self.pt_y.get(i + 1)))
-            elif self.pt_md.get(i + 1) == 'mv':
-                self.portrait.get(int(self.pt_pos.get(i + 1))).move_pt(int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
-            elif self.pt_md.get(i + 1) == 'del':
-                if self.pt_du.get(i + 1) != None:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_mv_pt(int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
-                else:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_pt()
-
-    def post_pt_loop(self):
-
-        for i in range(int(self.pt_num)):
-
-            if self.pt_md.get(i + 1) == 'dell':
-                if self.pt_du.get(i + 1) != None:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_mv_pt(int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
-                else:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_pt()
-
-    def bgm_loop(self):
+    def _pre_bgm_loop(self):
 
         for i in range(self.bgm_num):
 
             if self.bgm_md.get(i + 1) == 'new':
-                self.background_music.get(int(self.bgm_pos.get(i + 1))).play_music(self.bgm_id.get(i + 1))
+                self.background_music.get(
+                        int(self.bgm_pos.get(i + 1))).play_music(
+                                self.bgm_id.get(i + 1))
             elif self.bgm_md.get(i + 1) == 'vol':
-                self.background_music.get(int(self.bgm_pos.get(i + 1))).music_volume(int(self.bgm_vol.get(i + 1)))
+                self.background_music.get(
+                        int(self.bgm_pos.get(i + 1))).music_volume(
+                                int(self.bgm_vol.get(i + 1)))
             elif self.bgm_md.get(i + 1) == 'del':
-                self.background_music.get(int(self.bgm_pos.get(i + 1))).stop_music()
+                self.background_music.get(
+                        int(self.bgm_pos.get(i + 1))).stop_music()
 
-    def post_bgm_loop(self):
+    def _post_bgm_loop(self):
 
         for i in range(int(self.bgm_num)):
 
             if self.bgm_md.get(i + 1) == 'dell':
                 self.background_music.get(int(self.bgm_pos.get(i + 1))).stop_music()
 
-    def sd_loop(self):
+    def _pre_pt_loop(self):
+
+        for i in range(self.pt_num):
+
+            if self.pt_md.get(i + 1) == 'new':
+                if self.pt_du.get(i + 1) != None:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).create_mv_pt(
+                            self.pt_id.get(i + 1),
+                            int(self.pt_x.get(i + 1)), int(self.pt_y.get(i + 1)),
+                            int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)),
+                            int(self.pt_du.get(i + 1)))
+                else:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).create_pt(
+                            self.pt_id.get(i + 1),
+                            int(self.pt_x.get(i + 1)), int(self.pt_y.get(i + 1)))
+
+            elif self.pt_md.get(i + 1) == 'mv':
+                self.portrait.get(int(self.pt_pos.get(i + 1))).move_pt(
+                        int(self.pt_xf.get(i + 1)),
+                        int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
+
+            elif self.pt_md.get(i + 1) == 'del':
+                if self.pt_du.get(i + 1) != None:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_mv_pt(
+                            int(self.pt_xf.get(i + 1)),
+                            int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
+                else:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_pt()
+
+    def _post_pt_loop(self):
+
+        for i in range(int(self.pt_num)):
+
+            if self.pt_md.get(i + 1) == 'dell':
+                if self.pt_du.get(i + 1) != None:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_mv_pt(
+                            int(self.pt_xf.get(i + 1)),
+                            int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
+                else:
+                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_pt()
+
+    def _pre_sd_loop(self):
 
         for i in range(self.sd_num):
 
             if self.sd_md.get(i + 1) == 'new':
-                self.sound.get(int(self.sd_pos.get(i + 1))).play_sound(self.sd_id.get(i + 1), self.sd_lp.get(i + 1), self.sd_fd.get(i + 1))
+                self.sound.get(
+                        int(self.sd_pos.get(i + 1))).play_sound(self.sd_id.get(i + 1),
+                                self.sd_lp.get(i + 1), self.sd_fd.get(i + 1))
             elif self.sd_md.get(i + 1) == 'del':
-                self.sound.get(int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))
+                self.sound.get(
+                        int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))
 
-    def post_sd_loop(self):
+    def _post_sd_loop(self):
 
         for i in range(int(self.sd_num)):
 
             if self.sd_md.get(i + 1) == 'newl':
-                self.sound.get(int(self.sd_pos.get(i + 1))).play_sound(self.sd_id.get(i + 1), self.sd_lp.get(i + 1), self.sd_fd.get(i + 1))
+                self.sound.get(
+                        int(self.sd_pos.get(i + 1))).play_sound(self.sd_id.get(i + 1),
+                                self.sd_lp.get(i + 1), self.sd_fd.get(i + 1))
             if self.sd_md.get(i + 1) == 'dell':
-                self.sound.get(int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))
-
-    def save_data(self):
-
-        pass
-        '''
-        self.curr_script = self.script
-        self.curr_game_engine_id = self.game_engine_id
-
-        self.curr_bgm_pos = self.bgm_pos
-        self.curr_bgm_id = self.bgm_id
-        self.curr_bgm_md = self.bgm_md
-        self.curr_bgm_vol = self.bgm_vol
-        self.curr_bgm_num = self.bgm_num
-
-        self.curr_sd_pos = self.sd_pos
-        self.curr_sd_id = self.sd_id
-        self.curr_sd_md = self.sd_md
-        self.curr_sd_lp = self.sd_lp
-        self.curr_sd_fd = self.sd_fd
-        self.curr_sd_dfd = self.sd_dfd
-        self.curr_sd_num = self.sd_num
-
-        self.curr_eff_id = self.eff_id
-        self.curr_eff_du = self.eff_du
-
-        self.curr_mk_id = self.mk_id
-        self.curr_mk_md = self.mk_md
-
-        self.curr_bg_id = self.bg_id
-        self.curr_bg_x = self.bg_x
-        self.curr_bg_y = self.bg_y
-        self.curr_bg_xf = self.bg_xf
-        self.curr_bg_yf = self.bg_yf
-        self.curr_bg_du = self.bg_du
-
-        self.curr_pt_pos = self.pt_pos
-        self.curr_pt_id = self.pt_id
-        self.curr_pt_md = self.pt_md
-        self.curr_pt_x = self.pt_x
-        self.curr_pt_y = self.pt_y
-        self.curr_pt_xf = self.pt_xf
-        self.curr_pt_yf = self.pt_yf
-        self.curr_pt_du = self.pt_du
-        self.curr_pt_num = self.pt_num
-
-        self.curr_tb_sh = self.tb_sh
-        self.curr_tb_td = self.tb_td
-        self.curr_tb_vc = self.tb_vc
-        self.curr_tb_char = self.tb_char
-        self.curr_tb_txt = self.tb_txt
-        self.curr_tb_hi = self.tb_hi
-
-        self.curr_sl_txt = self.sl_txt
-        self.curr_sl_sc = self.sl_sc
-        self.curr_sl_num = self.sl_num
-
-        self.curr_sys_sc = self.sys_sc
-        '''
+                self.sound.get(
+                        int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))

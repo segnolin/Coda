@@ -1,72 +1,74 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+import resources.background_resources
+import resources.event_resources
+import resources.scene_resources
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-import sys
-import resources.background_resources
-import resources.event_resources
-import resources.scene_resources
-
 class Background(QLabel):
+    '''this class provide background effect'''
 
     def __init__(self, parent):
         super().__init__(parent)
 
         self.setGeometry(0, 0, 1024, 576)
-        self.painter = QPainter()
+
+        self.background_id = ''
         self.x = 0
         self.y = 0
         self.pixmap = QPixmap()
         self.anime = QVariantAnimation()
+        self.pixel_ratio = QWindow().devicePixelRatio()
 
     def create_bg(self, background_id, posx, posy):
 
+        self.background_id = background_id
         self.x = posx
         self.y = posy
+
+        self.pixmap = QPixmap(':/bg/{0}.png'.format(self.background_id))
+        self.pixmap = self.pixmap.scaledToHeight(
+                self.pixmap.height() * self.pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        self.pixmap.setDevicePixelRatio(self.pixel_ratio)
+
         self.anime.stop()
-
-        self.background_id = background_id
-
-        self.pixmap = QPixmap(':/bg/{0}.png'.format(background_id))
-        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
-        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
-
         self.update()
 
-    def create_mv_bg(self, background_id, posx, posy, posxf, posyf, duration):
+    def create_mv_bg(
+            self, background_id,
+            posx, posy, posxf, posyf, duration):
 
+        self.background_id = background_id
         self.posx = posx
         self.posy = posy
         self.posxf = posxf
         self.posyf = posyf
-        self.duration = duration
-
-        self.background_id = background_id
-        self.pixmap = QPixmap(':/bg/{0}.png'.format(background_id))
-        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
-        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
-
-        self.x = posx
-        self.y = posy
-
         self.dx = self.posxf - self.posx
         self.dy = self.posyf - self.posy
 
+        self.pixmap = QPixmap(':/bg/{0}.png'.format(self.background_id))
+        self.pixmap = self.pixmap.scaledToHeight(
+                self.pixmap.height() * self.pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        self.pixmap.setDevicePixelRatio(self.pixel_ratio)
+
         self.anime.stop()
-        if self.duration >= 10000:
+        if duration >= 10000:
             self.anime.setEasingCurve(QEasingCurve.OutQuad)
         else:
             self.anime.setEasingCurve(QEasingCurve.OutSine)
-        self.anime.setDuration(self.duration)
+        self.anime.setDuration(duration)
         self.anime.setStartValue(0.0)
         self.anime.setEndValue(1.0)
-        self.anime.valueChanged.connect(self.show_animate)
+        self.anime.valueChanged.connect(self._show_animate)
         self.anime.start()
 
-    def show_animate(self, value):
+    def _show_animate(self, value):
 
         self.x = self.posx + self.dx  * value
         self.y = self.posy + self.dy  * value
@@ -77,8 +79,9 @@ class Background(QLabel):
         transform = QTransform()
         transform.translate(self.x, self.y)
 
-        self.painter.begin(self)
-        self.painter.setRenderHint(QPainter.SmoothPixmapTransform)
-        self.painter.setTransform(transform)
-        self.painter.drawPixmap(0, 0, self.pixmap)
-        self.painter.end()
+        painter = QPainter()
+        painter.begin(self)
+        painter.setRenderHint(QPainter.SmoothPixmapTransform)
+        painter.setTransform(transform)
+        painter.drawPixmap(0, 0, self.pixmap)
+        painter.end()

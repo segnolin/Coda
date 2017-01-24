@@ -1,39 +1,43 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+import resources.background_resources
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-import sys
-import resources.background_resources
-
 class Effect(QLabel):
+    '''this class provide transition screen'''
 
     def __init__(self, parent):
         super().__init__(parent)
 
         self.setGeometry(0, 0, 1024, 576)
 
+        self.pixel_ratio = QWindow().devicePixelRatio()
+
     def create(self, mode):
 
-        self.mode = mode
+        if mode == 'black_fade':
+            self._black_fade()
+        elif mode == 'white_fade':
+            self._white_fade()
 
-        if self.mode == 'black_fade':
-            self.black_fade()
-        elif self.mode == 'white_fade':
-            self.white_fade()
+    def _black_fade(self):
 
-    def black_fade(self):
+        pixmap = QPixmap(':/bg/black.png')
+        pixmap = pixmap.scaledToHeight(
+                pixmap.height() * self.pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        pixmap.setDevicePixelRatio(self.pixel_ratio)
+        self.setPixmap(pixmap)
 
-        self.pixmap = QPixmap(':/bg/black.png')
-        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
-        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
-        self.setPixmap(self.pixmap)
+    def _white_fade(self):
 
-    def white_fade(self):
-
-        self.pixmap = QPixmap(':/bg/white.png')
-        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
-        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
-        self.setPixmap(self.pixmap)
+        pixmap = QPixmap(':/bg/white.png')
+        pixmap = pixmap.scaledToHeight(
+                pixmap.height() * self.pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        pixmap.setDevicePixelRatio(self.pixel_ratio)
+        self.setPixmap(pixmap)

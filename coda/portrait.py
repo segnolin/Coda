@@ -1,12 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+import resources.portrait_resources
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-
-import sys
-import resources.portrait_resources
 
 class Portrait(QLabel):
     '''this class provide the label of portrait'''
@@ -15,7 +14,9 @@ class Portrait(QLabel):
         super().__init__(parent)
 
         self.setGeometry(0, 0, 1024, 576)
-        self.painter = QPainter()
+
+        self.portrait_id = ''
+        self.pixel_ratio = QWindow().devicePixelRatio()
         self.x = 0
         self.y = 0
         self.pixmap = QPixmap()
@@ -26,19 +27,19 @@ class Portrait(QLabel):
 
     def create_pt(self, portrait_id, posx, posy):
 
+        self.portrait_id = portrait_id
         self.posx = posx
         self.posy = posy
-
         self.x = self.posx
         self.y = self.posy
-
         self.dx = 0
         self.dy = 0
 
-        self.portrait_id = portrait_id
-        self.pixmap = QPixmap(':/pt/{0}.png'.format(portrait_id))
-        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
-        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
+        self.pixmap = QPixmap(':/pt/{0}.png'.format(self.portrait_id))
+        self.pixmap = self.pixmap.scaledToHeight(
+                self.pixmap.height() * self.pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        self.pixmap.setDevicePixelRatio(self.pixel_ratio)
 
         self.sh_anime.stop()
         self.sh_anime.setDuration(300)
@@ -50,20 +51,21 @@ class Portrait(QLabel):
 
     def create_mv_pt(self, portrait_id, posx, posy, posxf, posyf, duration):
 
+        self.portrait_id = portrait_id
         self.posx = posx
         self.posy = posy
         self.posxf = posxf
         self.posyf = posyf
         self.duration = duration
 
-        self.portrait_id = portrait_id
         self.pixmap = QPixmap(':/pt/{0}.png'.format(self.portrait_id))
-        self.pixmap = self.pixmap.scaledToHeight((self.pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
-        self.pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
+        self.pixmap = self.pixmap.scaledToHeight(
+                self.pixmap.height() * self.pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        self.pixmap.setDevicePixelRatio(self.pixel_ratio)
 
         self.x = posx
         self.y = posy
-
         self.dx = self.posxf - self.posx
         self.dy = self.posyf - self.posy
 
@@ -89,7 +91,6 @@ class Portrait(QLabel):
         self.posxf = posxf
         self.posyf = posyf
         self.duration = duration
-
         self.dx = self.posxf - self.posx
         self.dy = self.posyf - self.posy
 
@@ -127,7 +128,6 @@ class Portrait(QLabel):
         self.posxf = posxf
         self.posyf = posyf
         self.duration = duration
-
         self.dx = self.posxf - self.posx
         self.dy = self.posyf - self.posy
 
@@ -151,9 +151,10 @@ class Portrait(QLabel):
         transform = QTransform()
         transform.translate(self.x, self.y)
 
-        self.painter.begin(self)
-        self.painter.setRenderHint(QPainter.SmoothPixmapTransform)
-        self.painter.setTransform(transform)
-        self.painter.setOpacity(self.opacity)
-        self.painter.drawPixmap(0, 0, self.pixmap)
-        self.painter.end()
+        painter = QPainter()
+        painter.begin(self)
+        painter.setRenderHint(QPainter.SmoothPixmapTransform)
+        painter.setTransform(transform)
+        painter.setOpacity(self.opacity)
+        painter.drawPixmap(0, 0, self.pixmap)
+        painter.end()

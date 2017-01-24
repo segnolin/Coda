@@ -1,14 +1,12 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+import resources.system_resources
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from PyQt5.QtCore import *
 
 from coda.image_button import *
-
-import sys
-import resources.system_resources
 
 class Load(QMainWindow):
     '''this class creates game load layout and functions'''
@@ -18,16 +16,19 @@ class Load(QMainWindow):
 
     def create_load_layout(self, status):
 
-        self.status = status
-        print(self.status)
+        print(status)
+
+        pixel_ratio = QWindow().devicePixelRatio()
 
         #set QWidget class
         self.load_widget = QWidget()
 
         #set load page background
         self.background_pixmap = QPixmap(':/sys/load_background.png')
-        self.background_pixmap = self.background_pixmap.scaledToHeight((self.background_pixmap.height() * QWindow().devicePixelRatio()) / 2, Qt.SmoothTransformation)
-        self.background_pixmap.setDevicePixelRatio(QWindow().devicePixelRatio())
+        self.background_pixmap = self.background_pixmap.scaledToHeight(
+                self.background_pixmap.height() * pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        self.background_pixmap.setDevicePixelRatio(pixel_ratio)
         self.background = QLabel(self.load_widget)
         self.background.setPixmap(self.background_pixmap)
         self.background.setGeometry(0, 0, 1024, 576)

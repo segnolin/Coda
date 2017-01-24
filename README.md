@@ -8,16 +8,15 @@
 
 Everyone can create your own visual novel games using **Coda** by simply writing XML scripts and importing your resources. Your creation is good to go!
 
-### Requirements
-
-* [Python 3.5](https://www.python.org/downloads/)
-* [Qt 5.6 Libraries](http://www.qt.io/download/)
-* [SIP 4.18](https://riverbankcomputing.com/software/sip/download)
-* [PyQt 5.6](https://riverbankcomputing.com/software/pyqt/download5)
-
 ### Installation
 
-First, clone the repo to any target directory.
+First, install PyQt5 using pip3
+
+```
+$ pip3 install pyqt5
+```
+
+Clone the repo to any target directory.
 
 ```
 $ git clone git@github.com:segnoda/Coda.git
@@ -37,7 +36,15 @@ Just run main.py to execute **Coda** with example resources.
 $ python3 main.py
 ```
 
-## Documentation
+### Build
+
+Run the build script to build a stand alone App by PyInstaller.
+
+```
+$ ./build.sh
+```
+
+## Documentation (under construction)
 
 The guideline below allows you to control and modify your game flow.
 

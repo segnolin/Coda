@@ -1,9 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from PyQt5.QtCore import *
 
 from coda.intro_window import *
 from coda.main_window import *
@@ -11,8 +10,6 @@ from coda.game_engine import *
 from coda.load import *
 from coda.image_button import *
 from coda.fader import *
-
-import sys
 
 class Coda(QMainWindow):
     '''this class init the main window and manage connections'''
@@ -45,8 +42,7 @@ class Coda(QMainWindow):
         self.stacked_layout.addWidget(self.intro_window.intro_window_widget)
         self.stacked_layout.addWidget(self.main_window.main_window_widget)
 
-        #set stack to show
-        self.stacked_layout.setCurrentWidget(self.intro_window.intro_window_widget)
+        #change stack to main window
         QTimer.singleShot(3500, self.go_to_main)
 
         #set the central widget to display the layout
@@ -61,11 +57,17 @@ class Coda(QMainWindow):
         self.main_window.main_config_button.clicked.connect(self.config)
         self.main_window.main_exit_button.clicked.connect(self.exit)
 
+        #set game engine
+        self.game_engine = GameEngine()
+        self.game_engine.create_game_engine_layout()
+        self.stacked_layout.addWidget(self.game_engine.game_engine_widget)
+
     def go_to_main(self):
 
         #fade effect
-        self.fader = Fader(self.stacked_layout.currentWidget(), self.main_window.main_window_widget)
-        self.fader.fade(800)
+        self.fader = Fader(self.stacked_layout.currentWidget(),
+                self.main_window.main_window_widget)
+        self.fader.fade(600)
 
         self.stacked_layout.setCurrentWidget(self.main_window.main_window_widget)
 
@@ -85,17 +87,24 @@ class Coda(QMainWindow):
         self.status = 'main'
 
         #fade effect
-        self.fader = Fader(self.stacked_layout.currentWidget(), self.main_window.main_window_widget)
+        self.fader = Fader(self.stacked_layout.currentWidget(),
+                self.main_window.main_window_widget)
         self.fader.fade(350)
 
         self.stacked_layout.setCurrentWidget(self.main_window.main_window_widget)
+        self.game_engine.menu_widget.hide()
+        self.game_engine.text_box_widget.hide()
+        self.game_engine.select_widget.hide()
+        self.game_engine.disable_hide_label.hide()
+        self.game_engine.effect.hide()
 
     def back_to_game_engine(self):
 
         print('back to game engine')
 
         #fade effect
-        self.fader = Fader(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget)
+        self.fader = Fader(self.stacked_layout.currentWidget(),
+                self.game_engine.game_engine_widget)
         self.fader.fade(350)
 
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
@@ -106,14 +115,13 @@ class Coda(QMainWindow):
 
         self.status = 'game_engine'
 
-        self.game_engine = GameEngine()
-        self.game_engine.create_game_engine_layout(self.script, self.game_engine_id)
+        self.game_engine.start_game(self.script, self.game_engine_id)
 
         #fade effect
-        self.fader = Fader(self.stacked_layout.currentWidget(), self.game_engine.game_engine_widget)
+        self.fader = Fader(self.stacked_layout.currentWidget(),
+                self.game_engine.game_engine_widget)
         self.fader.fade(1500)
 
-        self.stacked_layout.addWidget(self.game_engine.game_engine_widget)
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
 
         #connection
@@ -129,7 +137,8 @@ class Coda(QMainWindow):
         self.load_game.create_load_layout(self.status)
 
         #fade effect
-        self.fader = Fader(self.stacked_layout.currentWidget(), self.load_game.load_widget)
+        self.fader = Fader(self.stacked_layout.currentWidget(),
+                self.load_game.load_widget)
         self.fader.fade(350)
 
         self.stacked_layout.addWidget(self.load_game.load_widget)
