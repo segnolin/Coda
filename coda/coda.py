@@ -91,6 +91,12 @@ class Coda(QMainWindow):
         self.save_game = Save()
         self.save_game.create_save_layout()
 
+        #test thumbnail(test)
+        thumbnail = QPixmap(2048, 1152)
+        thumbnail.setDevicePixelRatio(QWindow().devicePixelRatio())
+        self.game_engine.game_engine_widget.render(thumbnail)
+        self.save_game.thumbnail(thumbnail)
+
         #fade effect
         self.fader = Fader(self.stacked_layout.currentWidget(),
                 self.save_game.save_widget)
