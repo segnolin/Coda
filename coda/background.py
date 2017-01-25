@@ -18,6 +18,11 @@ class Background(QLabel):
         self.setGeometry(0, 0, 1024, 576)
 
         self.background_id = ''
+        self.posx = 0
+        self.posy = 0
+        self.posxf = 0
+        self.posyf = 0
+        self.duration = 0
         self.x = 0
         self.y = 0
         self.pixmap = QPixmap()
@@ -29,6 +34,9 @@ class Background(QLabel):
         self.background_id = background_id
         self.x = posx
         self.y = posy
+        self.posx = posx
+        self.posy = posy
+        self.duration = 0
 
         self.pixmap = QPixmap(':/bg/{0}.png'.format(self.background_id))
         self.pixmap = self.pixmap.scaledToHeight(
@@ -48,6 +56,7 @@ class Background(QLabel):
         self.posy = posy
         self.posxf = posxf
         self.posyf = posyf
+        self.duration = duration
         self.dx = self.posxf - self.posx
         self.dy = self.posyf - self.posy
 
@@ -58,11 +67,11 @@ class Background(QLabel):
         self.pixmap.setDevicePixelRatio(self.pixel_ratio)
 
         self.anime.stop()
-        if duration >= 10000:
+        if self.duration >= 10000:
             self.anime.setEasingCurve(QEasingCurve.OutQuad)
         else:
             self.anime.setEasingCurve(QEasingCurve.OutSine)
-        self.anime.setDuration(duration)
+        self.anime.setDuration(self.duration)
         self.anime.setStartValue(0.0)
         self.anime.setEndValue(1.0)
         self.anime.valueChanged.connect(self._show_animate)

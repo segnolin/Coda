@@ -176,6 +176,7 @@ class GameEngine(QMainWindow):
         self.effect.hide()
 
         #connection
+        self.save_button.clicked.connect(self._save_data)
         self.back_button.clicked.connect(self._hide_menu)
         self.menu_button.clicked.connect(self._show_menu)
         self.hide_button.clicked.connect(self._hide_widget)
@@ -200,14 +201,14 @@ class GameEngine(QMainWindow):
 
         self.script = script
         self.game_engine_id = game_engine_id
+        self.init_status = True
         self._init_parser()
 
     def _init_parser(self):
 
-        print('init_parser')
+        #print('init_parser')
 
         self._parse_script()
-        self._save_data()
 
         if self.sys_sc != '':
             self.script = self.sys_sc
@@ -226,7 +227,7 @@ class GameEngine(QMainWindow):
 
     def _init_background_music(self):
 
-        print('init_background_music')
+        #print('init_background_music')
 
         if int(self.bgm_num) != 0:
             self._pre_bgm_loop()
@@ -235,7 +236,7 @@ class GameEngine(QMainWindow):
 
     def _init_effect(self):
 
-        print('init_effect')
+        #print('init_effect')
 
         if self.eff_id != '':
 
@@ -258,7 +259,7 @@ class GameEngine(QMainWindow):
 
     def _init_sound(self):
 
-        print('init_sound')
+        #print('init_sound')
 
         if int(self.sd_num) != 0:
             self._pre_sd_loop()
@@ -267,7 +268,7 @@ class GameEngine(QMainWindow):
 
     def _init_mask(self):
 
-        print('init_mask')
+        #print('init_mask')
 
         if self.mk_md == 'new':
             self.mask_label.set_mask(self.mk_id)
@@ -278,7 +279,7 @@ class GameEngine(QMainWindow):
 
     def _init_background(self):
 
-        print('init_background')
+        #print('init_background')
 
         if self.bg_id != '':
 
@@ -305,7 +306,7 @@ class GameEngine(QMainWindow):
 
     def _init_portrait(self):
 
-        print('init_portrait')
+        #print('init_portrait')
 
         if int(self.pt_num) != 0:
             self._pre_pt_loop()
@@ -314,7 +315,7 @@ class GameEngine(QMainWindow):
 
     def _init_text_box(self):
 
-        print('init_text_box')
+        #print('init_text_box')
 
         self.text_character_label.clear()
         self.text_box_label.clear()
@@ -327,7 +328,7 @@ class GameEngine(QMainWindow):
 
     def _init_voice(self):
 
-        print('init_voice')
+        #print('init_voice')
 
         if self.tb_vc != '':
             self.voice.play_voice(self.tb_vc)
@@ -336,10 +337,16 @@ class GameEngine(QMainWindow):
 
     def _init_text(self):
 
-        print('init_text')
+        #print('init_text')
 
         self.text_character_label.setText(self.tb_char)
         self.text_box_label.set_verbatim_text(self.tb_txt)
+
+        self._standby()
+
+    def _standby(self):
+
+        pass
 
     def _update_engine(self, event):
 
@@ -348,16 +355,16 @@ class GameEngine(QMainWindow):
             self.text_box_label.index = len(self.tb_txt)
 
         else:
-            print('update_engine')
+            #print('update_engine')
 
             self.game_engine_id += 1
-            print(self.game_engine_id)
+            #print(self.game_engine_id)
 
             self._set_background_music()
 
     def _set_background_music(self):
 
-        print('set_background_music')
+        #print('set_background_music')
 
         if int(self.bgm_num) != 0:
             self._post_bgm_loop()
@@ -366,7 +373,7 @@ class GameEngine(QMainWindow):
 
     def _set_sound(self):
 
-        print('set_sound')
+        #print('set_sound')
 
         if int(self.sd_num) != 0:
             self._post_sd_loop()
@@ -375,7 +382,7 @@ class GameEngine(QMainWindow):
 
     def _set_text(self):
 
-        print('set_text')
+        #print('set_text')
 
         self.text_character_label.clear()
         self.text_box_label.clear()
@@ -384,7 +391,7 @@ class GameEngine(QMainWindow):
 
     def _set_portrait(self):
 
-        print('set_portrait')
+        #print('set_portrait')
 
         if int(self.pt_num) != 0:
             self._post_pt_loop()
@@ -393,7 +400,7 @@ class GameEngine(QMainWindow):
 
     def _set_text_box(self):
 
-        print('set_text_box')
+        #print('set_text_box')
 
         if self.tb_hi != '':
             self._hide_text_box()
@@ -561,13 +568,9 @@ class GameEngine(QMainWindow):
 
         self.sys_sc = self.parser.sys_sc
 
-    def _save_data(self):
-
-        pass
-
     def _selection(self):
 
-        print('selection')
+        #print('selection')
 
         for i in range(int(self.sl_num)):
 
@@ -589,11 +592,11 @@ class GameEngine(QMainWindow):
     def _jump_script(self):
 
         selection = int(self.sender().text())
-        print(selection)
+        #print(selection)
 
         self.game_engine_id = 0
         self.script = self.sl_sc.get(selection + 1)
-        print(self.script)
+        #print(self.script)
 
         fader = Fader(self.game_engine_widget, self.game_engine_widget)
         fader.fade(800)
@@ -690,3 +693,64 @@ class GameEngine(QMainWindow):
             if self.sd_md.get(i + 1) == 'dell':
                 self.sound.get(
                         int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))
+
+    def _save_data(self):
+
+        print()
+        print('<background_music>')
+        for i in range(2):
+            print('\t[{0}]background_music_id: {1}'.format(
+                    i, self.background_music.get(i).id))
+            print('\t[{0}]background_music_vol: {1}'.format(
+                    i, self.background_music.get(i).volume()))
+            print('\t[{0}]background_music_state: {1}'.format(
+                    i, self.background_music.get(i).state()))
+        print()
+
+        print('<sound>')
+        for i in range(3):
+            print('\t[{0}]sound_id: {1}'.format(
+                    i, self.sound.get(i).id))
+            print('\t[{0}]sound_mode: {1}'.format(
+                    i, self.sound.get(i).playlist.playbackMode()))
+            print('\t[{0}]sound_state: {1}'.format(
+                    i, self.sound.get(i).state()))
+        print()
+
+        print('<mask>')
+        print('\tmask_id: {0}'.format(self.mask_label.id))
+        print()
+
+        print('<background>')
+        print('\tbackground_id: {0}'.format(self.background.background_id))
+        print('\tbackground_x: {0}'.format(self.background.x))
+        print('\tbackground_y: {0}'.format(self.background.y))
+        print('\tbackground_posx: {0}'.format(self.background.posx))
+        print('\tbackground_posy: {0}'.format(self.background.posy))
+        print('\tbackground_posxf: {0}'.format(self.background.posxf))
+        print('\tbackground_posyf: {0}'.format(self.background.posyf))
+        print('\tbackground_duration: {0}'.format(self.background.duration))
+        print()
+
+        print('<portrait>')
+        for i in range(5):
+            print('\t[{0}]portrait_id: {1}'.format(
+                    i, self.portrait.get(i).id))
+            print('\t[{0}]portrait_x: {1}'.format(
+                    i, self.portrait.get(i).x))
+            print('\t[{0}]portrait_y: {1}'.format(
+                    i, self.portrait.get(i).y))
+            print('\t[{0}]portrait_posx: {1}'.format(
+                    i, self.portrait.get(i).posx))
+            print('\t[{0}]portrait_posy: {1}'.format(
+                    i, self.portrait.get(i).posy))
+            print('\t[{0}]portrait_posxf: {1}'.format(
+                    i, self.portrait.get(i).posxf))
+            print('\t[{0}]portrait_posyf: {1}'.format(
+                    i, self.portrait.get(i).posyf))
+            print('\t[{0}]portrait_duration: {1}'.format(
+                    i, self.portrait.get(i).duration))
+            print('\t[{0}]portrait_opac: {1}'.format(
+                    i, self.portrait.get(i).opacity))
+        print()
+        print('=======================================')

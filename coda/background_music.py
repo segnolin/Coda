@@ -12,20 +12,20 @@ class BackgroundMusic(QMediaPlayer):
     def __init__(self):
         super().__init__()
 
-        self.background_music_id = ''
+        self.id = ''
         self.playlist = QMediaPlaylist()
         self.anime = QVariantAnimation()
         self.vol_anime = QVariantAnimation()
 
     def play_music(self, background_music_id):
 
-        self.background_music_id = background_music_id
+        self.id = background_music_id
 
         self.playlist.clear()
         self.playlist.addMedia(
                 QMediaContent(QUrl(
                 'qrc:/bgm/{0}.mp3'.format(
-                self.background_music_id))))
+                self.id))))
         self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
 
         self.setPlaylist(self.playlist)

@@ -15,10 +15,15 @@ class Portrait(QLabel):
 
         self.setGeometry(0, 0, 1024, 576)
 
-        self.portrait_id = ''
+        self.id = ''
         self.pixel_ratio = QWindow().devicePixelRatio()
         self.x = 0
         self.y = 0
+        self.posx = 0
+        self.posy = 0
+        self.posxf = 0
+        self.posyf = 0
+        self.duration = 0
         self.pixmap = QPixmap()
         self.sh_anime = QVariantAnimation()
         self.hi_anime = QVariantAnimation()
@@ -27,15 +32,16 @@ class Portrait(QLabel):
 
     def create_pt(self, portrait_id, posx, posy):
 
-        self.portrait_id = portrait_id
+        self.id = portrait_id
         self.posx = posx
         self.posy = posy
         self.x = self.posx
         self.y = self.posy
         self.dx = 0
         self.dy = 0
+        self.duration = 0
 
-        self.pixmap = QPixmap(':/pt/{0}.png'.format(self.portrait_id))
+        self.pixmap = QPixmap(':/pt/{0}.png'.format(self.id))
         self.pixmap = self.pixmap.scaledToHeight(
                 self.pixmap.height() * self.pixel_ratio / 2,
                 Qt.SmoothTransformation)
@@ -51,14 +57,14 @@ class Portrait(QLabel):
 
     def create_mv_pt(self, portrait_id, posx, posy, posxf, posyf, duration):
 
-        self.portrait_id = portrait_id
+        self.id = portrait_id
         self.posx = posx
         self.posy = posy
         self.posxf = posxf
         self.posyf = posyf
         self.duration = duration
 
-        self.pixmap = QPixmap(':/pt/{0}.png'.format(self.portrait_id))
+        self.pixmap = QPixmap(':/pt/{0}.png'.format(self.id))
         self.pixmap = self.pixmap.scaledToHeight(
                 self.pixmap.height() * self.pixel_ratio / 2,
                 Qt.SmoothTransformation)
@@ -112,6 +118,7 @@ class Portrait(QLabel):
 
         self.dx = 0
         self.dy = 0
+        self.duration = 0
 
         self.hi_anime.stop()
         self.hi_anime.setDuration(300)

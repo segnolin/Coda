@@ -43,7 +43,7 @@ class Coda(QMainWindow):
         self.stacked_layout.addWidget(self.main_window.main_window_widget)
 
         #change stack to main window
-        QTimer.singleShot(3500, self.go_to_main)
+        QTimer.singleShot(3500, self._go_to_main)
 
         #set the central widget to display the layout
         self.central_widget = QWidget()
@@ -62,7 +62,62 @@ class Coda(QMainWindow):
         self.game_engine.create_game_engine_layout()
         self.stacked_layout.addWidget(self.game_engine.game_engine_widget)
 
-    def go_to_main(self):
+    def start(self):
+
+        print('start')
+
+        self.status = 'game_engine'
+
+        self.game_engine.start_game(self.script, self.game_engine_id)
+
+        #fade effect
+        self.fader = Fader(self.stacked_layout.currentWidget(),
+                self.game_engine.game_engine_widget)
+        self.fader.fade(1500)
+
+        self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
+
+        #connection
+        self.game_engine.load_button.clicked.connect(self.load)
+        self.game_engine.title_button.clicked.connect(self._back_to_main)
+        self.game_engine.exit_button.clicked.connect(self.exit)
+
+    def load(self):
+
+        print('load')
+
+        self.load_game = Load()
+        self.load_game.create_load_layout(self.status)
+
+        #fade effect
+        self.fader = Fader(self.stacked_layout.currentWidget(),
+                self.load_game.load_widget)
+        self.fader.fade(350)
+
+        self.stacked_layout.addWidget(self.load_game.load_widget)
+        self.stacked_layout.setCurrentWidget(self.load_game.load_widget)
+
+        #connection
+        self.load_game.main_start_button.clicked.connect(self._load_game_engine)
+        if self.status == 'main':
+            self.load_game.main_exit_button.clicked.connect(self._back_to_main)
+        elif self.status == 'game_engine':
+            self.load_game.main_exit_button.clicked.connect(self._back_to_game_engine)
+
+    def extra(self):
+
+        print('extra')
+
+    def config(self):
+
+        print('config')
+
+    def exit(self):
+
+        print('exit')
+        self.close()
+
+    def _go_to_main(self):
 
         #fade effect
         self.fader = Fader(self.stacked_layout.currentWidget(),
@@ -71,14 +126,7 @@ class Coda(QMainWindow):
 
         self.stacked_layout.setCurrentWidget(self.main_window.main_window_widget)
 
-    def load_game_engine(self):
-
-        #test
-        self.script = 'scr_a0003'
-        self.game_engine_id = 0
-        self.start()
-
-    def back_to_main(self):
+    def _back_to_main(self):
 
         print('back to main')
 
@@ -98,7 +146,21 @@ class Coda(QMainWindow):
         self.game_engine.disable_hide_label.hide()
         self.game_engine.effect.hide()
 
-    def back_to_game_engine(self):
+    def _load_game_engine(self):
+
+        #test
+        self.script = 'scr_a0003'
+        self.game_engine_id = 0
+        self.game_engine.menu_widget.hide()
+
+        self.game_engine.text_box_widget.hide()
+        self.game_engine.select_widget.hide()
+        self.game_engine.disable_hide_label.hide()
+        self.game_engine.effect.hide()
+
+        self.start()
+
+    def _back_to_game_engine(self):
 
         print('back to game engine')
 
@@ -108,61 +170,6 @@ class Coda(QMainWindow):
         self.fader.fade(350)
 
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
-
-    def start(self):
-
-        print('start')
-
-        self.status = 'game_engine'
-
-        self.game_engine.start_game(self.script, self.game_engine_id)
-
-        #fade effect
-        self.fader = Fader(self.stacked_layout.currentWidget(),
-                self.game_engine.game_engine_widget)
-        self.fader.fade(1500)
-
-        self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
-
-        #connection
-        self.game_engine.load_button.clicked.connect(self.load)
-        self.game_engine.title_button.clicked.connect(self.back_to_main)
-        self.game_engine.exit_button.clicked.connect(self.exit)
-
-    def load(self):
-
-        print('load')
-
-        self.load_game = Load()
-        self.load_game.create_load_layout(self.status)
-
-        #fade effect
-        self.fader = Fader(self.stacked_layout.currentWidget(),
-                self.load_game.load_widget)
-        self.fader.fade(350)
-
-        self.stacked_layout.addWidget(self.load_game.load_widget)
-        self.stacked_layout.setCurrentWidget(self.load_game.load_widget)
-
-        #connection
-        self.load_game.main_start_button.clicked.connect(self.load_game_engine)
-        if self.status == 'main':
-            self.load_game.main_exit_button.clicked.connect(self.back_to_main)
-        elif self.status == 'game_engine':
-            self.load_game.main_exit_button.clicked.connect(self.back_to_game_engine)
-
-    def extra(self):
-
-        print('extra')
-
-    def config(self):
-
-        print('config')
-
-    def exit(self):
-
-        print('exit')
-        self.close()
 
     def closeEvent(self, event):
 

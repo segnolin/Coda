@@ -11,14 +11,14 @@ class Sound(QMediaPlayer):
     def __init__(self):
         super().__init__()
 
-        self.sound_id = ''
+        self.id = ''
         self.playlist = QMediaPlaylist()
         self.anime = QVariantAnimation()
         self.end_anime = QVariantAnimation()
 
     def play_sound(self, sound_id, playback_mode, fade_mode):
 
-        self.sound_id = sound_id
+        self.id = sound_id
 
         if playback_mode == None:
             self.playback_mode = QMediaPlaylist.CurrentItemOnce
@@ -39,7 +39,7 @@ class Sound(QMediaPlayer):
         self.playlist.addMedia(
                 QMediaContent(QUrl(
                 'qrc:/sd/{0}.mp3'.format(
-                self.sound_id))))
+                self.id))))
         self.playlist.setPlaybackMode(self.playback_mode)
 
         self.setPlaylist(self.playlist)
