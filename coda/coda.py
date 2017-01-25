@@ -7,6 +7,7 @@ from PyQt5.QtGui import *
 from coda.intro_window import *
 from coda.main_window import *
 from coda.game_engine import *
+from coda.save import *
 from coda.load import *
 from coda.image_button import *
 from coda.fader import *
@@ -78,9 +79,28 @@ class Coda(QMainWindow):
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
 
         #connection
+        self.game_engine.save_button.clicked.connect(self.save)
         self.game_engine.load_button.clicked.connect(self.load)
         self.game_engine.title_button.clicked.connect(self._back_to_main)
         self.game_engine.exit_button.clicked.connect(self.exit)
+
+    def save(self):
+
+        print('save')
+
+        self.save_game = Save()
+        self.save_game.create_save_layout()
+
+        #fade effect
+        self.fader = Fader(self.stacked_layout.currentWidget(),
+                self.save_game.save_widget)
+        self.fader.fade(350)
+
+        self.stacked_layout.addWidget(self.save_game.save_widget)
+        self.stacked_layout.setCurrentWidget(self.save_game.save_widget)
+
+        #connection
+        self.save_game.save_back_button.clicked.connect(self._back_to_game_engine)
 
     def load(self):
 
@@ -100,9 +120,9 @@ class Coda(QMainWindow):
         #connection
         self.load_game.main_start_button.clicked.connect(self._load_game_engine)
         if self.status == 'main':
-            self.load_game.main_exit_button.clicked.connect(self._back_to_main)
+            self.load_game.load_back_button.clicked.connect(self._back_to_main)
         elif self.status == 'game_engine':
-            self.load_game.main_exit_button.clicked.connect(self._back_to_game_engine)
+            self.load_game.load_back_button.clicked.connect(self._back_to_game_engine)
 
     def extra(self):
 
