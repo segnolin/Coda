@@ -5,62 +5,16 @@ import resources.script_resources
 
 from PyQt5.QtCore import *
 
-class Parser(QXmlStreamReader):
+from coda.data import *
+
+class ScriptParser(QXmlStreamReader):
 
     def __init__(self):
         super().__init__()
 
     def parse(self, script, game_engine_id):
 
-        self.bgm_pos = {}
-        self.bgm_id = {}
-        self.bgm_md = {}
-        self.bgm_vol = {}
-        self.bgm_num = 0
-
-        self.sd_pos = {}
-        self.sd_id = {}
-        self.sd_md = {}
-        self.sd_lp = {}
-        self.sd_fd = {}
-        self.sd_dfd = {}
-        self.sd_num = 0
-
-        self.eff_id = ''
-        self.eff_du = ''
-
-        self.mk_id = ''
-        self.mk_md = ''
-
-        self.bg_id = ''
-        self.bg_x = ''
-        self.bg_y = ''
-        self.bg_xf = ''
-        self.bg_yf = ''
-        self.bg_du = ''
-
-        self.pt_pos = {}
-        self.pt_id = {}
-        self.pt_md = {}
-        self.pt_x = {}
-        self.pt_y = {}
-        self.pt_xf = {}
-        self.pt_yf = {}
-        self.pt_du = {}
-        self.pt_num = 0
-
-        self.tb_sh = ''
-        self.tb_td = ''
-        self.tb_vc = ''
-        self.tb_char = ''
-        self.tb_txt = ''
-        self.tb_hi = ''
-
-        self.sl_txt = {}
-        self.sl_sc = {}
-        self.sl_num = 0
-
-        self.sys_sc = ''
+        self.data = Data()
 
         self.file = QFile(':/scr/{0}.xml'.format(script))
         self.file.open(QIODevice.ReadOnly)
@@ -106,19 +60,19 @@ class Parser(QXmlStreamReader):
 
     def _parse_bgm(self):
 
-        self.bgm_num += 1
+        self.data.bgm_num += 1
 
         while not self.atEnd():
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'pos':
-                    self.bgm_pos[self.bgm_num] = self.readElementText()
+                    self.data.bgm_pos[self.data.bgm_num] = self.readElementText()
                 elif self.name() == 'id':
-                    self.bgm_id[self.bgm_num] = self.readElementText()
+                    self.data.bgm_id[self.data.bgm_num] = self.readElementText()
                 elif self.name() == 'vol':
-                    self.bgm_vol[self.bgm_num] = self.readElementText()
+                    self.data.bgm_vol[self.data.bgm_num] = self.readElementText()
                 elif self.name() == 'md':
-                    self.bgm_md[self.bgm_num] = self.readElementText()
+                    self.data.bgm_md[self.data.bgm_num] = self.readElementText()
                 else:
                     self.readNext()
 
@@ -128,23 +82,23 @@ class Parser(QXmlStreamReader):
 
     def _parse_sd(self):
 
-        self.sd_num += 1
+        self.data.sd_num += 1
 
         while not self.atEnd():
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'pos':
-                    self.sd_pos[self.sd_num] = self.readElementText()
+                    self.data.sd_pos[self.data.sd_num] = self.readElementText()
                 elif self.name() == 'id':
-                    self.sd_id[self.sd_num] = self.readElementText()
+                    self.data.sd_id[self.data.sd_num] = self.readElementText()
                 elif self.name() == 'md':
-                    self.sd_md[self.sd_num] = self.readElementText()
+                    self.data.sd_md[self.data.sd_num] = self.readElementText()
                 elif self.name() == 'lp':
-                    self.sd_lp[self.sd_num] = self.readElementText()
+                    self.data.sd_lp[self.data.sd_num] = self.readElementText()
                 elif self.name() == 'fd':
-                    self.sd_fd[self.sd_num] = self.readElementText()
+                    self.data.sd_fd[self.data.sd_num] = self.readElementText()
                 elif self.name() == 'dfd':
-                    self.sd_dfd[self.sd_num] = self.readElementText()
+                    self.data.sd_dfd[self.data.sd_num] = self.readElementText()
                 else:
                     self.readNext()
 
@@ -158,9 +112,9 @@ class Parser(QXmlStreamReader):
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'id':
-                    self.eff_id = self.readElementText()
+                    self.data.eff_id = self.readElementText()
                 elif self.name() == 'du':
-                    self.eff_du = self.readElementText()
+                    self.data.eff_du = self.readElementText()
                 else:
                     self.readNext()
 
@@ -174,9 +128,9 @@ class Parser(QXmlStreamReader):
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'id':
-                    self.mk_id = self.readElementText()
+                    self.data.mk_id = self.readElementText()
                 elif self.name() == 'md':
-                    self.mk_md = self.readElementText()
+                    self.data.mk_md = self.readElementText()
                 else:
                     self.readNext()
 
@@ -190,17 +144,17 @@ class Parser(QXmlStreamReader):
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'id':
-                    self.bg_id = self.readElementText()
+                    self.data.bg_id = self.readElementText()
                 elif self.name() == 'x':
-                    self.bg_x = self.readElementText()
+                    self.data.bg_x = self.readElementText()
                 elif self.name() == 'y':
-                    self.bg_y = self.readElementText()
+                    self.data.bg_y = self.readElementText()
                 elif self.name() == 'xf':
-                    self.bg_xf = self.readElementText()
+                    self.data.bg_xf = self.readElementText()
                 elif self.name() == 'yf':
-                    self.bg_yf = self.readElementText()
+                    self.data.bg_yf = self.readElementText()
                 elif self.name() == 'du':
-                    self.bg_du = self.readElementText()
+                    self.data.bg_du = self.readElementText()
                 else:
                     self.readNext()
 
@@ -210,27 +164,27 @@ class Parser(QXmlStreamReader):
 
     def _parse_pt(self):
 
-        self.pt_num += 1
+        self.data.pt_num += 1
 
         while not self.atEnd():
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'pos':
-                    self.pt_pos[self.pt_num] = self.readElementText()
+                    self.data.pt_pos[self.data.pt_num] = self.readElementText()
                 elif self.name() == 'id':
-                    self.pt_id[self.pt_num] = self.readElementText()
+                    self.data.pt_id[self.data.pt_num] = self.readElementText()
                 elif self.name() == 'md':
-                    self.pt_md[self.pt_num] = self.readElementText()
+                    self.data.pt_md[self.data.pt_num] = self.readElementText()
                 elif self.name() == 'x':
-                    self.pt_x[self.pt_num] = self.readElementText()
+                    self.data.pt_x[self.data.pt_num] = self.readElementText()
                 elif self.name() == 'y':
-                    self.pt_y[self.pt_num] = self.readElementText()
+                    self.data.pt_y[self.data.pt_num] = self.readElementText()
                 elif self.name() == 'xf':
-                    self.pt_xf[self.pt_num] = self.readElementText()
+                    self.data.pt_xf[self.data.pt_num] = self.readElementText()
                 elif self.name() == 'yf':
-                    self.pt_yf[self.pt_num] = self.readElementText()
+                    self.data.pt_yf[self.data.pt_num] = self.readElementText()
                 elif self.name() == 'du':
-                    self.pt_du[self.pt_num] = self.readElementText()
+                    self.data.pt_du[self.data.pt_num] = self.readElementText()
                 else:
                     self.readNext()
 
@@ -244,17 +198,17 @@ class Parser(QXmlStreamReader):
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'sh':
-                    self.tb_sh = self.readElementText()
+                    self.data.tb_sh = self.readElementText()
                 elif self.name() == 'td':
-                    self.tb_td = self.readElementText()
+                    self.data.tb_td = self.readElementText()
                 elif self.name() == 'vc':
-                    self.tb_vc = self.readElementText()
+                    self.data.tb_vc = self.readElementText()
                 elif self.name() == 'char':
-                    self.tb_char = self.readElementText()
+                    self.data.tb_char = self.readElementText()
                 elif self.name() == 'txt':
-                    self.tb_txt = self.readElementText()
+                    self.data.tb_txt = self.readElementText()
                 elif self.name() == 'hi':
-                    self.tb_hi = self.readElementText()
+                    self.data.tb_hi = self.readElementText()
                 else:
                     self.readNext()
 
@@ -264,15 +218,15 @@ class Parser(QXmlStreamReader):
 
     def _parse_sl(self):
 
-        self.sl_num += 1
+        self.data.sl_num += 1
 
         while not self.atEnd():
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'txt':
-                    self.sl_txt[self.sl_num] = self.readElementText()
+                    self.data.sl_txt[self.data.sl_num] = self.readElementText()
                 elif self.name() == 'sc':
-                    self.sl_sc[self.sl_num] = self.readElementText()
+                    self.data.sl_sc[self.data.sl_num] = self.readElementText()
                 else:
                     self.readNext()
 
@@ -286,7 +240,7 @@ class Parser(QXmlStreamReader):
             self.readNext()
             if self.isStartElement():
                 if self.name() == 'sc':
-                    self.sys_sc = self.readElementText()
+                    self.data.sys_sc = self.readElementText()
                 else:
                     self.readNext()
 

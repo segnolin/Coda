@@ -5,7 +5,7 @@ import resources.system_resources
 
 from PyQt5.QtCore import *
 
-class Writer(QXmlStreamWriter):
+class SaveWriter(QXmlStreamWriter):
 
     def __init__(self):
         super().__init__()

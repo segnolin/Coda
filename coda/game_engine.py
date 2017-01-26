@@ -19,6 +19,7 @@ from coda.portrait import *
 from coda.script_parser import *
 from coda.sound import *
 from coda.voice import *
+from coda.data import *
 
 class GameEngine(QMainWindow):
     '''this class creates game engine layout and functions'''
@@ -193,7 +194,10 @@ class GameEngine(QMainWindow):
             self.sound[i] = Sound()
 
         #set parser
-        self.parser = Parser()
+        self.parser = ScriptParser()
+
+        #set save data 
+        self.save_data = Data()
 
     ############################## MAIN PROGRAM START ##############################
 
@@ -518,55 +522,55 @@ class GameEngine(QMainWindow):
 
         self.parser.parse(self.script, self.game_engine_id)
 
-        self.bgm_pos = self.parser.bgm_pos
-        self.bgm_id = self.parser.bgm_id
-        self.bgm_md = self.parser.bgm_md
-        self.bgm_vol = self.parser.bgm_vol
-        self.bgm_num = self.parser.bgm_num
+        self.bgm_pos = self.parser.data.bgm_pos
+        self.bgm_id = self.parser.data.bgm_id
+        self.bgm_md = self.parser.data.bgm_md
+        self.bgm_vol = self.parser.data.bgm_vol
+        self.bgm_num = self.parser.data.bgm_num
 
-        self.sd_pos = self.parser.sd_pos
-        self.sd_id = self.parser.sd_id
-        self.sd_md = self.parser.sd_md
-        self.sd_lp = self.parser.sd_lp
-        self.sd_fd = self.parser.sd_fd
-        self.sd_dfd = self.parser.sd_dfd
-        self.sd_num = self.parser.sd_num
+        self.sd_pos = self.parser.data.sd_pos
+        self.sd_id = self.parser.data.sd_id
+        self.sd_md = self.parser.data.sd_md
+        self.sd_lp = self.parser.data.sd_lp
+        self.sd_fd = self.parser.data.sd_fd
+        self.sd_dfd = self.parser.data.sd_dfd
+        self.sd_num = self.parser.data.sd_num
 
-        self.eff_id = self.parser.eff_id
-        self.eff_du = self.parser.eff_du
+        self.eff_id = self.parser.data.eff_id
+        self.eff_du = self.parser.data.eff_du
 
-        self.mk_id = self.parser.mk_id
-        self.mk_md = self.parser.mk_md
+        self.mk_id = self.parser.data.mk_id
+        self.mk_md = self.parser.data.mk_md
 
-        self.bg_id = self.parser.bg_id
-        self.bg_x = self.parser.bg_x
-        self.bg_y = self.parser.bg_y
-        self.bg_xf = self.parser.bg_xf
-        self.bg_yf = self.parser.bg_yf
-        self.bg_du = self.parser.bg_du
+        self.bg_id = self.parser.data.bg_id
+        self.bg_x = self.parser.data.bg_x
+        self.bg_y = self.parser.data.bg_y
+        self.bg_xf = self.parser.data.bg_xf
+        self.bg_yf = self.parser.data.bg_yf
+        self.bg_du = self.parser.data.bg_du
 
-        self.pt_pos = self.parser.pt_pos
-        self.pt_id = self.parser.pt_id
-        self.pt_md = self.parser.pt_md
-        self.pt_x = self.parser.pt_x
-        self.pt_y = self.parser.pt_y
-        self.pt_xf = self.parser.pt_xf
-        self.pt_yf = self.parser.pt_yf
-        self.pt_du = self.parser.pt_du
-        self.pt_num = self.parser.pt_num
+        self.pt_pos = self.parser.data.pt_pos
+        self.pt_id = self.parser.data.pt_id
+        self.pt_md = self.parser.data.pt_md
+        self.pt_x = self.parser.data.pt_x
+        self.pt_y = self.parser.data.pt_y
+        self.pt_xf = self.parser.data.pt_xf
+        self.pt_yf = self.parser.data.pt_yf
+        self.pt_du = self.parser.data.pt_du
+        self.pt_num = self.parser.data.pt_num
 
-        self.tb_sh = self.parser.tb_sh
-        self.tb_td = self.parser.tb_td
-        self.tb_vc = self.parser.tb_vc
-        self.tb_char = self.parser.tb_char
-        self.tb_txt = self.parser.tb_txt
-        self.tb_hi = self.parser.tb_hi
+        self.tb_sh = self.parser.data.tb_sh
+        self.tb_td = self.parser.data.tb_td
+        self.tb_vc = self.parser.data.tb_vc
+        self.tb_char = self.parser.data.tb_char
+        self.tb_txt = self.parser.data.tb_txt
+        self.tb_hi = self.parser.data.tb_hi
 
-        self.sl_txt = self.parser.sl_txt
-        self.sl_sc = self.parser.sl_sc
-        self.sl_num = self.parser.sl_num
+        self.sl_txt = self.parser.data.sl_txt
+        self.sl_sc = self.parser.data.sl_sc
+        self.sl_num = self.parser.data.sl_num
 
-        self.sys_sc = self.parser.sys_sc
+        self.sys_sc = self.parser.data.sys_sc
 
     def _selection(self):
 
@@ -696,6 +700,9 @@ class GameEngine(QMainWindow):
 
     def _save_data(self):
 
+        self.save_data = self.parser.data
+
+        '''
         print()
         print('<background_music>')
         for i in range(2):
@@ -706,7 +713,9 @@ class GameEngine(QMainWindow):
             print('\t[{0}]background_music_state: {1}'.format(
                     i, self.background_music.get(i).state()))
         print()
+        '''
 
+        '''
         print('<sound>')
         for i in range(3):
             print('\t[{0}]sound_id: {1}'.format(
@@ -716,7 +725,9 @@ class GameEngine(QMainWindow):
             print('\t[{0}]sound_state: {1}'.format(
                     i, self.sound.get(i).state()))
         print()
+        '''
 
+        '''
         print('<mask>')
         print('\tmask_id: {0}'.format(self.mask_label.id))
         print()
@@ -731,7 +742,9 @@ class GameEngine(QMainWindow):
         print('\tbackground_posyf: {0}'.format(self.background.posyf))
         print('\tbackground_duration: {0}'.format(self.background.duration))
         print()
+        '''
 
+        '''
         print('<portrait>')
         for i in range(5):
             print('\t[{0}]portrait_id: {1}'.format(
@@ -752,5 +765,65 @@ class GameEngine(QMainWindow):
                     i, self.portrait.get(i).duration))
             print('\t[{0}]portrait_opac: {1}'.format(
                     i, self.portrait.get(i).opacity))
+        print()
+        print('=======================================')
+        '''
+
+        self.print_data(self.save_data)
+
+    def print_data(self, data):
+
+        print()
+
+        print('self.bgm_pos: {0}'.format(self.bgm_pos))
+        print('self.bgm_id: {0}'.format(self.bgm_id))
+        print('self.bgm_md: {0}'.format(self.bgm_md))
+        print('self.bgm_vol: {0}'.format(self.bgm_vol))
+        print('self.bgm_num: {0}'.format(self.bgm_num))
+
+        print('self.sd_pos: {0}'.format(self.sd_pos))
+        print('self.sd_id: {0}'.format(self.sd_id))
+        print('self.sd_md: {0}'.format(self.sd_md))
+        print('self.sd_lp: {0}'.format(self.sd_lp))
+        print('self.sd_fd: {0}'.format(self.sd_fd))
+        print('self.sd_dfd: {0}'.format(self.sd_dfd))
+        print('self.sd_num: {0}'.format(self.sd_num))
+
+        print('self.eff_id: {0}'.format(self.eff_id))
+        print('self.eff_du: {0}'.format(self.eff_du))
+
+        print('self.mk_id: {0}'.format(self.mk_id))
+        print('self.mk_md: {0}'.format(self.mk_md))
+
+        print('self.bg_id: {0}'.format(self.bg_id))
+        print('self.bg_x: {0}'.format(self.bg_x))
+        print('self.bg_y: {0}'.format(self.bg_y))
+        print('self.bg_xf: {0}'.format(self.bg_xf))
+        print('self.bg_yf: {0}'.format(self.bg_yf))
+        print('self.bg_du: {0}'.format(self.bg_du))
+
+        print('self.pt_pos: {0}'.format(self.pt_pos))
+        print('self.pt_id: {0}'.format(self.pt_id))
+        print('self.pt_md: {0}'.format(self.pt_md))
+        print('self.pt_x: {0}'.format(self.pt_x))
+        print('self.pt_y: {0}'.format(self.pt_y))
+        print('self.pt_xf: {0}'.format(self.pt_xf))
+        print('self.pt_yf: {0}'.format(self.pt_yf))
+        print('self.pt_du: {0}'.format(self.pt_du))
+        print('self.pt_num: {0}'.format(self.pt_num))
+
+        print('self.tb_sh: {0}'.format(self.tb_sh))
+        print('self.tb_td: {0}'.format(self.tb_td))
+        print('self.tb_vc: {0}'.format(self.tb_vc))
+        print('self.tb_char: {0}'.format(self.tb_char))
+        print('self.tb_txt: {0}'.format(self.tb_txt))
+        print('self.tb_hi: {0}'.format(self.tb_hi))
+
+        print('self.sl_txt: {0}'.format(self.sl_txt))
+        print('self.sl_sc: {0}'.format(self.sl_sc))
+        print('self.sl_num: {0}'.format(self.sl_num))
+
+        print('self.sys_sc: {0}'.format(self.sys_sc))
+
         print()
         print('=======================================')
