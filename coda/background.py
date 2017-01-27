@@ -17,7 +17,7 @@ class Background(QLabel):
 
         self.setGeometry(0, 0, 1024, 576)
 
-        self.background_id = ''
+        self.id = ''
         self.posx = 0
         self.posy = 0
         self.posxf = 0
@@ -31,14 +31,14 @@ class Background(QLabel):
 
     def create_bg(self, background_id, posx, posy):
 
-        self.background_id = background_id
+        self.id = background_id
         self.x = posx
         self.y = posy
         self.posx = posx
         self.posy = posy
         self.duration = 0
 
-        self.pixmap = QPixmap(':/bg/{0}.png'.format(self.background_id))
+        self.pixmap = QPixmap(':/bg/{0}.png'.format(self.id))
         self.pixmap = self.pixmap.scaledToHeight(
                 self.pixmap.height() * self.pixel_ratio / 2,
                 Qt.SmoothTransformation)
@@ -51,7 +51,7 @@ class Background(QLabel):
             self, background_id,
             posx, posy, posxf, posyf, duration):
 
-        self.background_id = background_id
+        self.id = background_id
         self.posx = posx
         self.posy = posy
         self.posxf = posxf
@@ -60,7 +60,7 @@ class Background(QLabel):
         self.dx = self.posxf - self.posx
         self.dy = self.posyf - self.posy
 
-        self.pixmap = QPixmap(':/bg/{0}.png'.format(self.background_id))
+        self.pixmap = QPixmap(':/bg/{0}.png'.format(self.id))
         self.pixmap = self.pixmap.scaledToHeight(
                 self.pixmap.height() * self.pixel_ratio / 2,
                 Qt.SmoothTransformation)

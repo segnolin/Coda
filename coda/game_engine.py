@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import copy
 import resources.system_resources
 
 from PyQt5.QtWidgets import *
@@ -585,7 +586,7 @@ class GameEngine(QMainWindow):
                     'QAbstractButton {font-family: Times New Roman;'
                     'font-size: 18px; color: rgba(0, 0, 0, 100%)}')
             self.selection_button.get(i).setText('{0}'.format(i))
-            self.selection_button.get(i).set_text(self.sl_txt.get(i + 1))
+            self.selection_button.get(i).set_text(self.sl_txt.get(i))
             self.selection_button.get(i).setGeometry(0, pos, 1024, 65)
             self.selection_button.get(i).clicked.connect(self._jump_script)
 
@@ -599,7 +600,7 @@ class GameEngine(QMainWindow):
         #print(selection)
 
         self.game_engine_id = 0
-        self.script = self.sl_sc.get(selection + 1)
+        self.script = self.sl_sc.get(selection)
         #print(self.script)
 
         fader = Fader(self.game_engine_widget, self.game_engine_widget)
@@ -614,216 +615,237 @@ class GameEngine(QMainWindow):
 
         for i in range(self.bgm_num):
 
-            if self.bgm_md.get(i + 1) == 'new':
+            if self.bgm_md.get(i) == 'new':
                 self.background_music.get(
-                        int(self.bgm_pos.get(i + 1))).play_music(
-                                self.bgm_id.get(i + 1))
-            elif self.bgm_md.get(i + 1) == 'vol':
+                        int(self.bgm_pos.get(i))).play_music(
+                                self.bgm_id.get(i))
+            elif self.bgm_md.get(i) == 'vol':
                 self.background_music.get(
-                        int(self.bgm_pos.get(i + 1))).music_volume(
-                                int(self.bgm_vol.get(i + 1)))
-            elif self.bgm_md.get(i + 1) == 'del':
+                        int(self.bgm_pos.get(i))).music_volume(
+                                int(self.bgm_vol.get(i)))
+            elif self.bgm_md.get(i) == 'del':
                 self.background_music.get(
-                        int(self.bgm_pos.get(i + 1))).stop_music()
+                        int(self.bgm_pos.get(i))).stop_music()
 
     def _post_bgm_loop(self):
 
         for i in range(int(self.bgm_num)):
 
-            if self.bgm_md.get(i + 1) == 'dell':
-                self.background_music.get(int(self.bgm_pos.get(i + 1))).stop_music()
+            if self.bgm_md.get(i) == 'dell':
+                self.background_music.get(int(self.bgm_pos.get(i))).stop_music()
 
     def _pre_pt_loop(self):
 
         for i in range(self.pt_num):
 
-            if self.pt_md.get(i + 1) == 'new':
-                if self.pt_du.get(i + 1) != None:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).create_mv_pt(
-                            self.pt_id.get(i + 1),
-                            int(self.pt_x.get(i + 1)), int(self.pt_y.get(i + 1)),
-                            int(self.pt_xf.get(i + 1)), int(self.pt_yf.get(i + 1)),
-                            int(self.pt_du.get(i + 1)))
+            if self.pt_md.get(i) == 'new':
+                if self.pt_du.get(i) != None:
+                    self.portrait.get(int(self.pt_pos.get(i))).create_mv_pt(
+                            self.pt_id.get(i),
+                            int(self.pt_x.get(i)), int(self.pt_y.get(i)),
+                            int(self.pt_xf.get(i)), int(self.pt_yf.get(i)),
+                            int(self.pt_du.get(i)))
                 else:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).create_pt(
-                            self.pt_id.get(i + 1),
-                            int(self.pt_x.get(i + 1)), int(self.pt_y.get(i + 1)))
+                    self.portrait.get(int(self.pt_pos.get(i))).create_pt(
+                            self.pt_id.get(i),
+                            int(self.pt_x.get(i)), int(self.pt_y.get(i)))
 
-            elif self.pt_md.get(i + 1) == 'mv':
-                self.portrait.get(int(self.pt_pos.get(i + 1))).move_pt(
-                        int(self.pt_xf.get(i + 1)),
-                        int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
+            elif self.pt_md.get(i) == 'mv':
+                self.portrait.get(int(self.pt_pos.get(i))).move_pt(
+                        int(self.pt_xf.get(i)),
+                        int(self.pt_yf.get(i)), int(self.pt_du.get(i)))
 
-            elif self.pt_md.get(i + 1) == 'del':
-                if self.pt_du.get(i + 1) != None:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_mv_pt(
-                            int(self.pt_xf.get(i + 1)),
-                            int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
+            elif self.pt_md.get(i) == 'del':
+                if self.pt_du.get(i) != None:
+                    self.portrait.get(int(self.pt_pos.get(i))).delete_mv_pt(
+                            int(self.pt_xf.get(i)),
+                            int(self.pt_yf.get(i)), int(self.pt_du.get(i)))
                 else:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_pt()
+                    self.portrait.get(int(self.pt_pos.get(i))).delete_pt()
 
     def _post_pt_loop(self):
 
         for i in range(int(self.pt_num)):
 
-            if self.pt_md.get(i + 1) == 'dell':
-                if self.pt_du.get(i + 1) != None:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_mv_pt(
-                            int(self.pt_xf.get(i + 1)),
-                            int(self.pt_yf.get(i + 1)), int(self.pt_du.get(i + 1)))
+            if self.pt_md.get(i) == 'dell':
+                if self.pt_du.get(i) != None:
+                    self.portrait.get(int(self.pt_pos.get(i))).delete_mv_pt(
+                            int(self.pt_xf.get(i)),
+                            int(self.pt_yf.get(i)), int(self.pt_du.get(i)))
                 else:
-                    self.portrait.get(int(self.pt_pos.get(i + 1))).delete_pt()
+                    self.portrait.get(int(self.pt_pos.get(i))).delete_pt()
 
     def _pre_sd_loop(self):
 
         for i in range(self.sd_num):
 
-            if self.sd_md.get(i + 1) == 'new':
+            if self.sd_md.get(i) == 'new':
                 self.sound.get(
-                        int(self.sd_pos.get(i + 1))).play_sound(self.sd_id.get(i + 1),
-                                self.sd_lp.get(i + 1), self.sd_fd.get(i + 1))
-            elif self.sd_md.get(i + 1) == 'del':
+                        int(self.sd_pos.get(i))).play_sound(self.sd_id.get(i),
+                                self.sd_lp.get(i), self.sd_fd.get(i))
+            elif self.sd_md.get(i) == 'del':
                 self.sound.get(
-                        int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))
+                        int(self.sd_pos.get(i))).stop_sound(self.sd_dfd.get(i))
 
     def _post_sd_loop(self):
 
         for i in range(int(self.sd_num)):
 
-            if self.sd_md.get(i + 1) == 'newl':
+            if self.sd_md.get(i) == 'newl':
                 self.sound.get(
-                        int(self.sd_pos.get(i + 1))).play_sound(self.sd_id.get(i + 1),
-                                self.sd_lp.get(i + 1), self.sd_fd.get(i + 1))
-            if self.sd_md.get(i + 1) == 'dell':
+                        int(self.sd_pos.get(i))).play_sound(self.sd_id.get(i),
+                                self.sd_lp.get(i), self.sd_fd.get(i))
+            if self.sd_md.get(i) == 'dell':
                 self.sound.get(
-                        int(self.sd_pos.get(i + 1))).stop_sound(self.sd_dfd.get(i + 1))
+                        int(self.sd_pos.get(i))).stop_sound(self.sd_dfd.get(i))
 
     def _save_data(self):
 
-        self.save_data = self.parser.data
+        self.save_data = copy.deepcopy(self.parser.data)
 
-        '''
-        print()
-        print('<background_music>')
         for i in range(2):
-            print('\t[{0}]background_music_id: {1}'.format(
-                    i, self.background_music.get(i).id))
-            print('\t[{0}]background_music_vol: {1}'.format(
-                    i, self.background_music.get(i).volume()))
-            print('\t[{0}]background_music_state: {1}'.format(
-                    i, self.background_music.get(i).state()))
-        print()
-        '''
+            if (self.background_music.get(i).state() == 1):
+                dupli = False
+                for j in range(int(self.save_data.bgm_num)):
+                    if (self.save_data.bgm_pos.get(j) == str(i)
+                            and self.save_data.bgm_id.get(j)\
+                                    == self.background_music.get(i).id
+                            and self.save_data.bgm_md.get(j) == 'new'):
+                        dupli = True
+                if (dupli == False):
+                    self.save_data.bgm_pos[self.save_data.bgm_num] = str(i)
+                    self.save_data.bgm_id[self.save_data.bgm_num]\
+                            = self.background_music.get(i).id
+                    self.save_data.bgm_md[self.save_data.bgm_num] = 'new'
+                    self.save_data.bgm_vol[self.save_data.bgm_num]\
+                            = self.background_music.get(i).volume()
+                    self.save_data.bgm_num = str(int(
+                            self.save_data.bgm_num) + 1)
 
-        '''
-        print('<sound>')
         for i in range(3):
-            print('\t[{0}]sound_id: {1}'.format(
-                    i, self.sound.get(i).id))
-            print('\t[{0}]sound_mode: {1}'.format(
-                    i, self.sound.get(i).playlist.playbackMode()))
-            print('\t[{0}]sound_state: {1}'.format(
-                    i, self.sound.get(i).state()))
-        print()
-        '''
+            if (self.sound.get(i).state() == 1
+                    and self.sound.get(i).playlist.playbackMode() == 3):
+                dupli = False
+                for j in range(int(self.save_data.sd_num)):
+                    if (self.save_data.sd_pos.get(j) == str(i)
+                            and self.save_data.sd_id.get(j)\
+                                    == self.sound.get(i).id
+                            and self.save_data.sd_lp.get(j) != None):
+                        dupli = True
+                if (dupli == False):
+                    self.save_data.sd_pos[self.save_data.sd_num] = str(i)
+                    self.save_data.sd_id[self.save_data.sd_num]\
+                            = self.sound.get(i).id
+                    self.save_data.sd_md[self.save_data.sd_num] = 'new'
+                    self.save_data.sd_lp[self.save_data.sd_num] = 'True'
+                    self.save_data.sd_num = str(int(
+                            self.save_data.sd_num) + 1)
 
-        '''
-        print('<mask>')
-        print('\tmask_id: {0}'.format(self.mask_label.id))
-        print()
+        if (self.mask_label.id != ''
+                and self.save_data.mk_id != self.mask_label.id
+                and self.save_data.mk_md != 'new'):
+            self.save_data.mk_id = self.mask_label.id
+            self.save_data.mk_md = 'new'
 
-        print('<background>')
-        print('\tbackground_id: {0}'.format(self.background.background_id))
-        print('\tbackground_x: {0}'.format(self.background.x))
-        print('\tbackground_y: {0}'.format(self.background.y))
-        print('\tbackground_posx: {0}'.format(self.background.posx))
-        print('\tbackground_posy: {0}'.format(self.background.posy))
-        print('\tbackground_posxf: {0}'.format(self.background.posxf))
-        print('\tbackground_posyf: {0}'.format(self.background.posyf))
-        print('\tbackground_duration: {0}'.format(self.background.duration))
-        print()
-        '''
+        self.save_data.bg_id = self.background.id
+        self.save_data.bg_x = int(self.background.x)
+        self.save_data.bg_y = int(self.background.y)
+        self.save_data.bg_xf = ''
+        self.save_data.bg_yf = ''
+        self.save_data.bg_du = ''
+        print(self.background.duration != 0
+                and (int(self.background.x) != self.background.posxf
+                or int(self.background.y) != self.background.posyf))
+        if (self.background.duration != 0
+                and (int(self.background.x) != self.background.posxf
+                or int(self.background.y) != self.background.posyf)):
+            self.save_data.bg_xf = self.background.posxf
+            self.save_data.bg_yf = self.background.posyf
+            self.save_data.bg_du = int(self.background.duration\
+                    * ((self.background.posxf - self.background.x) ** 2
+                    + (self.background.posyf - self.background.y) ** 2)\
+                    ** 0.5\
+                    / ((self.background.posxf - self.background.posx) ** 2
+                    + (self.background.posyf - self.background.posy) ** 2)\
+                    ** 0.5)
 
-        '''
-        print('<portrait>')
         for i in range(5):
-            print('\t[{0}]portrait_id: {1}'.format(
-                    i, self.portrait.get(i).id))
-            print('\t[{0}]portrait_x: {1}'.format(
-                    i, self.portrait.get(i).x))
-            print('\t[{0}]portrait_y: {1}'.format(
-                    i, self.portrait.get(i).y))
-            print('\t[{0}]portrait_posx: {1}'.format(
-                    i, self.portrait.get(i).posx))
-            print('\t[{0}]portrait_posy: {1}'.format(
-                    i, self.portrait.get(i).posy))
-            print('\t[{0}]portrait_posxf: {1}'.format(
-                    i, self.portrait.get(i).posxf))
-            print('\t[{0}]portrait_posyf: {1}'.format(
-                    i, self.portrait.get(i).posyf))
-            print('\t[{0}]portrait_duration: {1}'.format(
-                    i, self.portrait.get(i).duration))
-            print('\t[{0}]portrait_opac: {1}'.format(
-                    i, self.portrait.get(i).opacity))
-        print()
-        print('=======================================')
-        '''
+            if (self.portrait.get(i).opacity != 0):
+                dupli = False
+                for j in range(int(self.save_data.pt_num)):
+                    if (self.save_data.pt_pos.get(j) == str(i)
+                            and self.save_data.pt_id.get(j)\
+                                    == self.portrait.get(i).id
+                            and self.save_data.pt_md.get(j) == 'new'):
+                        dupli = True
+                if (dupli == False):
+                    self.save_data.pt_pos[self.save_data.pt_num] = str(i)
+                    self.save_data.pt_id[self.save_data.pt_num]\
+                            = self.portrait.get(i).id
+                    self.save_data.pt_md[self.save_data.pt_num] = 'new'
+                    self.save_data.pt_x[self.save_data.pt_num]\
+                            = int(self.portrait.get(i).x)
+                    self.save_data.pt_y[self.save_data.pt_num]\
+                            = int(self.portrait.get(i).y)
+                    self.save_data.pt_num = str(int(
+                            self.save_data.pt_num) + 1)
 
         self.print_data(self.save_data)
 
     def print_data(self, data):
 
+        #debeg log
         print()
 
-        print('self.bgm_pos: {0}'.format(self.bgm_pos))
-        print('self.bgm_id: {0}'.format(self.bgm_id))
-        print('self.bgm_md: {0}'.format(self.bgm_md))
-        print('self.bgm_vol: {0}'.format(self.bgm_vol))
-        print('self.bgm_num: {0}'.format(self.bgm_num))
+        print('self.bgm_pos: {0}'.format(data.bgm_pos))
+        print('self.bgm_id: {0}'.format(data.bgm_id))
+        print('self.bgm_md: {0}'.format(data.bgm_md))
+        print('self.bgm_vol: {0}'.format(data.bgm_vol))
+        print('self.bgm_num: {0}'.format(data.bgm_num))
 
-        print('self.sd_pos: {0}'.format(self.sd_pos))
-        print('self.sd_id: {0}'.format(self.sd_id))
-        print('self.sd_md: {0}'.format(self.sd_md))
-        print('self.sd_lp: {0}'.format(self.sd_lp))
-        print('self.sd_fd: {0}'.format(self.sd_fd))
-        print('self.sd_dfd: {0}'.format(self.sd_dfd))
-        print('self.sd_num: {0}'.format(self.sd_num))
+        print('self.sd_pos: {0}'.format(data.sd_pos))
+        print('self.sd_id: {0}'.format(data.sd_id))
+        print('self.sd_md: {0}'.format(data.sd_md))
+        print('self.sd_lp: {0}'.format(data.sd_lp))
+        print('self.sd_fd: {0}'.format(data.sd_fd))
+        print('self.sd_dfd: {0}'.format(data.sd_dfd))
+        print('self.sd_num: {0}'.format(data.sd_num))
 
-        print('self.eff_id: {0}'.format(self.eff_id))
-        print('self.eff_du: {0}'.format(self.eff_du))
+        print('self.eff_id: {0}'.format(data.eff_id))
+        print('self.eff_du: {0}'.format(data.eff_du))
 
-        print('self.mk_id: {0}'.format(self.mk_id))
-        print('self.mk_md: {0}'.format(self.mk_md))
+        print('self.mk_id: {0}'.format(data.mk_id))
+        print('self.mk_md: {0}'.format(data.mk_md))
 
-        print('self.bg_id: {0}'.format(self.bg_id))
-        print('self.bg_x: {0}'.format(self.bg_x))
-        print('self.bg_y: {0}'.format(self.bg_y))
-        print('self.bg_xf: {0}'.format(self.bg_xf))
-        print('self.bg_yf: {0}'.format(self.bg_yf))
-        print('self.bg_du: {0}'.format(self.bg_du))
+        print('self.bg_id: {0}'.format(data.bg_id))
+        print('self.bg_x: {0}'.format(data.bg_x))
+        print('self.bg_y: {0}'.format(data.bg_y))
+        print('self.bg_xf: {0}'.format(data.bg_xf))
+        print('self.bg_yf: {0}'.format(data.bg_yf))
+        print('self.bg_du: {0}'.format(data.bg_du))
 
-        print('self.pt_pos: {0}'.format(self.pt_pos))
-        print('self.pt_id: {0}'.format(self.pt_id))
-        print('self.pt_md: {0}'.format(self.pt_md))
-        print('self.pt_x: {0}'.format(self.pt_x))
-        print('self.pt_y: {0}'.format(self.pt_y))
-        print('self.pt_xf: {0}'.format(self.pt_xf))
-        print('self.pt_yf: {0}'.format(self.pt_yf))
-        print('self.pt_du: {0}'.format(self.pt_du))
-        print('self.pt_num: {0}'.format(self.pt_num))
+        print('self.pt_pos: {0}'.format(data.pt_pos))
+        print('self.pt_id: {0}'.format(data.pt_id))
+        print('self.pt_md: {0}'.format(data.pt_md))
+        print('self.pt_x: {0}'.format(data.pt_x))
+        print('self.pt_y: {0}'.format(data.pt_y))
+        print('self.pt_xf: {0}'.format(data.pt_xf))
+        print('self.pt_yf: {0}'.format(data.pt_yf))
+        print('self.pt_du: {0}'.format(data.pt_du))
+        print('self.pt_num: {0}'.format(data.pt_num))
 
-        print('self.tb_sh: {0}'.format(self.tb_sh))
-        print('self.tb_td: {0}'.format(self.tb_td))
-        print('self.tb_vc: {0}'.format(self.tb_vc))
-        print('self.tb_char: {0}'.format(self.tb_char))
-        print('self.tb_txt: {0}'.format(self.tb_txt))
-        print('self.tb_hi: {0}'.format(self.tb_hi))
+        print('self.tb_sh: {0}'.format(data.tb_sh))
+        print('self.tb_td: {0}'.format(data.tb_td))
+        print('self.tb_vc: {0}'.format(data.tb_vc))
+        print('self.tb_char: {0}'.format(data.tb_char))
+        print('self.tb_txt: {0}'.format(data.tb_txt))
+        print('self.tb_hi: {0}'.format(data.tb_hi))
 
-        print('self.sl_txt: {0}'.format(self.sl_txt))
-        print('self.sl_sc: {0}'.format(self.sl_sc))
-        print('self.sl_num: {0}'.format(self.sl_num))
+        print('self.sl_txt: {0}'.format(data.sl_txt))
+        print('self.sl_sc: {0}'.format(data.sl_sc))
+        print('self.sl_num: {0}'.format(data.sl_num))
 
-        print('self.sys_sc: {0}'.format(self.sys_sc))
+        print('self.sys_sc: {0}'.format(data.sys_sc))
 
         print()
         print('=======================================')
