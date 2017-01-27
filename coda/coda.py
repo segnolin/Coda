@@ -63,6 +63,29 @@ class Coda(QMainWindow):
         self.game_engine.create_game_engine_layout()
         self.stacked_layout.addWidget(self.game_engine.game_engine_widget)
 
+        #game engine connection
+        self.game_engine.save_button.clicked.connect(self.save)
+        self.game_engine.load_button.clicked.connect(self.load)
+        self.game_engine.title_button.clicked.connect(self._back_to_main)
+        self.game_engine.exit_button.clicked.connect(self.exit)
+
+        #set save layout
+        self.save_game = Save()
+        self.save_game.create_save_layout()
+        self.stacked_layout.addWidget(self.save_game.save_widget)
+
+        #save connection
+        self.save_game.save_back_button.clicked.connect(self._back_to_game_engine)
+
+        #set save layout
+        self.load_game = Load()
+        self.load_game.create_load_layout(self.status)
+        self.stacked_layout.addWidget(self.load_game.load_widget)
+
+        #load connection
+        self.load_game.main_start_button.clicked.connect(self._load_game_engine)
+        self.load_game.load_back_button.clicked.connect(self._load_back)
+
     def start(self):
 
         print('start')
@@ -78,18 +101,9 @@ class Coda(QMainWindow):
 
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
 
-        #connection
-        self.game_engine.save_button.clicked.connect(self.save)
-        self.game_engine.load_button.clicked.connect(self.load)
-        self.game_engine.title_button.clicked.connect(self._back_to_main)
-        self.game_engine.exit_button.clicked.connect(self.exit)
-
     def save(self):
 
         print('save')
-
-        self.save_game = Save()
-        self.save_game.create_save_layout()
 
         #test thumbnail(test)
         thumbnail = QPixmap(2048, 1152)
@@ -102,33 +116,20 @@ class Coda(QMainWindow):
                 self.save_game.save_widget)
         self.fader.fade(350)
 
-        self.stacked_layout.addWidget(self.save_game.save_widget)
         self.stacked_layout.setCurrentWidget(self.save_game.save_widget)
-
-        #connection
-        self.save_game.save_back_button.clicked.connect(self._back_to_game_engine)
+        #print(self.stacked_layout.currentIndex())
 
     def load(self):
 
         print('load')
-
-        self.load_game = Load()
-        self.load_game.create_load_layout(self.status)
 
         #fade effect
         self.fader = Fader(self.stacked_layout.currentWidget(),
                 self.load_game.load_widget)
         self.fader.fade(350)
 
-        self.stacked_layout.addWidget(self.load_game.load_widget)
         self.stacked_layout.setCurrentWidget(self.load_game.load_widget)
-
-        #connection
-        self.load_game.main_start_button.clicked.connect(self._load_game_engine)
-        if self.status == 'main':
-            self.load_game.load_back_button.clicked.connect(self._back_to_main)
-        elif self.status == 'game_engine':
-            self.load_game.load_back_button.clicked.connect(self._back_to_game_engine)
+        #print(self.stacked_layout.currentIndex())
 
     def extra(self):
 
@@ -172,6 +173,13 @@ class Coda(QMainWindow):
         self.game_engine.disable_hide_label.hide()
         self.game_engine.effect.hide()
 
+    def _load_back(self):
+
+        if self.status == 'main':
+            self._back_to_main()
+        elif self.status == 'game_engine':
+            self._back_to_game_engine()
+
     def _load_game_engine(self):
 
         #test
@@ -196,6 +204,7 @@ class Coda(QMainWindow):
         self.fader.fade(350)
 
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
+        #print(self.stacked_layout.currentIndex())
 
     def closeEvent(self, event):
 
