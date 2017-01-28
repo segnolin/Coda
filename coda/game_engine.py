@@ -200,6 +200,10 @@ class GameEngine(QMainWindow):
         #set save data 
         self.save_data = Data()
 
+        #set save thumbnail
+        self.thumbnail = QPixmap(2048, 1152)
+        self.thumbnail.setDevicePixelRatio(self._pixel_ratio)
+
     ############################## MAIN PROGRAM START ##############################
 
     def start_game(self, script, game_engine_id):
@@ -585,7 +589,7 @@ class GameEngine(QMainWindow):
             self.selection_button.get(i).setStyleSheet(
                     'QAbstractButton {font-family: Times New Roman;'
                     'font-size: 18px; color: rgba(0, 0, 0, 100%)}')
-            self.selection_button.get(i).setText('{0}'.format(i))
+            self.selection_button.get(i).id = '{0}'.format(i)
             self.selection_button.get(i).set_text(self.sl_txt.get(i))
             self.selection_button.get(i).setGeometry(0, pos, 1024, 65)
             self.selection_button.get(i).clicked.connect(self._jump_script)
@@ -596,7 +600,7 @@ class GameEngine(QMainWindow):
 
     def _jump_script(self):
 
-        selection = int(self.sender().text())
+        selection = int(self.sender().id)
         #print(selection)
 
         self.game_engine_id = 0
@@ -702,6 +706,10 @@ class GameEngine(QMainWindow):
     def _save_data(self):
 
         self.save_data = copy.deepcopy(self.parser.data)
+        self.game_engine_widget.render(self.thumbnail)
+        #image = QFile('image.png')
+        #image.open(QIODevice.ReadOnly)
+        #self.thumbnail.save(image, 'PNG')
 
         for i in range(2):
             if (self.background_music.get(i).state() == 1):

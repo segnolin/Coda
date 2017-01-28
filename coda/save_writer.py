@@ -5,6 +5,8 @@ import resources.system_resources
 
 from PyQt5.QtCore import *
 
+from coda.data import *
+
 class SaveWriter(QXmlStreamWriter):
 
     def __init__(self):
@@ -15,10 +17,25 @@ class SaveWriter(QXmlStreamWriter):
         QFile().copy(':/sys/save_data.xml', QDir().homePath()
                 + '/.coda/save/save_data.xml')
         QFile(QDir().homePath() + '/.coda/save/save_data.xml').setPermissions(
-                QFileDevice.ReadOwner | QFileDevice.WriteOwner
+                QFileDevice.ReadOwner
+                | QFileDevice.WriteOwner
                 | QFileDevice.ReadUser
                 | QFileDevice.ReadGroup
                 | QFileDevice.ReadOther)
+
+        self.save_data = {}
+        self.thumbnail_data = {}
+        self.data_index = 0
+
+    def read(self):
+
+        pass
+
+    def collect(self, save_data, thumbnail):
+
+        self.save_data[self.data_index] = save_data
+        self.thumbnail_data[self.data_index] = thumbnail
+        self.data_index += 1
 
     def write(self):
 
@@ -28,6 +45,7 @@ class SaveWriter(QXmlStreamWriter):
         else:
             print('Success')
 
+        '''
             self.setDevice(self.file)
             self.setAutoFormatting(True)
             self.writeStartDocument()
@@ -59,4 +77,6 @@ class SaveWriter(QXmlStreamWriter):
                 self.writeEndElement()
                 self.writeEndElement()
             self.writeEndDocument()
+        '''
+
         self.file.close()
