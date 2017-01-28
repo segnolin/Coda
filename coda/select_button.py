@@ -35,6 +35,7 @@ class SelectButton(QAbstractButton):
         self.released.connect(self.update)
 
         self.txt = ''
+        self.id = ''
 
     def set_text(self, txt):
 
