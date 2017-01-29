@@ -449,6 +449,7 @@ class GameEngine(QMainWindow):
     def _show_widget(self, event):
 
         self.text_box_widget.show()
+        self.next_label.hide()
         self.fader_widget = FaderWidget(self.text_box_widget, 0.0)
         self.fader_widget.show(250)
         self.fader_widget.anime.finished.connect(self._finish_show_widget)
@@ -456,6 +457,7 @@ class GameEngine(QMainWindow):
     def _finish_show_widget(self):
 
         self.disable_hide_label.hide()
+        self.next_label.show()
         self.hide_button.setEnabled(True)
 
     def _hide_effect(self):
