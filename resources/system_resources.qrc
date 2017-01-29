@@ -73,6 +73,34 @@
 
         <file alias="save_background.png">system/save/save_background.png</file>
 
+        <file alias="save_label_button_defaults.png">system/save/save_label_button_defaults.png</file>
+        <file alias="save_label_button_hover.png">system/save/save_label_button_hover.png</file>
+        <file alias="save_label_button_press.png">system/save/save_label_button_press.png</file>
+
+        <file alias="save_1_button_defaults.png">system/save/save_1_button_defaults.png</file>
+        <file alias="save_1_button_hover.png">system/save/save_1_button_hover.png</file>
+        <file alias="save_1_button_press.png">system/save/save_1_button_press.png</file>
+
+        <file alias="save_2_button_defaults.png">system/save/save_2_button_defaults.png</file>
+        <file alias="save_2_button_hover.png">system/save/save_2_button_hover.png</file>
+        <file alias="save_2_button_press.png">system/save/save_2_button_press.png</file>
+
+        <file alias="save_3_button_defaults.png">system/save/save_3_button_defaults.png</file>
+        <file alias="save_3_button_hover.png">system/save/save_3_button_hover.png</file>
+        <file alias="save_3_button_press.png">system/save/save_3_button_press.png</file>
+
+        <file alias="save_4_button_defaults.png">system/save/save_4_button_defaults.png</file>
+        <file alias="save_4_button_hover.png">system/save/save_4_button_hover.png</file>
+        <file alias="save_4_button_press.png">system/save/save_4_button_press.png</file>
+
+        <file alias="save_5_button_defaults.png">system/save/save_5_button_defaults.png</file>
+        <file alias="save_5_button_hover.png">system/save/save_5_button_hover.png</file>
+        <file alias="save_5_button_press.png">system/save/save_5_button_press.png</file>
+
+        <file alias="save_6_button_defaults.png">system/save/save_6_button_defaults.png</file>
+        <file alias="save_6_button_hover.png">system/save/save_6_button_hover.png</file>
+        <file alias="save_6_button_press.png">system/save/save_6_button_press.png</file>
+
         <file alias="save_back_button_defaults.png">system/save/save_back_button_defaults.png</file>
         <file alias="save_back_button_hover.png">system/save/save_back_button_hover.png</file>
         <file alias="save_back_button_press.png">system/save/save_back_button_press.png</file>
