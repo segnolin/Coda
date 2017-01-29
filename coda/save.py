@@ -19,6 +19,7 @@ class Save(QMainWindow):
         super().__init__()
 
         self.pixel_ratio = QWindow().devicePixelRatio()
+        self.save_id = ''
 
     def create_save_layout(self):
 
@@ -68,18 +69,33 @@ class Save(QMainWindow):
         #create save writer
         self.save_writer = SaveWriter()
 
+        #write data connection
+        self.save_back_button.clicked.connect(self._write_data)
+
     def add_save(self, save_data, thumbnail):
 
-        self.save_writer.collect(save_data, thumbnail)
+        self.save_id = ''
+        self.save_data = save_data
+        self.thumbnail = thumbnail
 
     def _save(self):
 
-        save_id = int(self.sender().id)
-        print(save_id)
+        if self.save_id != '':
+            self._clear_save(self.save_id)
+
+        self.save_id = self.sender().id
+        print(self.save_id)
+
+        self.thumbnail = self.thumbnail.scaledToHeight(216 * self.pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        self.page[int(self.save_id / 6)].thumbnail[
+                int(self.save_id % 6)].setPixmap(self.thumbnail)
+        self.page[int(self.save_id / 6)].label[
+                int(self.save_id % 6)].setEnabled(False)
 
     def _change_page(self):
 
-        page = int(self.sender().id)
+        page = self.sender().id
         print(page)
 
         self.fader = Fader(self.save_widget, self.save_widget)
@@ -90,3 +106,20 @@ class Save(QMainWindow):
             self.page_background[i].hide()
         self.page[page].show()
         self.page_background[page].show()
+
+    def _write_data(self):
+
+        print('write data')
+        print(self.save_id)
+        if self.save_id != '':
+            self.save_writer.collect(self.save_data, self.thumbnail, self.save_id)
+
+    def _clear_save(self, save_id):
+
+        self.fader = Fader(self.save_widget, self.save_widget)
+        self.fader.fade(200)
+
+        self.page[int(save_id / 6)].thumbnail[
+                int(save_id % 6)].clear()
+        self.page[int(save_id / 6)].label[
+                int(save_id % 6)].setEnabled(True)

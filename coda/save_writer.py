@@ -31,8 +31,9 @@ class SaveWriter(QXmlStreamWriter):
 
         pass
 
-    def collect(self, save_data, thumbnail):
+    def collect(self, save_data, thumbnail, save_id):
 
+        print('collect')
         self.save_data[self.data_index] = save_data
         self.thumbnail_data[self.data_index] = thumbnail
         self.data_index += 1
@@ -40,7 +41,7 @@ class SaveWriter(QXmlStreamWriter):
     def write(self):
 
         self.file = QFile(QDir().homePath() + '/.coda/save/save_data.xml')
-        if (self.file.open(QIODevice.WriteOnly) == False):
+        if self.file.open(QIODevice.WriteOnly) == False:
             print('Error Opening')
         else:
             print('Success')

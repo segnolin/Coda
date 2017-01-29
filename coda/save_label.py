@@ -1,57 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import resources.system_resources
+from coda.image_button import *
 
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-
-class SaveLabel(QAbstractButton):
-    '''this class provide image button functions'''
+class SaveLabel(ImageButton):
+    '''this class provide save label functions'''
 
     def __init__(self, label_name, save_label_id, parent):
-        super().__init__(parent)
-
-        pixel_ratio = QWindow().devicePixelRatio()
-
-        self.pixmap_defaults = QPixmap(
-                ':/sys/{0}_button_defaults.png'.format(label_name))
-        self.pixmap_defaults = self.pixmap_defaults.scaledToHeight(
-                self.pixmap_defaults.height() * pixel_ratio / 2,
-                Qt.SmoothTransformation)
-        self.pixmap_defaults.setDevicePixelRatio(pixel_ratio)
-        self.pixmap_hover = QPixmap(
-                ':/sys/{0}_button_hover.png'.format(label_name))
-        self.pixmap_hover = self.pixmap_hover.scaledToHeight(
-                self.pixmap_hover.height() * pixel_ratio / 2,
-                Qt.SmoothTransformation)
-        self.pixmap_hover.setDevicePixelRatio(pixel_ratio)
-        self.pixmap_press = QPixmap(
-                ':/sys/{0}_button_press.png'.format(label_name))
-        self.pixmap_press = self.pixmap_press.scaledToHeight(
-                self.pixmap_press.height() * pixel_ratio / 2,
-                Qt.SmoothTransformation)
-        self.pixmap_press.setDevicePixelRatio(pixel_ratio)
-
-        self.pressed.connect(self.update)
-        self.released.connect(self.update)
+        super().__init__(label_name, parent)
 
         self.id = save_label_id
-
-    def paintEvent(self, event):
-
-        if self.underMouse(): pixmap = self.pixmap_hover
-        else: pixmap = self.pixmap_defaults
-        if self.isDown(): pixmap = self.pixmap_press
-
-        painter = QPainter(self)
-        painter.drawPixmap(0, 0, pixmap)
-
-    def enterEvent(self, event):
-
-        self.update()
-
-    def leaveEvent(self, event):
-
-        self.update()

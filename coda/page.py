@@ -15,7 +15,6 @@ class Page(QWidget):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self._pixel_ratio = QWindow().devicePixelRatio()
         self.thumbnail = {}
         self.label = {}
 

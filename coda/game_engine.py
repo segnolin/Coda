@@ -28,7 +28,7 @@ class GameEngine(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self._pixel_ratio = QWindow().devicePixelRatio()
+        self.pixel_ratio = QWindow().devicePixelRatio()
 
     def create_game_engine_layout(self):
 
@@ -70,9 +70,9 @@ class GameEngine(QMainWindow):
         #create select label
         self.select_background_pixmap = QPixmap(':/sys/select_background.png')
         self.select_background_pixmap = self.select_background_pixmap.scaledToHeight(
-                self.select_background_pixmap.height() * self._pixel_ratio / 2,
+                self.select_background_pixmap.height() * self.pixel_ratio / 2,
                 Qt.SmoothTransformation)
-        self.select_background_pixmap.setDevicePixelRatio(self._pixel_ratio)
+        self.select_background_pixmap.setDevicePixelRatio(self.pixel_ratio)
         self.select_background_label = QLabel(self.select_widget)
         self.select_background_label.setPixmap(self.select_background_pixmap)
         self.select_background_label.setGeometry(0, 0, 1024, 576)
@@ -84,9 +84,9 @@ class GameEngine(QMainWindow):
         #create text background label
         self.text_background_pixmap = QPixmap(':/sys/text_background.png')
         self.text_background_pixmap = self.text_background_pixmap.scaledToHeight(
-                self.text_background_pixmap.height() * self._pixel_ratio / 2,
+                self.text_background_pixmap.height() * self.pixel_ratio / 2,
                 Qt.SmoothTransformation)
-        self.text_background_pixmap.setDevicePixelRatio(self._pixel_ratio)
+        self.text_background_pixmap.setDevicePixelRatio(self.pixel_ratio)
         self.text_background_label = QLabel(self.text_box_widget)
         self.text_background_label.setPixmap(self.text_background_pixmap)
         self.text_background_label.setGeometry(0, 396, 1024, 180)
@@ -147,9 +147,9 @@ class GameEngine(QMainWindow):
         #create menu background
         self.menu_background_pixmap = QPixmap(':/sys/menu_background.png')
         self.menu_background_pixmap = self.menu_background_pixmap.scaledToHeight(
-                self.menu_background_pixmap.height() * self._pixel_ratio / 2,
+                self.menu_background_pixmap.height() * self.pixel_ratio / 2,
                 Qt.SmoothTransformation)
-        self.menu_background_pixmap.setDevicePixelRatio(self._pixel_ratio)
+        self.menu_background_pixmap.setDevicePixelRatio(self.pixel_ratio)
         self.menu_background_label = QLabel(self.menu_widget)
         self.menu_background_label.setPixmap(self.menu_background_pixmap)
         self.menu_background_label.setGeometry(0, 0, 1024, 576)
@@ -202,7 +202,7 @@ class GameEngine(QMainWindow):
 
         #set save thumbnail
         self.thumbnail = QPixmap(2048, 1152)
-        self.thumbnail.setDevicePixelRatio(self._pixel_ratio)
+        self.thumbnail.setDevicePixelRatio(self.pixel_ratio)
 
     ############################## MAIN PROGRAM START ##############################
 
@@ -712,7 +712,7 @@ class GameEngine(QMainWindow):
         #self.thumbnail.save(image, 'PNG')
 
         for i in range(2):
-            if (self.background_music[i].state() == 1):
+            if self.background_music[i].state() == 1:
                 dupli = False
                 for j in range(int(self.save_data.bgm_num)):
                     if (self.save_data.bgm_pos.get(j) == str(i)
@@ -720,7 +720,7 @@ class GameEngine(QMainWindow):
                                     == self.background_music[i].id
                             and self.save_data.bgm_md.get(j) == 'new'):
                         dupli = True
-                if (dupli == False):
+                if dupli == False:
                     self.save_data.bgm_pos[self.save_data.bgm_num] = str(i)
                     self.save_data.bgm_id[self.save_data.bgm_num]\
                             = self.background_music[i].id
@@ -740,7 +740,7 @@ class GameEngine(QMainWindow):
                                     == self.sound[i].id
                             and self.save_data.sd_lp.get(j) != None):
                         dupli = True
-                if (dupli == False):
+                if dupli == False:
                     self.save_data.sd_pos[self.save_data.sd_num] = str(i)
                     self.save_data.sd_id[self.save_data.sd_num]\
                             = self.sound[i].id
@@ -778,7 +778,7 @@ class GameEngine(QMainWindow):
                     ** 0.5)
 
         for i in range(5):
-            if (self.portrait[i].opacity != 0):
+            if self.portrait[i].opacity != 0:
                 dupli = False
                 for j in range(int(self.save_data.pt_num)):
                     if (self.save_data.pt_pos.get(j) == str(i)
@@ -786,7 +786,7 @@ class GameEngine(QMainWindow):
                                     == self.portrait[i].id
                             and self.save_data.pt_md.get(j) == 'new'):
                         dupli = True
-                if (dupli == False):
+                if dupli == False:
                     self.save_data.pt_pos[self.save_data.pt_num] = str(i)
                     self.save_data.pt_id[self.save_data.pt_num]\
                             = self.portrait[i].id

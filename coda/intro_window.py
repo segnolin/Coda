@@ -16,7 +16,7 @@ class IntroWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self._pixel_ratio = QWindow().devicePixelRatio()
+        self.pixel_ratio = QWindow().devicePixelRatio()
 
     def create_intro_window_layout(self):
 
@@ -26,9 +26,9 @@ class IntroWindow(QMainWindow):
         #set background picture by QLabel
         intro_background_pixmap = QPixmap(':/sys/intro_background.png')
         intro_background_pixmap = intro_background_pixmap.scaledToHeight(
-                intro_background_pixmap.height() * self._pixel_ratio / 2,
+                intro_background_pixmap.height() * self.pixel_ratio / 2,
                 Qt.SmoothTransformation)
-        intro_background_pixmap.setDevicePixelRatio(self._pixel_ratio)
+        intro_background_pixmap.setDevicePixelRatio(self.pixel_ratio)
         self.intro_background = QLabel(self.intro_window_widget)
         self.intro_background.setPixmap(intro_background_pixmap)
         self.intro_background.setGeometry(0, 0, 1024, 576)
@@ -42,7 +42,7 @@ class IntroWindow(QMainWindow):
 
         intro_background_pixmap = QPixmap(':/bg/white.png')
         intro_background_pixmap = intro_background_pixmap.scaledToHeight(
-                intro_background_pixmap.height() * self._pixel_ratio / 2,
+                intro_background_pixmap.height() * self.pixel_ratio / 2,
                 Qt.SmoothTransformation)
-        intro_background_pixmap.setDevicePixelRatio(self._pixel_ratio)
+        intro_background_pixmap.setDevicePixelRatio(self.pixel_ratio)
         self.intro_background.setPixmap(intro_background_pixmap)
