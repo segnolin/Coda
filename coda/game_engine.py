@@ -586,13 +586,13 @@ class GameEngine(QMainWindow):
             pos = 250 + int(i - int(int(self.sl_num) / 2)) * 75
 
             self.selection_button[i] = SelectButton(self.select_widget)
-            self.selection_button.get(i).setStyleSheet(
+            self.selection_button[i].setStyleSheet(
                     'QAbstractButton {font-family: Times New Roman;'
                     'font-size: 18px; color: rgba(0, 0, 0, 100%)}')
-            self.selection_button.get(i).id = '{0}'.format(i)
-            self.selection_button.get(i).set_text(self.sl_txt.get(i))
-            self.selection_button.get(i).setGeometry(0, pos, 1024, 65)
-            self.selection_button.get(i).clicked.connect(self._jump_script)
+            self.selection_button[i].id = '{0}'.format(i)
+            self.selection_button[i].set_text(self.sl_txt[i])
+            self.selection_button[i].setGeometry(0, pos, 1024, 65)
+            self.selection_button[i].clicked.connect(self._jump_script)
 
         fader = Fader(self.game_engine_widget, self.game_engine_widget)
         fader.fade(800)
@@ -604,14 +604,14 @@ class GameEngine(QMainWindow):
         #print(selection)
 
         self.game_engine_id = 0
-        self.script = self.sl_sc.get(selection)
+        self.script = self.sl_sc[selection]
         #print(self.script)
 
         fader = Fader(self.game_engine_widget, self.game_engine_widget)
         fader.fade(800)
         self.select_widget.hide()
         for each in self.selection_button:
-            self.selection_button.get(each).deleteLater()
+            self.selection_button[each].deleteLater()
         self.selection_button.clear()
         self._init_parser()
 
@@ -619,89 +619,89 @@ class GameEngine(QMainWindow):
 
         for i in range(self.bgm_num):
 
-            if self.bgm_md.get(i) == 'new':
-                self.background_music.get(
-                        int(self.bgm_pos.get(i))).play_music(
-                                self.bgm_id.get(i))
-            elif self.bgm_md.get(i) == 'vol':
-                self.background_music.get(
-                        int(self.bgm_pos.get(i))).music_volume(
-                                int(self.bgm_vol.get(i)))
-            elif self.bgm_md.get(i) == 'del':
-                self.background_music.get(
-                        int(self.bgm_pos.get(i))).stop_music()
+            if self.bgm_md[i] == 'new':
+                self.background_music[
+                        int(self.bgm_pos[i])].play_music(
+                                self.bgm_id[i])
+            elif self.bgm_md[i] == 'vol':
+                self.background_music[
+                        int(self.bgm_pos[i])].music_volume(
+                                int(self.bgm_vol[i]))
+            elif self.bgm_md[i] == 'del':
+                self.background_music[
+                        int(self.bgm_pos[i])].stop_music()
 
     def _post_bgm_loop(self):
 
         for i in range(int(self.bgm_num)):
 
-            if self.bgm_md.get(i) == 'dell':
-                self.background_music.get(int(self.bgm_pos.get(i))).stop_music()
+            if self.bgm_md[i] == 'dell':
+                self.background_music[int(self.bgm_pos[i])].stop_music()
 
     def _pre_pt_loop(self):
 
         for i in range(self.pt_num):
 
-            if self.pt_md.get(i) == 'new':
+            if self.pt_md[i] == 'new':
                 if self.pt_du.get(i) != None:
-                    self.portrait.get(int(self.pt_pos.get(i))).create_mv_pt(
-                            self.pt_id.get(i),
-                            int(self.pt_x.get(i)), int(self.pt_y.get(i)),
-                            int(self.pt_xf.get(i)), int(self.pt_yf.get(i)),
-                            int(self.pt_du.get(i)))
+                    self.portrait[int(self.pt_pos[i])].create_mv_pt(
+                            self.pt_id[i],
+                            int(self.pt_x[i]), int(self.pt_y[i]),
+                            int(self.pt_xf[i]), int(self.pt_yf[i]),
+                            int(self.pt_du[i]))
                 else:
-                    self.portrait.get(int(self.pt_pos.get(i))).create_pt(
-                            self.pt_id.get(i),
-                            int(self.pt_x.get(i)), int(self.pt_y.get(i)))
+                    self.portrait[int(self.pt_pos[i])].create_pt(
+                            self.pt_id[i],
+                            int(self.pt_x[i]), int(self.pt_y[i]))
 
-            elif self.pt_md.get(i) == 'mv':
-                self.portrait.get(int(self.pt_pos.get(i))).move_pt(
-                        int(self.pt_xf.get(i)),
-                        int(self.pt_yf.get(i)), int(self.pt_du.get(i)))
+            elif self.pt_md[i] == 'mv':
+                self.portrait[int(self.pt_pos[i])].move_pt(
+                        int(self.pt_xf[i]),
+                        int(self.pt_yf[i]), int(self.pt_du[i]))
 
-            elif self.pt_md.get(i) == 'del':
+            elif self.pt_md[i] == 'del':
                 if self.pt_du.get(i) != None:
-                    self.portrait.get(int(self.pt_pos.get(i))).delete_mv_pt(
-                            int(self.pt_xf.get(i)),
-                            int(self.pt_yf.get(i)), int(self.pt_du.get(i)))
+                    self.portrait[int(self.pt_pos[i])].delete_mv_pt(
+                            int(self.pt_xf[i]),
+                            int(self.pt_yf[i]), int(self.pt_du[i]))
                 else:
-                    self.portrait.get(int(self.pt_pos.get(i))).delete_pt()
+                    self.portrait[int(self.pt_pos[i])].delete_pt()
 
     def _post_pt_loop(self):
 
         for i in range(int(self.pt_num)):
 
-            if self.pt_md.get(i) == 'dell':
+            if self.pt_md[i] == 'dell':
                 if self.pt_du.get(i) != None:
-                    self.portrait.get(int(self.pt_pos.get(i))).delete_mv_pt(
-                            int(self.pt_xf.get(i)),
-                            int(self.pt_yf.get(i)), int(self.pt_du.get(i)))
+                    self.portrait[int(self.pt_pos[i])].delete_mv_pt(
+                            int(self.pt_xf[i]),
+                            int(self.pt_yf[i]), int(self.pt_du[i]))
                 else:
-                    self.portrait.get(int(self.pt_pos.get(i))).delete_pt()
+                    self.portrait[int(self.pt_pos[i])].delete_pt()
 
     def _pre_sd_loop(self):
 
         for i in range(self.sd_num):
 
-            if self.sd_md.get(i) == 'new':
-                self.sound.get(
-                        int(self.sd_pos.get(i))).play_sound(self.sd_id.get(i),
+            if self.sd_md[i] == 'new':
+                self.sound[
+                        int(self.sd_pos[i])].play_sound(self.sd_id[i],
                                 self.sd_lp.get(i), self.sd_fd.get(i))
-            elif self.sd_md.get(i) == 'del':
-                self.sound.get(
-                        int(self.sd_pos.get(i))).stop_sound(self.sd_dfd.get(i))
+            elif self.sd_md[i] == 'del':
+                self.sound[
+                        int(self.sd_pos[i])].stop_sound(self.sd_dfd.get(i))
 
     def _post_sd_loop(self):
 
         for i in range(int(self.sd_num)):
 
-            if self.sd_md.get(i) == 'newl':
-                self.sound.get(
-                        int(self.sd_pos.get(i))).play_sound(self.sd_id.get(i),
+            if self.sd_md[i] == 'newl':
+                self.sound[
+                        int(self.sd_pos[i])].play_sound(self.sd_id[i],
                                 self.sd_lp.get(i), self.sd_fd.get(i))
-            if self.sd_md.get(i) == 'dell':
-                self.sound.get(
-                        int(self.sd_pos.get(i))).stop_sound(self.sd_dfd.get(i))
+            if self.sd_md[i] == 'dell':
+                self.sound[
+                        int(self.sd_pos[i])].stop_sound(self.sd_dfd.get(i))
 
     def _save_data(self):
 
@@ -712,38 +712,38 @@ class GameEngine(QMainWindow):
         #self.thumbnail.save(image, 'PNG')
 
         for i in range(2):
-            if (self.background_music.get(i).state() == 1):
+            if (self.background_music[i].state() == 1):
                 dupli = False
                 for j in range(int(self.save_data.bgm_num)):
                     if (self.save_data.bgm_pos.get(j) == str(i)
                             and self.save_data.bgm_id.get(j)\
-                                    == self.background_music.get(i).id
+                                    == self.background_music[i].id
                             and self.save_data.bgm_md.get(j) == 'new'):
                         dupli = True
                 if (dupli == False):
                     self.save_data.bgm_pos[self.save_data.bgm_num] = str(i)
                     self.save_data.bgm_id[self.save_data.bgm_num]\
-                            = self.background_music.get(i).id
+                            = self.background_music[i].id
                     self.save_data.bgm_md[self.save_data.bgm_num] = 'new'
                     self.save_data.bgm_vol[self.save_data.bgm_num]\
-                            = self.background_music.get(i).volume()
+                            = self.background_music[i].volume()
                     self.save_data.bgm_num = str(int(
                             self.save_data.bgm_num) + 1)
 
         for i in range(3):
-            if (self.sound.get(i).state() == 1
-                    and self.sound.get(i).playlist.playbackMode() == 3):
+            if (self.sound[i].state() == 1
+                    and self.sound[i].playlist.playbackMode() == 3):
                 dupli = False
                 for j in range(int(self.save_data.sd_num)):
                     if (self.save_data.sd_pos.get(j) == str(i)
                             and self.save_data.sd_id.get(j)\
-                                    == self.sound.get(i).id
+                                    == self.sound[i].id
                             and self.save_data.sd_lp.get(j) != None):
                         dupli = True
                 if (dupli == False):
                     self.save_data.sd_pos[self.save_data.sd_num] = str(i)
                     self.save_data.sd_id[self.save_data.sd_num]\
-                            = self.sound.get(i).id
+                            = self.sound[i].id
                     self.save_data.sd_md[self.save_data.sd_num] = 'new'
                     self.save_data.sd_lp[self.save_data.sd_num] = 'True'
                     self.save_data.sd_num = str(int(
@@ -778,23 +778,23 @@ class GameEngine(QMainWindow):
                     ** 0.5)
 
         for i in range(5):
-            if (self.portrait.get(i).opacity != 0):
+            if (self.portrait[i].opacity != 0):
                 dupli = False
                 for j in range(int(self.save_data.pt_num)):
                     if (self.save_data.pt_pos.get(j) == str(i)
                             and self.save_data.pt_id.get(j)\
-                                    == self.portrait.get(i).id
+                                    == self.portrait[i].id
                             and self.save_data.pt_md.get(j) == 'new'):
                         dupli = True
                 if (dupli == False):
                     self.save_data.pt_pos[self.save_data.pt_num] = str(i)
                     self.save_data.pt_id[self.save_data.pt_num]\
-                            = self.portrait.get(i).id
+                            = self.portrait[i].id
                     self.save_data.pt_md[self.save_data.pt_num] = 'new'
                     self.save_data.pt_x[self.save_data.pt_num]\
-                            = int(self.portrait.get(i).x)
+                            = int(self.portrait[i].x)
                     self.save_data.pt_y[self.save_data.pt_num]\
-                            = int(self.portrait.get(i).y)
+                            = int(self.portrait[i].y)
                     self.save_data.pt_num = str(int(
                             self.save_data.pt_num) + 1)
 

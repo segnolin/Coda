@@ -42,8 +42,8 @@ class Save(QMainWindow):
             self.page[i].create_page_layout(i)
             self.page[i].hide()
             for j in range(6):
-                self.page.get(i).label.get(j).clicked.connect(self._save)
-        self.page.get(0).show()
+                self.page[i].label[j].clicked.connect(self._save)
+        self.page[0].show()
 
         #create save page button
         self.page_background = {}
