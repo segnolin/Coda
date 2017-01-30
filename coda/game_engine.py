@@ -847,8 +847,8 @@ class GameEngine(QMainWindow):
         print('self.tb_sh: {0}'.format(data.tb_sh))
         print('self.tb_td: {0}'.format(data.tb_td))
         print('self.tb_vc: {0}'.format(data.tb_vc))
-        print('self.tb_char: {0}'.format(data.tb_char))
-        print('self.tb_txt: {0}'.format(data.tb_txt))
+        #print('self.tb_char: {0}'.format(data.tb_char))
+        #print('self.tb_txt: {0}'.format(data.tb_txt))
         print('self.tb_hi: {0}'.format(data.tb_hi))
 
         print('self.sl_txt: {0}'.format(data.sl_txt))

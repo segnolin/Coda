@@ -62,6 +62,12 @@ class Save(QMainWindow):
             self.save_page[i].setGeometry(724 + i * 36, 25, 36, 36)
             self.save_page[i].clicked.connect(self._change_page)
 
+        #modify delete button
+        for i in range(6):
+            for j in range(6):
+                self.page[i].delete[j].clicked.connect(self._delete)
+                self.page[i].delete[j].hide()
+
         #create back button
         self.save_back_button = ImageButton('save_back', self.save_widget)
         self.save_back_button.setGeometry(844, 490, 96, 32)
@@ -80,6 +86,9 @@ class Save(QMainWindow):
 
     def _save(self):
 
+        self.fader = Fader(self.save_widget, self.save_widget)
+        self.fader.fade(200)
+
         if self.save_id != '':
             self._clear_save(self.save_id)
 
@@ -90,8 +99,20 @@ class Save(QMainWindow):
                 Qt.SmoothTransformation)
         self.page[int(self.save_id / 6)].thumbnail[
                 int(self.save_id % 6)].setPixmap(self.thumbnail)
+        self.page[int(self.save_id / 6)].text_preview[
+                int(self.save_id % 6)].setText(self.save_data.tb_txt)
         self.page[int(self.save_id / 6)].label[
                 int(self.save_id % 6)].setEnabled(False)
+        self.page[int(self.save_id / 6)].delete[
+                int(self.save_id % 6)].show()
+
+    def _delete(self):
+
+        save_id = self.sender().id
+
+        if save_id == self.save_id:
+            self._clear_save(save_id)
+            self.save_id = ''
 
     def _change_page(self):
 
@@ -121,5 +142,9 @@ class Save(QMainWindow):
 
         self.page[int(save_id / 6)].thumbnail[
                 int(save_id % 6)].clear()
+        self.page[int(save_id / 6)].text_preview[
+                int(save_id % 6)].clear()
         self.page[int(save_id / 6)].label[
                 int(save_id % 6)].setEnabled(True)
+        self.page[int(save_id / 6)].delete[
+                int(save_id % 6)].hide()

@@ -101,6 +101,10 @@
         <file alias="save_6_button_hover.png">system/save/save_6_button_hover.png</file>
         <file alias="save_6_button_press.png">system/save/save_6_button_press.png</file>
 
+        <file alias="save_delete_button_defaults.png">system/save/save_delete_button_defaults.png</file>
+        <file alias="save_delete_button_hover.png">system/save/save_delete_button_hover.png</file>
+        <file alias="save_delete_button_press.png">system/save/save_delete_button_press.png</file>
+
         <file alias="save_back_button_defaults.png">system/save/save_back_button_defaults.png</file>
         <file alias="save_back_button_hover.png">system/save/save_back_button_hover.png</file>
         <file alias="save_back_button_press.png">system/save/save_back_button_press.png</file>
