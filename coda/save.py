@@ -20,6 +20,7 @@ class Save(QMainWindow):
 
         self.pixel_ratio = QWindow().devicePixelRatio()
         self.save_id = ''
+        self.delete_save = False
 
     def create_save_layout(self):
 
@@ -83,6 +84,25 @@ class Save(QMainWindow):
         self.save_id = ''
         self.save_data = save_data
         self.thumbnail = thumbnail
+        self.save_writer.read()
+        self._set_page()
+        self.delete_save = False
+
+    def _set_page(self):
+
+        for i in range(self.save_writer.data_index):
+            data = self.save_writer.save_data[i]
+            thumbnail = self.save_writer.thumbnail_data[i]
+            j = int(data.sys_svid)
+            self.page[int(j / 6)].thumbnail[
+                    int(j % 6)].setPixmap(thumbnail)
+            self.page[int(j / 6)].text_preview[
+                    int(j % 6)].setText(data.tb_txt)
+            self.page[int(j / 6)].label[
+                    int(j % 6)].setEnabled(False)
+            self.page[int(j / 6)].delete[
+                    int(j % 6)].show()
+
 
     def _save(self):
 
@@ -111,8 +131,17 @@ class Save(QMainWindow):
         save_id = self.sender().id
 
         if save_id == self.save_id:
-            self._clear_save(save_id)
             self.save_id = ''
+        else:
+            for i in range(self.save_writer.data_index):
+                if self.save_writer.save_data.get(i) != None:
+                    if self.save_writer.save_data[i].sys_svid == str(save_id):
+                        print('del')
+                        self.save_writer.save_data.pop(i)
+                        self.save_writer.thumbnail_data.pop(i)
+                        self.delete_save = True
+
+        self._clear_save(save_id)
 
     def _change_page(self):
 
@@ -134,6 +163,8 @@ class Save(QMainWindow):
         print(self.save_id)
         if self.save_id != '':
             self.save_writer.collect(self.save_data, self.thumbnail, self.save_id)
+            self.save_writer.write()
+        elif self.delete_save == True:
             self.save_writer.write()
 
     def _clear_save(self, save_id):

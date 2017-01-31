@@ -3,9 +3,11 @@
 
 import resources.system_resources
 
+from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 from coda.data import *
+from coda.save_parser import *
 
 class SaveWriter(QXmlStreamWriter):
 
@@ -29,7 +31,22 @@ class SaveWriter(QXmlStreamWriter):
 
     def read(self):
 
-        pass
+        self.save_data = {}
+        self.thumbnail_data = {}
+        self.data_index = 0
+
+        save_parser = SaveParser()
+        num = int(save_parser.parse_num())
+        print(num)
+
+        for i in range(num):
+            save_parser.parse(i)
+            self.save_data[i] = save_parser.data
+            self.thumbnail_data[i] = QPixmap(QDir().homePath()
+                    + '/.coda/save/thumbnail_{0}.png'.format(
+                    self.save_data[i].sys_svid))
+            self.thumbnail_data[i].setDevicePixelRatio(QWindow().devicePixelRatio())
+        self.data_index = num
 
     def collect(self, save_data, thumbnail, save_id):
 
@@ -216,7 +233,7 @@ class SaveWriter(QXmlStreamWriter):
         if data.tb_sh != '':
             self._write_element('sh', data.tb_sh)
         if data.tb_td != '':
-            self._write_element('tb', data.tb_td)
+            self._write_element('td', data.tb_td)
         if data.tb_vc != '':
             self._write_element('vc', data.tb_vc)
         if data.tb_char != '':
@@ -233,16 +250,19 @@ class SaveWriter(QXmlStreamWriter):
 
     def _write_sys(self, data):
 
-        if data.sys_sc == '' and data.sys_scid == '' and data.sys_svid == '':
+        if (data.sys_sc == '' and data.sys_svid == ''
+                and data.sys_ldsc == '' and data.sys_ldid == ''):
             return
 
         self.writeStartElement('sys')
         if data.sys_sc != '':
             self._write_element('sc', data.sys_sc)
-        if data.sys_scid != '':
-            self._write_element('scid', data.sys_scid)
         if data.sys_svid != '':
             self._write_element('svid', data.sys_svid)
+        if data.sys_ldsc != '':
+            self._write_element('ldsc', data.sys_ldsc)
+        if data.sys_ldid != '':
+            self._write_element('ldid', data.sys_ldid)
         self.writeEndElement()
 
     def _write_element(self, element_id, character):

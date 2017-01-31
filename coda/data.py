@@ -55,5 +55,6 @@ class Data(object):
         self.sl_num = 0
 
         self.sys_sc = ''
-        self.sys_scid = ''
         self.sys_svid = ''
+        self.sys_ldsc = ''
+        self.sys_ldid = ''
