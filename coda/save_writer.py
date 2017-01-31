@@ -34,6 +34,7 @@ class SaveWriter(QXmlStreamWriter):
     def collect(self, save_data, thumbnail, save_id):
 
         print('collect')
+        save_data.sys_svid = str(save_id)
         self.save_data[self.data_index] = save_data
         self.thumbnail_data[self.data_index] = thumbnail
         self.save_id = save_id
@@ -84,21 +85,13 @@ class SaveWriter(QXmlStreamWriter):
         for i in range(int(data.bgm_num)):
             self.writeStartElement('bgm')
             if data.bgm_pos.get(i) != None:
-                self.writeStartElement('pos')
-                self.writeCharacters(data.bgm_pos[i])
-                self.writeEndElement()
+                self._write_element('pos', data.bgm_pos[i])
             if data.bgm_id.get(i) != None:
-                self.writeStartElement('id')
-                self.writeCharacters(data.bgm_id[i])
-                self.writeEndElement()
+                self._write_element('id', data.bgm_id[i])
             if data.bgm_vol.get(i) != None:
-                self.writeStartElement('vol')
-                self.writeCharacters(data.bgm_vol[i])
-                self.writeEndElement()
+                self._write_element('vol', data.bgm_vol[i])
             if data.bgm_md.get(i) != None:
-                self.writeStartElement('md')
-                self.writeCharacters(data.bgm_md[i])
-                self.writeEndElement()
+                self._write_element('md', data.bgm_md[i])
             self.writeEndElement()
 
     def _write_sd(self, data):
@@ -109,29 +102,17 @@ class SaveWriter(QXmlStreamWriter):
         for i in range(int(data.sd_num)):
             self.writeStartElement('sd')
             if data.sd_pos.get(i) != None:
-                self.writeStartElement('pos')
-                self.writeCharacters(data.sd_pos[i])
-                self.writeEndElement()
+                self._write_element('pos', data.sd_pos[i])
             if data.sd_id.get(i) != None:
-                self.writeStartElement('id')
-                self.writeCharacters(data.sd_id[i])
-                self.writeEndElement()
+                self._write_element('id', data.sd_id[i])
             if data.sd_md.get(i) != None:
-                self.writeStartElement('md')
-                self.writeCharacters(data.sd_md[i])
-                self.writeEndElement()
+                self._write_element('md', data.sd_md[i])
             if data.sd_lp.get(i) != None:
-                self.writeStartElement('lp')
-                self.writeCharacters(data.sd_lp[i])
-                self.writeEndElement()
+                self._write_element('lp', data.sd_lp[i])
             if data.sd_fd.get(i) != None:
-                self.writeStartElement('fd')
-                self.writeCharacters(data.sd_fd[i])
-                self.writeEndElement()
+                self._write_element('fd', data.sd_fd[i])
             if data.sd_dfd.get(i) != None:
-                self.writeStartElement('dfd')
-                self.writeCharacters(data.sd_dfd[i])
-                self.writeEndElement()
+                self._write_element('dfd', data.sd_dfd[i])
             self.writeEndElement()
 
     def _write_eff(self, data):
@@ -141,13 +122,9 @@ class SaveWriter(QXmlStreamWriter):
 
         self.writeStartElement('eff')
         if data.eff_id != '':
-            self.writeStartElement('id')
-            self.writeCharacters(data.eff_id)
-            self.writeEndElement()
+            self._write_element('id', data.eff_id)
         if data.eff_du != '':
-            self.writeStartElement('du')
-            self.writeCharacters(data.eff_du)
-            self.writeEndElement()
+            self._write_element('du', data.eff_du)
         self.writeEndElement()
 
     def _write_mk(self, data):
@@ -157,13 +134,9 @@ class SaveWriter(QXmlStreamWriter):
 
         self.writeStartElement('mk')
         if data.mk_id != '':
-            self.writeStartElement('id')
-            self.writeCharacters(data.mk_id)
-            self.writeEndElement()
+            self._write_element('id', data.mk_id)
         if data.mk_md != '':
-            self.writeStartElement('md')
-            self.writeCharacters(data.mk_md)
-            self.writeEndElement()
+            self._write_element('md', data.mk_md)
         self.writeEndElement()
 
     def _write_bg(self, data):
@@ -174,29 +147,17 @@ class SaveWriter(QXmlStreamWriter):
 
         self.writeStartElement('bg')
         if data.bg_id != '':
-            self.writeStartElement('id')
-            self.writeCharacters(data.bg_id)
-            self.writeEndElement()
+            self._write_element('id', data.bg_id)
         if data.bg_x != '':
-            self.writeStartElement('x')
-            self.writeCharacters(str(data.bg_x))
-            self.writeEndElement()
+            self._write_element('x', data.bg_x)
         if data.bg_y != '':
-            self.writeStartElement('y')
-            self.writeCharacters(str(data.bg_y))
-            self.writeEndElement()
+            self._write_element('y', data.bg_y)
         if data.bg_xf != '':
-            self.writeStartElement('xf')
-            self.writeCharacters(str(data.bg_xf))
-            self.writeEndElement()
+            self._write_element('xf', data.bg_xf)
         if data.bg_yf != '':
-            self.writeStartElement('yf')
-            self.writeCharacters(str(data.bg_yf))
-            self.writeEndElement()
+            self._write_element('yf', data.bg_yf)
         if data.bg_du != '':
-            self.writeStartElement('du')
-            self.writeCharacters(str(data.bg_du))
-            self.writeEndElement()
+            self._write_element('du', data.bg_du)
         self.writeEndElement()
 
     def _write_pt(self, data):
@@ -207,37 +168,21 @@ class SaveWriter(QXmlStreamWriter):
         for i in range(int(data.pt_num)):
             self.writeStartElement('pt')
             if data.pt_pos.get(i) != None:
-                self.writeStartElement('pos')
-                self.writeCharacters(data.pt_pos[i])
-                self.writeEndElement()
+                self._write_element('pos', data.pt_pos[i])
             if data.pt_id.get(i) != None:
-                self.writeStartElement('id')
-                self.writeCharacters(data.pt_id[i])
-                self.writeEndElement()
+                self._write_element('id', data.pt_id[i])
             if data.pt_md.get(i) != None:
-                self.writeStartElement('md')
-                self.writeCharacters(data.pt_md[i])
-                self.writeEndElement()
+                self._write_element('md', data.pt_md[i])
             if data.pt_x.get(i) != None:
-                self.writeStartElement('x')
-                self.writeCharacters(data.pt_x[i])
-                self.writeEndElement()
+                self._write_element('x', data.pt_x[i])
             if data.pt_y.get(i) != None:
-                self.writeStartElement('y')
-                self.writeCharacters(data.pt_y[i])
-                self.writeEndElement()
+                self._write_element('y', data.pt_y[i])
             if data.pt_xf.get(i) != None:
-                self.writeStartElement('xf')
-                self.writeCharacters(data.pt_xf[i])
-                self.writeEndElement()
+                self._write_element('xf', data.pt_xf[i])
             if data.pt_yf.get(i) != None:
-                self.writeStartElement('yf')
-                self.writeCharacters(data.pt_yf[i])
-                self.writeEndElement()
+                self._write_element('yf', data.pt_yf[i])
             if data.pt_du.get(i) != None:
-                self.writeStartElement('du')
-                self.writeCharacters(data.pt_du[i])
-                self.writeEndElement()
+                self._write_element('du', data.pt_du[i])
             self.writeEndElement()
 
     def _write_tb(self, data):
@@ -248,29 +193,17 @@ class SaveWriter(QXmlStreamWriter):
 
         self.writeStartElement('tb')
         if data.tb_sh != '':
-            self.writeStartElement('sh')
-            self.writeCharacters(data.tb_sh)
-            self.writeEndElement()
+            self._write_element('sh', data.tb_sh)
         if data.tb_td != '':
-            self.writeStartElement('td')
-            self.writeCharacters(data.tb_td)
-            self.writeEndElement()
+            self._write_element('tb', data.tb_td)
         if data.tb_vc != '':
-            self.writeStartElement('vc')
-            self.writeCharacters(data.tb_vc)
-            self.writeEndElement()
+            self._write_element('vc', data.tb_vc)
         if data.tb_char != '':
-            self.writeStartElement('char')
-            self.writeCharacters(data.tb_char)
-            self.writeEndElement()
+            self._write_element('char', data.tb_char)
         if data.tb_txt != '':
-            self.writeStartElement('txt')
-            self.writeCharacters(data.tb_txt)
-            self.writeEndElement()
+            self._write_element('txt', data.tb_txt)
         if data.tb_hi != '':
-            self.writeStartElement('hi')
-            self.writeCharacters(data.tb_hi)
-            self.writeEndElement()
+            self._write_element('hi', data.tb_hi)
         self.writeEndElement()
 
     def _write_sl(self, data):
@@ -284,15 +217,15 @@ class SaveWriter(QXmlStreamWriter):
 
         self.writeStartElement('sys')
         if data.sys_sc != '':
-            self.writeStartElement('sc')
-            self.writeCharacters(data.sys_sc)
-            self.writeEndElement()
+            self._write_element('sc', data.sys_sc)
         if data.sys_scid != '':
-            self.writeStartElement('scid')
-            self.writeCharacters(data.sys_scid)
-            self.writeEndElement()
+            self._write_element('scid', data.sys_scid)
         if data.sys_svid != '':
-            self.writeStartElement('svid')
-            self.writeCharacters(data.sys_svid)
-            self.writeEndElement()
+            self._write_element('svid', data.sys_svid)
+        self.writeEndElement()
+
+    def _write_element(self, element_id, character):
+
+        self.writeStartElement(element_id)
+        self.writeCharacters(str(character))
         self.writeEndElement()
