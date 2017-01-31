@@ -134,6 +134,7 @@ class Save(QMainWindow):
         print(self.save_id)
         if self.save_id != '':
             self.save_writer.collect(self.save_data, self.thumbnail, self.save_id)
+            self.save_writer.write()
 
     def _clear_save(self, save_id):
 

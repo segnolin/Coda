@@ -241,6 +241,10 @@ class ScriptParser(QXmlStreamReader):
             if self.isStartElement():
                 if self.name() == 'sc':
                     self.data.sys_sc = self.readElementText()
+                elif self.name() == 'scid':
+                    self.data.sys_scid = self.readElementText()
+                elif self.name() == 'svid':
+                    self.data.sys_svid = self.readElementText()
                 else:
                     self.readNext()
 
