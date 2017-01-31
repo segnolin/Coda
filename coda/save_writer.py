@@ -44,31 +44,38 @@ class SaveWriter(QXmlStreamWriter):
 
     def write(self):
 
+        #save data
         self.file = QFile(QDir().homePath() + '/.coda/save/save_data.xml')
         if self.file.open(QIODevice.WriteOnly) == False:
             print('Error Opening')
         else:
             print('Success')
 
+            write_num = 0
+            for i in range(self.data_index):
+                if self.save_data.get(i) != None:
+                    write_num += 1
+
             self.setDevice(self.file)
             self.setAutoFormatting(True)
             self.writeStartDocument()
             self.writeStartElement('save_data')
+            self.writeAttribute('num', '{0}'.format(write_num))
             write_index = 0
             for i in range(self.data_index):
                 if self.save_data.get(i) != None:
                     self.writeStartElement('content')
                     self.writeAttribute('id', '{0}'.format(write_index))
 
-                    self._write_bgm(self.save_data.get(i))
-                    self._write_sd(self.save_data.get(i))
-                    self._write_eff(self.save_data.get(i))
-                    self._write_mk(self.save_data.get(i))
-                    self._write_bg(self.save_data.get(i))
-                    self._write_pt(self.save_data.get(i))
-                    self._write_tb(self.save_data.get(i))
-                    self._write_sl(self.save_data.get(i))
-                    self._write_sys(self.save_data.get(i))
+                    self._write_bgm(self.save_data[i])
+                    self._write_sd(self.save_data[i])
+                    self._write_eff(self.save_data[i])
+                    self._write_mk(self.save_data[i])
+                    self._write_bg(self.save_data[i])
+                    self._write_pt(self.save_data[i])
+                    self._write_tb(self.save_data[i])
+                    self._write_sl(self.save_data[i])
+                    self._write_sys(self.save_data[i])
 
                     self.writeEndElement()
                     write_index += 1
@@ -76,6 +83,20 @@ class SaveWriter(QXmlStreamWriter):
             self.writeEndDocument()
 
         self.file.close()
+
+        #thumbnail
+        for i in range(36):
+            QDir().remove(QDir().homePath() 
+                    + '/.coda/save/thumbnail_{0}.png'.format(i))
+
+        write_index = 0
+        for i in range(self.data_index):
+            if self.thumbnail_data.get(i) != None:
+                thumbnail = QFile(QDir().homePath()
+                        + '/.coda/save/thumbnail_{0}.png'.format(
+                        self.save_data[i].sys_svid))
+                thumbnail.open(QIODevice.WriteOnly)
+                self.thumbnail_data[i].save(thumbnail, 'PNG')
 
     def _write_bgm(self, data):
 

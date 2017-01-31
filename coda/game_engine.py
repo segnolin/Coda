@@ -709,9 +709,6 @@ class GameEngine(QMainWindow):
 
         self.save_data = copy.deepcopy(self.parser.data)
         self.game_engine_widget.render(self.thumbnail)
-        #image = QFile('image.png')
-        #image.open(QIODevice.ReadOnly)
-        #self.thumbnail.save(image, 'PNG')
 
         for i in range(2):
             if self.background_music[i].state() == 1:
