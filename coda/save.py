@@ -20,6 +20,7 @@ class Save(QMainWindow):
 
         self.pixel_ratio = QWindow().devicePixelRatio()
         self.save_id = ''
+        self.state = ''
         self.delete_save = False
 
     def create_save_layout(self):
@@ -44,7 +45,7 @@ class Save(QMainWindow):
             self.page[i].create_page_layout(i)
             self.page[i].hide()
             for j in range(6):
-                self.page[i].label[j].clicked.connect(self._save)
+                self.page[i].label[j].clicked.connect(self._action)
         self.page[0].show()
 
         #create save page button
@@ -82,8 +83,16 @@ class Save(QMainWindow):
     def add_save(self, save_data, thumbnail):
 
         self.save_id = ''
+        self.state = 'save'
         self.save_data = save_data
         self.thumbnail = thumbnail
+        self.save_writer.read()
+        self._set_page()
+        self.delete_save = False
+
+    def load(self):
+
+        self.state = 'load'
         self.save_writer.read()
         self._set_page()
         self.delete_save = False
@@ -98,11 +107,19 @@ class Save(QMainWindow):
                     int(j % 6)].setPixmap(thumbnail)
             self.page[int(j / 6)].text_preview[
                     int(j % 6)].setText(data.tb_txt)
-            self.page[int(j / 6)].label[
-                    int(j % 6)].setEnabled(False)
+            if self.state == 'save':
+                self.page[int(j / 6)].label[
+                        int(j % 6)].setEnabled(False)
+            elif self.state == 'load':
+                self.page[int(j / 6)].label[
+                        int(j % 6)].setEnabled(True)
             self.page[int(j / 6)].delete[
                     int(j % 6)].show()
 
+    def _action(self):
+
+        if self.state == 'save':
+            self._save()
 
     def _save(self):
 
@@ -128,9 +145,10 @@ class Save(QMainWindow):
 
     def _delete(self):
 
+        print('delete')
         save_id = self.sender().id
 
-        if save_id == self.save_id:
+        if save_id == self.save_id and self.state == 'save':
             self.save_id = ''
         else:
             for i in range(self.save_writer.data_index):
@@ -161,7 +179,7 @@ class Save(QMainWindow):
 
         print('write data')
         print(self.save_id)
-        if self.save_id != '':
+        if self.save_id != '' and self.state == 'save':
             self.save_writer.collect(self.save_data, self.thumbnail, self.save_id)
             self.save_writer.write()
         elif self.delete_save == True:

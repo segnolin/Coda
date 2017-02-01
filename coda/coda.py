@@ -8,7 +8,6 @@ from coda.intro_window import *
 from coda.main_window import *
 from coda.game_engine import *
 from coda.save import *
-from coda.load import *
 from coda.image_button import *
 from coda.fader import *
 
@@ -75,16 +74,10 @@ class Coda(QMainWindow):
         self.stacked_layout.addWidget(self.save_game.save_widget)
 
         #save connection
-        self.save_game.save_back_button.clicked.connect(self._back_to_game_engine)
-
-        #set save layout
-        self.load_game = Load()
-        self.load_game.create_load_layout(self.status)
-        self.stacked_layout.addWidget(self.load_game.load_widget)
-
-        #load connection
-        self.load_game.main_start_button.clicked.connect(self._load_game_engine)
-        self.load_game.load_back_button.clicked.connect(self._load_back)
+        self.save_game.save_back_button.clicked.connect(self._save_back)
+        for i in range(6):
+            for j in range(6):
+                self.save_game.page[i].label[j].clicked.connect(self._action)
 
     def start(self):
 
@@ -120,12 +113,14 @@ class Coda(QMainWindow):
 
         print('load')
 
+        self.save_game.load()
+
         #fade effect
         self.fader = Fader(self.stacked_layout.currentWidget(),
-                self.load_game.load_widget)
+                self.save_game.save_widget)
         self.fader.fade(350)
 
-        self.stacked_layout.setCurrentWidget(self.load_game.load_widget)
+        self.stacked_layout.setCurrentWidget(self.save_game.save_widget)
         #print(self.stacked_layout.currentIndex())
 
     def extra(self):
@@ -150,27 +145,7 @@ class Coda(QMainWindow):
 
         self.stacked_layout.setCurrentWidget(self.main_window.main_window_widget)
 
-    def _back_to_main(self):
-
-        print('back to main')
-
-        self.script = 'scr_a0000'
-        self.game_engine_id = 0
-        self.status = 'main'
-
-        #fade effect
-        self.fader = Fader(self.stacked_layout.currentWidget(),
-                self.main_window.main_window_widget)
-        self.fader.fade(350)
-
-        self.stacked_layout.setCurrentWidget(self.main_window.main_window_widget)
-        self.game_engine.menu_widget.hide()
-        self.game_engine.text_box_widget.hide()
-        self.game_engine.select_widget.hide()
-        self.game_engine.disable_hide_label.hide()
-        self.game_engine.effect.hide()
-
-    def _load_back(self):
+    def _save_back(self):
 
         if self.status == 'main':
             self._back_to_main()
@@ -191,6 +166,26 @@ class Coda(QMainWindow):
 
         self.start()
 
+    def _back_to_main(self):
+
+        print('back to main')
+
+        self.script = 'scr_a0000'
+        self.game_engine_id = 0
+        self.status = 'main'
+
+        #fade effect
+        self.fader = Fader(self.stacked_layout.currentWidget(),
+                self.main_window.main_window_widget)
+        self.fader.fade(350)
+
+        self.stacked_layout.setCurrentWidget(self.main_window.main_window_widget)
+        self.game_engine.menu_widget.hide()
+        self.game_engine.text_box_widget.hide()
+        self.game_engine.select_widget.hide()
+        self.game_engine.disable_hide_label.hide()
+        self.game_engine.effect.hide()
+
     def _back_to_game_engine(self):
 
         print('back to game engine')
@@ -202,6 +197,11 @@ class Coda(QMainWindow):
 
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
         #print(self.stacked_layout.currentIndex())
+
+    def _action(self):
+
+        save_id = self.sender().id
+        print('coda {0}'.format(save_id))
 
     def closeEvent(self, event):
 

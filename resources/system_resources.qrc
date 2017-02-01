@@ -109,14 +109,6 @@
         <file alias="save_back_button_hover.png">system/save/save_back_button_hover.png</file>
         <file alias="save_back_button_press.png">system/save/save_back_button_press.png</file>
 
-    <!-- LOAD -->
-
-        <file alias="load_background.png">system/load/load_background.png</file>
-
-        <file alias="load_back_button_defaults.png">system/load/load_back_button_defaults.png</file>
-        <file alias="load_back_button_hover.png">system/load/load_back_button_hover.png</file>
-        <file alias="load_back_button_press.png">system/load/load_back_button_press.png</file>
-
     <!-- MAIN WINDOW -->
 
         <file alias="main_background.png">system/main_window/main_background.png</file>
