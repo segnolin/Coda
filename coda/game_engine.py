@@ -197,7 +197,8 @@ class GameEngine(QMainWindow):
         #set parser
         self.parser = ScriptParser()
 
-        #set save data 
+        #set data 
+        self.data = Data()
         self.save_data = Data()
 
         #set save thumbnail
@@ -217,20 +218,21 @@ class GameEngine(QMainWindow):
 
         #print('init_parser')
 
-        self._parse_script()
+        self.parser.parse(self.script, self.game_engine_id)
+        self.data = copy.deepcopy(self.parser.data)
 
-        if self.sys_sc != '':
-            self.script = self.sys_sc
+        if self.data.sys_sc != '':
+            self.script = self.data.sys_sc
             self.game_engine_id = -1
-        if int(self.sl_num) != 0:
+        if int(self.data.sl_num) != 0:
             self._selection()
         else:
             if self.init_status:
-                self.eff_id = 'black_fade'
-                self.eff_du = '2000'
-                self.tb_sh = True
-                if self.tb_td == '':
-                    self.tb_td = 1000
+                self.data.eff_id = 'black_fade'
+                self.data.eff_du = '2000'
+                self.data.tb_sh = True
+                if self.data.tb_td == '':
+                    self.data.tb_td = 1000
                 self._pre_process()
             self._init_background_music()
 
@@ -238,7 +240,7 @@ class GameEngine(QMainWindow):
 
         #print('init_background_music')
 
-        if int(self.bgm_num) != 0:
+        if int(self.data.bgm_num) != 0:
             self._pre_bgm_loop()
 
         self._init_effect()
@@ -247,7 +249,7 @@ class GameEngine(QMainWindow):
 
         #print('init_effect')
 
-        if self.eff_id != '':
+        if self.data.eff_id != '':
 
             self.background.anime.stop()
             self.next_label.hide()
@@ -257,8 +259,8 @@ class GameEngine(QMainWindow):
                 self.fader.fade(800)
 
             self.effect.show()
-            self.effect.create(self.eff_id)
-            QTimer.singleShot(int(self.eff_du), self._hide_effect)
+            self.effect.create(self.data.eff_id)
+            QTimer.singleShot(int(self.data.eff_du), self._hide_effect)
 
         else:
             self.effect_status = False
@@ -270,7 +272,7 @@ class GameEngine(QMainWindow):
 
         #print('init_sound')
 
-        if int(self.sd_num) != 0:
+        if int(self.data.sd_num) != 0:
             self._pre_sd_loop()
 
         self._init_mask()
@@ -279,9 +281,9 @@ class GameEngine(QMainWindow):
 
         #print('init_mask')
 
-        if self.mk_md == 'new':
-            self.mask_label.set_mask(self.mk_id)
-        elif self.mk_md == 'del':
+        if self.data.mk_md == 'new':
+            self.mask_label.set_mask(self.data.mk_id)
+        elif self.data.mk_md == 'del':
             self.mask_label.delete_mask()
 
         self._init_background()
@@ -290,26 +292,26 @@ class GameEngine(QMainWindow):
 
         #print('init_background')
 
-        if self.bg_id != '':
+        if self.data.bg_id != '':
 
             if not self.effect_status:
                 self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
                 self.fader.fade(800)
 
-            if self.bg_du != '':
-                if self.eff_du == '' and self.tb_sh != '':
+            if self.data.bg_du != '':
+                if self.data.eff_du == '' and self.data.tb_sh != '':
                     self._pre_process()
-                self.background.create_mv_bg(self.bg_id,
-                        int(self.bg_x), int(self.bg_y),
-                        int(self.bg_xf), int(self.bg_yf),
-                        int(self.bg_du))
+                self.background.create_mv_bg(self.data.bg_id,
+                        int(self.data.bg_x), int(self.data.bg_y),
+                        int(self.data.bg_xf), int(self.data.bg_yf),
+                        int(self.data.bg_du))
             else:
-                if self.bg_x == '':
-                    self.bg_x = 0
-                if self.bg_y == '':
-                    self.bg_y = 0
-                self.background.create_bg(self.bg_id,
-                        int(self.bg_x), int(self.bg_y))
+                if self.data.bg_x == '':
+                    self.data.bg_x = 0
+                if self.data.bg_y == '':
+                    self.data.bg_y = 0
+                self.background.create_bg(self.data.bg_id,
+                        int(self.data.bg_x), int(self.data.bg_y))
 
         self._init_portrait()
 
@@ -317,7 +319,7 @@ class GameEngine(QMainWindow):
 
         #print('init_portrait')
 
-        if int(self.pt_num) != 0:
+        if int(self.data.pt_num) != 0:
             self._pre_pt_loop()
 
         self._init_text_box()
@@ -329,7 +331,7 @@ class GameEngine(QMainWindow):
         self.text_character_label.clear()
         self.text_box_label.clear()
 
-        if self.tb_sh != '':
+        if self.data.tb_sh != '':
             self._show_text_box()
 
         else:
@@ -339,8 +341,8 @@ class GameEngine(QMainWindow):
 
         #print('init_voice')
 
-        if self.tb_vc != '':
-            self.voice.play_voice(self.tb_vc)
+        if self.data.tb_vc != '':
+            self.voice.play_voice(self.data.tb_vc)
 
         self._init_text()
 
@@ -348,8 +350,8 @@ class GameEngine(QMainWindow):
 
         #print('init_text')
 
-        self.text_character_label.setText(self.tb_char)
-        self.text_box_label.set_verbatim_text(self.tb_txt)
+        self.text_character_label.setText(self.data.tb_char)
+        self.text_box_label.set_verbatim_text(self.data.tb_txt)
 
         self._standby()
 
@@ -359,9 +361,9 @@ class GameEngine(QMainWindow):
 
     def _update_engine(self, event):
 
-        if self.text_box_label.index < len(self.tb_txt):
-            self.text_box_label.setText(self.tb_txt)
-            self.text_box_label.index = len(self.tb_txt)
+        if self.text_box_label.index < len(self.data.tb_txt):
+            self.text_box_label.setText(self.data.tb_txt)
+            self.text_box_label.index = len(self.data.tb_txt)
 
         else:
             #print('update_engine')
@@ -375,7 +377,7 @@ class GameEngine(QMainWindow):
 
         #print('set_background_music')
 
-        if int(self.bgm_num) != 0:
+        if int(self.data.bgm_num) != 0:
             self._post_bgm_loop()
 
         self._set_sound()
@@ -384,7 +386,7 @@ class GameEngine(QMainWindow):
 
         #print('set_sound')
 
-        if int(self.sd_num) != 0:
+        if int(self.data.sd_num) != 0:
             self._post_sd_loop()
 
         self._set_text()
@@ -402,7 +404,7 @@ class GameEngine(QMainWindow):
 
         #print('set_portrait')
 
-        if int(self.pt_num) != 0:
+        if int(self.data.pt_num) != 0:
             self._post_pt_loop()
 
         self._set_text_box()
@@ -411,7 +413,7 @@ class GameEngine(QMainWindow):
 
         #print('set_text_box')
 
-        if self.tb_hi != '':
+        if self.data.tb_hi != '':
             self._hide_text_box()
 
         else:
@@ -478,8 +480,8 @@ class GameEngine(QMainWindow):
         self.next_label.hide()
         self.hide_button.setEnabled(False)
 
-        if self.tb_td != '':
-            QTimer.singleShot(int(self.tb_td), self._delay_show_text_box)
+        if self.data.tb_td != '':
+            QTimer.singleShot(int(self.data.tb_td), self._delay_show_text_box)
 
         else:
             self.text_box_widget.show()
@@ -525,74 +527,20 @@ class GameEngine(QMainWindow):
         self.text_box_label.setText('     ')
 
     #main program functions
-    def _parse_script(self):
-
-        self.parser.parse(self.script, self.game_engine_id)
-
-        self.bgm_pos = self.parser.data.bgm_pos
-        self.bgm_id = self.parser.data.bgm_id
-        self.bgm_md = self.parser.data.bgm_md
-        self.bgm_vol = self.parser.data.bgm_vol
-        self.bgm_num = self.parser.data.bgm_num
-
-        self.sd_pos = self.parser.data.sd_pos
-        self.sd_id = self.parser.data.sd_id
-        self.sd_md = self.parser.data.sd_md
-        self.sd_lp = self.parser.data.sd_lp
-        self.sd_fd = self.parser.data.sd_fd
-        self.sd_dfd = self.parser.data.sd_dfd
-        self.sd_num = self.parser.data.sd_num
-
-        self.eff_id = self.parser.data.eff_id
-        self.eff_du = self.parser.data.eff_du
-
-        self.mk_id = self.parser.data.mk_id
-        self.mk_md = self.parser.data.mk_md
-
-        self.bg_id = self.parser.data.bg_id
-        self.bg_x = self.parser.data.bg_x
-        self.bg_y = self.parser.data.bg_y
-        self.bg_xf = self.parser.data.bg_xf
-        self.bg_yf = self.parser.data.bg_yf
-        self.bg_du = self.parser.data.bg_du
-
-        self.pt_pos = self.parser.data.pt_pos
-        self.pt_id = self.parser.data.pt_id
-        self.pt_md = self.parser.data.pt_md
-        self.pt_x = self.parser.data.pt_x
-        self.pt_y = self.parser.data.pt_y
-        self.pt_xf = self.parser.data.pt_xf
-        self.pt_yf = self.parser.data.pt_yf
-        self.pt_du = self.parser.data.pt_du
-        self.pt_num = self.parser.data.pt_num
-
-        self.tb_sh = self.parser.data.tb_sh
-        self.tb_td = self.parser.data.tb_td
-        self.tb_vc = self.parser.data.tb_vc
-        self.tb_char = self.parser.data.tb_char
-        self.tb_txt = self.parser.data.tb_txt
-        self.tb_hi = self.parser.data.tb_hi
-
-        self.sl_txt = self.parser.data.sl_txt
-        self.sl_sc = self.parser.data.sl_sc
-        self.sl_num = self.parser.data.sl_num
-
-        self.sys_sc = self.parser.data.sys_sc
-
     def _selection(self):
 
         #print('selection')
 
-        for i in range(int(self.sl_num)):
+        for i in range(int(self.data.sl_num)):
 
-            pos = 250 + int(i - int(int(self.sl_num) / 2)) * 75
+            pos = 250 + int(i - int(int(self.data.sl_num) / 2)) * 75
 
             self.selection_button[i] = SelectButton(self.select_widget)
             self.selection_button[i].setStyleSheet(
                     'QAbstractButton {font-family: Times New Roman;'
                     'font-size: 18px; color: rgba(0, 0, 0, 100%)}')
             self.selection_button[i].id = '{0}'.format(i)
-            self.selection_button[i].set_text(self.sl_txt[i])
+            self.selection_button[i].set_text(self.data.sl_txt[i])
             self.selection_button[i].setGeometry(0, pos, 1024, 65)
             self.selection_button[i].clicked.connect(self._jump_script)
 
@@ -606,7 +554,7 @@ class GameEngine(QMainWindow):
         #print(selection)
 
         self.game_engine_id = 0
-        self.script = self.sl_sc[selection]
+        self.script = self.data.sl_sc[selection]
         #print(self.script)
 
         fader = Fader(self.game_engine_widget, self.game_engine_widget)
@@ -619,96 +567,98 @@ class GameEngine(QMainWindow):
 
     def _pre_bgm_loop(self):
 
-        for i in range(self.bgm_num):
+        for i in range(self.data.bgm_num):
 
-            if self.bgm_md[i] == 'new':
+            if self.data.bgm_md[i] == 'new':
                 self.background_music[
-                        int(self.bgm_pos[i])].play_music(
-                                self.bgm_id[i])
-            elif self.bgm_md[i] == 'vol':
+                        int(self.data.bgm_pos[i])].play_music(
+                                self.data.bgm_id[i])
+            elif self.data.bgm_md[i] == 'vol':
                 self.background_music[
-                        int(self.bgm_pos[i])].music_volume(
-                                int(self.bgm_vol[i]))
-            elif self.bgm_md[i] == 'del':
+                        int(self.data.bgm_pos[i])].music_volume(
+                                int(self.data.bgm_vol[i]))
+            elif self.data.bgm_md[i] == 'del':
                 self.background_music[
-                        int(self.bgm_pos[i])].stop_music()
+                        int(self.data.bgm_pos[i])].stop_music()
 
     def _post_bgm_loop(self):
 
-        for i in range(int(self.bgm_num)):
+        for i in range(int(self.data.bgm_num)):
 
-            if self.bgm_md[i] == 'dell':
-                self.background_music[int(self.bgm_pos[i])].stop_music()
+            if self.data.bgm_md[i] == 'dell':
+                self.background_music[int(self.data.bgm_pos[i])].stop_music()
 
     def _pre_pt_loop(self):
 
-        for i in range(self.pt_num):
+        for i in range(self.data.pt_num):
 
-            if self.pt_md[i] == 'new':
-                if self.pt_du.get(i) != None:
-                    self.portrait[int(self.pt_pos[i])].create_mv_pt(
-                            self.pt_id[i],
-                            int(self.pt_x[i]), int(self.pt_y[i]),
-                            int(self.pt_xf[i]), int(self.pt_yf[i]),
-                            int(self.pt_du[i]))
+            if self.data.pt_md[i] == 'new':
+                if self.data.pt_du.get(i) != None:
+                    self.portrait[int(self.data.pt_pos[i])].create_mv_pt(
+                            self.data.pt_id[i],
+                            int(self.data.pt_x[i]), int(self.data.pt_y[i]),
+                            int(self.data.pt_xf[i]), int(self.data.pt_yf[i]),
+                            int(self.data.pt_du[i]))
                 else:
-                    self.portrait[int(self.pt_pos[i])].create_pt(
-                            self.pt_id[i],
-                            int(self.pt_x[i]), int(self.pt_y[i]))
+                    self.portrait[int(self.data.pt_pos[i])].create_pt(
+                            self.data.pt_id[i],
+                            int(self.data.pt_x[i]), int(self.data.pt_y[i]))
 
-            elif self.pt_md[i] == 'mv':
-                self.portrait[int(self.pt_pos[i])].move_pt(
-                        int(self.pt_xf[i]),
-                        int(self.pt_yf[i]), int(self.pt_du[i]))
+            elif self.data.pt_md[i] == 'mv':
+                self.portrait[int(self.data.pt_pos[i])].move_pt(
+                        int(self.data.pt_xf[i]),
+                        int(self.data.pt_yf[i]), int(self.data.pt_du[i]))
 
-            elif self.pt_md[i] == 'del':
-                if self.pt_du.get(i) != None:
-                    self.portrait[int(self.pt_pos[i])].delete_mv_pt(
-                            int(self.pt_xf[i]),
-                            int(self.pt_yf[i]), int(self.pt_du[i]))
+            elif self.data.pt_md[i] == 'del':
+                if self.data.pt_du.get(i) != None:
+                    self.portrait[int(self.data.pt_pos[i])].delete_mv_pt(
+                            int(self.data.pt_xf[i]), int(self.data.pt_yf[i]),
+                            int(self.data.pt_du[i]))
                 else:
-                    self.portrait[int(self.pt_pos[i])].delete_pt()
+                    self.portrait[int(self.data.pt_pos[i])].delete_pt()
 
     def _post_pt_loop(self):
 
-        for i in range(int(self.pt_num)):
+        for i in range(int(self.data.pt_num)):
 
-            if self.pt_md[i] == 'dell':
-                if self.pt_du.get(i) != None:
-                    self.portrait[int(self.pt_pos[i])].delete_mv_pt(
-                            int(self.pt_xf[i]),
-                            int(self.pt_yf[i]), int(self.pt_du[i]))
+            if self.data.pt_md[i] == 'dell':
+                if self.data.pt_du.get(i) != None:
+                    self.portrait[int(self.data.pt_pos[i])].delete_mv_pt(
+                            int(self.data.pt_xf[i]), int(self.data.pt_yf[i]),
+                            int(self.data.pt_du[i]))
                 else:
-                    self.portrait[int(self.pt_pos[i])].delete_pt()
+                    self.portrait[int(self.data.pt_pos[i])].delete_pt()
 
     def _pre_sd_loop(self):
 
-        for i in range(self.sd_num):
+        for i in range(self.data.sd_num):
 
-            if self.sd_md[i] == 'new':
+            if self.data.sd_md[i] == 'new':
                 self.sound[
-                        int(self.sd_pos[i])].play_sound(self.sd_id[i],
-                                self.sd_lp.get(i), self.sd_fd.get(i))
-            elif self.sd_md[i] == 'del':
+                        int(self.data.sd_pos[i])].play_sound(self.data.sd_id[i],
+                                self.data.sd_lp.get(i), self.data.sd_fd.get(i))
+            elif self.data.sd_md[i] == 'del':
                 self.sound[
-                        int(self.sd_pos[i])].stop_sound(self.sd_dfd.get(i))
+                        int(self.data.sd_pos[i])].stop_sound(self.data.sd_dfd.get(i))
 
     def _post_sd_loop(self):
 
-        for i in range(int(self.sd_num)):
+        for i in range(int(self.data.sd_num)):
 
-            if self.sd_md[i] == 'newl':
+            if self.data.sd_md[i] == 'newl':
                 self.sound[
-                        int(self.sd_pos[i])].play_sound(self.sd_id[i],
-                                self.sd_lp.get(i), self.sd_fd.get(i))
-            if self.sd_md[i] == 'dell':
+                        int(self.data.sd_pos[i])].play_sound(self.data.sd_id[i],
+                                self.data.sd_lp.get(i), self.data.sd_fd.get(i))
+            if self.data.sd_md[i] == 'dell':
                 self.sound[
-                        int(self.sd_pos[i])].stop_sound(self.sd_dfd.get(i))
+                        int(self.data.sd_pos[i])].stop_sound(self.data.sd_dfd.get(i))
 
     def _save_data(self):
 
-        self.save_data = copy.deepcopy(self.parser.data)
         self.game_engine_widget.render(self.thumbnail)
+        self.save_data = copy.deepcopy(self.parser.data)
+        self.save_data.sys_ldsc = self.script
+        self.save_data.sys_ldid = self.game_engine_id
 
         for i in range(2):
             if self.background_music[i].state() == 1:
@@ -796,63 +746,3 @@ class GameEngine(QMainWindow):
                             = int(self.portrait[i].y)
                     self.save_data.pt_num = str(int(
                             self.save_data.pt_num) + 1)
-
-        self.print_data(self.save_data)
-
-    def print_data(self, data):
-
-        #debeg log
-        print()
-
-        print('self.bgm_pos: {0}'.format(data.bgm_pos))
-        print('self.bgm_id: {0}'.format(data.bgm_id))
-        print('self.bgm_md: {0}'.format(data.bgm_md))
-        print('self.bgm_vol: {0}'.format(data.bgm_vol))
-        print('self.bgm_num: {0}'.format(data.bgm_num))
-
-        print('self.sd_pos: {0}'.format(data.sd_pos))
-        print('self.sd_id: {0}'.format(data.sd_id))
-        print('self.sd_md: {0}'.format(data.sd_md))
-        print('self.sd_lp: {0}'.format(data.sd_lp))
-        print('self.sd_fd: {0}'.format(data.sd_fd))
-        print('self.sd_dfd: {0}'.format(data.sd_dfd))
-        print('self.sd_num: {0}'.format(data.sd_num))
-
-        print('self.eff_id: {0}'.format(data.eff_id))
-        print('self.eff_du: {0}'.format(data.eff_du))
-
-        print('self.mk_id: {0}'.format(data.mk_id))
-        print('self.mk_md: {0}'.format(data.mk_md))
-
-        print('self.bg_id: {0}'.format(data.bg_id))
-        print('self.bg_x: {0}'.format(data.bg_x))
-        print('self.bg_y: {0}'.format(data.bg_y))
-        print('self.bg_xf: {0}'.format(data.bg_xf))
-        print('self.bg_yf: {0}'.format(data.bg_yf))
-        print('self.bg_du: {0}'.format(data.bg_du))
-
-        print('self.pt_pos: {0}'.format(data.pt_pos))
-        print('self.pt_id: {0}'.format(data.pt_id))
-        print('self.pt_md: {0}'.format(data.pt_md))
-        print('self.pt_x: {0}'.format(data.pt_x))
-        print('self.pt_y: {0}'.format(data.pt_y))
-        print('self.pt_xf: {0}'.format(data.pt_xf))
-        print('self.pt_yf: {0}'.format(data.pt_yf))
-        print('self.pt_du: {0}'.format(data.pt_du))
-        print('self.pt_num: {0}'.format(data.pt_num))
-
-        print('self.tb_sh: {0}'.format(data.tb_sh))
-        print('self.tb_td: {0}'.format(data.tb_td))
-        print('self.tb_vc: {0}'.format(data.tb_vc))
-        #print('self.tb_char: {0}'.format(data.tb_char))
-        #print('self.tb_txt: {0}'.format(data.tb_txt))
-        print('self.tb_hi: {0}'.format(data.tb_hi))
-
-        print('self.sl_txt: {0}'.format(data.sl_txt))
-        print('self.sl_sc: {0}'.format(data.sl_sc))
-        print('self.sl_num: {0}'.format(data.sl_num))
-
-        print('self.sys_sc: {0}'.format(data.sys_sc))
-
-        print()
-        print('=======================================')
