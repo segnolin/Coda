@@ -33,8 +33,8 @@ class Page(QWidget):
             self.text_preview[i].setGeometry(291 + int(i / 3) * 436, 82
                     + (i % 3) * 136, 204, 108)
             self.text_preview[i].setStyleSheet(
-                    'QLabel {font-family: Times New Roman;'
-                    'font-size: 14px; color: rgba(0, 0, 0, 100%)}')
+                    'QLabel { font-family: Times New Roman;'
+                    'font-size: 14px; }')
             self.text_preview[i].setAlignment(Qt.AlignLeft)
             self.text_preview[i].setWordWrap(True)
 

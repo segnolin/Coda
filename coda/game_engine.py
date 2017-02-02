@@ -96,19 +96,16 @@ class GameEngine(QMainWindow):
         self.text_character_label.setAlignment(Qt.AlignLeft)
         self.text_character_label.setGeometry(150, 446, 660, 30)
         self.text_character_label.setStyleSheet(
-                'QLabel {color: rgba(0, 0, 0, 100%)}')
-        self.text_character_label.setStyleSheet(
-                'QLabel {font-family: Times New Roman;'
-                'font-size: 20px; font-weight: Bold;'
-                'color: rgba(0, 0, 0, 100%)}')
+                'QLabel { font-family: Times New Roman;\
+                font-size: 22px; font-weight: Bold; }')
 
         #set the text box label
         self.text_box_label = LetterPrint(self.text_box_widget)
         self.text_box_label.setAlignment(Qt.AlignLeft)
         self.text_box_label.setGeometry(160, 486, 650, 75)
         self.text_box_label.setStyleSheet(
-                'QLabel {font-family: Times New Roman;'
-                'font-size: 18px; color: rgba(0, 0, 0, 100%)}')
+                'QLabel { font-family: Times New Roman;\
+                font-size: 20px; }')
         self.text_box_label.setWordWrap(True)
 
         #create transparent label to add game engine id(next)
@@ -203,6 +200,9 @@ class GameEngine(QMainWindow):
 
         #set save thumbnail
         self.thumbnail = QPixmap(2048, 1152)
+        self.thumbnail = self.thumbnail.scaledToHeight(
+                self.thumbnail.height() * self.pixel_ratio / 2,
+                Qt.SmoothTransformation)
         self.thumbnail.setDevicePixelRatio(self.pixel_ratio)
 
     ############################## MAIN PROGRAM START ##############################
@@ -537,8 +537,8 @@ class GameEngine(QMainWindow):
 
             self.selection_button[i] = SelectButton(self.select_widget)
             self.selection_button[i].setStyleSheet(
-                    'QAbstractButton {font-family: Times New Roman;'
-                    'font-size: 18px; color: rgba(0, 0, 0, 100%)}')
+                    'QAbstractButton { font-family: Times New Roman;\
+                    font-size: 20px; }')
             self.selection_button[i].id = '{0}'.format(i)
             self.selection_button[i].set_text(self.data.sl_txt[i])
             self.selection_button[i].setGeometry(0, pos, 1024, 65)

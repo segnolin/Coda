@@ -54,7 +54,8 @@ class Save(QMainWindow):
         for i in range(6):
             self.page_background[i] = QLabel(self.save_widget)
             self.page_background[i].setGeometry(724 + i * 36, 25, 36, 36)
-            self.page_background[i].setStyleSheet('QLabel {background-color: white}')
+            self.page_background[i].setStyleSheet(
+                    'QLabel { background-color: white; }')
             self.page_background[i].hide()
         self.page_background[0].show()
 
