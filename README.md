@@ -19,7 +19,7 @@ $ pip3 install pyqt5
 Clone the repo to any target directory.
 
 ```
-$ git clone git@github.com:segnoda/Coda.git
+$ git clone https://github.com/segnoda/Coda.git
 ```
 
 Run the shell script to build resources files.
