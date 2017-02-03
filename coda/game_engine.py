@@ -94,18 +94,18 @@ class GameEngine(QMainWindow):
         #set the text character label
         self.text_character_label = QLabel(self.text_box_widget)
         self.text_character_label.setAlignment(Qt.AlignLeft)
-        self.text_character_label.setGeometry(150, 446, 660, 30)
+        self.text_character_label.setGeometry(130, 436, 710, 30)
         self.text_character_label.setStyleSheet(
                 'QLabel { font-family: Times New Roman;\
-                font-size: 22px; font-weight: Bold; }')
+                font-size: 23px; font-weight: Bold; }')
 
         #set the text box label
         self.text_box_label = LetterPrint(self.text_box_widget)
         self.text_box_label.setAlignment(Qt.AlignLeft)
-        self.text_box_label.setGeometry(160, 486, 650, 75)
+        self.text_box_label.setGeometry(140, 476, 700, 75)
         self.text_box_label.setStyleSheet(
                 'QLabel { font-family: Times New Roman;\
-                font-size: 20px; }')
+                font-size: 21px; }')
         self.text_box_label.setWordWrap(True)
 
         #create transparent label to add game engine id(next)
@@ -138,7 +138,7 @@ class GameEngine(QMainWindow):
 
         #create a hide button
         self.hide_button = ImageButton('hide', self.text_box_widget)
-        self.hide_button.setGeometry(824, 461, 25, 25)
+        self.hide_button.setGeometry(839, 456, 25, 25)
 
         #create menu layout
         #create menu background
@@ -538,7 +538,7 @@ class GameEngine(QMainWindow):
             self.selection_button[i] = SelectButton(self.select_widget)
             self.selection_button[i].setStyleSheet(
                     'QAbstractButton { font-family: Times New Roman;\
-                    font-size: 20px; }')
+                    font-size: 21px; }')
             self.selection_button[i].id = '{0}'.format(i)
             self.selection_button[i].set_text(self.data.sl_txt[i])
             self.selection_button[i].setGeometry(0, pos, 1024, 65)
