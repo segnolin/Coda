@@ -69,15 +69,15 @@ class Coda(QMainWindow):
         self.game_engine.exit_button.clicked.connect(self.exit)
 
         #set save layout
-        self.save_game = Save()
-        self.save_game.create_save_layout()
-        self.stacked_layout.addWidget(self.save_game.save_widget)
+        self.save = Save()
+        self.save.create_save_layout()
+        self.stacked_layout.addWidget(self.save.save_widget)
 
         #save connection
-        self.save_game.save_back_button.clicked.connect(self._save_back)
+        self.save.save_back_button.clicked.connect(self._save_back)
         for i in range(6):
             for j in range(6):
-                self.save_game.page[i].label[j].clicked.connect(self._action)
+                self.save.page[i].label[j].clicked.connect(self._action)
 
     def start(self):
 
@@ -98,29 +98,29 @@ class Coda(QMainWindow):
 
         print('save')
 
-        self.save_game.add_save(self.game_engine.save_data,
+        self.save.add_save(self.game_engine.save_data,
                 self.game_engine.thumbnail)
 
         #fade effect
         self.fader = Fader(self.stacked_layout.currentWidget(),
-                self.save_game.save_widget)
+                self.save.save_widget)
         self.fader.fade(350)
 
-        self.stacked_layout.setCurrentWidget(self.save_game.save_widget)
+        self.stacked_layout.setCurrentWidget(self.save.save_widget)
         #print(self.stacked_layout.currentIndex())
 
     def load(self):
 
         print('load')
 
-        self.save_game.load()
+        self.save.load()
 
         #fade effect
         self.fader = Fader(self.stacked_layout.currentWidget(),
-                self.save_game.save_widget)
+                self.save.save_widget)
         self.fader.fade(350)
 
-        self.stacked_layout.setCurrentWidget(self.save_game.save_widget)
+        self.stacked_layout.setCurrentWidget(self.save.save_widget)
         #print(self.stacked_layout.currentIndex())
 
     def extra(self):
@@ -154,17 +154,18 @@ class Coda(QMainWindow):
 
     def _load_game_engine(self):
 
-        #test
-        self.script = 'scr_a0003'
-        self.game_engine_id = 0
+        self._clean()
+        self.game_engine.load_game(self.load_data)
+        self.status = 'game_engine'
+
+        #fade effect
+        self.fader = Fader(self.stacked_layout.currentWidget(),
+                self.game_engine.game_engine_widget)
+        self.fader.fade(1500)
+
+        self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
+
         self.game_engine.menu_widget.hide()
-
-        self.game_engine.text_box_widget.hide()
-        self.game_engine.select_widget.hide()
-        self.game_engine.disable_hide_label.hide()
-        self.game_engine.effect.hide()
-
-        self.start()
 
     def _back_to_main(self):
 
@@ -180,11 +181,7 @@ class Coda(QMainWindow):
         self.fader.fade(350)
 
         self.stacked_layout.setCurrentWidget(self.main_window.main_window_widget)
-        self.game_engine.menu_widget.hide()
-        self.game_engine.text_box_widget.hide()
-        self.game_engine.select_widget.hide()
-        self.game_engine.disable_hide_label.hide()
-        self.game_engine.effect.hide()
+        self._clean()
 
     def _back_to_game_engine(self):
 
@@ -202,6 +199,29 @@ class Coda(QMainWindow):
 
         save_id = self.sender().id
         print('coda {0}'.format(save_id))
+
+        if self.save.state == 'load':
+            for i in range(self.save.save_writer.data_index):
+                if self.save.save_writer.save_data.get(i) != None:
+                    if self.save.save_writer.save_data[i].sys_svid == str(save_id):
+                        self.load_data = self.save.save_writer.save_data[i]
+                        self._load_game_engine()
+
+    def _clean(self):
+
+        self.game_engine.menu_widget.hide()
+        self.game_engine.text_box_widget.hide()
+        self.game_engine.select_widget.hide()
+        self.game_engine.disable_hide_label.hide()
+        self.game_engine.mask_label.clear()
+        for i in range(5):
+            self.game_engine.portrait[i].opacity = 0.0
+
+        self.game_engine.voice.stop()
+        for i in range(2):
+            self.game_engine.background_music[i].stop()
+        for i in range(3):
+            self.game_engine.sound[i].stop()
 
     def closeEvent(self, event):
 

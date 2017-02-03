@@ -29,8 +29,9 @@ class BackgroundMusic(QMediaPlayer):
         self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
 
         self.setPlaylist(self.playlist)
-        self.setVolume(80)
+        self.setVolume(0)
         self.play()
+        self.music_volume(80)
 
     def music_volume(self, volume):
 

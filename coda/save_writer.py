@@ -56,8 +56,6 @@ class SaveWriter(QXmlStreamWriter):
         self.thumbnail_data[self.data_index] = thumbnail
         self.save_id = save_id
         self.data_index += 1
-        print(self.save_data)
-        print(self.thumbnail_data)
 
     def write(self):
 

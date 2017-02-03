@@ -35,6 +35,7 @@ class GameEngine(QMainWindow):
         #set game status
         self.init_status = True
         self.effect_status = False
+        self.load_status = False
 
         #set QWidget class
         self.game_engine_widget = QWidget()
@@ -214,11 +215,25 @@ class GameEngine(QMainWindow):
         self.init_status = True
         self._init_parser()
 
+    def load_game(self, load_data):
+
+        self.load_data = load_data
+        self.script = self.load_data.sys_ldsc
+        self.game_engine_id = int(self.load_data.sys_ldid)
+        self.init_status = True
+        self.load_status = True
+        self._init_parser()
+
     def _init_parser(self):
 
         #print('init_parser')
 
-        self.parser.parse(self.script, self.game_engine_id)
+        if self.load_status == True:
+            self.parser.data = copy.deepcopy(self.load_data)
+            self.load_status = False
+        else:
+            self.parser.parse(self.script, self.game_engine_id)
+
         self.data = copy.deepcopy(self.parser.data)
 
         if self.data.sys_sc != '':
@@ -674,8 +689,14 @@ class GameEngine(QMainWindow):
                     self.save_data.bgm_id[self.save_data.bgm_num]\
                             = self.background_music[i].id
                     self.save_data.bgm_md[self.save_data.bgm_num] = 'new'
+
+                    self.save_data.bgm_num = int(
+                            self.save_data.bgm_num) + 1
+
+                    self.save_data.bgm_pos[self.save_data.bgm_num] = str(i)
                     self.save_data.bgm_vol[self.save_data.bgm_num]\
                             = self.background_music[i].volume()
+                    self.save_data.bgm_md[self.save_data.bgm_num] = 'vol'
                     self.save_data.bgm_num = str(int(
                             self.save_data.bgm_num) + 1)
 
@@ -695,6 +716,7 @@ class GameEngine(QMainWindow):
                             = self.sound[i].id
                     self.save_data.sd_md[self.save_data.sd_num] = 'new'
                     self.save_data.sd_lp[self.save_data.sd_num] = 'True'
+                    self.save_data.sd_fd[self.save_data.sd_num] = 'True'
                     self.save_data.sd_num = str(int(
                             self.save_data.sd_num) + 1)
 
