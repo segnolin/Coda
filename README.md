@@ -38,10 +38,11 @@ $ python3 main.py
 
 ### Build
 
-Run the build script to build a stand alone App by PyInstaller.
+Use PyInstaller to build a stand alone App.
 
 ```
-$ ./build.sh
+$ pip3 install pyinstaller
+$ pyinstaller main.spec
 ```
 
 ## Documentation (under construction)
