@@ -203,3 +203,7 @@ class Save(QMainWindow):
                 int(save_id % 6)].setEnabled(True)
         self.page[int(save_id / 6)].delete[
                 int(save_id % 6)].hide()
+        self.page[int(save_id / 6)].label[
+                int(save_id % 6)].set_sid('')
+        self.page[int(save_id / 6)].delete[
+                int(save_id % 6)].set_sid('')

@@ -201,7 +201,7 @@ class Coda(QMainWindow):
         save_sid = self.sender().sid
         print('coda {0}'.format(save_id))
 
-        if self.save.state == 'load':
+        if self.save.state == 'load' and save_sid != '':
             self.load_data = self.save.save_writer.save_data[save_sid]
             self._load_game_engine()
 
