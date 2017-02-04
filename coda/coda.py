@@ -198,14 +198,12 @@ class Coda(QMainWindow):
     def _action(self):
 
         save_id = self.sender().id
+        save_sid = self.sender().sid
         print('coda {0}'.format(save_id))
 
         if self.save.state == 'load':
-            for i in range(self.save.save_writer.data_index):
-                if self.save.save_writer.save_data.get(i) != None:
-                    if self.save.save_writer.save_data[i].sys_svid == str(save_id):
-                        self.load_data = self.save.save_writer.save_data[i]
-                        self._load_game_engine()
+            self.load_data = self.save.save_writer.save_data[save_sid]
+            self._load_game_engine()
 
     def _clean(self):
 

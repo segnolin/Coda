@@ -239,7 +239,7 @@ class GameEngine(QMainWindow):
         if self.data.sys_sc != '':
             self.script = self.data.sys_sc
             self.game_engine_id = -1
-        if int(self.data.sl_num) != 0:
+        if self.data.sl_num != 0:
             self._selection()
         else:
             if self.init_status:
@@ -255,7 +255,7 @@ class GameEngine(QMainWindow):
 
         #print('init_background_music')
 
-        if int(self.data.bgm_num) != 0:
+        if self.data.bgm_num != 0:
             self._pre_bgm_loop()
 
         self._init_effect()
@@ -287,7 +287,7 @@ class GameEngine(QMainWindow):
 
         #print('init_sound')
 
-        if int(self.data.sd_num) != 0:
+        if self.data.sd_num != 0:
             self._pre_sd_loop()
 
         self._init_mask()
@@ -334,7 +334,7 @@ class GameEngine(QMainWindow):
 
         #print('init_portrait')
 
-        if int(self.data.pt_num) != 0:
+        if self.data.pt_num != 0:
             self._pre_pt_loop()
 
         self._init_text_box()
@@ -392,7 +392,7 @@ class GameEngine(QMainWindow):
 
         #print('set_background_music')
 
-        if int(self.data.bgm_num) != 0:
+        if self.data.bgm_num != 0:
             self._post_bgm_loop()
 
         self._set_sound()
@@ -401,7 +401,7 @@ class GameEngine(QMainWindow):
 
         #print('set_sound')
 
-        if int(self.data.sd_num) != 0:
+        if self.data.sd_num != 0:
             self._post_sd_loop()
 
         self._set_text()
@@ -419,7 +419,7 @@ class GameEngine(QMainWindow):
 
         #print('set_portrait')
 
-        if int(self.data.pt_num) != 0:
+        if self.data.pt_num != 0:
             self._post_pt_loop()
 
         self._set_text_box()
@@ -546,9 +546,9 @@ class GameEngine(QMainWindow):
 
         #print('selection')
 
-        for i in range(int(self.data.sl_num)):
+        for i in range(self.data.sl_num):
 
-            pos = 250 + int(i - int(int(self.data.sl_num) / 2)) * 75
+            pos = 250 + int(i - int(self.data.sl_num / 2)) * 75
 
             self.selection_button[i] = SelectButton(self.select_widget)
             self.selection_button[i].setStyleSheet(
@@ -598,7 +598,7 @@ class GameEngine(QMainWindow):
 
     def _post_bgm_loop(self):
 
-        for i in range(int(self.data.bgm_num)):
+        for i in range(self.data.bgm_num):
 
             if self.data.bgm_md[i] == 'dell':
                 self.background_music[int(self.data.bgm_pos[i])].stop_music()
@@ -634,7 +634,7 @@ class GameEngine(QMainWindow):
 
     def _post_pt_loop(self):
 
-        for i in range(int(self.data.pt_num)):
+        for i in range(self.data.pt_num):
 
             if self.data.pt_md[i] == 'dell':
                 if self.data.pt_du.get(i) != None:
@@ -658,7 +658,7 @@ class GameEngine(QMainWindow):
 
     def _post_sd_loop(self):
 
-        for i in range(int(self.data.sd_num)):
+        for i in range(self.data.sd_num):
 
             if self.data.sd_md[i] == 'newl':
                 self.sound[
@@ -678,7 +678,7 @@ class GameEngine(QMainWindow):
         for i in range(2):
             if self.background_music[i].state() == 1:
                 dupli = False
-                for j in range(int(self.save_data.bgm_num)):
+                for j in range(self.save_data.bgm_num):
                     if (self.save_data.bgm_pos.get(j) == str(i)
                             and self.save_data.bgm_id.get(j)\
                                     == self.background_music[i].id
@@ -689,22 +689,18 @@ class GameEngine(QMainWindow):
                     self.save_data.bgm_id[self.save_data.bgm_num]\
                             = self.background_music[i].id
                     self.save_data.bgm_md[self.save_data.bgm_num] = 'new'
-
-                    self.save_data.bgm_num = int(
-                            self.save_data.bgm_num) + 1
-
+                    self.save_data.bgm_num += 1
                     self.save_data.bgm_pos[self.save_data.bgm_num] = str(i)
                     self.save_data.bgm_vol[self.save_data.bgm_num]\
                             = self.background_music[i].volume()
                     self.save_data.bgm_md[self.save_data.bgm_num] = 'vol'
-                    self.save_data.bgm_num = str(int(
-                            self.save_data.bgm_num) + 1)
+                    self.save_data.bgm_num += 1
 
         for i in range(3):
             if (self.sound[i].state() == 1
                     and self.sound[i].playlist.playbackMode() == 3):
                 dupli = False
-                for j in range(int(self.save_data.sd_num)):
+                for j in range(self.save_data.sd_num):
                     if (self.save_data.sd_pos.get(j) == str(i)
                             and self.save_data.sd_id.get(j)\
                                     == self.sound[i].id
@@ -717,8 +713,7 @@ class GameEngine(QMainWindow):
                     self.save_data.sd_md[self.save_data.sd_num] = 'new'
                     self.save_data.sd_lp[self.save_data.sd_num] = 'True'
                     self.save_data.sd_fd[self.save_data.sd_num] = 'True'
-                    self.save_data.sd_num = str(int(
-                            self.save_data.sd_num) + 1)
+                    self.save_data.sd_num += 1
 
         if (self.mask_label.id != ''
                 and self.save_data.mk_id != self.mask_label.id
@@ -751,7 +746,7 @@ class GameEngine(QMainWindow):
         for i in range(5):
             if self.portrait[i].opacity != 0:
                 dupli = False
-                for j in range(int(self.save_data.pt_num)):
+                for j in range(self.save_data.pt_num):
                     if (self.save_data.pt_pos.get(j) == str(i)
                             and self.save_data.pt_id.get(j)\
                                     == self.portrait[i].id
@@ -766,5 +761,4 @@ class GameEngine(QMainWindow):
                             = int(self.portrait[i].x)
                     self.save_data.pt_y[self.save_data.pt_num]\
                             = int(self.portrait[i].y)
-                    self.save_data.pt_num = str(int(
-                            self.save_data.pt_num) + 1)
+                    self.save_data.pt_num += 1

@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-from coda.save_label import *
+from coda.save_button import *
 
 class Page(QWidget):
     '''this class creates page layout'''
@@ -39,11 +39,11 @@ class Page(QWidget):
             self.text_preview[i].setWordWrap(True)
 
         for i in range(6):
-            self.label[i] = SaveLabel('save_label', i + num * 6, self)
+            self.label[i] = SaveButton('save_label', i + num * 6, self)
             self.label[i].setGeometry(84 + int(i / 3) * 436, 76
                     + (i % 3) * 136, 420, 120)
 
         for i in range(6):
-            self.delete[i] = SaveLabel('save_delete', i + num * 6, self)
+            self.delete[i] = SaveButton('save_delete', i + num * 6, self)
             self.delete[i].setGeometry(432 + int(i / 3) * 436, 172
                     + (i % 3) * 136, 72, 24)

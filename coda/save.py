@@ -8,7 +8,7 @@ from PyQt5.QtGui import *
 
 from coda.image_button import *
 from coda.fader import *
-from coda.save_label import *
+from coda.save_button import *
 from coda.page import *
 from coda.save_writer import *
 
@@ -60,7 +60,7 @@ class Save(QMainWindow):
         self.page_background[0].show()
 
         for i in range(6):
-            self.save_page[i] = SaveLabel(
+            self.save_page[i] = SaveButton(
                     'save_{0}'.format(i + 1), i, self.save_widget)
             self.save_page[i].setGeometry(724 + i * 36, 25, 36, 36)
             self.save_page[i].clicked.connect(self._change_page)
@@ -116,11 +116,17 @@ class Save(QMainWindow):
                         int(j % 6)].setEnabled(True)
             self.page[int(j / 6)].delete[
                     int(j % 6)].show()
+            self.page[int(j / 6)].label[
+                    int(j % 6)].set_sid(i)
+            self.page[int(j / 6)].delete[
+                    int(j % 6)].set_sid(i)
 
     def _action(self):
 
         if self.state == 'save':
             self._save()
+        elif self.state == 'load':
+            self._write_data()
 
     def _save(self):
 
@@ -148,17 +154,15 @@ class Save(QMainWindow):
 
         print('delete')
         save_id = self.sender().id
+        save_sid = self.sender().sid
 
         if save_id == self.save_id and self.state == 'save':
             self.save_id = ''
         else:
-            for i in range(self.save_writer.data_index):
-                if self.save_writer.save_data.get(i) != None:
-                    if self.save_writer.save_data[i].sys_svid == str(save_id):
-                        print('del')
-                        self.save_writer.save_data.pop(i)
-                        self.save_writer.thumbnail_data.pop(i)
-                        self.delete_save = True
+            print('del')
+            self.save_writer.save_data.pop(save_sid)
+            self.save_writer.thumbnail_data.pop(save_sid)
+            self.delete_save = True
 
         self._clear_save(save_id)
 
