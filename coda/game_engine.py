@@ -46,6 +46,11 @@ class GameEngine(QMainWindow):
         self.text_box_widget = QWidget(self.game_engine_widget)
         self.menu_widget = QWidget(self.game_engine_widget)
 
+        #setup base widget
+        self.base_widget.setGeometry(0, 0, 1024, 576)
+        self.base_widget.setStyleSheet(
+                'QWidget { background-color: black; }')
+
         #create base layout
         #create background label
         self.background = Background(self.base_widget)
@@ -230,7 +235,6 @@ class GameEngine(QMainWindow):
 
         if self.load_status == True:
             self.parser.data = copy.deepcopy(self.load_data)
-            self.load_status = False
         else:
             self.parser.parse(self.script, self.game_engine_id)
 
@@ -255,10 +259,15 @@ class GameEngine(QMainWindow):
 
         #print('init_background_music')
 
-        if self.data.bgm_num != 0:
-            self._pre_bgm_loop()
+        if self.load_status == True:
+            QTimer.singleShot(1250, self._load_bgm)
 
-        self._init_effect()
+        else:
+            self.background.show()
+            if self.data.bgm_num != 0:
+                self._pre_bgm_loop()
+
+            self._init_effect()
 
     def _init_effect(self):
 
@@ -579,6 +588,11 @@ class GameEngine(QMainWindow):
             self.selection_button[each].deleteLater()
         self.selection_button.clear()
         self._init_parser()
+
+    def _load_bgm(self):
+
+        self.load_status = False
+        self._init_background_music()
 
     def _pre_bgm_loop(self):
 

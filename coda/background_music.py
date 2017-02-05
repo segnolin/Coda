@@ -54,7 +54,7 @@ class BackgroundMusic(QMediaPlayer):
 
         self.anime.stop()
         self.anime.setEasingCurve(QEasingCurve.OutSine)
-        self.anime.setDuration(1800)
+        self.anime.setDuration(1200)
         self.anime.setStartValue(1.0)
         self.anime.setEndValue(0.0)
         self.anime.valueChanged.connect(self._fade_out)

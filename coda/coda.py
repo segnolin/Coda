@@ -207,6 +207,7 @@ class Coda(QMainWindow):
 
     def _clean(self):
 
+        self.game_engine.background.hide()
         self.game_engine.menu_widget.hide()
         self.game_engine.text_box_widget.hide()
         self.game_engine.select_widget.hide()
@@ -217,7 +218,7 @@ class Coda(QMainWindow):
 
         self.game_engine.voice.stop()
         for i in range(2):
-            self.game_engine.background_music[i].stop()
+            self.game_engine.background_music[i].stop_music()
         for i in range(3):
             self.game_engine.sound[i].stop()
 
