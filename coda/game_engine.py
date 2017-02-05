@@ -38,6 +38,7 @@ class GameEngine(QMainWindow):
         self.effect_status = False
         self.load_status = False
         self.auto_status = False
+        self.update_enable = False
 
         #set QWidget class
         self.game_engine_widget = QWidget()
@@ -389,12 +390,15 @@ class GameEngine(QMainWindow):
             self.text_box_label.index = len(self.data.tb_txt)
 
         else:
+            self.update_enable = True
             self._update()
 
     def _update(self):
 
-        self.game_engine_id += 1
-        self._set_background_music()
+        if self.update_enable == True:
+            self.update_enable = False
+            self.game_engine_id += 1
+            self._set_background_music()
 
     def _set_background_music(self):
 
@@ -447,6 +451,9 @@ class GameEngine(QMainWindow):
     #utilities
     def _text_standby(self):
 
+        if self.data.tb_vc == '':
+            self.update_enable = True
+
         if (self.data.tb_vc == '' and self.data.tb_txt != ''
                 and self.auto_status == True):
             print(str(self.game_engine_id) + ' text')
@@ -454,15 +461,12 @@ class GameEngine(QMainWindow):
 
     def _voice_standby(self):
 
+        self.update_enable = True
+
         if self.voice.state() == 0 and self.auto_status == True:
             print(str(self.game_engine_id) + ' voice')
             self.text_box_label.next_timer.stop()
             QTimer.singleShot(250, self._auto_emit)
-
-    def _auto_emit(self):
-
-        if self.auto_status == True:
-            self._update()
 
     def _change_auto_status(self):
 
@@ -477,7 +481,7 @@ class GameEngine(QMainWindow):
             self.hide_button.setEnabled(False)
             if (self.voice.state() == 0
                     and self.text_box_label.index >= len(self.data.tb_txt)):
-                QTimer.singleShot(1000, self._update)
+                QTimer.singleShot(1000, self._auto_emit)
         else:
             self.auto_status = False
             self.next_label.setEnabled(True)
@@ -487,6 +491,11 @@ class GameEngine(QMainWindow):
             self.load_button.setEnabled(True)
             self.menu_button.setEnabled(True)
             self.hide_button.setEnabled(True)
+
+    def _auto_emit(self):
+
+        if self.auto_status == True:
+            self._update()
 
     def _hide_menu(self):
 
