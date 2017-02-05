@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 from coda.image_button import *
+from coda.toggle_button import *
 from coda.select_button import *
 from coda.fader import *
 from coda.fader_widget import *
@@ -36,6 +37,7 @@ class GameEngine(QMainWindow):
         self.init_status = True
         self.effect_status = False
         self.load_status = False
+        self.auto_status = False
 
         #set QWidget class
         self.game_engine_widget = QWidget()
@@ -113,14 +115,16 @@ class GameEngine(QMainWindow):
                 'QLabel { font-family: Times New Roman;\
                 font-size: 21px; }')
         self.text_box_label.setWordWrap(True)
+        self.text_box_label.next_timer.timeout.connect(self._text_standby)
 
         #create transparent label to add game engine id(next)
         self.next_label = QLabel(self.text_box_widget)
         self.next_label.setGeometry(0, 0, 1024, 576)
 
         #create a auto button
-        self.auto_button = ImageButton('auto', self.text_box_widget)
+        self.auto_button = ToggleButton('auto', self.text_box_widget)
         self.auto_button.setGeometry(874, 486, 35, 35)
+        self.auto_button.clicked.connect(self._change_auto_status)
 
         #create a skip button
         self.skip_button = ImageButton('skip', self.text_box_widget)
@@ -190,6 +194,7 @@ class GameEngine(QMainWindow):
 
         #set media
         self.voice = Voice()
+        self.voice.stateChanged.connect(self._voice_standby)
         self.background_music = {}
         self.sound = {}
         for i in range(2):
@@ -260,7 +265,7 @@ class GameEngine(QMainWindow):
         #print('init_background_music')
 
         if self.load_status == True:
-            QTimer.singleShot(1250, self._load_bgm)
+            QTimer.singleShot(1250, self._delay_init_background_music)
 
         else:
             self.background.show()
@@ -377,12 +382,6 @@ class GameEngine(QMainWindow):
         self.text_character_label.setText(self.data.tb_char)
         self.text_box_label.set_verbatim_text(self.data.tb_txt)
 
-        self._standby()
-
-    def _standby(self):
-
-        pass
-
     def _update_engine(self, event):
 
         if self.text_box_label.index < len(self.data.tb_txt):
@@ -390,12 +389,12 @@ class GameEngine(QMainWindow):
             self.text_box_label.index = len(self.data.tb_txt)
 
         else:
-            #print('update_engine')
+            self._update()
 
-            self.game_engine_id += 1
-            #print(self.game_engine_id)
+    def _update(self):
 
-            self._set_background_music()
+        self.game_engine_id += 1
+        self._set_background_music()
 
     def _set_background_music(self):
 
@@ -445,7 +444,50 @@ class GameEngine(QMainWindow):
 
     ############################## MAIN PROGRAM END ##############################
 
-    #widget utilities
+    #utilities
+    def _text_standby(self):
+
+        if (self.data.tb_vc == '' and self.data.tb_txt != ''
+                and self.auto_status == True):
+            print(str(self.game_engine_id) + ' text')
+            QTimer.singleShot(2500, self._auto_emit)
+
+    def _voice_standby(self):
+
+        if self.voice.state() == 0 and self.auto_status == True:
+            print(str(self.game_engine_id) + ' voice')
+            self.text_box_label.next_timer.stop()
+            QTimer.singleShot(250, self._auto_emit)
+
+    def _auto_emit(self):
+
+        if self.auto_status == True:
+            self._update()
+
+    def _change_auto_status(self):
+
+        if self.auto_status == False:
+            self.auto_status = True
+            self.next_label.setEnabled(False)
+            self.skip_button.setEnabled(False)
+            self.log_button.setEnabled(False)
+            self.save_button.setEnabled(False)
+            self.load_button.setEnabled(False)
+            self.menu_button.setEnabled(False)
+            self.hide_button.setEnabled(False)
+            if (self.voice.state() == 0
+                    and self.text_box_label.index >= len(self.data.tb_txt)):
+                QTimer.singleShot(1000, self._update)
+        else:
+            self.auto_status = False
+            self.next_label.setEnabled(True)
+            self.skip_button.setEnabled(True)
+            self.log_button.setEnabled(True)
+            self.save_button.setEnabled(True)
+            self.load_button.setEnabled(True)
+            self.menu_button.setEnabled(True)
+            self.hide_button.setEnabled(True)
+
     def _hide_menu(self):
 
         self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
@@ -484,7 +526,13 @@ class GameEngine(QMainWindow):
 
         self.disable_hide_label.hide()
         self.next_label.show()
-        self.hide_button.setEnabled(True)
+        if self.auto_status == False:
+            self.hide_button.setEnabled(True)
+
+    def _delay_init_background_music(self):
+
+        self.load_status = False
+        self._init_background_music()
 
     def _hide_effect(self):
 
@@ -524,7 +572,8 @@ class GameEngine(QMainWindow):
 
         self.disable_hide_label.hide()
         self.next_label.show()
-        self.hide_button.setEnabled(True)
+        if self.auto_status == False:
+            self.hide_button.setEnabled(True)
         self._init_voice()
 
     def _hide_text_box(self):
@@ -588,11 +637,6 @@ class GameEngine(QMainWindow):
             self.selection_button[each].deleteLater()
         self.selection_button.clear()
         self._init_parser()
-
-    def _load_bgm(self):
-
-        self.load_status = False
-        self._init_background_music()
 
     def _pre_bgm_loop(self):
 

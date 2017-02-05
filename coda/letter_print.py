@@ -12,6 +12,8 @@ class LetterPrint(QLabel):
 
         self.txt = ''
         self.index = 0
+        self.next_timer = QTimer()
+        self.next_timer.setSingleShot(True)
 
     def set_verbatim_text(self, txt):
 
@@ -28,3 +30,4 @@ class LetterPrint(QLabel):
 
         if self.index > len(self.txt):
             self.timer.stop()
+            self.next_timer.start(0)

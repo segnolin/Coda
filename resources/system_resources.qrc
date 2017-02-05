@@ -19,7 +19,8 @@
 
         <file alias="text_background.png">system/game_engine/text_background.png</file>
 
-        <file alias="auto_button_defaults.png">system/game_engine/auto_button_defaults.png</file>
+        <file alias="auto_button_state_0.png">system/game_engine/auto_button_state_0.png</file>
+        <file alias="auto_button_state_1.png">system/game_engine/auto_button_state_1.png</file>
         <file alias="auto_button_hover.png">system/game_engine/auto_button_hover.png</file>
         <file alias="auto_button_press.png">system/game_engine/auto_button_press.png</file>
 
