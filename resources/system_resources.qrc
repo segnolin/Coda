@@ -23,26 +23,34 @@
         <file alias="auto_button_state_1.png">system/game_engine/auto_button_state_1.png</file>
         <file alias="auto_button_hover.png">system/game_engine/auto_button_hover.png</file>
         <file alias="auto_button_press.png">system/game_engine/auto_button_press.png</file>
+        <file alias="auto_tool_tip.png">system/game_engine/auto_tool_tip.png</file>
+        <file alias="auto_active_tool_tip.png">system/game_engine/auto_active_tool_tip.png</file>
 
         <file alias="skip_button_defaults.png">system/game_engine/skip_button_defaults.png</file>
         <file alias="skip_button_hover.png">system/game_engine/skip_button_hover.png</file>
         <file alias="skip_button_press.png">system/game_engine/skip_button_press.png</file>
+        <file alias="skip_tool_tip.png">system/game_engine/skip_tool_tip.png</file>
+        <file alias="skip_active_tool_tip.png">system/game_engine/skip_active_tool_tip.png</file>
 
         <file alias="log_button_defaults.png">system/game_engine/log_button_defaults.png</file>
         <file alias="log_button_hover.png">system/game_engine/log_button_hover.png</file>
         <file alias="log_button_press.png">system/game_engine/log_button_press.png</file>
+        <file alias="log_tool_tip.png">system/game_engine/log_tool_tip.png</file>
 
         <file alias="save_button_defaults.png">system/game_engine/save_button_defaults.png</file>
         <file alias="save_button_hover.png">system/game_engine/save_button_hover.png</file>
         <file alias="save_button_press.png">system/game_engine/save_button_press.png</file>
+        <file alias="save_tool_tip.png">system/game_engine/save_tool_tip.png</file>
 
         <file alias="load_button_defaults.png">system/game_engine/load_button_defaults.png</file>
         <file alias="load_button_hover.png">system/game_engine/load_button_hover.png</file>
         <file alias="load_button_press.png">system/game_engine/load_button_press.png</file>
+        <file alias="load_tool_tip.png">system/game_engine/load_tool_tip.png</file>
 
         <file alias="menu_button_defaults.png">system/game_engine/menu_button_defaults.png</file>
         <file alias="menu_button_hover.png">system/game_engine/menu_button_hover.png</file>
         <file alias="menu_button_press.png">system/game_engine/menu_button_press.png</file>
+        <file alias="menu_tool_tip.png">system/game_engine/menu_tool_tip.png</file>
 
         <file alias="hide_button_defaults.png">system/game_engine/hide_button_defaults.png</file>
         <file alias="hide_button_hover.png">system/game_engine/hide_button_hover.png</file>

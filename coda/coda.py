@@ -50,28 +50,28 @@ class Coda(QMainWindow):
         self.central_widget.setLayout(self.stacked_layout)
         self.setCentralWidget(self.central_widget)
 
-        #connection
-        self.main_window.main_start_button.clicked.connect(self.start)
-        self.main_window.main_load_button.clicked.connect(self.load)
-        self.main_window.main_extra_button.clicked.connect(self.extra)
-        self.main_window.main_config_button.clicked.connect(self.config)
-        self.main_window.main_exit_button.clicked.connect(self.exit)
-
         #set game engine
         self.game_engine = GameEngine()
         self.game_engine.create_game_engine_layout()
         self.stacked_layout.addWidget(self.game_engine.game_engine_widget)
 
-        #game engine connection
-        self.game_engine.save_button.clicked.connect(self.save)
-        self.game_engine.load_button.clicked.connect(self.load)
-        self.game_engine.title_button.clicked.connect(self._back_to_main)
-        self.game_engine.exit_button.clicked.connect(self.exit)
-
         #set save layout
         self.save = Save()
         self.save.create_save_layout()
         self.stacked_layout.addWidget(self.save.save_widget)
+
+        #game engine connection
+        self.game_engine.save_button.clicked.connect(self.save_game)
+        self.game_engine.load_button.clicked.connect(self.load)
+        self.game_engine.title_button.clicked.connect(self._back_to_main)
+        self.game_engine.exit_button.clicked.connect(self.exit)
+
+        #main window connection
+        self.main_window.main_start_button.clicked.connect(self.start)
+        self.main_window.main_load_button.clicked.connect(self.load)
+        self.main_window.main_extra_button.clicked.connect(self.extra)
+        self.main_window.main_config_button.clicked.connect(self.config)
+        self.main_window.main_exit_button.clicked.connect(self.exit)
 
         #save connection
         self.save.save_back_button.clicked.connect(self._save_back)
@@ -94,7 +94,7 @@ class Coda(QMainWindow):
 
         self.stacked_layout.setCurrentWidget(self.game_engine.game_engine_widget)
 
-    def save(self):
+    def save_game(self):
 
         print('save')
 

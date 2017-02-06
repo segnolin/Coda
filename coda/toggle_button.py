@@ -10,6 +10,8 @@ from PyQt5.QtCore import *
 class ToggleButton(QAbstractButton):
     '''this class provide toggle button functions'''
 
+    mouse_hover = pyqtSignal(bool)
+
     def __init__(self, button_id, parent):
         super().__init__(parent)
 
@@ -54,10 +56,12 @@ class ToggleButton(QAbstractButton):
 
     def enterEvent(self, event):
 
+        self.mouse_hover.emit(True)
         self.update()
 
     def leaveEvent(self, event):
 
+        self.mouse_hover.emit(False)
         self.update()
 
     def paintEvent(self, event):

@@ -9,6 +9,7 @@ from PyQt5.QtGui import *
 
 from coda.image_button import *
 from coda.toggle_button import *
+from coda.tool_tip import *
 from coda.select_button import *
 from coda.fader import *
 from coda.fader_widget import *
@@ -70,6 +71,7 @@ class GameEngine(QMainWindow):
         #create disable hide label to show all widget
         self.disable_hide_label = QLabel(self.basic_widget)
         self.disable_hide_label.setGeometry(0, 0, 1024, 576)
+        self.disable_hide_label.mousePressEvent = self._show_widget
 
         #create effect label
         self.effect = Effect(self.basic_widget)
@@ -119,34 +121,73 @@ class GameEngine(QMainWindow):
         #create transparent label to add game engine id(next)
         self.next_label = QLabel(self.text_box_widget)
         self.next_label.setGeometry(0, 0, 1024, 576)
+        self.next_label.mousePressEvent = self._update_engine
 
         #create a auto button
+        self.auto_tool_tip = ToolTip('auto', self.text_box_widget)
+        self.auto_tool_tip.setGeometry(894, 456, 85, 25)
+        self.auto_tool_tip.setVisible(False)
+        self.auto_active_tool_tip = ToolTip('auto_active', self.text_box_widget)
+        self.auto_active_tool_tip.setGeometry(894, 456, 85, 25)
+        self.auto_active_tool_tip.hide()
         self.auto_button = ToggleButton('auto', self.text_box_widget)
         self.auto_button.setGeometry(874, 486, 35, 35)
+        self.auto_button.clicked.connect(self._change_auto_status)
+        self.auto_button.mouse_hover.connect(self.auto_tool_tip.setVisible)
 
         #create a skip button
+        self.skip_tool_tip = ToolTip('skip', self.text_box_widget)
+        self.skip_tool_tip.setGeometry(894, 456, 85, 25)
+        self.skip_tool_tip.setVisible(False)
+        self.skip_active_tool_tip = ToolTip('skip_active', self.text_box_widget)
+        self.skip_active_tool_tip.setGeometry(894, 456, 85, 25)
+        self.skip_active_tool_tip.hide()
         self.skip_button = ImageButton('skip', self.text_box_widget)
         self.skip_button.setGeometry(919, 486, 35, 35)
+        self.skip_button.mousePressEvent = self._skip
+        self.skip_button.mouseReleaseEvent = self._disable_skip
+        self.skip_button.mouse_hover.connect(self.skip_tool_tip.setVisible)
 
         #create a log button
+        self.log_tool_tip = ToolTip('log', self.text_box_widget)
+        self.log_tool_tip.setGeometry(894, 456, 85, 25)
+        self.log_tool_tip.setVisible(False)
         self.log_button = ImageButton('log', self.text_box_widget)
         self.log_button.setGeometry(964, 486, 35, 35)
+        self.log_button.clicked.connect(self._log)
+        self.log_button.mouse_hover.connect(self.log_tool_tip.setVisible)
 
         #create a save button
+        self.save_tool_tip = ToolTip('save', self.text_box_widget)
+        self.save_tool_tip.setGeometry(894, 456, 85, 25)
+        self.save_tool_tip.setVisible(False)
         self.save_button = ImageButton('save', self.text_box_widget)
         self.save_button.setGeometry(874, 531, 35, 35)
+        self.save_button.clicked.connect(self._save_data)
+        self.save_button.mouse_hover.connect(self.save_tool_tip.setVisible)
 
         #create a load button
+        self.load_tool_tip = ToolTip('load', self.text_box_widget)
+        self.load_tool_tip.setGeometry(894, 456, 85, 25)
+        self.load_tool_tip.setVisible(False)
         self.load_button = ImageButton('load', self.text_box_widget)
         self.load_button.setGeometry(919, 531, 35, 35)
+        self.load_button.clicked.connect(self._disable_auto_status)
+        self.load_button.mouse_hover.connect(self.load_tool_tip.setVisible)
 
         #create a menu button
+        self.menu_tool_tip = ToolTip('menu', self.text_box_widget)
+        self.menu_tool_tip.setGeometry(894, 456, 85, 25)
+        self.menu_tool_tip.setVisible(False)
         self.menu_button = ImageButton('menu', self.text_box_widget)
         self.menu_button.setGeometry(964, 531, 35, 35)
+        self.menu_button.clicked.connect(self._show_menu)
+        self.menu_button.mouse_hover.connect(self.menu_tool_tip.setVisible)
 
         #create a hide button
         self.hide_button = ImageButton('hide', self.text_box_widget)
         self.hide_button.setGeometry(839, 456, 25, 25)
+        self.hide_button.clicked.connect(self._hide_widget)
 
         #create menu layout
         #create menu background
@@ -162,6 +203,7 @@ class GameEngine(QMainWindow):
         #create back button
         self.back_button = ImageButton('menu_back', self.menu_widget)
         self.back_button.setGeometry(60, 275, 96, 32)
+        self.back_button.clicked.connect(self._hide_menu)
 
         #create title button
         self.title_button = ImageButton('menu_title', self.menu_widget)
@@ -217,18 +259,6 @@ class GameEngine(QMainWindow):
         self.auto_timer.setSingleShot(True)
         self.auto_timer.timeout.connect(self._auto_emit)
         self.text_box_label.next_timer.timeout.connect(self._text_standby)
-
-        #connection
-        self.auto_button.clicked.connect(self._change_auto_status)
-        self.skip_button.clicked.connect(self._skip)
-        self.log_button.clicked.connect(self._log)
-        self.save_button.clicked.connect(self._save_data)
-        self.load_button.clicked.connect(self._disable_auto_status)
-        self.back_button.clicked.connect(self._hide_menu)
-        self.menu_button.clicked.connect(self._show_menu)
-        self.hide_button.clicked.connect(self._hide_widget)
-        self.disable_hide_label.mousePressEvent = self._show_widget
-        self.next_label.mousePressEvent = self._update_engine
 
     ############################## MAIN PROGRAM START ##############################
 
@@ -459,9 +489,14 @@ class GameEngine(QMainWindow):
     ############################## MAIN PROGRAM END ##############################
 
     #utilities
-    def _skip(self):
+    def _skip(self, event):
 
         self._disable_auto_status()
+        self.skip_active_tool_tip.show()
+
+    def _disable_skip(self, event):
+
+        self.skip_active_tool_tip.hide()
 
     def _log(self):
 
@@ -483,7 +518,8 @@ class GameEngine(QMainWindow):
         if self.auto_status == False:
             self.auto_status = True
             self.next_label.setEnabled(False)
-            self.hide_button.setEnabled(False)
+            self.hide_button.hide()
+            self.auto_active_tool_tip.show()
             if (self.voice.state() == 0
                     and self.text_box_label.index >= len(self.data.tb_txt)):
                 self.text_timer.stop()
@@ -498,7 +534,8 @@ class GameEngine(QMainWindow):
         self.auto_status = False
         self.auto_button.state = 0
         self.next_label.setEnabled(True)
-        self.hide_button.setEnabled(True)
+        self.hide_button.show()
+        self.auto_active_tool_tip.hide()
 
     def _auto_emit(self):
 
@@ -545,8 +582,7 @@ class GameEngine(QMainWindow):
 
         self.disable_hide_label.hide()
         self.next_label.show()
-        if self.auto_status == False:
-            self.hide_button.setEnabled(True)
+        self.hide_button.setEnabled(True)
 
     def _delay_init_background_music(self):
 
@@ -591,8 +627,7 @@ class GameEngine(QMainWindow):
 
         self.disable_hide_label.hide()
         self.next_label.show()
-        if self.auto_status == False:
-            self.hide_button.setEnabled(True)
+        self.hide_button.setEnabled(True)
         self._init_voice()
 
     def _hide_text_box(self):
