@@ -17,9 +17,9 @@ class Coda(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.initUI()
+        self.init_ui()
 
-    def initUI(self):
+    def init_ui(self):
 
         #set initial game argument
         self.script = 'scr_a0000'
