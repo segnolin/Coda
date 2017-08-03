@@ -23,6 +23,7 @@ from coda.script_parser import *
 from coda.sound import *
 from coda.voice import *
 from coda.data import *
+from coda.log import *
 
 class GameEngine(QMainWindow):
     '''this class creates game engine layout and functions'''
@@ -48,6 +49,7 @@ class GameEngine(QMainWindow):
         self.select_widget = QWidget(self.game_engine_widget)
         self.text_box_widget = QWidget(self.game_engine_widget)
         self.menu_widget = QWidget(self.game_engine_widget)
+        self.log_widget = QWidget(self.game_engine_widget)
 
         #setup base widget
         self.base_widget.setGeometry(0, 0, 1024, 576)
@@ -105,18 +107,14 @@ class GameEngine(QMainWindow):
         self.text_character_label = QLabel(self.text_box_widget)
         self.text_character_label.setAlignment(Qt.AlignLeft)
         self.text_character_label.setGeometry(130, 436, 710, 30)
-        self.text_character_label.setStyleSheet(
-                'QLabel { font-family: Times New Roman;\
-                font-size: 23px; font-weight: Bold; }')
+        self.text_character_label.setFont(QFont('Times New Roman', 23, QFont.Bold))
 
         #set the text box label
         self.text_box_label = LetterPrint(self.text_box_widget)
         self.text_box_label.setAlignment(Qt.AlignLeft)
         self.text_box_label.setGeometry(140, 476, 700, 75)
-        self.text_box_label.setStyleSheet(
-                'QLabel { font-family: Times New Roman;\
-                font-size: 21px; }')
         self.text_box_label.setWordWrap(True)
+        self.text_box_label.setFont(QFont('Times New Roman', 21))
 
         #create transparent label to add game engine id(next)
         self.next_label = QLabel(self.text_box_widget)
@@ -154,7 +152,7 @@ class GameEngine(QMainWindow):
         self.log_tool_tip.setVisible(False)
         self.log_button = ImageButton('log', self.text_box_widget)
         self.log_button.setGeometry(964, 486, 35, 35)
-        self.log_button.clicked.connect(self._log)
+        self.log_button.clicked.connect(self._show_log)
         self.log_button.mouse_hover.connect(self.log_tool_tip.setVisible)
 
         #create a save button
@@ -200,6 +198,10 @@ class GameEngine(QMainWindow):
         self.menu_background_label.setPixmap(self.menu_background_pixmap)
         self.menu_background_label.setGeometry(0, 0, 1024, 576)
 
+        #create log layout
+        self.log = Log(self.log_widget)
+        self.log.log_back_button.clicked.connect(self._hide_log)
+
         #create back button
         self.back_button = ImageButton('menu_back', self.menu_widget)
         self.back_button.setGeometry(60, 275, 96, 32)
@@ -218,6 +220,7 @@ class GameEngine(QMainWindow):
         self.exit_button.setGeometry(750, 275, 96, 32)
 
         #hide widget
+        self.log_widget.hide()
         self.menu_widget.hide()
         self.text_box_widget.hide()
         self.select_widget.hide()
@@ -267,6 +270,7 @@ class GameEngine(QMainWindow):
         self.script = script
         self.game_engine_id = game_engine_id
         self.init_status = True
+        self.log.add_log('', '< ゲームを始めます >', 1)
         self._init_parser()
 
     def load_game(self, load_data):
@@ -276,6 +280,7 @@ class GameEngine(QMainWindow):
         self.game_engine_id = int(self.load_data.sys_ldid)
         self.init_status = True
         self.load_status = True
+        self.log.add_log('', '< ゲームを読みます >', 1)
         self._init_parser()
 
     def _init_parser(self):
@@ -426,6 +431,8 @@ class GameEngine(QMainWindow):
         self.text_character_label.setText(self.data.tb_char)
         self.text_box_label.set_verbatim_text(self.data.tb_txt)
 
+        self.log.add_log(self.data.tb_char, self.data.tb_txt, 0)
+
     def _update_engine(self, event):
 
         if self.text_box_label.index < len(self.data.tb_txt):
@@ -498,9 +505,22 @@ class GameEngine(QMainWindow):
 
         self.skip_active_tool_tip.hide()
 
-    def _log(self):
+    def _show_log(self):
 
         self._disable_auto_status()
+
+        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        self.fader.fade(250)
+        self.log.set_scroll_position()
+        self.log_widget.show()
+        self.text_box_widget.hide()
+
+    def _hide_log(self):
+
+        self.fader = Fader(self.game_engine_widget, self.game_engine_widget)
+        self.fader.fade(250)
+        self.log_widget.hide()
+        self.text_box_widget.show()
 
     def _text_standby(self):
 
@@ -679,6 +699,7 @@ class GameEngine(QMainWindow):
 
         selection = int(self.sender().id)
         #print(selection)
+        self.log.add_log('', '< 選択 >    {0}'.format(self.data.sl_txt[selection]), 1)
 
         self.game_engine_id = 0
         self.script = self.data.sl_sc[selection]
