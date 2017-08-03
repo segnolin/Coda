@@ -32,6 +32,10 @@
         <file alias="skip_tool_tip.png">system/game_engine/skip_tool_tip.png</file>
         <file alias="skip_active_tool_tip.png">system/game_engine/skip_active_tool_tip.png</file>
 
+        <file alias="log_back_button_defaults.png">system/game_engine/log_back_button_defaults.png</file>
+        <file alias="log_back_button_hover.png">system/game_engine/log_back_button_hover.png</file>
+        <file alias="log_back_button_press.png">system/game_engine/log_back_button_press.png</file>
+
         <file alias="log_button_defaults.png">system/game_engine/log_button_defaults.png</file>
         <file alias="log_button_hover.png">system/game_engine/log_button_hover.png</file>
         <file alias="log_button_press.png">system/game_engine/log_button_press.png</file>
