@@ -45,7 +45,8 @@ class Log(QWidget):
         self.scroll_area.setWidget(self.view_area)
         self.scroll_area.setGeometry(84, 25, 856, 442)
         self.scroll_area.setStyleSheet(
-                'QScrollArea { background-color: rgba(0, 0, 0, 0); }')
+                'QScrollArea { background-color: rgba(0, 0, 0, 0);\
+                        border: 0px; }')
 
     def set_scroll_position(self):
 
