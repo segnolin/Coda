@@ -200,21 +200,21 @@ class GameEngine(QMainWindow):
 
         #create back button
         self.back_button = ImageButton('menu_back', self.menu_widget)
-        self.back_button.setGeometry(844, 490, 96, 32)
+        self.back_button.setGeometry(840, 490, 96, 32)
         #self.back_button.setGeometry(60, 275, 96, 32)
         self.back_button.clicked.connect(self._hide_menu)
 
         #create title button
         self.title_button = ImageButton('menu_title', self.menu_widget)
-        self.title_button.setGeometry(144, 275, 96, 32)
+        self.title_button.setGeometry(210, 265, 96, 32)
 
         #create config button
         self.config_button = ImageButton('menu_config', self.menu_widget)
-        self.config_button.setGeometry(374, 275, 96, 32)
+        self.config_button.setGeometry(460, 265, 96, 32)
 
         #create quit button
         self.quit_button = ImageButton('menu_quit', self.menu_widget)
-        self.quit_button.setGeometry(604, 275, 96, 32)
+        self.quit_button.setGeometry(710, 265, 96, 32)
 
         #hide widget
         self.log_widget.hide()
