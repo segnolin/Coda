@@ -80,14 +80,10 @@ class GameEngine(QMainWindow):
 
         #create select layout
         #create select label
-        self.select_background_pixmap = QPixmap(':/sys/select_background.png')
-        self.select_background_pixmap = self.select_background_pixmap.scaledToHeight(
-                self.select_background_pixmap.height() * self.pixel_ratio / 2,
-                Qt.SmoothTransformation)
-        self.select_background_pixmap.setDevicePixelRatio(self.pixel_ratio)
         self.select_background_label = QLabel(self.select_widget)
-        self.select_background_label.setPixmap(self.select_background_pixmap)
         self.select_background_label.setGeometry(0, 0, 1024, 576)
+        self.select_background_label.setStyleSheet(
+                'QLabel { background-color: rgba(255, 255, 255, 0.4); }')
 
         #create selection button
         self.selection_button = {}
@@ -204,20 +200,21 @@ class GameEngine(QMainWindow):
 
         #create back button
         self.back_button = ImageButton('menu_back', self.menu_widget)
-        self.back_button.setGeometry(60, 275, 96, 32)
+        self.back_button.setGeometry(844, 490, 96, 32)
+        #self.back_button.setGeometry(60, 275, 96, 32)
         self.back_button.clicked.connect(self._hide_menu)
 
         #create title button
         self.title_button = ImageButton('menu_title', self.menu_widget)
-        self.title_button.setGeometry(290, 275, 96, 32)
+        self.title_button.setGeometry(144, 275, 96, 32)
 
         #create config button
         self.config_button = ImageButton('menu_config', self.menu_widget)
-        self.config_button.setGeometry(520, 275, 96, 32)
+        self.config_button.setGeometry(374, 275, 96, 32)
 
-        #create exit button
-        self.exit_button = ImageButton('menu_quit', self.menu_widget)
-        self.exit_button.setGeometry(750, 275, 96, 32)
+        #create quit button
+        self.quit_button = ImageButton('menu_quit', self.menu_widget)
+        self.quit_button.setGeometry(604, 275, 96, 32)
 
         #hide widget
         self.log_widget.hide()
@@ -494,6 +491,21 @@ class GameEngine(QMainWindow):
             self._init_parser()
 
     ############################## MAIN PROGRAM END ##############################
+
+    def get_current_scene(self):
+
+        self.text_box_widget.hide()
+
+        pixmap = QPixmap(2048, 1152)
+        pixmap = pixmap.scaledToHeight(
+                pixmap.height() * self.pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        pixmap.setDevicePixelRatio(self.pixel_ratio)
+        self.game_engine_widget.render(pixmap)
+
+        self.text_box_widget.show()
+
+        return pixmap
 
     #utilities
     def _skip(self, event):

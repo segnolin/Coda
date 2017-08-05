@@ -26,7 +26,7 @@ class Log(QWidget):
         self.background_label = QLabel(self)
         self.background_label.setGeometry(0, 0, 1024, 576)
         self.background_label.setStyleSheet(
-                'QLabel { background-color: rgba(255, 255, 255, 0.6); }')
+                'QLabel { background-color: rgba(255, 255, 255, 0.4); }')
 
         #create back button
         self.log_back_button = ImageButton('log_back', self)

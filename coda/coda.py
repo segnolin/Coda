@@ -17,6 +17,7 @@ class Coda(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        self.pixel_ratio = QWindow().devicePixelRatio()
         self.init_ui()
 
     def init_ui(self):
@@ -64,14 +65,14 @@ class Coda(QMainWindow):
         self.game_engine.save_button.clicked.connect(self.save_game)
         self.game_engine.load_button.clicked.connect(self.load)
         self.game_engine.title_button.clicked.connect(self._back_to_main)
-        self.game_engine.exit_button.clicked.connect(self.exit)
+        self.game_engine.quit_button.clicked.connect(self.quit)
 
         #main window connection
         self.main_window.main_start_button.clicked.connect(self.start)
         self.main_window.main_load_button.clicked.connect(self.load)
         self.main_window.main_extra_button.clicked.connect(self.extra)
         self.main_window.main_config_button.clicked.connect(self.config)
-        self.main_window.main_exit_button.clicked.connect(self.exit)
+        self.main_window.main_quit_button.clicked.connect(self.quit)
 
         #save connection
         self.save.save_back_button.clicked.connect(self._save_back)
@@ -101,6 +102,10 @@ class Coda(QMainWindow):
         self.save.add_save(self.game_engine.save_data,
                 self.game_engine.thumbnail)
 
+        #set background pixmap
+        pixmap = self.game_engine.get_current_scene()
+        self.save.set_background_pixmap(pixmap)
+
         #fade effect
         self.fader = Fader(self.stacked_layout.currentWidget(),
                 self.save.save_widget)
@@ -114,6 +119,17 @@ class Coda(QMainWindow):
         print('load')
 
         self.save.load()
+
+        #set background pixmap
+        if self.status == 'main':
+            pixmap = QPixmap(':/sys/main_background.png')
+            pixmap = pixmap.scaledToHeight(
+                    pixmap.height() * self.pixel_ratio / 2,
+                    Qt.SmoothTransformation)
+            pixmap.setDevicePixelRatio(self.pixel_ratio)
+        else:
+            pixmap = self.game_engine.get_current_scene()
+        self.save.set_background_pixmap(pixmap)
 
         #fade effect
         self.fader = Fader(self.stacked_layout.currentWidget(),
@@ -131,9 +147,9 @@ class Coda(QMainWindow):
 
         print('config')
 
-    def exit(self):
+    def quit(self):
 
-        print('exit')
+        print('quit')
         self.close()
 
     def _go_to_main(self):

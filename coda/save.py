@@ -23,6 +23,10 @@ class Save(QMainWindow):
         self.state = ''
         self.delete_save = False
 
+    def set_background_pixmap(self, pixmap):
+
+        self.background.setPixmap(pixmap)
+
     def create_save_layout(self):
 
         #set QWidget class
@@ -30,13 +34,17 @@ class Save(QMainWindow):
 
         #set save page background
         self.background = QLabel(self.save_widget)
-        self.background_pixmap = QPixmap(':/sys/save_background.png')
-        self.background_pixmap = self.background_pixmap.scaledToHeight(
-                self.background_pixmap.height() * self.pixel_ratio / 2,
-                Qt.SmoothTransformation)
-        self.background_pixmap.setDevicePixelRatio(self.pixel_ratio)
-        self.background.setPixmap(self.background_pixmap)
         self.background.setGeometry(0, 0, 1024, 576)
+
+        #set base label
+        self.base = QLabel(self.save_widget)
+        self.base_pixmap = QPixmap(':/sys/save_base.png')
+        self.base_pixmap = self.base_pixmap.scaledToHeight(
+                self.base_pixmap.height() * self.pixel_ratio / 2,
+                Qt.SmoothTransformation)
+        self.base_pixmap.setDevicePixelRatio(self.pixel_ratio)
+        self.base.setPixmap(self.base_pixmap)
+        self.base.setGeometry(0, 0, 1024, 576)
 
         #create page layout
         self.page = {}
@@ -55,7 +63,7 @@ class Save(QMainWindow):
             self.page_background[i] = QLabel(self.save_widget)
             self.page_background[i].setGeometry(704 + i * 40, 25, 36, 36)
             self.page_background[i].setStyleSheet(
-                    'QLabel { background-color: white;\
+                    'QLabel { background-color: rgba(255, 255, 255, 0.8);\
                             border-radius: 6px; }')
             self.page_background[i].hide()
         self.page_background[0].show()
