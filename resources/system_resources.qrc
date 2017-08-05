@@ -11,8 +11,6 @@
 
     <!-- GAME ENGINE -->
 
-        <file alias="select_background.png">system/game_engine/select_background.png</file>
-
         <file alias="select_button_defaults.png">system/game_engine/select_button_defaults.png</file>
         <file alias="select_button_hover.png">system/game_engine/select_button_hover.png</file>
         <file alias="select_button_press.png">system/game_engine/select_button_press.png</file>
@@ -84,7 +82,7 @@
 
     <!-- SAVE -->
 
-        <file alias="save_background.png">system/save/save_background.png</file>
+        <file alias="save_base.png">system/save/save_base.png</file>
 
         <file alias="save_label_button_defaults.png">system/save/save_label_button_defaults.png</file>
         <file alias="save_label_button_hover.png">system/save/save_label_button_hover.png</file>
