@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import copy
+import coda.font
 import resources.system_resources
 
 from PyQt5.QtWidgets import *
@@ -20,6 +21,7 @@ class Page(QWidget):
         self.text_preview = {}
         self.label = {}
         self.delete = {}
+        self.dpi = QApplication.primaryScreen().logicalDotsPerInch()
 
     def create_page_layout(self, num):
 
@@ -32,7 +34,7 @@ class Page(QWidget):
             self.text_preview[i] = QLabel(self)
             self.text_preview[i].setGeometry(291 + int(i / 3) * 436, 82
                     + (i % 3) * 136, 204, 108)
-            self.text_preview[i].setFont(QFont('Times New Roman', 14))
+            self.text_preview[i].setFont(coda.font.set_font(0, 14))
             self.text_preview[i].setAlignment(Qt.AlignLeft)
             self.text_preview[i].setWordWrap(True)
 

@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/ic">
+
+<!-- ICON -->
+
+        <file alias="coda.png">icon/coda.png</file>
+
+    </qresource>
+</RCC>

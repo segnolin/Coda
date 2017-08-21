@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import copy
+import coda.font
 import resources.system_resources
 
 from PyQt5.QtWidgets import *
@@ -32,6 +33,7 @@ class GameEngine(QMainWindow):
         super().__init__()
 
         self.pixel_ratio = QWindow().devicePixelRatio()
+        self.dpi = QApplication.primaryScreen().logicalDotsPerInch()
 
     def create_game_engine_layout(self):
 
@@ -103,14 +105,14 @@ class GameEngine(QMainWindow):
         self.text_character_label = QLabel(self.text_box_widget)
         self.text_character_label.setAlignment(Qt.AlignLeft)
         self.text_character_label.setGeometry(130, 436, 710, 30)
-        self.text_character_label.setFont(QFont('Times New Roman', 23, QFont.Bold))
+        self.text_character_label.setFont(coda.font.set_font(1, 23))
 
         #set the text box label
         self.text_box_label = LetterPrint(self.text_box_widget)
         self.text_box_label.setAlignment(Qt.AlignLeft)
         self.text_box_label.setGeometry(140, 476, 700, 75)
         self.text_box_label.setWordWrap(True)
-        self.text_box_label.setFont(QFont('Times New Roman', 21))
+        self.text_box_label.setFont(coda.font.set_font(0, 21))
 
         #create transparent label to add game engine id(next)
         self.next_label = QLabel(self.text_box_widget)
@@ -237,7 +239,7 @@ class GameEngine(QMainWindow):
         #set parser
         self.parser = ScriptParser()
 
-        #set data 
+        #set data
         self.data = Data()
         self.save_data = Data()
 
@@ -340,7 +342,7 @@ class GameEngine(QMainWindow):
         else:
             self.effect_status = False
             self._init_sound()
-        
+
         self.init_status = False
 
     def _init_sound(self):
@@ -695,9 +697,7 @@ class GameEngine(QMainWindow):
             pos = 250 + int(i - int(self.data.sl_num / 2)) * 75
 
             self.selection_button[i] = SelectButton(self.select_widget)
-            self.selection_button[i].setStyleSheet(
-                    'QAbstractButton { font-family: Times New Roman;\
-                    font-size: 21px; }')
+            self.selection_button[i].setFont(coda.font.set_font(0, 21))
             self.selection_button[i].id = '{0}'.format(i)
             self.selection_button[i].set_text(self.data.sl_txt[i])
             self.selection_button[i].setGeometry(0, pos, 1024, 65)

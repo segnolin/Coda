@@ -1,0 +1,10 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/ft">
+
+<!-- FONT -->
+
+        <file alias="SourceHanSans-Normal.otf">font/SourceHanSans-Normal.otf</file>
+        <file alias="SourceHanSans-Medium.otf">font/SourceHanSans-Medium.otf</file>
+
+    </qresource>
+</RCC>

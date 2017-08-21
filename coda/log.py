@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import coda.font
+
+import resources.font_resources
 import resources.system_resources
 
 from PyQt5.QtWidgets import *
@@ -16,6 +19,7 @@ class Log(QWidget):
         super().__init__(parent)
 
         self.log_count = 0
+        self.dpi = QApplication.primaryScreen().logicalDotsPerInch()
 
         self._create_layout()
 
@@ -68,7 +72,7 @@ class Log(QWidget):
         character_label.setText(character)
         character_label.setStyleSheet(
                 'QLabel { background-color: rgba(0, 0, 0, 0); }')
-        character_label.setFont(QFont('Times New Roman', 20, QFont.Bold))
+        character_label.setFont(coda.font.set_font(1, 20))
 
         text_label = QLabel(label)
         text_label.setAlignment(Qt.AlignLeft)
@@ -77,9 +81,9 @@ class Log(QWidget):
         text_label.setStyleSheet(
                 'QLabel { background-color: rgba(0, 0, 0, 0); }')
         if log_type:
-            text_label.setFont(QFont('Times New Roman', 18, QFont.Bold))
+            text_label.setFont(coda.font.set_font(1, 18))
         else:
-            text_label.setFont(QFont('Times New Roman', 18))
+            text_label.setFont(coda.font.set_font(0, 18))
         text_label.setWordWrap(True)
 
         self.log_count += 1

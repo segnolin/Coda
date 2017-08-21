@@ -5,6 +5,8 @@ pyinstaller/
 resources/background_music_resources.py
 resources/background_resources.py
 resources/event_resources.py
+resources/font_resources.py
+resources/icon_resources.py
 resources/mask_resources.py
 resources/portrait_resources.py
 resources/scene_resources.py

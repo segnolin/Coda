@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import resources.font_resources
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
@@ -18,7 +20,14 @@ class Coda(QMainWindow):
         super().__init__()
 
         self.pixel_ratio = QWindow().devicePixelRatio()
+        self.init_font()
         self.init_ui()
+
+    def init_font(self):
+
+        #load fonts
+        fontId = QFontDatabase.addApplicationFont(':/ft/SourceHanSans-Normal.otf')
+        fontId = QFontDatabase.addApplicationFont(':/ft/SourceHanSans-Medium.otf')
 
     def init_ui(self):
 
