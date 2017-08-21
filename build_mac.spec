@@ -31,5 +31,5 @@ app = BUNDLE(exe,
         name = 'Coda.app',
         icon = 'resources/icon/coda.icns',
         bundle_identifier = None,
-        version = '0.0.7',
+        version = '0.0.8',
         info_plist = {'NSHighResolutionCapable': 'True'})
