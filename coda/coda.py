@@ -26,8 +26,8 @@ class Coda(QMainWindow):
     def init_font(self):
 
         #load fonts
-        fontId = QFontDatabase.addApplicationFont(':/ft/SourceHanSans-Normal.otf')
-        fontId = QFontDatabase.addApplicationFont(':/ft/SourceHanSans-Medium.otf')
+        QFontDatabase.addApplicationFont(':/ft/SourceHanSans-Normal.otf')
+        QFontDatabase.addApplicationFont(':/ft/SourceHanSans-Medium.otf')
 
     def init_ui(self):
 
