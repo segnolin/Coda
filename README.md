@@ -18,16 +18,16 @@ Everyone can create your own visual novel games using **Coda** by simply writing
 
 ### Installation
 
-First, install dependencies using pip3 (sudo if needed)
-
-```
-$ pip3 install -r requirements.txt
-```
-
-Clone the repo to any target directory.
+First, clone the repo to any target directory.
 
 ```
 $ git clone https://github.com/segnoda/Coda.git
+```
+
+Install dependencies using pip3 (sudo if needed)
+
+```
+$ pip3 install -r requirements.txt
 ```
 
 Run the shell script to build resources files.
