@@ -27,7 +27,7 @@ $ git clone https://github.com/segnoda/Coda.git
 Install dependencies using pip3 (sudo if needed)
 
 ```
-$ pip3 install -r requirements.txt
+$ sudo pip3 install -r requirements.txt
 ```
 
 Run the shell script to build resources files.
@@ -49,7 +49,7 @@ $ python3 main.py
 Use PyInstaller to build a stand alone App.
 
 ```
-$ pip3 install https://github.com/pyinstaller/pyinstaller/archive/develop.tar.gz
+$ sudo pip3 install pyinstaller
 $ pyinstaller build_mac.spec    # for macOS
 $ pyinstaller build_win.spec    # for Windows
 ```
